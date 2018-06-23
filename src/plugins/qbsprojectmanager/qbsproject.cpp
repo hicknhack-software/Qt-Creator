@@ -864,6 +864,10 @@ static void getExpandedCompilerFlags(QStringList &cFlags, QStringList &cxxFlags,
         cxxFlags << "/TP";
         if (enableRtti.isValid())
             cxxFlags << QLatin1String(enableRtti.toBool() ? "/GR" : "/GR-");
+
+        const QString cxxLanguageVersion = getCppProp("cxxLanguageVersion").toString();
+        if (!cxxLanguageVersion.isEmpty())
+            cxxFlags << ("/std:" + cxxLanguageVersion);
     }
 }
 
