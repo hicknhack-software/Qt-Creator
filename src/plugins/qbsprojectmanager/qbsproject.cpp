@@ -791,6 +791,9 @@ static void getExpandedCompilerFlags(QStringList &cFlags, QStringList &cxxFlags,
     const auto getCppProp = [properties](const char *propertyName) {
         return properties.getModuleProperty("cpp", QLatin1String(propertyName));
     };
+    cxxFlags = getCppProp("cxxFlags").toStringList();
+    cFlags = getCppProp("cFlags").toStringList();
+
     const QVariant &enableExceptions = getCppProp("enableExceptions");
     const QVariant &enableRtti = getCppProp("enableRtti");
     QStringList commonFlags = getCppProp("platformCommonCompilerFlags").toStringList();
@@ -825,7 +828,8 @@ static void getExpandedCompilerFlags(QStringList &cFlags, QStringList &cxxFlags,
             if (!positionIndependentCode.isValid() || positionIndependentCode.toBool())
                 commonFlags << "-fPIC";
         }
-        cFlags = cxxFlags = commonFlags;
+        cFlags << commonFlags;
+        cxxFlags << commonFlags;
 
         const QString cxxLanguageVersion = getCppProp("cxxLanguageVersion").toString();
         if (cxxLanguageVersion == "c++11")
@@ -859,9 +863,8 @@ static void getExpandedCompilerFlags(QStringList &cFlags, QStringList &cxxFlags,
             else if (exceptionModel == "externc")
                 commonFlags << "/EHs";
         }
-        cFlags = cxxFlags = commonFlags;
-        cFlags << "/TC";
-        cxxFlags << "/TP";
+        cFlags << commonFlags << "/TC";
+        cxxFlags << commonFlags << "/TP";
         if (enableRtti.isValid())
             cxxFlags << QLatin1String(enableRtti.toBool() ? "/GR" : "/GR-");
     }
