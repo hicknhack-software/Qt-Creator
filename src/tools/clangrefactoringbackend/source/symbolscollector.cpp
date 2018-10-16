@@ -93,7 +93,7 @@ newFrontendActionFactory(Factory *consumerFactory,
             {}
 
             std::unique_ptr<clang::ASTConsumer>
-                    CreateASTConsumer(clang::CompilerInstance &instance, StringRef inFile) override {
+                    CreateASTConsumer(clang::CompilerInstance &instance, clang::StringRef inFile) override {
                 return m_consumerFactory->newASTConsumer(instance, inFile);
             }
 

@@ -161,7 +161,7 @@ std::vector<const clang::NamedDecl *> namedDeclarationsAt(const clang::ASTContex
 
     auto declarations = Context.getTranslationUnitDecl()->decls();
     for (auto &currentDeclation : declarations) {
-        const auto &fileLocation = currentDeclation->getLocStart();
+        const auto &fileLocation = currentDeclation->getBeginLoc();
         const auto &fileName = sourceManager.getFilename(fileLocation);
         if (fileName == currentFile) {
             visitor.TraverseDecl(currentDeclation);
