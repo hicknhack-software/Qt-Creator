@@ -794,8 +794,12 @@ static void getExpandedCompilerFlags(QStringList &cFlags, QStringList &cxxFlags,
         cFlags = cxxFlags = commonFlags;
 
         const auto cxxLanguageVersion = arrayToStringList(getCppProp("cxxLanguageVersion"));
-        if (cxxLanguageVersion.contains("c++20"))
+        if (cxxLanguageVersion.contains("c++2b"))
+            cxxFlags << "-std=c++2b";
+        else if (cxxLanguageVersion.contains("c++20"))
             cxxFlags << "-std=c++20";
+        else if (cxxLanguageVersion.contains("c++2a"))
+            cxxFlags << "-std=c++2a";
         else if (cxxLanguageVersion.contains("c++17"))
             cxxFlags << "-std=c++17";
         else if (cxxLanguageVersion.contains("c++14"))
@@ -850,7 +854,13 @@ static void getExpandedCompilerFlags(QStringList &cFlags, QStringList &cxxFlags,
         cxxFlags << "/TP";
         if (!enableRtti.isUndefined())
             cxxFlags << QLatin1String(enableRtti.toBool() ? "/GR" : "/GR-");
-        if (getCppProp("cxxLanguageVersion").toArray().contains("c++17"))
+
+        const auto cxxLanguageVersion = getCppProp("cxxLanguageVersion").toArray();
+        if (cxxLanguageVersion.contains("c++23") || cxxLanguageVersion.contains("c++2b"))
+            cxxFlags << "/std:c++latest";
+        else if (cxxLanguageVersion.contains("c++20") || cxxLanguageVersion.contains("c++2a"))
+            cxxFlags << "/std:c++20";
+        else if (cxxLanguageVersion.contains("c++17"))
             cxxFlags << "/std:c++17";
     }
 }
