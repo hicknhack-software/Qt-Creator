@@ -1,0 +1,90 @@
+name: Qbs Build Matrix
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - name: "Windows Latest MSVC"
+            artifact: "Windows-MSVC"
+            os: windows-latest
+            qt_version: "5.15.0"
+            qt_arch: "win64_msvc2019_64"
+            libclang_url: "https://download.qt.io/development_releases/prebuilt/libclang/libclang-release_80-based-windows-vs2017_64.7z"
+
+    steps:
+      - name: Get LibClang
+        shell: cmake -P {0}
+        run: file(DOWNLOAD "${{ matrix.config.libclang_url }}" ./libclang.7z SHOW_PROGRESS)
+
+      - run: 7z x libclang.7z
+
+      - name: Cache Qt
+        id: cache-qt
+        uses: actions/cache@v1
+        with:
+          path: ../Qt
+          key: QtCache-${{ matrix.config.qt_version }}-${{ matrix.config.qt_arch }}
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: "${{ matrix.config.qt_version }}"
+          arch: "${{ matrix.config.qt_arch }}"
+          modules: qtbase qtdeclarative qttools qtsvg qtserialport qtquickcontrols qtquickcontrols2 qtgraphicaleffects qtlocation qtimageformats qtquicktimeline qtquick3d qtscript
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+
+      - name: Install Qbs
+        run: choco install qbs
+
+      - name: Setup Qbs
+        run: |
+          qbs setup-toolchains --detect
+          qbs setup-qt $Env:Qt5_DIR\bin\qmake.exe qt5-15
+          qbs config qt5-15.baseProfile MSVC2019-x64
+          qbs config defaultProfile qt5-15
+          qbs config --list profiles
+
+      - uses: actions/checkout@v2
+        with:
+          path: Repo
+      - working-directory: Repo
+        run: |
+          git submodule update --init src/plugins/help/qlitehtml/litehtml
+          git submodule update --init src/shared/qbs
+
+      - run: |
+          dir
+          dir libclang
+          dir libclang/bin
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "2.x"
+
+      - name: Build
+        working-directory: Repo
+        run: |
+          $Env:Path += ";${{ github.workspace }}\libclang\bin"
+          $Env:LLVM_INSTALL_DIR = "${{ github.workspace }}\libclang"
+          $Env:QTC_ENABLE_CLANG_LIBTOOLING = "true"
+          qbs build -d $ENV:TMP\build `
+            qbs.installRoot:${{ github.workspace }}/install-root `
+            config:Release qbs.defaultBuildVariant:release
+
+      - name: Deploy
+        working-directory: ${{ github.workspace }}/install-root
+        run: |
+          copy ${{ github.workspace }}\libclang\bin\libclang.dll bin
+          windeployqt -release -no-compiler-runtime -quick -qmldir share\qtcreator\welcomescreen -qmldir ${{ github.workspace }}\Repo\src\plugins\qmlprofiler bin\qtcreator.exe lib\qtcreator lib\qtcreator\plugins
+
+      - name: Upload
+        uses: actions/upload-artifact@v1
+        with:
+          path: ${{ github.workspace }}/install-root/
+          name: QtCreator-${{ matrix.config.qt_arch }}.zip
