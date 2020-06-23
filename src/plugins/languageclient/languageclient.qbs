@@ -86,6 +86,7 @@ QtcPlugin {
     }
 
     Export {
+        Depends { name: "ProjectExplorer" }
         Depends { name: "LanguageServerProtocol" }
     }
 }
