@@ -57,7 +57,7 @@ Product {
             if (qtc.enableAddressSanitizer)
                 flags.push("-fno-omit-frame-pointer");
         } else if (qbs.toolchain.contains("msvc")) {
-            flags.push("/w44996");
+            flags.push("/w44996", "/permissive-");
         }
         return flags;
     }
