@@ -41,6 +41,7 @@ Product {
         submodules: ["core"]
         versionAtLeast: qtMinVersion.result
     }
+    Depends { name: "Qt.core5compat"; condition: useQt; required: Qt.core.versionMajor == 6 }
 
     Depends { name: "qtc" }
 
@@ -71,7 +72,7 @@ Product {
             if (qtc.enableAddressSanitizer)
                 flags.push("-fno-omit-frame-pointer");
         } else if (qbs.toolchain.contains("msvc")) {
-            flags.push("/w44996");
+            flags.push("/w44996", "/permissive-");
         }
         return flags;
     }
