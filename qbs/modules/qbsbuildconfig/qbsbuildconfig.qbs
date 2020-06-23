@@ -27,6 +27,12 @@ Module {
         cpp.defines: "_UCRT_NOISY_NAN"
     }
 
+    Properties {
+        condition: qbs.toolchain.contains("msvc")
+        cpp.cxxFlags: ["/permissive-"]
+        cpp.defines: "_UCRT_NOISY_NAN"
+    }
+
     priority: 1
 
     property bool enableUnitTests: false
