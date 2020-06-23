@@ -5,7 +5,7 @@ QtcPlugin {
 
     Depends { name: "Qt"; submodules: ["help", "network", "sql"] }
     Depends { name: "Qt.printsupport" }
-    Depends { name: "Qt.webenginewidgets"; required: false }
+    Depends { name: "Qt.webenginewidgets"; required: false; condition: Utilities.versionCompare(Qt.core.version, "6.0") < 0 }
 
     Depends { name: "Aggregation" }
     Depends { name: "Utils" }
@@ -17,7 +17,7 @@ QtcPlugin {
 
     cpp.defines: {
         var defines = base.concat(["QT_CLUCENE_SUPPORT"]);
-        if (Qt.webenginewidgets.present)
+        if (Qt.webenginewidgets && Qt.webenginewidgets.present)
             defines.push("QTC_WEBENGINE_HELPVIEWER");
         if (qlitehtml.present)
             defines.push("QTC_LITEHTML_HELPVIEWER")
@@ -55,7 +55,7 @@ QtcPlugin {
 
     Group {
         name: "WebEngine Sources"
-        condition: Qt.webenginewidgets.present
+        condition: Qt.webenginewidgets && Qt.webenginewidgets.present
         files: [
             "webenginehelpviewer.cpp", "webenginehelpviewer.h"
         ]
