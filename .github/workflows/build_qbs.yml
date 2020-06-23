@@ -1,0 +1,157 @@
+name: Qbs Build Matrix
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - name: "Windows Latest MSVC"
+            artifact: "Windows-MSVC"
+            os: windows-latest
+            qt_version: "5.15.0"
+            qt_arch: "win64_msvc2019_64"
+            libclang_url: "https://download.qt.io/development_releases/prebuilt/libclang/libclang-release_80-based-windows-vs2017_64.7z"
+
+    steps:
+      - name: Get LibClang
+        shell: cmake -P {0}
+        run: file(DOWNLOAD "${{ matrix.config.libclang_url }}" ./libclang.7z SHOW_PROGRESS)
+
+      - run: 7z x libclang.7z
+
+      - name: Cache Qt
+        id: cache-qt
+        uses: actions/cache@v1
+        with:
+          path: ../Qt
+          key: QtCache-${{ matrix.config.qt_version }}-${{ matrix.config.qt_arch }}
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: "${{ matrix.config.qt_version }}"
+          arch: "${{ matrix.config.qt_arch }}"
+          modules: qtbase qtdeclarative qttools qtsvg qtserialport qtquickcontrols qtquickcontrols2 qtgraphicaleffects qtlocation qtimageformats qtquicktimeline qtquick3d qtscript
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+
+      - name: Install Qbs
+        run: choco install qbs
+
+      - name: Setup Qbs
+        run: |
+          qbs setup-toolchains --detect
+          qbs setup-qt $Env:Qt5_DIR\bin\qmake.exe qt5-15
+          qbs config qt5-15.baseProfile MSVC2019-x64
+          qbs config defaultProfile qt5-15
+          qbs config --list profiles
+
+      - uses: actions/checkout@v2
+        with:
+          path: Repo
+      - working-directory: Repo
+        run: |
+          git submodule update --init src/plugins/help/qlitehtml/litehtml
+          git submodule update --init src/shared/qbs
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "2.x"
+
+      - name: Build
+        working-directory: Repo
+        run: |
+          $Env:Path += ";${{ github.workspace }}\libclang\bin"
+          $Env:LLVM_INSTALL_DIR = "${{ github.workspace }}\libclang"
+          $Env:QTC_ENABLE_CLANG_LIBTOOLING = "true"
+          qbs build -d $ENV:TMP\build `
+            qbs.installRoot:${{ github.workspace }}/install-root `
+            config:Release qbs.defaultBuildVariant:release
+
+      - name: Deploy
+        working-directory: ${{ github.workspace }}/install-root
+        run: |
+          copy ${{ github.workspace }}\libclang\bin\libclang.dll bin
+          windeployqt -release -no-compiler-runtime -quick -qmldir share\qtcreator\welcomescreen -qmldir ${{ github.workspace }}\Repo\src\plugins\qmlprofiler bin\qtcreator.exe lib\qtcreator lib\qtcreator\plugins
+
+      - name: Pack
+        working-directory: ${{ github.workspace }}/install-root
+        run: 7z a ../QtCreator-${{ matrix.config.qt_arch }}-${{ github.run_id }}.7z * -r
+
+      - name: Upload
+        uses: actions/upload-artifact@v1
+        with:
+          path: ${{ github.workspace }}/QtCreator-${{ matrix.config.qt_arch }}-${{ github.run_id }}.7z
+          name: QtCreator-${{ matrix.config.qt_arch }}-${{ github.run_id }}.7z
+
+  release:
+    if: contains(github.ref, 'tags/v')
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Store Release url
+        run: |
+          echo "${{ steps.create_release.outputs.upload_url }}" > ./upload_url
+
+      - uses: actions/upload-artifact@v1
+        with:
+          path: ./upload_url
+          name: upload_url
+
+  publish:
+    if: contains(github.ref, 'tags/v')
+    name: "Publish ${{ matrix.config.name }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - name: "Windows Latest MSVC"
+            artifact: "Windows-MSVC"
+            os: windows-latest
+            qt_arch: "win64_msvc2019_64"
+    needs: release
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: QtCreator-${{ matrix.config.qt_arch }}-${{ github.run_id }}.7z
+          path: ./
+
+      - name: Download URL
+        uses: actions/download-artifact@v1
+        with:
+          name: upload_url
+          path: ./
+
+      - id: set_upload_url
+        run: |
+          upload_url=`cat ./upload_url`
+          echo ::set-output name=upload_url::$upload_url
+
+      - name: Upload to Release
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.set_upload_url.outputs.upload_url }}
+          asset_path: ./QtCreator-${{ matrix.config.qt_arch }}-${{ github.run_id }}.7z
+          asset_name: QtCreator-${{ matrix.config.qt_arch }}-${{ github.run_id }}.7z
+          asset_content_type: application/x-gtar
