@@ -23,6 +23,11 @@ Module {
          }
     }
 
+    Properties {
+        condition: qbs.toolchain.contains("msvc")
+        cpp.cxxFlags: ["/permissive-"]
+    }
+
     priority: 1
 
     property bool enableUnitTests: false
