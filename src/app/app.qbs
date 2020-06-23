@@ -68,7 +68,8 @@ QtcProduct {
         //  RC_VERSION=4,3,82,0 (quadruple)
         //  RC_VERSION_STRING="4.4.0-beta1" (free text)
         // Also, we need to replace space with \x20 to be able to work with both rc and windres
-        cpp.defines: outer.concat(["RC_VERSION=" + qtc.qtcreator_version.replace(/\./g, ",") + ",0",
+        cpp.defines: outer.concat(["RC_APPLICATION_NAME="+qtc.ide_display_name,
+                                   "RC_VERSION=" + qtc.qtcreator_version.replace(/\./g, ",") + ",0",
                                    "RC_VERSION_STRING=" + qtc.qtcreator_display_version,
                                    "RC_COPYRIGHT=2008-" + qtc.qtcreator_copyright_year
                                    + " The Qt Company Ltd".replace(/ /g, "\\x20"),
