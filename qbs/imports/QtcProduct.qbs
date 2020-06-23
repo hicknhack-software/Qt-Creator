@@ -28,8 +28,8 @@ Product {
             enableFallback: false
         }
     }
-    Depends { name: "Qt.core"; versionAtLeast: "6.2.0" }
-    Depends { name: "Qt.core5compat" }
+    Depends { name: "Qt.core" }
+    Depends { name: "Qt.core5compat"; required: Qt.core.versionMajor == 6 }
 
     // TODO: Should fall back to what came from Qt.core for Qt < 5.7, but we cannot express that
     //       atm. Conditionally pulling in a module that sets the property is also not possible,
@@ -53,7 +53,7 @@ Product {
             if (qtc.enableAddressSanitizer)
                 flags.push("-fno-omit-frame-pointer");
         } else if (qbs.toolchain.contains("msvc")) {
-            flags.push("/w44996");
+            flags.push("/w44996", "/permissive-");
         }
         return flags;
     }

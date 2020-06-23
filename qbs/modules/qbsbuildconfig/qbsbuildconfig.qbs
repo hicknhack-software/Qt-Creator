@@ -17,6 +17,11 @@ Module {
         cpp.cxxFlags: ["-Wno-deprecated-copy", "-Wno-constant-logical-operand"]
     }
 
+    Properties {
+        condition: qbs.toolchain.contains("msvc")
+        cpp.cxxFlags: ["/permissive-"]
+    }
+
     priority: 1
 
     property bool enableUnitTests: false
