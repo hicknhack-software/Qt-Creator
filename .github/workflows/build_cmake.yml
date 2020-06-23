@@ -11,8 +11,8 @@ env:
   MACOS_DEPLOYMENT_TARGET: 10.14
   CLANG_VERSION: 16.0.0
   ELFUTILS_VERSION: 0.175
-  CMAKE_VERSION: 3.21.1
-  NINJA_VERSION: 1.10.2
+  CMAKE_VERSION: 3.23.1
+  NINJA_VERSION: 1.11.1
   BUILD_TYPE: Release
   CCACHE_VERSION: 4.6
   QT_MIRRORS: download.qt.io;mirrors.ocf.berkeley.edu/qt;ftp.fau.de/qtproject;mirror.bit.edu.cn/qtproject
@@ -21,8 +21,6 @@ jobs:
   build:
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
-    outputs:
-        tag: ${{ steps.git.outputs.tag }}
     strategy:
       fail-fast: false
       matrix:
@@ -56,21 +54,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Checkout submodules
-      id: git
-      shell: cmake -P {0}
       run: |
-        execute_process(COMMAND git submodule set-url -- perfparser https://code.qt.io/qt-creator/perfparser.git)
-        execute_process(COMMAND git submodule update --init --recursive)
-        file(MAKE_DIRECTORY release)
-        if (${{github.ref}} MATCHES "tags/v(.*)")
-            file(APPEND "$ENV{GITHUB_OUTPUT}" "tag=${CMAKE_MATCH_1}\n")
-            file(READ "dist/changelog/changes-${CMAKE_MATCH_1}.md" changelog_md)
-            file(WRITE "release/changelog.md" "These packages are not officially supported, for official packages please check out https://download.qt.io/official_releases/qtcreator\n\n")
-            file(APPEND "release/changelog.md" "${changelog_md}")
-        else()
-            file(APPEND "$ENV{GITHUB_OUTPUT}" "tag=${{github.run_id}}\n")
-        endif()
-
+        git submodule set-url -- perfparser https://code.qt.io/qt-creator/perfparser.git
+        git submodule set-url -- qbs https://github.com/arBmind/qbs.git
+        git submodule update --init --recursive
 
     - name: Download Ninja and CMake
       shell: cmake -P {0}
@@ -601,8 +588,7 @@ jobs:
             --add-config=-DCMAKE_C_COMPILER_LAUNCHER=ccache
             --add-config=-DCMAKE_CXX_COMPILER_LAUNCHER=ccache
             --add-config=-DIDE_REVISION_URL=https://github.com/$ENV{GITHUB_REPOSITORY}/commits/$ENV{GITHUB_SHA}
-            --zip-infix=-${{ matrix.config.artifact }}-${{ steps.git.outputs.tag }}
-            --no-qbs
+            --zip-infix=-${{ matrix.config.artifact }}-${{ github.run_id }}
             --with-cpack
           RESULT_VARIABLE result
           COMMAND_ECHO STDOUT
@@ -668,42 +654,42 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@v3
       with:
-        path: build/qtcreator-${{ matrix.config.artifact }}-${{ steps.git.outputs.tag }}.7z
-        name: qtcreator-${{ matrix.config.artifact }}-${{ steps.git.outputs.tag }}.7z
+        path: build/qtcreator-${{ matrix.config.artifact }}-${{ github.run_id }}.7z
+        name: qtcreator-${{ matrix.config.artifact }}-${{ github.run_id }}.7z
 
     - name: Upload Devel
       uses: actions/upload-artifact@v3
       with:
-        path: build/qtcreator-${{ matrix.config.artifact }}-${{ steps.git.outputs.tag }}_dev.7z
-        name: qtcreator-${{ matrix.config.artifact }}-${{ steps.git.outputs.tag }}_dev.7z
+        path: build/qtcreator-${{ matrix.config.artifact }}-${{ github.run_id }}_dev.7z
+        name: qtcreator-${{ matrix.config.artifact }}-${{ github.run_id }}_dev.7z
 
     - name: Upload wininterrupt
       if: runner.os == 'Windows'
       uses: actions/upload-artifact@v3
       with:
-        path: build/wininterrupt-${{ matrix.config.artifact }}-${{ steps.git.outputs.tag }}.7z
-        name: wininterrupt-${{ matrix.config.artifact }}-${{ steps.git.outputs.tag }}.7z
+        path: build/wininterrupt-${{ matrix.config.artifact }}-${{ github.run_id }}.7z
+        name: wininterrupt-${{ matrix.config.artifact }}-${{ github.run_id }}.7z
 
     - name: Upload qtcreatorcdbext
       if: runner.os == 'Windows' && matrix.config.is_msvc
       uses: actions/upload-artifact@v3
       with:
-        path: build/qtcreatorcdbext-${{ matrix.config.artifact }}-${{ steps.git.outputs.tag }}.7z
-        name: qtcreatorcdbext-${{ matrix.config.artifact }}-${{ steps.git.outputs.tag }}.7z
+        path: build/qtcreatorcdbext-${{ matrix.config.artifact }}-${{ github.run_id }}.7z
+        name: qtcreatorcdbext-${{ matrix.config.artifact }}-${{ github.run_id }}.7z
 
     - name: Upload Debian package
       if: runner.os == 'Linux'
       uses: actions/upload-artifact@v3
       with:
-        path: build/build/qtcreator-${{ matrix.config.artifact }}-${{ steps.git.outputs.tag }}.deb
-        name: qtcreator-${{ matrix.config.artifact }}-${{ steps.git.outputs.tag }}.deb
+        path: build/build/qtcreator-${{ matrix.config.artifact }}-${{ github.run_id }}.deb
+        name: qtcreator-${{ matrix.config.artifact }}-${{ github.run_id }}.deb
 
     - name: Upload disk image
       if: runner.os == 'macOS' && contains(github.ref, 'tags/v')
       uses: actions/upload-artifact@v3
       with:
-        path: build/qt-creator-${{ matrix.config.artifact }}-${{ steps.git.outputs.tag }}.dmg
-        name: qt-creator-${{ matrix.config.artifact }}-${{ steps.git.outputs.tag }}.dmg
+        path: build/qt-creator-${{ matrix.config.artifact }}-${{ github.run_id }}.dmg
+        name: qt-creator-${{ matrix.config.artifact }}-${{ github.run_id }}.dmg
 
     - name: Create ccache archive
       working-directory: .ccache
@@ -715,38 +701,14 @@ jobs:
         path: ./${{ steps.ccache.outputs.archive_name }}.tar
         name: ${{ steps.ccache.outputs.archive_name }}
 
-    - name: Upload Release Changelog
+    - name: Upload binaries to release
       if: contains(github.ref, 'tags/v')
-      uses: actions/upload-artifact@v3
+      uses: svenstaro/upload-release-action@v2
       with:
-        path: ./release/changelog.md
-        name: changelog.md
-
-  release:
-    if: contains(github.ref, 'tags/v')
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-    - name: Download artifacts
-      uses: actions/download-artifact@v3
-      with:
-        path: release-with-dirs
-
-    - name: Fixup artifacts
-      run: |
-        mkdir release
-        mv release-with-dirs/*/* release/
-        rm release/ccache*
-
-    - name: Create Release
-      id: create_release
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v${{ needs.build.outputs.tag }}
-        body_path: release/changelog.md
-        files: release/*
-        draft: false
-        prerelease: false
+        tag: ${{ github.ref }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        release_name: Release ${{ github.ref }}
+        # body: ${{ github.event.head_commit.message }}
+        overwrite: true
+        file_glob: true
+        file: build/*.@(7z|dmg|deb)
