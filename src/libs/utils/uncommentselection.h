@@ -46,7 +46,8 @@ public:
 
     CommentDefinition();
     CommentDefinition(const QString &single,
-                      const QString &multiStart = QString(), const QString &multiEnd = QString());
+                      const QString &multiStart = QString(), const QString &multiEnd = QString(),
+                      bool isAfterWhiteSpaces = false);
 
     bool isValid() const;
     bool hasSingleLineStyle() const;
@@ -55,6 +56,7 @@ public:
 public:
     bool isAfterWhiteSpaces = false;
     QString singleLine;
+    QString singleLineInsert;
     QString multiLineStart;
     QString multiLineEnd;
 };
