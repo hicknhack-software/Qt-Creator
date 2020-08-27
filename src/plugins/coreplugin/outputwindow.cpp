@@ -106,6 +106,7 @@ public:
     QTimer scrollTimer;
     QElapsedTimer lastMessage;
     QHash<unsigned int, QPair<int, int>> taskPositions;
+    int lineCount = 0; // correct line count to apply offsets
     IFindSupport *findSupport = nullptr;
 };
 
@@ -190,7 +191,9 @@ OutputWindow::OutputWindow(
     d->scrollTimer.setInterval(10ms);
     d->scrollTimer.setSingleShot(true);
     connect(&d->scrollTimer, &QTimer::timeout,
-            this, &OutputWindow::scrollToBottom);
+            this, [&]() {
+        if (d->scrollToBottom) { scrollToBottom(); }
+    });
     d->lastMessage.start();
 
     d->originalFontSize = font().pointSizeF();
@@ -734,6 +737,12 @@ void OutputWindow::appendMessage(const QString &output, OutputFormat format)
         d->queuedOutput.last().first.append(output);
     if (!d->queueTimer.isActive())
         d->queueTimer.start();
+
+    d->lineCount += output.count('\n');
+}
+
+int OutputWindow::directTaskOffset() const {
+    return document()->blockCount() - d->lineCount;
 }
 
 void OutputWindow::registerPositionOf(unsigned taskId, int linkedOutputLines, int skipLines,
@@ -754,6 +763,7 @@ void OutputWindow::registerPositionOf(unsigned taskId, int linkedOutputLines, in
     const int lastLine = firstLine + linkedOutputLines - 1;
 
     d->taskPositions.insert(taskId, {firstLine, lastLine});
+    if (d->taskPositions.size() ==1) emit hasPositionsChanged();
 }
 
 bool OutputWindow::knowsPositionOf(unsigned taskId) const
@@ -777,6 +787,71 @@ void OutputWindow::showPositionOf(unsigned taskId)
 
     // Center cursor now:
     centerCursor();
+}
+
+bool OutputWindow::hasPositions() const
+{
+    return !d->taskPositions.isEmpty();
+}
+
+void OutputWindow::goToFirstTaskPosition()
+{
+    if (d->taskPositions.isEmpty()) return;
+    auto minLine = d->taskPositions.constBegin().value().first;
+    for (auto& pos : d->taskPositions) if (pos.first < minLine) minLine = pos.first;
+
+    auto cursor = QTextCursor(document()->findBlockByNumber(minLine));
+    cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::MoveAnchor);
+    setTextCursor(cursor);
+    cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
+    setTextCursor(cursor);
+    d->scrollToBottom = false;
+}
+
+void OutputWindow::goToNextTaskPosition()
+{
+    auto cursorLine = textCursor().blockNumber();
+    auto firstLine = cursorLine;
+    auto nextLine = -1;
+    for (auto &pos : d->taskPositions) {
+        auto line = pos.first;
+        if (line > cursorLine && (nextLine == -1 || line < nextLine)) {
+            nextLine = line;
+        }
+        if (line < firstLine) firstLine = line;
+    }
+    if (nextLine == -1) {
+        nextLine = firstLine;
+    }
+    auto cursor = QTextCursor(document()->findBlockByNumber(nextLine));
+    cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::MoveAnchor);
+    setTextCursor(cursor);
+    cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
+    setTextCursor(cursor);
+    d->scrollToBottom = false;
+}
+
+void OutputWindow::goToPreviousTaskPosition()
+{
+    auto cursorLine = textCursor().blockNumber();
+    auto nextLine = -1;
+    auto lastLine = cursorLine;
+    for (auto &pos : d->taskPositions) {
+        auto line = pos.first;
+        if (line < cursorLine && (nextLine == -1 || line > nextLine)) {
+            nextLine = line;
+        }
+        if (line > lastLine) lastLine = line;
+    }
+    if (nextLine == -1) {
+        nextLine = lastLine;
+    }
+    auto cursor = QTextCursor(document()->findBlockByNumber(nextLine));
+    cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::MoveAnchor);
+    setTextCursor(cursor);
+    cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
+    setTextCursor(cursor);
+    d->scrollToBottom = false;
 }
 
 QMimeData *OutputWindow::createMimeDataFromSelection() const
@@ -814,8 +889,11 @@ void OutputWindow::clear()
     d->lastFilteredBlock = {};
     d->formatter.clear();
     d->scrollToBottom = true;
+    auto hadTaskPositions = hasPositions();
     d->taskPositions.clear();
     d->startOfNewContentCursor.setPosition(0);
+    d->lineCount = 0;
+    if (hadTaskPositions) emit hasPositionsChanged();
 }
 
 void OutputWindow::clearLinesPrefixedWith(const QString& prefix, bool deleteTrailingLineBreak)
@@ -853,6 +931,8 @@ void OutputWindow::flush()
 void OutputWindow::reset()
 {
     flush();
+    d->queueTimer.stop();
+    clear();
     if (!d->queuedOutput.isEmpty()) {
         discardPendingToolOutput();
         flush();
