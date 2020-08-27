@@ -29,14 +29,16 @@
 
 using namespace Utils;
 
-CommentDefinition CommentDefinition::CppStyle = CommentDefinition("//", "/*", "*/");
+CommentDefinition CommentDefinition::CppStyle = CommentDefinition("//", "/*", "*/", true);
 CommentDefinition CommentDefinition::HashStyle = CommentDefinition("#");
 
 CommentDefinition::CommentDefinition() = default;
 
 CommentDefinition::CommentDefinition(const QString &single, const QString &multiStart,
-                                     const QString &multiEnd)
-    : singleLine(single),
+                                     const QString &multiEnd, bool isAfterWhiteSpaces)
+    : isAfterWhiteSpaces(isAfterWhiteSpaces),
+      singleLine(single),
+      singleLineInsert(single + " "),
       multiLineStart(multiStart),
       multiLineEnd(multiEnd)
 {
@@ -180,26 +182,37 @@ void Utils::unCommentSelection(QPlainTextEdit *edit, const CommentDefinition &de
         cursor.insertText(definition.multiLineStart);
     } else {
         endBlock = endBlock.next();
-        doSingleLineStyleUncomment = true;
-        for (QTextBlock block = startBlock; block != endBlock; block = block.next()) {
-            QString text = block.text().trimmed();
-            if (!text.isEmpty() && !text.startsWith(definition.singleLine)) {
-                doSingleLineStyleUncomment = false;
-                break;
+        doSingleLineStyleUncomment = [&] {
+            for (QTextBlock block = startBlock; block != endBlock; block = block.next()) {
+                QString text = block.text().trimmed();
+                if (!text.isEmpty() && !text.startsWith(definition.singleLine)) {
+                    return false;
+                }
             }
-        }
-
-        const int singleLineLength = definition.singleLine.length();
-        for (QTextBlock block = startBlock; block != endBlock; block = block.next()) {
-            if (doSingleLineStyleUncomment) {
+            return true;
+        }();
+        if (doSingleLineStyleUncomment) {
+            auto remove = [&] {
+                if (!definition.isAfterWhiteSpaces) return definition.singleLine;
+                for (QTextBlock block = startBlock; block != endBlock; block = block.next()) {
+                    QString text = block.text().trimmed();
+                    if (text.isEmpty()) continue;
+                    if (!text.startsWith(definition.singleLineInsert)) {
+                        return definition.singleLine;
+                    }
+                }
+                return definition.singleLineInsert;
+            }();
+            const int removeLength = remove.length();
+            for (QTextBlock block = startBlock; block != endBlock; block = block.next()) {
                 QString text = block.text();
                 int i = 0;
-                while (i <= text.size() - singleLineLength) {
-                    if (isComment(text, i, definition.singleLine)) {
+                while (i <= text.size() - removeLength) {
+                    if (isComment(text, i, remove)) {
                         cursor.setPosition(block.position() + i);
                         cursor.movePosition(QTextCursor::NextCharacter,
                                             QTextCursor::KeepAnchor,
-                                            singleLineLength);
+                                            removeLength);
                         cursor.removeSelectedText();
                         break;
                     }
@@ -207,18 +220,34 @@ void Utils::unCommentSelection(QPlainTextEdit *edit, const CommentDefinition &de
                         break;
                     ++i;
                 }
-            } else {
-                const QString text = block.text();
-                for (QChar c : text) {
-                    if (!c.isSpace()) {
-                        if (definition.isAfterWhiteSpaces)
-                            cursor.setPosition(block.position() + text.indexOf(c));
-                        else
-                            cursor.setPosition(block.position());
-                        cursor.insertText(definition.singleLine);
-                        break;
+            }
+        }
+        else {
+            auto insert = [&] {
+                if (!definition.isAfterWhiteSpaces) return definition.singleLine;
+                return definition.singleLineInsert;
+            }();
+            auto indent = [&] {
+                if (!definition.isAfterWhiteSpaces) return 0;
+                auto best = 9999;
+                for (QTextBlock block = startBlock; block != endBlock; block = block.next()) {
+                    const QString text = block.text();
+                    auto lineIndent = 0;
+                    for (QChar c : text) {
+                        if (!c.isSpace()) {
+                            if (lineIndent < best) best = lineIndent;
+                            break;
+                        }
+                        lineIndent++;
                     }
                 }
+                return best;
+            }();
+            for (QTextBlock block = startBlock; block != endBlock; block = block.next()) {
+                QString text = block.text().trimmed();
+                if (text.isEmpty()) continue;
+                cursor.setPosition(block.position() + indent);
+                cursor.insertText(definition.singleLineInsert);
             }
         }
     }
