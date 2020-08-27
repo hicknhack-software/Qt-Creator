@@ -677,7 +677,7 @@ void BuildManager::updateTaskCount()
     const int errors = getErrorTaskCount();
     ProgressManager::setApplicationLabel(errors > 0 ? QString::number(errors) : QString());
     if (isBuilding() && errors > 0 && !d->m_poppedUpTaskWindow) {
-        showTaskWindow();
+        // showTaskWindow();
         d->m_poppedUpTaskWindow = true;
     }
 }
@@ -694,6 +694,11 @@ void BuildManager::finish()
 void BuildManager::toggleOutputWindow()
 {
     d->m_outputWindow->toggle(IOutputPane::ModeSwitch | IOutputPane::WithFocus);
+}
+
+void BuildManager::scrollToFirstTask()
+{
+    d->m_outputWindow->scrollToFirstTask();
 }
 
 void BuildManager::showTaskWindow()
