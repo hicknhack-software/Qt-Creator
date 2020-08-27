@@ -42,11 +42,18 @@ public:
 
     void appendMessage(const QString &out, Utils::OutputFormat format);
 
+    int directTaskOffset() const;
+
     enum class TaskSource { Direct, Parsed };
     void registerPositionOf(
         unsigned taskId, int linkedOutputLines, int skipLines, int offset, TaskSource taskSource);
     bool knowsPositionOf(unsigned taskId) const;
     void showPositionOf(unsigned taskId);
+
+    bool hasPositions() const;
+    void goToFirstTaskPosition();
+    void goToNextTaskPosition();
+    void goToPreviousTaskPosition();
 
     void grayOutOldContent();
     void clear();
@@ -81,6 +88,7 @@ public:
 
 signals:
     void wheelZoom();
+    void hasPositionsChanged();
     void outputDiscarded();
     void cleanOldOutput();
 
