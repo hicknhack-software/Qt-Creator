@@ -2930,7 +2930,8 @@ void ProjectExplorerPluginPrivate::buildQueueFinished(bool success)
         executeRunConfiguration(m_delayedRunConfiguration.data(), m_runMode);
     } else {
         if (BuildManager::tasksAvailable())
-            BuildManager::showTaskWindow();
+            BuildManager::scrollToFirstTask();
+        //    BuildManager::showTaskWindow();
     }
     m_delayedRunConfiguration = nullptr;
     m_shouldHaveRunConfiguration = false;
