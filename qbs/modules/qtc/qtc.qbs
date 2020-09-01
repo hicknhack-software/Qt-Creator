@@ -4,9 +4,9 @@ import qbs.FileInfo
 import qbs.Utilities
 
 Module {
-    Depends { name: "cpp" }
+    Depends { name: "cpp"; required: false }
 
-    property string qtcreator_display_version: '20.0.0-rc1'
+    property string qtcreator_display_version: '20.0.0-rc1 snapshot-'+new Date().toISOString().slice(0,10)
     property string ide_version_major: '19'
     property string ide_version_minor: '0'
     property string ide_version_release: '84'
