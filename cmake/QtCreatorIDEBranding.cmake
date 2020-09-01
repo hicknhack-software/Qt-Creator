@@ -1,6 +1,8 @@
 set(IDE_VERSION "20.0.82")                            # The IDE version.
 set(IDE_VERSION_COMPAT "20.0.82")                     # The IDE Compatibility version.
-set(IDE_VERSION_DISPLAY "21.0.0-beta1")               # The IDE display version.
+string(TIMESTAMP SNAPSHOT_TODAY "%Y-%m-%d")
+set(IDE_VERSION_DISPLAY_BASE "21.0.0-beta1")
+set(IDE_VERSION_DISPLAY "${IDE_VERSION_DISPLAY_BASE}-snapshot-${SNAPSHOT_TODAY}") # The IDE display version.
 
 set(IDE_SETTINGSVARIANT "QtProject")                  # The IDE settings variation.
 set(IDE_DISPLAY_NAME "Qt Creator")                    # The IDE display name.
