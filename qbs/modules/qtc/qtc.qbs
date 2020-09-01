@@ -5,9 +5,9 @@ import qbs.Utilities
 
 Module {
     property bool useCpp: true
-    Depends { name: "cpp"; condition: useCpp }
+    Depends { name: "cpp"; condition: useCpp; required: false }
 
-    property string qtcreator_display_version: '20.0.1'
+    property string qtcreator_display_version: '20.0.1 snapshot-'+new Date().toISOString().slice(0,10)
     property string ide_version_major: '20'
     property string ide_version_minor: '0'
     property string ide_version_release: '1'
