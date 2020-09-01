@@ -70,6 +70,7 @@ public slots:
     static void cancel();
     // Shows without focus
     static void showTaskWindow();
+    static void scrollToFirstTask();
     static void toggleTaskWindow();
     static void toggleOutputWindow();
     static void aboutToRemoveProject(ProjectExplorer::Project *p);
