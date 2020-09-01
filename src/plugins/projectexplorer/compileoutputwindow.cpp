@@ -277,6 +277,14 @@ void CompileOutputWindow::showPositionOf(const Task &task)
     m_outputWindow->centerCursor();
 }
 
+void CompileOutputWindow::scrollToFirstTask() {
+    auto minLine = m_taskPositions.begin()->first;
+    for (auto& pos : m_taskPositions) if (pos.first < minLine) minLine = pos.first;
+
+    auto cursor = QTextCursor(m_outputWindow->document()->findBlockByNumber(minLine));
+    m_outputWindow->setTextCursor(cursor);
+}
+
 void CompileOutputWindow::flush()
 {
     m_outputWindow->flush();
