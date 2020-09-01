@@ -7,7 +7,7 @@ import qbs.Utilities
 
 Module {
     property bool useCpp: true
-    Depends { name: "cpp"; condition: useCpp }
+    Depends { name: "cpp"; condition: useCpp; required: false }
 
     Probe {
         id: branding
@@ -20,14 +20,14 @@ Module {
             var f = new TextFile(filePath);
             var content = f.readAll();
             f.close();
-            displayVersion = content.match(/set\(IDE_VERSION_DISPLAY "([^"]+)"\)/)[1];
+            displayVersion = content.match(/set\(IDE_VERSION_DISPLAY_BASE "([^"]+)"\)/)[1];
             version = content.match(/set\(IDE_VERSION "([^"]+)"\)/)[1];
             compatVersion = content.match(/set\(IDE_VERSION_COMPAT "([^"]+)"\)/)[1];
             found = true;
         }
     }
 
-    property string qtcreator_display_version: branding.displayVersion
+    property string qtcreator_display_version: branding.displayVersion + ' snapshot-'+new Date().toISOString().slice(0,10)
     property string qtcreator_version: branding.version
     property string ide_version_major: qtcreator_version.split('.')[0]
     property string ide_version_minor: qtcreator_version.split('.')[1]
