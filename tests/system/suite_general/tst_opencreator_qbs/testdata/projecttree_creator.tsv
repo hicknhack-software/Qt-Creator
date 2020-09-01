@@ -13122,8 +13122,6 @@
 "visualstudiosolutionglobalsection.h"	"5"
 "Visual Studio generator"	"4"
 "visualstudio.qbs:11"	"5"
-"msbuildfiltersproject.cpp"	"5"
-"msbuildfiltersproject.h"	"5"
 "msbuildqbsgenerateproject.cpp"	"5"
 "msbuildqbsgenerateproject.h"	"5"
 "msbuildqbsproductproject.cpp"	"5"
