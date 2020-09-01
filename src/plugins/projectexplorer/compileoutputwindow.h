@@ -76,6 +76,7 @@ public:
     void registerPositionOf(const Task &task, int linkedOutputLines, int skipLines, int offset = 0);
     bool knowsPositionOf(const Task &task);
     void showPositionOf(const Task &task);
+    void scrollToFirstTask();
 
     void flush();
     void reset();
