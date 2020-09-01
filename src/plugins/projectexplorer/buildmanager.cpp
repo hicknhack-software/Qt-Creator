@@ -518,6 +518,11 @@ void BuildManager::toggleOutputWindow()
     d->m_outputWindow->toggle(IOutputPane::ModeSwitch | IOutputPane::WithFocus);
 }
 
+void BuildManager::scrollToFirstTask()
+{
+    d->m_outputWindow->scrollToFirstTask();
+}
+
 void BuildManager::showTaskWindow()
 {
     d->m_taskWindow->popup(IOutputPane::NoModeSwitch);
