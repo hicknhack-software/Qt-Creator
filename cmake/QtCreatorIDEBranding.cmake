@@ -1,6 +1,7 @@
-set(IDE_VERSION "6.0.0")                              # The IDE version.
-set(IDE_VERSION_COMPAT "6.0.0")                       # The IDE Compatibility version.
-set(IDE_VERSION_DISPLAY "6.0.0")                      # The IDE display version.
+set(IDE_VERSION "6.00.0")                             # The IDE version.
+set(IDE_VERSION_COMPAT "6.00.0")                      # The IDE Compatibility version.
+string(TIMESTAMP SNAPSHOT_TODAY "%Y-%m-%d")
+set(IDE_VERSION_DISPLAY "6.0.0-snapshot-${SNAPSHOT_TODAY}")                     # The IDE display version.
 set(IDE_COPYRIGHT_YEAR "2021")                        # The IDE current copyright year.
 
 set(IDE_SETTINGSVARIANT "QtProject")                  # The IDE settings variation.
