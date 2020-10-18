@@ -344,6 +344,14 @@ extend_qtc_plugin(QmlDesigner
 )
 
 extend_qtc_plugin(QmlDesigner
+  SOURCES_PREFIX components/previewtooltip
+  SOURCES
+    previewimagetooltip.cpp previewimagetooltip.h
+    previewimagetooltip.ui
+    previewtooltipbackend.cpp previewtooltipbackend.h
+)
+
+extend_qtc_plugin(QmlDesigner
   SOURCES_PREFIX components/propertyeditor
   SOURCES
     aligndistribute.cpp aligndistribute.h
