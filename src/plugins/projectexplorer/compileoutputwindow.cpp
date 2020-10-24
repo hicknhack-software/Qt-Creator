@@ -178,23 +178,27 @@ int CompileOutputWindow::priorityInStatusBar() const
 
 bool CompileOutputWindow::canNext() const
 {
-    return false;
+    return m_outputWindow->hasPositions();
 }
 
 bool CompileOutputWindow::canPrevious() const
 {
-    return false;
+    return m_outputWindow->hasPositions();
 }
 
 void CompileOutputWindow::goToNext()
-{ }
+{
+    m_outputWindow->goToNextTaskPosition();
+}
 
 void CompileOutputWindow::goToPrev()
-{ }
+{
+    m_outputWindow->goToPreviousTaskPosition();
+}
 
 bool CompileOutputWindow::canNavigate() const
 {
-    return false;
+    return true;
 }
 
 void CompileOutputWindow::registerPositionOf(const Task &task, int linkedOutputLines, int skipLines,
@@ -205,12 +209,7 @@ void CompileOutputWindow::registerPositionOf(const Task &task, int linkedOutputL
 
 void CompileOutputWindow::scrollToFirstTask()
 {
-    if (m_taskPositions.empty()) return;
-    auto minLine = m_taskPositions.begin()->first;
-    for (auto& pos : m_taskPositions) if (pos.first < minLine) minLine = pos.first;
-
-    auto cursor = QTextCursor(m_outputWindow->document()->findBlockByNumber(minLine));
-    m_outputWindow->setTextCursor(cursor);
+    m_outputWindow->goToFirstTaskPosition();
 }
 
 void CompileOutputWindow::flush()
