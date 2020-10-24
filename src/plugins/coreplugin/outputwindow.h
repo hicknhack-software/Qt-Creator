@@ -66,6 +66,11 @@ public:
     bool knowsPositionOf(unsigned taskId) const;
     void showPositionOf(unsigned taskId);
 
+    bool hasPositions() const;
+    void goToFirstTaskPosition();
+    void goToNextTaskPosition();
+    void goToPreviousTaskPosition();
+
     void grayOutOldContent();
     void clear();
     void flush();
