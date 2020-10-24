@@ -94,7 +94,7 @@ CompileOutputWindow::CompileOutputWindow(QAction *cancelBuildAction) :
 
     auto updateZoomEnabled = [this] {
         m_outputWindow->setWheelZoomEnabled(
-                    TextEditor::TextEditorSettings::behaviorSettings().m_scrollWheelZooming);
+            TextEditor::TextEditorSettings::behaviorSettings().m_scrollWheelZooming);
     };
 
     updateFontSettings();
@@ -199,23 +199,27 @@ int CompileOutputWindow::priorityInStatusBar() const
 
 bool CompileOutputWindow::canNext() const
 {
-    return false;
+    return m_outputWindow->hasPositions();
 }
 
 bool CompileOutputWindow::canPrevious() const
 {
-    return false;
+    return m_outputWindow->hasPositions();
 }
 
 void CompileOutputWindow::goToNext()
-{ }
+{
+    m_outputWindow->goToNextTaskPosition();
+}
 
 void CompileOutputWindow::goToPrev()
-{ }
+{
+    m_outputWindow->goToPreviousTaskPosition();
+}
 
 bool CompileOutputWindow::canNavigate() const
 {
-    return false;
+    return true;
 }
 
 void CompileOutputWindow::registerPositionOf(const Task &task, int linkedOutputLines, int skipLines,
@@ -224,12 +228,9 @@ void CompileOutputWindow::registerPositionOf(const Task &task, int linkedOutputL
     m_outputWindow->registerPositionOf(task.taskId, linkedOutputLines, skipLines, offset);
 }
 
-void CompileOutputWindow::scrollToFirstTask() {
-    auto minLine = m_taskPositions.begin()->first;
-    for (auto& pos : m_taskPositions) if (pos.first < minLine) minLine = pos.first;
-
-    auto cursor = QTextCursor(m_outputWindow->document()->findBlockByNumber(minLine));
-    m_outputWindow->setTextCursor(cursor);
+void CompileOutputWindow::scrollToFirstTask()
+{
+    m_outputWindow->goToFirstTaskPosition();
 }
 
 void CompileOutputWindow::flush()
