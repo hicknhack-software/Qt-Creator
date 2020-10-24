@@ -84,11 +84,11 @@ CompileOutputWindow::CompileOutputWindow(QAction *cancelBuildAction) :
 
     outputFormatter()->overridePostPrintAction([this](Utils::OutputLineParser *parser) {
         if (const auto taskParser = qobject_cast<OutputTaskParser *>(parser)) {
-            int offset = 0;
+            int offset = m_lineCount - m_outputWindow->document()->blockCount();
             Utils::reverseForeach(taskParser->taskInfo(), [this, &offset](const OutputTaskParser::TaskInfo &ti) {
-                registerPositionOf(ti.task, ti.linkedLines, ti.skippedLines, offset);
-                offset += ti.linkedLines;
-            });
+                                      registerPositionOf(ti.task, ti.linkedLines, ti.skippedLines, offset);
+                                      offset += ti.linkedLines;
+                                  });
         }
         parser->runPostPrintActions();
     });
@@ -115,7 +115,7 @@ CompileOutputWindow::CompileOutputWindow(QAction *cancelBuildAction) :
 
     auto updateZoomEnabled = [this] {
         m_outputWindow->setWheelZoomEnabled(
-                    TextEditor::TextEditorSettings::behaviorSettings().m_scrollWheelZooming);
+            TextEditor::TextEditorSettings::behaviorSettings().m_scrollWheelZooming);
     };
 
     updateFontSettings();
@@ -206,13 +206,19 @@ void CompileOutputWindow::appendText(const QString &text, BuildStep::OutputForma
 
     }
 
+    m_lineCount += text.count('\n');
+    // qWarning() << "m_lineCount:" << m_lineCount
+    //            << "document.blockCount:" << m_outputWindow->document()->blockCount()
+    //            << "text:" << text;
     m_outputWindow->appendMessage(text, fmt);
 }
 
 void CompileOutputWindow::clearContents()
 {
+    m_lineCount = 0;
     m_outputWindow->clear();
     m_taskPositions.clear();
+    navigateStateUpdate();
 }
 
 int CompileOutputWindow::priorityInStatusBar() const
@@ -222,23 +228,61 @@ int CompileOutputWindow::priorityInStatusBar() const
 
 bool CompileOutputWindow::canNext() const
 {
-    return false;
+    return !m_taskPositions.isEmpty();
 }
 
 bool CompileOutputWindow::canPrevious() const
 {
-    return false;
+    return !m_taskPositions.isEmpty();
 }
 
 void CompileOutputWindow::goToNext()
-{ }
+{
+    auto cursorLine = m_outputWindow->textCursor().blockNumber();
+    auto firstLine = cursorLine;
+    auto nextLine = -1;
+    for (auto &pos : m_taskPositions) {
+        auto line = pos.first;
+        if (line > cursorLine && (nextLine == -1 || line < nextLine)) {
+            nextLine = line;
+        }
+        if (line < firstLine) firstLine = line;
+    }
+    if (nextLine == -1) {
+        nextLine = firstLine;
+    }
+    auto cursor = QTextCursor(m_outputWindow->document()->findBlockByNumber(nextLine));
+    cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::MoveAnchor);
+    m_outputWindow->setTextCursor(cursor);
+    cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
+    m_outputWindow->setTextCursor(cursor);
+}
 
 void CompileOutputWindow::goToPrev()
-{ }
+{
+    auto cursorLine = m_outputWindow->textCursor().blockNumber();
+    auto nextLine = -1;
+    auto lastLine = cursorLine;
+    for (auto &pos : m_taskPositions) {
+        auto line = pos.first;
+        if (line < cursorLine && (nextLine == -1 || line > nextLine)) {
+            nextLine = line;
+        }
+        if (line > lastLine) lastLine = line;
+    }
+    if (nextLine == -1) {
+        nextLine = lastLine;
+    }
+    auto cursor = QTextCursor(m_outputWindow->document()->findBlockByNumber(nextLine));
+    cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::MoveAnchor);
+    m_outputWindow->setTextCursor(cursor);
+    cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
+    m_outputWindow->setTextCursor(cursor);
+}
 
 bool CompileOutputWindow::canNavigate() const
 {
-    return false;
+    return true;
 }
 
 void CompileOutputWindow::registerPositionOf(const Task &task, int linkedOutputLines, int skipLines,
@@ -247,11 +291,21 @@ void CompileOutputWindow::registerPositionOf(const Task &task, int linkedOutputL
     if (linkedOutputLines <= 0)
         return;
 
-    const int blocknumber = m_outputWindow->document()->blockCount() - offset - 1;
-    const int firstLine = blocknumber - linkedOutputLines - skipLines;
+    const int firstLine = m_lineCount - offset - linkedOutputLines - skipLines;
     const int lastLine = firstLine + linkedOutputLines - 1;
 
+    // qWarning().noquote() << "Register id:" << task.taskId
+    //                      << "at line" << QString("%2-%3").arg(firstLine).arg(lastLine)
+    //                      << "document.blockCount:" << m_outputWindow->document()->blockCount()
+    //                      << "m_lineCount:" << m_lineCount
+    //                      << "linkedOutputLines:" << linkedOutputLines
+    //                      << "skipLines:" << skipLines
+    //                      << "offset:" << offset
+    //                      << "task.summary:" << task.summary;
+    auto wasEmpty = m_taskPositions.isEmpty();
     m_taskPositions.insert(task.taskId, qMakePair(firstLine, lastLine));
+    if (wasEmpty)
+        navigateStateUpdate();
 }
 
 bool CompileOutputWindow::knowsPositionOf(const Task &task)
@@ -277,11 +331,16 @@ void CompileOutputWindow::showPositionOf(const Task &task)
     m_outputWindow->centerCursor();
 }
 
-void CompileOutputWindow::scrollToFirstTask() {
+void CompileOutputWindow::scrollToFirstTask()
+{
+    if (m_taskPositions.isEmpty()) return;
     auto minLine = m_taskPositions.begin()->first;
     for (auto& pos : m_taskPositions) if (pos.first < minLine) minLine = pos.first;
 
     auto cursor = QTextCursor(m_outputWindow->document()->findBlockByNumber(minLine));
+    cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::MoveAnchor);
+    m_outputWindow->setTextCursor(cursor);
+    cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
     m_outputWindow->setTextCursor(cursor);
 }
 
@@ -315,7 +374,7 @@ void CompileOutputWindow::updateFilter()
 
 void CompileOutputWindow::loadSettings()
 {
-    QSettings * const s = Core::ICore::settings();
+    QSettings *const s = Core::ICore::settings();
     m_settings.popUp = s->value(POP_UP_KEY, false).toBool();
     m_settings.wrapOutput = s->value(WRAP_OUTPUT_KEY, true).toBool();
     m_settings.maxCharCount = s->value(MAX_LINES_KEY,
@@ -324,7 +383,7 @@ void CompileOutputWindow::loadSettings()
 
 void CompileOutputWindow::storeSettings() const
 {
-    QSettings * const s = Core::ICore::settings();
+    QSettings *const s = Core::ICore::settings();
     s->setValue(POP_UP_KEY, m_settings.popUp);
     s->setValue(WRAP_OUTPUT_KEY, m_settings.wrapOutput);
     s->setValue(MAX_LINES_KEY, m_settings.maxCharCount / 100);
