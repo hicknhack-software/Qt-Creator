@@ -530,6 +530,68 @@ void OutputWindow::showPositionOf(unsigned taskId)
     centerCursor();
 }
 
+bool OutputWindow::hasPositions() const
+{
+    return !d->taskPositions.isEmpty();
+}
+
+void OutputWindow::goToFirstTaskPosition()
+{
+    if (d->taskPositions.isEmpty()) return;
+    auto minLine = d->taskPositions.constBegin().value().first;
+    for (auto& pos : d->taskPositions) if (pos.first < minLine) minLine = pos.first;
+
+    auto cursor = QTextCursor(document()->findBlockByNumber(minLine));
+    cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::MoveAnchor);
+    setTextCursor(cursor);
+    cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
+    setTextCursor(cursor);
+}
+
+void OutputWindow::goToNextTaskPosition()
+{
+    auto cursorLine = textCursor().blockNumber();
+    auto firstLine = cursorLine;
+    auto nextLine = -1;
+    for (auto &pos : d->taskPositions) {
+        auto line = pos.first;
+        if (line > cursorLine && (nextLine == -1 || line < nextLine)) {
+            nextLine = line;
+        }
+        if (line < firstLine) firstLine = line;
+    }
+    if (nextLine == -1) {
+        nextLine = firstLine;
+    }
+    auto cursor = QTextCursor(document()->findBlockByNumber(nextLine));
+    cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::MoveAnchor);
+    setTextCursor(cursor);
+    cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
+    setTextCursor(cursor);
+}
+
+void OutputWindow::goToPreviousTaskPosition()
+{
+    auto cursorLine = textCursor().blockNumber();
+    auto nextLine = -1;
+    auto lastLine = cursorLine;
+    for (auto &pos : d->taskPositions) {
+        auto line = pos.first;
+        if (line < cursorLine && (nextLine == -1 || line > nextLine)) {
+            nextLine = line;
+        }
+        if (line > lastLine) lastLine = line;
+    }
+    if (nextLine == -1) {
+        nextLine = lastLine;
+    }
+    auto cursor = QTextCursor(document()->findBlockByNumber(nextLine));
+    cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::MoveAnchor);
+    setTextCursor(cursor);
+    cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
+    setTextCursor(cursor);
+}
+
 QMimeData *OutputWindow::createMimeDataFromSelection() const
 {
     const auto mimeData = new QMimeData;
