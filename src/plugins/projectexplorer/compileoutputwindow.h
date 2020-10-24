@@ -94,6 +94,7 @@ private:
     void updateFromSettings();
 
     Core::OutputWindow *m_outputWindow;
+    int m_lineCount{};
     QHash<unsigned int, QPair<int, int>> m_taskPositions;
     ShowOutputTaskHandler *m_handler;
     QToolButton *m_cancelBuildButton;
