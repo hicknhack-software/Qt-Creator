@@ -209,23 +209,27 @@ void CompileOutputWindow::clearContents()
 
 bool CompileOutputWindow::canNext() const
 {
-    return false;
+    return m_outputWindow->hasPositions();
 }
 
 bool CompileOutputWindow::canPrevious() const
 {
-    return false;
+    return m_outputWindow->hasPositions();
 }
 
 void CompileOutputWindow::goToNext()
-{ }
+{
+    m_outputWindow->goToNextTaskPosition();
+}
 
 void CompileOutputWindow::goToPrev()
-{ }
+{
+    m_outputWindow->goToPreviousTaskPosition();
+}
 
 bool CompileOutputWindow::canNavigate() const
 {
-    return false;
+    return true;
 }
 
 bool CompileOutputWindow::hasFilterContext() const
@@ -240,12 +244,9 @@ void CompileOutputWindow::registerPositionOf(const Task &task, int linkedOutputL
         task.id(), linkedOutputLines, skipLines, offset, Core::OutputWindow::TaskSource::Direct);
 }
 
-void CompileOutputWindow::scrollToFirstTask() {
-    auto minLine = m_taskPositions.begin()->first;
-    for (auto& pos : m_taskPositions) if (pos.first < minLine) minLine = pos.first;
-
-    auto cursor = QTextCursor(m_outputWindow->document()->findBlockByNumber(minLine));
-    m_outputWindow->setTextCursor(cursor);
+void CompileOutputWindow::scrollToFirstTask()
+{
+    m_outputWindow->goToFirstTaskPosition();
 }
 
 void CompileOutputWindow::flush()
