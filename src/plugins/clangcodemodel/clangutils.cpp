@@ -291,6 +291,9 @@ QJsonArray clangOptionsForFile(const ProjectFile &file, const ProjectPart &proje
     }
     optionsBuilder.updateFileLanguage(file.kind);
     optionsBuilder.addPrecompiledHeaderOptions(usePch);
+    if (fileKind == ProjectFile::CHeader || fileKind == ProjectFile::CXXHeader) {
+        optionsBuilder.add("-Wno-pragma-once-outside-header");
+    }
     const QJsonArray specificOptions = QJsonArray::fromStringList(optionsBuilder.options());
     QJsonArray fullOptions = generalOptions;
     for (const QJsonValue &opt : specificOptions)
