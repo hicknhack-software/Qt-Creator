@@ -42,6 +42,13 @@ static QStringList tidyChecksArguments(const ClangDiagnosticConfig diagnosticCon
     return {"--warnings-as-errors=-*", "-checks=-clang-diagnostic-*"};
 }
 
+static QStringList clangHeaderArguments(const QString file) {
+    if (file.endsWith(".h")) {
+        return {"-Wno-pragma-once-outside-header"};
+    }
+    else return {};
+}
+
 static QStringList clazyChecksArguments(const ClangDiagnosticConfig diagnosticConfig)
 {
     const QString clazyChecks = diagnosticConfig.clazyChecks();
@@ -75,6 +82,7 @@ ClangTidyRunner::ClangTidyRunner(const ClangDiagnosticConfig &config, QObject *p
         return QStringList() << tidyChecksArguments(config)
                              << mainToolArguments()
                              << "--"
+                             << clangHeaderArguments(fileToAnalyze())
                              << clangArguments(config, baseOptions);
     });
 }
@@ -89,6 +97,7 @@ ClazyStandaloneRunner::ClazyStandaloneRunner(const ClangDiagnosticConfig &config
         return QStringList() << clazyChecksArguments(config)
                              << mainToolArguments()
                              << "--"
+                             << clangHeaderArguments(fileToAnalyze())
                              << clangArguments(config, baseOptions);
     });
 }
