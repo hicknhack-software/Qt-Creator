@@ -495,6 +495,7 @@ public:
 
         addLanguageOptions();
         addGlobalDiagnosticOptions(); // Before addDiagnosticOptions() so users still can overwrite.
+        if (filePath.endsWith(".h")) addHeaderDiagnosticOptions();
         addDiagnosticOptions();
         m_options.append(projectOptions);
         addPrecompiledHeaderOptions();
@@ -545,6 +546,10 @@ private:
     void addGlobalDiagnosticOptions()
     {
         m_options += CppEditor::ClangDiagnosticConfigsModel::globalDiagnosticOptions();
+    }
+    void addHeaderDiagnosticOptions()
+    {
+        m_options += QStringLiteral("-Wno-pragma-once-outside-header");
     }
 
     void addPrecompiledHeaderOptions()
