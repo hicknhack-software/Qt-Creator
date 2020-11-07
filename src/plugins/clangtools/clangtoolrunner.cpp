@@ -70,6 +70,14 @@ static QStringList checksArguments(ClangToolType tool,
     return {};
 }
 
+static QStringList clangHeaderArguments(const FilePath &file)
+{
+    if (file.suffixView() == u"h") {
+        return {"-Wno-pragma-once-outside-header"};
+    }
+    else return {};
+}
+
 static QStringList clangArguments(const ClangDiagnosticConfig &diagnosticConfig,
                                   const QStringList &baseOptions)
 {
@@ -152,6 +160,7 @@ TaskItem clangToolTask(const AnalyzeInputData &input,
         const QStringList args = checksArguments(input.tool, input.config)
                                  + mainToolArguments(data)
                                  + QStringList{"--"}
+                                 + clangHeaderArguments(input.unit.file)
                                  + clangArguments(input.config, input.unit.arguments);
         const CommandLine commandLine = {data->executable, args};
 
