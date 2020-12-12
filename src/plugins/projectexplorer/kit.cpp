@@ -91,8 +91,6 @@ public:
 
         m_macroExpander.setDisplayName(tr("Kit"));
         m_macroExpander.setAccumulating(true);
-        m_macroExpander.registerVariable("Kit:Id", tr("Kit ID"),
-            [kit] { return kit->id().toString(); });
         m_macroExpander.registerVariable("Kit:FileSystemName", tr("Kit filesystem-friendly name"),
             [kit] { return kit->fileSystemFriendlyName(); });
         for (KitAspect *aspect : KitManager::kitAspects())
