@@ -1823,6 +1823,26 @@ bool ProjectExplorerPlugin::initialize(const QStringList &arguments, QString *er
                 return project->projectFilePath().toString();
             return {};
         });
+    expander->registerPrefix("ActiveProject:", tr("Active project build and kit configuration."),
+        [](const QString& string) -> QString {
+            if (const BuildConfiguration * const bc = activeBuildConfiguration()) {
+                bool found;
+                auto result = bc->macroExpander()->value(string.toUtf8(), &found);
+                if (found) return result;
+                if (const Kit* const kit = bc->kit())
+                    return kit->macroExpander()->value(string.toUtf8());
+            }
+            return {};
+        });
+    expander->registerPrefix("StartupTarget:", tr("Active target configuration."),
+        [](const QString& string) -> QString {
+            if (const Project * const project = SessionManager::startupProject()) {
+                if (const Target* const target = project->activeTarget()) {
+                    return target->macroExpander()->value(string.toUtf8());
+                }
+            }
+            return {};
+        });
     expander->registerVariable("ActiveProject:BuildConfig:Type",
         tr("The type of the active project's active build configuration."),
         []() -> QString {
@@ -1845,14 +1865,6 @@ bool ProjectExplorerPlugin::initialize(const QStringList &arguments, QString *er
                  return bc->environment();
              return Utils::Environment::systemEnvironment();
          }});
-    expander->registerPrefix("ActiveProject:BuildConfig:Env",
-                             BuildConfiguration::tr("Variables in the active build environment "
-                                     "of the active project."),
-                             [](const QString &var) {
-                                 if (BuildConfiguration * const bc = activeBuildConfiguration())
-                                     return bc->environment().expandedValueForKey(var);
-                                 return QString();
-                             });
 
     const auto fileHandler = [] {
         return SessionManager::sessionNameToFileName(SessionManager::activeSession()).toString();
