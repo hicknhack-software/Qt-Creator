@@ -9,6 +9,7 @@
 #include "qbseditor.h"
 #include "qbsinstallstep.h"
 #include "qbsnodes.h"
+#include "qbsprofilemanager.h"
 #include "qbsprofilessettingspage.h"
 #include "qbsproject.h"
 #include "qbsprojectmanagerconstants.h"
@@ -20,6 +21,8 @@
 #include <coreplugin/actionmanager/actionmanager.h>
 #include <coreplugin/helpmanager.h>
 #include <coreplugin/icore.h>
+#include <coreplugin/messagemanager.h>
+#include <coreplugin/session.h>
 
 #include <extensionsystem/iplugin.h>
 
@@ -29,8 +32,12 @@
 #include <projectexplorer/projectexplorer.h>
 #include <projectexplorer/projectexplorerconstants.h>
 #include <projectexplorer/projectmanager.h>
-#include <projectexplorer/projectmanager.h>
 #include <projectexplorer/projecttree.h>
+#include <projectexplorer/devicesupport/devicekitaspects.h>
+#include <projectexplorer/runconfiguration.h>
+#include <projectexplorer/runconfigurationaspects.h>
+#include <projectexplorer/devicesupport/devicekitaspects.h>
+#include <projectexplorer/runcontrol.h>
 #include <projectexplorer/target.h>
 
 #include <qtsupport/baseqtversion.h>
@@ -38,12 +45,57 @@
 
 #include <utils/fsengine/fileiconprovider.h>
 #include <utils/mimeconstants.h>
+#include <utils/qtcprocess.h>
 #include <utils/qtcassert.h>
+
+#include <QMenu>
+#if defined(Q_OS_WIN)
+#include <Windows.h>
+#endif
 
 using namespace ProjectExplorer;
 using namespace Utils;
 
 namespace QbsProjectManager::Internal {
+
+static Node *currentEditorNode()
+{
+    Core::IDocument *doc = Core::EditorManager::currentDocument();
+    return doc ? ProjectTree::nodeForFile(doc->filePath()) : nullptr;
+}
+
+static QbsProject *currentEditorProject()
+{
+    Core::IDocument *doc = Core::EditorManager::currentDocument();
+    return doc ? qobject_cast<QbsProject *>(ProjectManager::projectForFile(doc->filePath())) : nullptr;
+}
+
+static void windowsStartProcessDetached(FilePath appPath, QStringList args) {
+    // note: QProcess cannot launch devenv.exe correctly. Default escape codes don't work here
+#if defined(Q_OS_WIN)
+    auto startupInfo = STARTUPINFOW{sizeof(STARTUPINFOW)};
+    auto processInfo = PROCESS_INFORMATION{};
+
+    auto cmdLine = QString{appPath.fileName() + ' ' + args.join(" ")};
+
+    CreateProcessW(reinterpret_cast<const wchar_t *>(appPath.nativePath().utf16()),
+                   reinterpret_cast<wchar_t *>(const_cast<ushort *>(cmdLine.utf16())),
+                   nullptr, // process attributes
+                   nullptr, // thread attributes
+                   false, // inherit handles
+                   DETACHED_PROCESS,
+                   nullptr, // environment
+                   nullptr, // current directory
+                   &startupInfo,
+                   &processInfo);
+
+    CloseHandle(processInfo.hProcess);
+    CloseHandle(processInfo.hThread);
+#else
+    (void)appPath;
+    (void)args;
+#endif
+}
 
 class QbsToolFactory : public DeviceToolAspectFactory
 {
@@ -90,6 +142,9 @@ private:
 
     void projectChanged(QbsProject *project);
 
+    void generateVs2022Project();
+    void debugWithVs2022Project();
+
     void reparseSelectedProject();
     void reparseCurrentProject();
     void reparseProject(QbsProject *project);
@@ -103,6 +158,9 @@ private:
     QbsProjectManagerPluginPrivate *d = nullptr;
     QAction *m_reparseQbs = nullptr;
     QAction *m_reparseQbsCtx = nullptr;
+    QAction *m_menuAction = nullptr;
+    QAction *m_generateVs2022Ctx = nullptr;
+    QAction *m_debugWithVs2022Ctx = nullptr;
 };
 
 QbsProjectManagerPlugin::~QbsProjectManagerPlugin()
@@ -148,8 +206,31 @@ void QbsProjectManagerPlugin::initialize()
     Core::ActionContainer *mproject =
             Core::ActionManager::actionContainer(ProjectExplorer::Constants::M_PROJECTCONTEXT);
 
+    Core::ActionContainer *toolsContainer =
+            Core::ActionManager::actionContainer(Core::Constants::M_TOOLS);
+
+    Core::ActionContainer *qbsContainer = Core::ActionManager::createMenu("Qbs");
+    qbsContainer->menu()->setTitle(tr("&Qbs"));
+    toolsContainer->addMenu(qbsContainer);
+    m_menuAction = qbsContainer->menu()->menuAction();
+
     //register actions
     Core::Command *command;
+
+    m_generateVs2022Ctx = new QAction(Tr::tr("Generate VisualStudio2022 Project"), this);
+    command = Core::ActionManager::registerAction(m_generateVs2022Ctx,
+                                                  "Qbs.GenerateVisualStudio2022",
+                                                  projectContext);
+    qbsContainer->addAction(command);
+    connect(m_generateVs2022Ctx,
+            &QAction::triggered,
+            this,
+            &QbsProjectManagerPlugin::generateVs2022Project);
+
+    m_debugWithVs2022Ctx = new QAction(Tr::tr("Debug Target with VisualStudio2022"), this);
+    command = Core::ActionManager::registerAction(m_debugWithVs2022Ctx, "Qbs.DebugWithVisualStudio2022", projectContext);
+    qbsContainer->addAction(command);
+    connect(m_debugWithVs2022Ctx, &QAction::triggered, this, &QbsProjectManagerPlugin::debugWithVs2022Project);
 
     m_reparseQbs = new QAction(Tr::tr("Reparse Qbs"), this);
     command = Core::ActionManager::registerAction(m_reparseQbs, Constants::ACTION_REPARSE_QBS, projectContext);
@@ -157,6 +238,19 @@ void QbsProjectManagerPlugin::initialize()
     mbuildTool->addAction(command, ProjectExplorer::Constants::G_BUILD_TOOL);
     connect(m_reparseQbs, &QAction::triggered,
             this, &QbsProjectManagerPlugin::reparseCurrentProject);
+
+    connect(Core::EditorManager::instance(), &Core::EditorManager::openWithVisualStudio, this, [](const Utils::FilePath &path) {
+        RunConfiguration* rc = activeRunConfigForActiveProject();
+        if (!rc)
+            return;
+
+        if (const auto envAspect = rc->aspect<EnvironmentAspect>()) {
+            const auto devEnv = envAspect->environment().searchInPath(QLatin1String("devenv.exe"));
+            if (devEnv.isEmpty())
+                return;
+            windowsStartProcessDetached(devEnv, QStringList{} << "/edit" << QStringLiteral("\"%1\"").arg(path.nativePath()));
+        }
+    });
 
     m_reparseQbsCtx = new QAction(Tr::tr("Reparse Qbs"), this);
     command = Core::ActionManager::registerAction(m_reparseQbsCtx, Constants::ACTION_REPARSE_QBS_CONTEXT, projectContext);
@@ -206,6 +300,7 @@ void QbsProjectManagerPlugin::updateReparseQbsAction()
                              && !BuildManager::isBuilding(project)
                              && project && project->activeBuildSystem()
                              && !project->activeBuildSystem()->isParsing());
+    m_generateVs2022Ctx->setEnabled(m_reparseQbs->isEnabled());
 }
 
 void QbsProjectManagerPlugin::projectChanged(QbsProject *project)
@@ -217,6 +312,106 @@ void QbsProjectManagerPlugin::projectChanged(QbsProject *project)
 
     if (!qbsProject || qbsProject == ProjectTree::currentProject())
         updateContextActions(ProjectTree::currentNode());
+}
+
+void QbsProjectManagerPlugin::generateVs2022Project()
+{
+    QbsProject *project = qobject_cast<QbsProject *>(ProjectManager::startupProject());
+    if (!project)
+        return;
+
+    Target *target = project->activeTarget();
+    if (!target)
+        return;
+
+    QbsBuildSystem *bs = static_cast<QbsBuildSystem *>(target->buildSystem());
+    if (!bs)
+        return;
+
+    auto *bc = static_cast<QbsBuildConfiguration *>(target->activeBuildConfiguration());
+    if (!bc)
+        return;
+
+    const IDeviceConstPtr dev = BuildDeviceKitAspect::device(bc->kit());
+    if (!dev)
+        return;
+
+    auto commandLine = Utils::CommandLine{QbsSettings::qbsExecutableFilePathForDevice(dev)};
+    commandLine.addArg("generate");
+    commandLine.addArgs({"-g", "visualstudio2022"});
+    commandLine.addArgs(
+        {"-d", (bc->buildDirectory() / "vs2022").nativePath()});
+    commandLine.addArgs({"-f", project->projectFilePath().nativePath()});
+    if (QbsSettings::useCreatorSettingsDirForQbs(dev)) {
+        commandLine.addArgs(
+            {"--settings-dir", QbsSettings::qbsSettingsBaseDir(dev).nativePath()});
+    }
+    commandLine.addArg("config:" + QbsBuildConfiguration::buildTypeName(bc->buildType()));
+
+    const QString profileName = QbsProfileManager::profileNameForKit(target->kit());
+    commandLine.addArg("profile:" + profileName);
+
+    Core::MessageManager::writeSilently(
+        QString("Starting \"%1\"\n").arg(commandLine.toUserOutput()));
+
+    auto cmdProc = new Utils::Process{};
+    using namespace std::chrono_literals;
+    cmdProc->setEnvironment(Utils::Environment::systemEnvironment());
+    cmdProc->setWorkingDirectory(project->rootProjectDirectory());
+    cmdProc->setCommand(commandLine);
+
+    connect(cmdProc, &Process::done, this, [this, cmdProc] {
+        auto output = cmdProc->allOutput();
+        if (!output.isEmpty()) {
+            Core::MessageManager::writeFlashing(output);
+        }
+        Core::MessageManager::writeSilently(cmdProc->exitMessage());
+        cmdProc->deleteLater();
+    });
+    cmdProc->start();
+}
+
+void QbsProjectManagerPlugin::debugWithVs2022Project()
+{
+    RunConfiguration *rc = activeRunConfigForActiveProject();
+    if (!rc)
+        return;
+
+    auto commandLine = rc->commandLine();
+    auto executable = commandLine.executable();
+    auto solution = executable.withSuffix(".sln");
+    {
+        auto buffer = QByteArray{};
+        {
+            auto textStream = QTextStream{&buffer, QIODevice::WriteOnly};
+            textStream
+                << "Microsoft Visual Studio Solution File, Format Version 12.00\n"
+                << "# Visual Studio 17\n"
+                << "Project(\""<< QUuid::createUuid().toString() << "\") = \""
+                    << rc->buildTargetInfo().displayName << "\", \""
+                    << executable.fileName() <<"\", \""
+                    << QUuid::createUuid().toString() << "\"\n"
+                << "\tProjectSection(DebuggerProjectSystem) = preProject\n"
+                << "\t\tExecutable = " << executable.nativePath() << "\n"
+                << "\t\tArguments = " << commandLine.arguments() << "\n";
+            if (const auto wdAspect = rc->aspect<WorkingDirectoryAspect>()) {
+                textStream << "\t\tStartingDirectory = " << wdAspect->workingDirectory().nativePath() << "\n";
+            }
+            if (const auto envAspect = rc->aspect<EnvironmentAspect>()) {
+                textStream << "\t\tEnvironment = " << envAspect->environment().toStringList().join('\t') << "\t\n";
+            }
+            textStream
+                << "\tEndProjectSection\n"
+                << "EndProject\n";
+        }
+        solution.writeFileContents(buffer);
+    }
+    if (const auto envAspect = rc->aspect<EnvironmentAspect>()) {
+        const auto devEnv = envAspect->environment().searchInPath(QLatin1String("devenv.exe"));
+        if (!devEnv.isEmpty()) {
+            windowsStartProcessDetached(devEnv, QStringList{} << QStringLiteral("\"%1\"").arg(solution.nativePath()));
+        }
+    }
 }
 
 void QbsProjectManagerPlugin::buildFiles(QbsProject *project, const QStringList &files,
