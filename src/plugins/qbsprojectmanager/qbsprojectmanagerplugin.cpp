@@ -25,6 +25,7 @@
 #include <coreplugin/helpmanager.h>
 #include <coreplugin/icore.h>
 #include <coreplugin/idocument.h>
+#include <coreplugin/messagemanager.h>
 
 #include <projectexplorer/buildmanager.h>
 #include <projectexplorer/project.h>
@@ -43,9 +44,11 @@
 #include <utils/fileutils.h>
 #include <utils/fsengine/fileiconprovider.h>
 #include <utils/qtcassert.h>
+#include <utils/qtcprocess.h>
 #include <utils/utilsicons.h>
 
 #include <QAction>
+#include <QMenu>
 
 using namespace ProjectExplorer;
 
@@ -108,9 +111,20 @@ bool QbsProjectManagerPlugin::initialize(const QStringList &arguments, QString *
     Core::ActionContainer *mfile =
             Core::ActionManager::actionContainer(ProjectExplorer::Constants::M_FILECONTEXT);
 
+    Core::ActionContainer *toolsContainer = Core::ActionManager::actionContainer(Core::Constants::M_TOOLS);
+
+    Core::ActionContainer *qbsContainer = Core::ActionManager::createMenu("Qbs");
+    qbsContainer->menu()->setTitle(tr("&Qbs"));
+    toolsContainer->addMenu(qbsContainer);
+    m_menuAction = qbsContainer->menu()->menuAction();
 
     //register actions
     Core::Command *command;
+
+    m_generateVs2022Ctx = new QAction(Tr::tr("Generate VisualStudio2022 Project"), this);
+    command = Core::ActionManager::registerAction(m_generateVs2022Ctx, "Qbs.GenerateVisualStudio2022", projectContext);
+    qbsContainer->addAction(command);
+    connect(m_generateVs2022Ctx, &QAction::triggered, this, &QbsProjectManagerPlugin::generateVs2022Project);
 
     m_reparseQbs = new QAction(Tr::tr("Reparse Qbs"), this);
     command = Core::ActionManager::registerAction(m_reparseQbs, Constants::ACTION_REPARSE_QBS, projectContext);
@@ -290,10 +304,12 @@ void QbsProjectManagerPlugin::updateContextActions(Node *node)
 void QbsProjectManagerPlugin::updateReparseQbsAction()
 {
     auto project = qobject_cast<QbsProject *>(SessionManager::startupProject());
-    m_reparseQbs->setEnabled(project
-                             && !BuildManager::isBuilding(project)
-                             && project && project->activeTarget()
-                             && !project->activeTarget()->buildSystem()->isParsing());
+    auto isEnabled = project
+            && !BuildManager::isBuilding(project)
+            && project && project->activeTarget()
+            && !project->activeTarget()->buildSystem()->isParsing();
+    m_reparseQbs->setEnabled(isEnabled);
+    m_menuAction->setEnabled(isEnabled);
 }
 
 void QbsProjectManagerPlugin::updateBuildActions()
@@ -356,6 +372,53 @@ void QbsProjectManagerPlugin::projectChanged(QbsProject *project)
 
     if (!qbsProject || qbsProject == currentEditorProject())
         updateBuildActions();
+}
+
+void QbsProjectManagerPlugin::generateVs2022Project()
+{
+    QbsProject *project = qobject_cast<QbsProject*>(SessionManager::startupProject());
+    if (!project)
+        return;
+
+    Target *target = project->activeTarget();
+    if (!target)
+        return;
+
+    QbsBuildSystem *bs = static_cast<QbsBuildSystem *>(target->buildSystem());
+    if (!bs)
+        return;
+
+    auto* bc = static_cast<QbsBuildConfiguration*>(target->activeBuildConfiguration());
+    if (!bc)
+        return;
+
+    auto commandLine = Utils::CommandLine{QbsSettings::qbsExecutableFilePath()};
+    commandLine.addArg("generate");
+    commandLine.addArgs({"-g", "visualstudio2022"});
+    commandLine.addArgs({"-d", QDir::toNativeSeparators((bc->buildDirectory()/"vs2022").toString())});
+    commandLine.addArgs({"-f", QDir::toNativeSeparators(project->projectFilePath().toString())});
+    if (QbsSettings::useCreatorSettingsDirForQbs()) {
+        commandLine.addArgs({"--settings-dir",
+                             QDir::toNativeSeparators(QbsSettings::qbsSettingsBaseDir())});
+    }
+    commandLine.addArg("config:" + QbsBuildConfiguration::buildTypeName(bc->buildType()));
+
+    const QString profileName = QbsProfileManager::profileNameForKit(target->kit());
+    commandLine.addArg("profile:" + profileName);
+
+    Core::MessageManager::writeSilently(QString("Starting \"%1\"\n").arg(commandLine.toUserOutput()));
+
+    Utils::QtcProcess cmdProc;
+    cmdProc.setTimeoutS(10 * 60); // note: Qbs has to build a graph what might be slow for large projects
+    cmdProc.setEnvironment(Utils::Environment::systemEnvironment());
+    cmdProc.setWorkingDirectory(project->rootProjectDirectory());
+    cmdProc.setCommand(commandLine);
+    cmdProc.runBlocking(Utils::EventLoopMode::On);
+    auto output = cmdProc.allOutput();
+    if (!output.isEmpty()) {
+        Core::MessageManager::writeFlashing(output);
+    }
+    Core::MessageManager::writeSilently(cmdProc.exitMessage());
 }
 
 void QbsProjectManagerPlugin::buildFileContextMenu()
