@@ -23,6 +23,7 @@
 #include <coreplugin/helpmanager.h>
 #include <coreplugin/icore.h>
 #include <coreplugin/idocument.h>
+#include <coreplugin/messagemanager.h>
 
 #include <extensionsystem/iplugin.h>
 
@@ -33,15 +34,18 @@
 #include <projectexplorer/projectexplorerconstants.h>
 #include <projectexplorer/projectexplorericons.h>
 #include <projectexplorer/projectmanager.h>
-#include <projectexplorer/projectmanager.h>
 #include <projectexplorer/projecttree.h>
+#include <projectexplorer/devicesupport/devicekitaspects.h>
 #include <projectexplorer/target.h>
 
 #include <utils/action.h>
 #include <utils/fsengine/fileiconprovider.h>
 #include <utils/mimeconstants.h>
+#include <utils/qtcprocess.h>
 #include <utils/qtcassert.h>
 #include <utils/utilsicons.h>
+
+#include <QMenu>
 
 using namespace ProjectExplorer;
 using namespace Utils;
@@ -104,6 +108,7 @@ private:
 
     void projectChanged(QbsProject *project);
 
+    void generateVs2022Project();
     void cleanProductContextMenu();
     void rebuildProductContextMenu();
     void runStepsForProductContextMenu(const QList<Id> &stepTypes);
@@ -136,6 +141,8 @@ private:
     QAction *m_cleanSubprojectCtx = nullptr;
     QAction *m_rebuildSubprojectCtx = nullptr;
     Action *m_buildProduct = nullptr;
+    QAction *m_menuAction = nullptr;
+    QAction *m_generateVs2022Ctx = nullptr;
     QAction *m_cleanProduct = nullptr;
     QAction *m_rebuildProduct = nullptr;
 };
@@ -171,8 +178,26 @@ void QbsProjectManagerPlugin::initialize()
     Core::ActionContainer *msubproject =
              Core::ActionManager::actionContainer(ProjectExplorer::Constants::M_SUBPROJECTCONTEXT);
 
+    Core::ActionContainer *toolsContainer =
+            Core::ActionManager::actionContainer(Core::Constants::M_TOOLS);
+
+    Core::ActionContainer *qbsContainer = Core::ActionManager::createMenu("Qbs");
+    qbsContainer->menu()->setTitle(tr("&Qbs"));
+    toolsContainer->addMenu(qbsContainer);
+    m_menuAction = qbsContainer->menu()->menuAction();
+
     //register actions
     Core::Command *command;
+
+    m_generateVs2022Ctx = new QAction(Tr::tr("Generate VisualStudio2022 Project"), this);
+    command = Core::ActionManager::registerAction(m_generateVs2022Ctx,
+                                                  "Qbs.GenerateVisualStudio2022",
+                                                  projectContext);
+    qbsContainer->addAction(command);
+    connect(m_generateVs2022Ctx,
+            &QAction::triggered,
+            this,
+            &QbsProjectManagerPlugin::generateVs2022Project);
 
     m_reparseQbs = new QAction(Tr::tr("Reparse Qbs"), this);
     command = Core::ActionManager::registerAction(m_reparseQbs, Constants::ACTION_REPARSE_QBS, projectContext);
@@ -314,6 +339,7 @@ void QbsProjectManagerPlugin::updateReparseQbsAction()
                              && !BuildManager::isBuilding(project)
                              && project && project->activeBuildSystem()
                              && !project->activeBuildSystem()->isParsing());
+    m_generateVs2022Ctx->setEnabled(m_reparseQbs->isEnabled());
 }
 
 void QbsProjectManagerPlugin::updateBuildActions()
@@ -368,6 +394,63 @@ void QbsProjectManagerPlugin::projectChanged(QbsProject *project)
 
     if (!qbsProject || qbsProject == currentEditorProject())
         updateBuildActions();
+}
+
+void QbsProjectManagerPlugin::generateVs2022Project()
+{
+    QbsProject *project = qobject_cast<QbsProject *>(ProjectManager::startupProject());
+    if (!project)
+        return;
+
+    Target *target = project->activeTarget();
+    if (!target)
+        return;
+
+    QbsBuildSystem *bs = static_cast<QbsBuildSystem *>(target->buildSystem());
+    if (!bs)
+        return;
+
+    auto *bc = static_cast<QbsBuildConfiguration *>(target->activeBuildConfiguration());
+    if (!bc)
+        return;
+
+    const IDeviceConstPtr dev = BuildDeviceKitAspect::device(bc->kit());
+    if (!dev)
+        return;
+
+    auto commandLine = Utils::CommandLine{QbsSettings::qbsExecutableFilePathForDevice(dev)};
+    commandLine.addArg("generate");
+    commandLine.addArgs({"-g", "visualstudio2022"});
+    commandLine.addArgs(
+        {"-d", (bc->buildDirectory() / "vs2022").nativePath()});
+    commandLine.addArgs({"-f", project->projectFilePath().nativePath()});
+    if (QbsSettings::useCreatorSettingsDirForQbs(dev)) {
+        commandLine.addArgs(
+            {"--settings-dir", QbsSettings::qbsSettingsBaseDir(dev).nativePath()});
+    }
+    commandLine.addArg("config:" + QbsBuildConfiguration::buildTypeName(bc->buildType()));
+
+    const QString profileName = QbsProfileManager::profileNameForKit(target->kit());
+    commandLine.addArg("profile:" + profileName);
+
+    Core::MessageManager::writeSilently(
+        QString("Starting \"%1\"\n").arg(commandLine.toUserOutput()));
+
+    auto cmdProc = new Utils::Process{};
+    using namespace std::chrono_literals;
+    cmdProc->setEnvironment(Utils::Environment::systemEnvironment());
+    cmdProc->setWorkingDirectory(project->rootProjectDirectory());
+    cmdProc->setCommand(commandLine);
+
+    connect(cmdProc, &Process::done, this, [this, cmdProc] {
+        auto output = cmdProc->allOutput();
+        if (!output.isEmpty()) {
+            Core::MessageManager::writeFlashing(output);
+        }
+        Core::MessageManager::writeSilently(cmdProc->exitMessage());
+        cmdProc->deleteLater();
+    });
+    cmdProc->start();
 }
 
 void QbsProjectManagerPlugin::cleanProductContextMenu()
