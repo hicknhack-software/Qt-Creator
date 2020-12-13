@@ -56,6 +56,7 @@ private:
     void targetWasAdded(ProjectExplorer::Target *target);
     void projectChanged();
 
+    void generateVs2022Project();
     void buildFileContextMenu();
     void buildFile();
     void buildProductContextMenu();
@@ -97,6 +98,8 @@ private:
     QAction *m_buildSubprojectCtx = nullptr;
     QAction *m_cleanSubprojectCtx = nullptr;
     QAction *m_rebuildSubprojectCtx = nullptr;
+    QAction *m_menuAction = nullptr;
+    QAction *m_generateVs2022Ctx = nullptr;
     Utils::ParameterAction *m_buildFile = nullptr;
     Utils::ParameterAction *m_buildProduct = nullptr;
     QAction *m_cleanProduct = nullptr;
