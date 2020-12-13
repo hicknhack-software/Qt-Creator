@@ -47,6 +47,8 @@
 #include <coreplugin/icore.h>
 #include <coreplugin/idocument.h>
 #include <coreplugin/fileiconprovider.h>
+#include <coreplugin/shellcommand.h>
+#include <coreplugin/messagemanager.h>
 
 #include <projectexplorer/buildmanager.h>
 #include <projectexplorer/project.h>
@@ -65,6 +67,7 @@
 #include <utils/qtcassert.h>
 
 #include <QAction>
+#include <QMenu>
 
 using namespace ProjectExplorer;
 
@@ -127,9 +130,20 @@ bool QbsProjectManagerPlugin::initialize(const QStringList &arguments, QString *
     Core::ActionContainer *mfile =
             Core::ActionManager::actionContainer(ProjectExplorer::Constants::M_FILECONTEXT);
 
+    Core::ActionContainer *toolsContainer = Core::ActionManager::actionContainer(Core::Constants::M_TOOLS);
+
+    Core::ActionContainer *qbsContainer = Core::ActionManager::createMenu("Qbs");
+    qbsContainer->menu()->setTitle(tr("&Qbs"));
+    toolsContainer->addMenu(qbsContainer);
+    m_menuAction = qbsContainer->menu()->menuAction();
 
     //register actions
     Core::Command *command;
+
+    m_generateVs2019Ctx = new QAction(tr("Generate VisualStudio2019 Project"), this);
+    command = Core::ActionManager::registerAction(m_generateVs2019Ctx, "Qbs.GenerateVisualStudio2019", projectContext);
+    qbsContainer->addAction(command);
+    connect(m_generateVs2019Ctx, &QAction::triggered, this, &QbsProjectManagerPlugin::generateVs2019Project);
 
     m_reparseQbs = new QAction(tr("Reparse Qbs"), this);
     command = Core::ActionManager::registerAction(m_reparseQbs, Constants::ACTION_REPARSE_QBS, projectContext);
@@ -308,10 +322,12 @@ void QbsProjectManagerPlugin::updateContextActions()
 void QbsProjectManagerPlugin::updateReparseQbsAction()
 {
     auto project = qobject_cast<QbsProject *>(SessionManager::startupProject());
-    m_reparseQbs->setEnabled(project
-                             && !BuildManager::isBuilding(project)
-                             && project && project->activeTarget()
-                             && !project->activeTarget()->buildSystem()->isParsing());
+    auto isEnabled = project
+            && !BuildManager::isBuilding(project)
+            && project && project->activeTarget()
+            && !project->activeTarget()->buildSystem()->isParsing();
+    m_reparseQbs->setEnabled(isEnabled);
+    m_menuAction->setEnabled(isEnabled);
 }
 
 void QbsProjectManagerPlugin::updateBuildActions()
@@ -376,6 +392,50 @@ void QbsProjectManagerPlugin::projectChanged()
 
     if (!project || project == currentEditorProject())
         updateBuildActions();
+}
+
+void QbsProjectManagerPlugin::generateVs2019Project()
+{
+    QbsProject *project = qobject_cast<QbsProject*>(SessionManager::startupProject());
+    if (!project)
+        return;
+
+    Target *target = project->activeTarget();
+    if (!target)
+        return;
+
+    QbsBuildSystem *bs = static_cast<QbsBuildSystem *>(target->buildSystem());
+    if (!bs)
+        return;
+
+    auto* bc = static_cast<QbsBuildConfiguration*>(target->activeBuildConfiguration());
+    if (!bc)
+        return;
+
+    auto commandLine = Utils::CommandLine{QbsSettings::qbsExecutableFilePath()};
+    commandLine.addArg("generate");
+    commandLine.addArgs({"-g", "visualstudio2019"});
+    commandLine.addArgs({"-d", QDir::toNativeSeparators((bc->buildDirectory()/"vs2019").toString())});
+    commandLine.addArgs({"-f", QDir::toNativeSeparators(project->projectFilePath().toString())});
+    if (QbsSettings::useCreatorSettingsDirForQbs()) {
+        commandLine.addArgs({"--settings-dir",
+                             QDir::toNativeSeparators(QbsSettings::qbsSettingsBaseDir())});
+    }
+    commandLine.addArg("config:" + QbsBuildConfiguration::buildTypeName(bc->buildType()));
+
+    const QString profileName = QbsProfileManager::profileNameForKit(target->kit());
+    commandLine.addArg("profile:" + profileName);
+
+    Core::MessageManager::writeWithTime(QString("Starting \"%1\"\n").arg(commandLine.toUserOutput()), Core::MessageManager::WithFocus);
+
+    auto cmd = Core::ShellCommand(project->rootProjectDirectory().toString(), QProcessEnvironment::systemEnvironment());
+    cmd.addFlags(Core::ShellCommand::ShowStdOut | Core::ShellCommand::ShowSuccessMessage);
+    auto resp = cmd.runCommand(commandLine, 100);
+    auto output = resp.allOutput();
+    if (!output.isEmpty()) {
+        Core::MessageManager::write(output);
+    }
+    Core::MessageManager::writeWithTime(resp.exitMessage(commandLine.executable().toUserOutput(), 100));
 }
 
 void QbsProjectManagerPlugin::buildFileContextMenu()
