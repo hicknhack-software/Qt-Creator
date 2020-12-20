@@ -232,6 +232,7 @@ private:
     QAction *m_showInFileSystemViewAction = nullptr;
     QAction *m_showInFileSystemViewContextAction = nullptr;
     QAction *m_openTerminalAction = nullptr;
+    QAction *m_openVisualStudioAction = nullptr;
     QAction *m_findInDirectoryAction = nullptr;
     QAction *m_filePropertiesAction = nullptr;
     QAction *m_pinAction = nullptr;
