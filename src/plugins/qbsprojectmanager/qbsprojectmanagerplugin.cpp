@@ -56,6 +56,7 @@
 #include <projectexplorer/projectexplorerconstants.h>
 #include <projectexplorer/projectmanager.h>
 #include <projectexplorer/projecttree.h>
+#include <projectexplorer/runconfigurationaspects.h>
 #include <projectexplorer/runcontrol.h>
 #include <projectexplorer/session.h>
 #include <projectexplorer/target.h>
@@ -67,6 +68,7 @@
 #include <utils/qtcassert.h>
 
 #include <QAction>
+#include <QDesktopServices>
 #include <QMenu>
 
 using namespace ProjectExplorer;
@@ -144,6 +146,11 @@ bool QbsProjectManagerPlugin::initialize(const QStringList &arguments, QString *
     command = Core::ActionManager::registerAction(m_generateVs2019Ctx, "Qbs.GenerateVisualStudio2019", projectContext);
     qbsContainer->addAction(command);
     connect(m_generateVs2019Ctx, &QAction::triggered, this, &QbsProjectManagerPlugin::generateVs2019Project);
+
+    m_debugWithVs2019Ctx = new QAction(tr("Debug Target with VisualStudio2019"), this);
+    command = Core::ActionManager::registerAction(m_debugWithVs2019Ctx, "Qbs.DebugWithVisualStudio2019", projectContext);
+    qbsContainer->addAction(command);
+    connect(m_debugWithVs2019Ctx, &QAction::triggered, this, &QbsProjectManagerPlugin::debugWithVs2019Project);
 
     m_reparseQbs = new QAction(tr("Reparse Qbs"), this);
     command = Core::ActionManager::registerAction(m_reparseQbs, Constants::ACTION_REPARSE_QBS, projectContext);
@@ -436,6 +443,55 @@ void QbsProjectManagerPlugin::generateVs2019Project()
         Core::MessageManager::write(output);
     }
     Core::MessageManager::writeWithTime(resp.exitMessage(commandLine.executable().toUserOutput(), 100));
+}
+
+void QbsProjectManagerPlugin::debugWithVs2019Project()
+{
+    QbsProject *project = qobject_cast<QbsProject*>(SessionManager::startupProject());
+    if (!project)
+        return;
+
+    Target *target = project->activeTarget();
+    if (!target)
+        return;
+
+    RunConfiguration* rc = target->activeRunConfiguration();
+    if (!rc)
+        return;
+
+    auto commandLine = rc->commandLine();
+    auto solutionName = commandLine.executable() + ".sln";
+    {
+        auto file = QFile(solutionName.toString());
+        file.open(QFile::WriteOnly);
+        auto textStream = QTextStream(&file);
+        textStream
+            << "Microsoft Visual Studio Solution File, Format Version 12.00\n"
+            << "Project(\""<< QUuid::createUuid().toString() << "\") = \""
+                << rc->buildTargetInfo().displayName << "\", \""
+                << commandLine.executable().fileName() <<"\", \""
+                << QUuid::createUuid().toString() << "\"\n"
+            << "\tProjectSection(DebuggerProjectSystem) = preProject\n"
+            << "\t\tExecutable = " << QDir::toNativeSeparators(commandLine.executable().toString()) << "\n"
+            << "\t\tArguments = " << commandLine.arguments() << "\n";
+        if (const auto wdAspect = rc->aspect<WorkingDirectoryAspect>()) {
+            textStream << "\t\tStartingDirectory = " << QDir::toNativeSeparators(wdAspect->workingDirectory(target->macroExpander()).toString()) << "\n";
+        }
+        if (const auto envAspect = rc->aspect<EnvironmentAspect>()) {
+            textStream << "\t\tEnvironment = " << envAspect->environment().toStringList().join('\t') << "\t\n";
+        }
+        textStream
+            << "\tEndProjectSection\n"
+            << "EndProject\n";
+    }
+    if (const auto envAspect = rc->aspect<EnvironmentAspect>()) {
+        const auto devEnv = envAspect->environment().searchInPath(QLatin1String("devenv.exe"));
+        if (!devEnv.isEmpty()) {
+            QStringList params;
+            params << QDir::toNativeSeparators(solutionName.toString());
+            QProcess::startDetached(devEnv.toString(), params);
+        }
+    }
 }
 
 void QbsProjectManagerPlugin::buildFileContextMenu()
