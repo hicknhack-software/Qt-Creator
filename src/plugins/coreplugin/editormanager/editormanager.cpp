@@ -3191,6 +3191,12 @@ void EditorManagerPrivate::addNativeDirAndOpenWithActions(
         FileUtils::openTerminal(filePath.parentDir(), {});
     });
 
+    if (HostOsInfo::isWindowsHost()) {
+        addMenuAction(contextMenu, ::Core::Tr::tr("Open With Visual Studio"), enabled, d, [filePath] {
+            EditorManager::instance()->openWithVisualStudio(filePath);
+        });
+    }
+
     // Find in This Directory
     addMenuAction(contextMenu, FileUtils::msgFindInDirectory(), enabled, m_instance, [filePath] {
         emit m_instance->findOnFileSystemRequest(filePath);
