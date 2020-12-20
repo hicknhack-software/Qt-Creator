@@ -375,6 +375,7 @@ EditorManagerPrivate::EditorManagerPrivate(QObject *parent) :
     m_openGraphicalShellContextAction(new QAction(FileUtils::msgGraphicalShellAction(), this)),
     m_showInFileSystemViewContextAction(new QAction(FileUtils::msgFileSystemAction(), this)),
     m_openTerminalAction(new QAction(FileUtils::msgTerminalHereAction(), this)),
+    m_openVisualStudioAction(new QAction(::Core::Tr::tr("Open With Visual Studio"), this)),
     m_findInDirectoryAction(new QAction(FileUtils::msgFindInDirectory(), this)),
     m_filePropertiesAction(new QAction(::Core::Tr::tr("Properties..."), this)),
     m_pinAction(new QAction(::Core::Tr::tr("Pin"), this))
@@ -549,6 +550,11 @@ void EditorManagerPrivate::init()
         FileUtils::showInFileSystemView(m_contextMenuEntry->filePath());
     });
     connect(m_openTerminalAction, &QAction::triggered, this, &EditorManagerPrivate::openTerminal);
+    connect(m_openVisualStudioAction, &QAction::triggered, this, [this]() {
+        if (!d->m_contextMenuEntry || d->m_contextMenuEntry->filePath().isEmpty())
+            return;
+        EditorManager::instance()->openWithVisualStudio(d->m_contextMenuEntry->filePath());
+    });
     connect(m_findInDirectoryAction, &QAction::triggered,
             this, &EditorManagerPrivate::findInDirectory);
     connect(m_filePropertiesAction, &QAction::triggered, this, [this] {
@@ -2803,11 +2809,15 @@ void EditorManager::addNativeDirAndOpenWithActions(QMenu *contextMenu, DocumentM
     d->m_openGraphicalShellContextAction->setEnabled(enabled);
     d->m_showInFileSystemViewContextAction->setEnabled(enabled);
     d->m_openTerminalAction->setEnabled(enabled);
+    d->m_openVisualStudioAction->setEnabled(enabled);
     d->m_findInDirectoryAction->setEnabled(enabled);
     d->m_filePropertiesAction->setEnabled(enabled);
     contextMenu->addAction(d->m_openGraphicalShellContextAction);
     contextMenu->addAction(d->m_showInFileSystemViewContextAction);
     contextMenu->addAction(d->m_openTerminalAction);
+    if (HostOsInfo::isWindowsHost()) {
+        contextMenu->addAction(d->m_openVisualStudioAction);
+    }
     contextMenu->addAction(d->m_findInDirectoryAction);
     contextMenu->addAction(d->m_filePropertiesAction);
     QMenu *openWith = contextMenu->addMenu(::Core::Tr::tr("Open With"));
