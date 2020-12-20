@@ -167,6 +167,8 @@ signals:
     void autoSaved();
     void currentEditorAboutToChange(Core::IEditor *editor);
 
+    void openWithVisualStudio(const Utils::FilePath &path);
+
 #ifdef WITH_TESTS
     void linkOpened();
 #endif
