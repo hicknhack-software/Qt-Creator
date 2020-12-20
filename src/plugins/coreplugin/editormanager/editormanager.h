@@ -188,6 +188,8 @@ signals:
     void autoSaved();
     void currentEditorAboutToChange(Core::IEditor *editor);
 
+    void openWithVisualStudio(const Utils::FilePath &path);
+
     void aboutToShowContextMenu(
         QMenu *contextMenu,
         const Utils::FilePath &filePath,
