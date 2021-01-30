@@ -169,14 +169,22 @@ static void updateEditorText(QPlainTextEdit *editor, const QString &text)
     if (editorText == text)
         return;
 
+    // Save the current viewport position of the cursor to ensure the same vertical position after
+    // the formatted text has set to the editor.
+    int absoluteVerticalCursorOffset = editor->cursorRect().y();
+
     // Calculate diff
     Differ differ;
     const QList<Diff> diff = differ.diff(editorText, text);
 
+    QTextDocument *doc = editor->document();
+    auto documentLayout = qobject_cast<TextDocumentLayout*>(doc->documentLayout());
+    QTC_ASSERT(documentLayout, return);
+
     // Since QTextCursor does not work properly with folded blocks, all blocks must be unfolded.
     // To restore the current state at the end, keep track of which block is folded.
     QList<int> foldedBlocks;
-    QTextBlock block = editor->document()->firstBlock();
+    QTextBlock block = doc->firstBlock();
     while (block.isValid()) {
         if (const TextBlockUserData *userdata = static_cast<TextBlockUserData *>(block.userData())) {
             if (userdata->folded()) {
@@ -187,10 +195,6 @@ static void updateEditorText(QPlainTextEdit *editor, const QString &text)
         block = block.next();
     }
     editor->update();
-
-    // Save the current viewport position of the cursor to ensure the same vertical position after
-    // the formatted text has set to the editor.
-    int absoluteVerticalCursorOffset = editor->cursorRect().y();
 
     // Update changed lines and keep track of the cursor position
     QTextCursor cursor = editor->textCursor();
@@ -264,20 +268,22 @@ static void updateEditorText(QPlainTextEdit *editor, const QString &text)
     cursor.setPosition(newCursorPos);
     editor->setTextCursor(cursor);
 
-    // Adjust vertical scrollbar
-    absoluteVerticalCursorOffset = editor->cursorRect().y() - absoluteVerticalCursorOffset;
-    const double fontHeight = QFontMetrics(editor->document()->defaultFont()).height();
-    editor->verticalScrollBar()->setValue(editor->verticalScrollBar()->value()
-                                              + absoluteVerticalCursorOffset / fontHeight);
     // Restore folded blocks
-    const QTextDocument *doc = editor->document();
     for (int blockId : qAsConst(foldedBlocks)) {
         const QTextBlock block = doc->findBlockByNumber(qMax(0, blockId));
         if (block.isValid())
             TextDocumentLayout::doFoldOrUnfold(block, false);
     }
+    documentLayout->requestUpdate();
+    documentLayout->emitDocumentSizeChanged();
 
-    editor->document()->setModified(true);
+    // Adjust vertical scrollbar
+    absoluteVerticalCursorOffset = editor->cursorRect().y() - absoluteVerticalCursorOffset;
+    const double fontHeight = QFontMetrics(doc->defaultFont()).height();
+    editor->verticalScrollBar()->setValue(editor->verticalScrollBar()->value()
+                                              + absoluteVerticalCursorOffset / fontHeight);
+    editor->ensureCursorVisible();
+    doc->setModified(true);
 }
 
 static void showError(const QString &error)
