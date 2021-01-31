@@ -9047,6 +9047,7 @@ void TextEditorWidget::cut()
     MultiTextCursor cursor = multiTextCursor();
     cursor.removeSelectedText();
     setMultiTextCursor(cursor);
+    ensureCursorVisible();
     d->collectToCircularClipboard();
 }
 
