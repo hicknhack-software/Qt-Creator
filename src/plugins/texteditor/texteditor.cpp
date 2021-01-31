@@ -7547,6 +7547,7 @@ void TextEditorWidget::cut()
         return;
     }
     QPlainTextEdit::cut();
+    ensureCursorVisible();
     d->collectToCircularClipboard();
 }
 
