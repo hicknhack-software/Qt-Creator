@@ -430,16 +430,16 @@ void QbsProjectManagerPlugin::generateVs2019Project()
     const QString profileName = QbsProfileManager::profileNameForKit(target->kit());
     commandLine.addArg("profile:" + profileName);
 
-    Core::MessageManager::writeWithTime(QString("Starting \"%1\"\n").arg(commandLine.toUserOutput()), Core::MessageManager::WithFocus);
+    Core::MessageManager::writeSilently(QString("Starting \"%1\"\n").arg(commandLine.toUserOutput()));
 
     auto cmd = Core::ShellCommand(project->rootProjectDirectory().toString(), QProcessEnvironment::systemEnvironment());
     cmd.addFlags(Core::ShellCommand::ShowStdOut | Core::ShellCommand::ShowSuccessMessage);
     auto resp = cmd.runCommand(commandLine, 100);
     auto output = resp.allOutput();
     if (!output.isEmpty()) {
-        Core::MessageManager::write(output);
+        Core::MessageManager::writeFlashing(output);
     }
-    Core::MessageManager::writeWithTime(resp.exitMessage(commandLine.executable().toUserOutput(), 100));
+    Core::MessageManager::writeSilently(resp.exitMessage(commandLine.executable().toUserOutput(), 100));
 }
 
 void QbsProjectManagerPlugin::debugWithVs2019Project()
