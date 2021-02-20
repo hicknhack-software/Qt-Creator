@@ -140,8 +140,24 @@ public:
 
             funTy->setName(rewrite->rewriteName(type->name()));
 
-            funTy->setReturnType(rewrite->rewriteType(type->returnType()));
+            if (!type->returnType().isAuto()) {
+                funTy->setReturnType(rewrite->rewriteType(type->returnType()));
+            }
 
+            // Function parameters have the function's enclosing scope.
+            Scope *scope = nullptr;
+            ClassOrNamespace *target = nullptr;
+            if (rewrite->env->context().bindings())
+                target = rewrite->env->context().lookupType(type->enclosingScope());
+            UseMinimalNames useMinimalNames(target);
+            if (target) {
+                scope = rewrite->env->switchScope(type->enclosingScope());
+                rewrite->env->enter(&useMinimalNames);
+            }
+
+            if (type->returnType().isAuto()) {
+                funTy->setReturnType(rewrite->rewriteType(type->returnType()));
+            }
             for (unsigned i = 0, argc = type->argumentCount(); i < argc; ++i) {
                 Symbol *arg = type->argumentAt(i);
 
@@ -156,6 +172,11 @@ public:
                 funTy->addMember(newArg);
             }
             funTy->setVariadic(type->isVariadic());
+
+            if (target) {
+                rewrite->env->switchScope(scope);
+                rewrite->env->leave();
+            }
 
             temps.append(funTy);
         }
