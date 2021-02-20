@@ -505,8 +505,12 @@ void TypePrettyPrinter::visit(Function *type)
             }
         }
 
-        if (type->isVariadic())
+        if (type->isVariadic()) {
+            if (type->argumentCount() > 0) {
+                _text += QLatin1String(", ");
+            }
             _text += QLatin1String("...");
+        }
 
         _text += QLatin1Char(')');
         if (type->isConst()) {
