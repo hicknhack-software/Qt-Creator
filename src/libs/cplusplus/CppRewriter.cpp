@@ -115,10 +115,13 @@ public:
             funTy->setVolatile(type->isVolatile());
             funTy->setRefQualifier(type->refQualifier());
             funTy->setExceptionSpecification(type->exceptionSpecification());
+            funTy->setTrailingReturnType(type->isTrailingReturnType());
 
             funTy->setName(rewrite->rewriteName(type->name()));
 
-            funTy->setReturnType(rewrite->rewriteType(type->returnType()));
+            if (!type->isTrailingReturnType()) {
+                funTy->setReturnType(rewrite->rewriteType(type->returnType()));
+            }
 
             // Function parameters have the function's enclosing scope.
             Scope *scope = nullptr;
@@ -131,6 +134,9 @@ public:
                 rewrite->env->enter(&useMinimalNames);
             }
 
+            if (type->isTrailingReturnType()) {
+                funTy->setReturnType(rewrite->rewriteType(type->returnType()));
+            }
             for (unsigned i = 0, argc = type->argumentCount(); i < argc; ++i) {
                 Symbol *arg = type->argumentAt(i);
 
@@ -144,6 +150,7 @@ public:
                 newArg->resetEnclosingScope();
                 funTy->addMember(newArg);
             }
+            funTy->setVariadic(type->isVariadic());
 
             if (target) {
                 rewrite->env->switchScope(scope);
