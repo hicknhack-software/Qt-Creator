@@ -58,12 +58,16 @@ public:
     Scope *scope() const;
     Scope *switchScope(Scope *scope);
 
+    Scope *localScope() const { return _localScope; }
+    Scope *enterLocalScope(Scope* scope);
+
     const LookupContext &context() const;
     void setContext(const LookupContext &context);
 
 private:
     QList<Substitution *> _substs;
     Scope *_scope;
+    Scope *_localScope{};
     LookupContext _context;
 };
 

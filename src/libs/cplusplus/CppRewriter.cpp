@@ -140,8 +140,16 @@ public:
 
             funTy->setName(rewrite->rewriteName(type->name()));
 
-            funTy->setReturnType(rewrite->rewriteType(type->returnType()));
+            if (type->returnType().isAuto()) {
+                auto oldLocalScope = rewrite->env->enterLocalScope(funTy->enclosingScope());
+                funTy->setReturnType(rewrite->rewriteType(type->returnType()));
+                rewrite->env->enterLocalScope(oldLocalScope);
+            }
+            else {
+                funTy->setReturnType(rewrite->rewriteType(type->returnType()));
+            }
 
+            auto oldLocalScope = rewrite->env->enterLocalScope(funTy->enclosingScope());
             for (unsigned i = 0, argc = type->argumentCount(); i < argc; ++i) {
                 Symbol *arg = type->argumentAt(i);
 
@@ -155,6 +163,7 @@ public:
                 newArg->resetEnclosingScope();
                 funTy->addMember(newArg);
             }
+            rewrite->env->enterLocalScope(oldLocalScope);
             funTy->setVariadic(type->isVariadic());
 
             temps.append(funTy);
@@ -339,6 +348,13 @@ Scope *SubstitutionEnvironment::switchScope(Scope *scope)
     return previous;
 }
 
+Scope *SubstitutionEnvironment::enterLocalScope(Scope *scope)
+{
+    Scope *previous = _localScope;
+    _localScope = scope;
+    return previous;
+}
+
 const LookupContext &SubstitutionEnvironment::context() const
 {
     return _context;
@@ -401,13 +417,22 @@ FullySpecifiedType UseMinimalNames::apply(const Name *name, Rewrite *rewrite) co
         return FullySpecifiedType();
 
     const LookupContext &context = env->context();
-    Control *control = rewrite->control;
+    Control* control = rewrite->control;
+
+    auto target = _target;
+    auto localScope = env->localScope();
+    if (localScope) {
+        auto localScopeInTarget = context.lookupType(localScope, target);
+        if (localScopeInTarget) {
+            target = localScopeInTarget;
+        }
+    }
 
     const QList<LookupItem> results = context.lookup(name, scope);
     if (!results.isEmpty()) {
         const LookupItem &r = results.first();
         if (Symbol *d = r.declaration())
-            return control->namedType(LookupContext::minimalName(d, _target, control));
+            return control->namedType(LookupContext::minimalName(d, target, control));
 
         return r.type();
     }
