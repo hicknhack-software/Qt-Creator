@@ -435,11 +435,16 @@ void TypePrettyPrinter::visit(Function *type)
     retAndArgOverview.showTemplateParameters = true;
 
     if (_overview->showReturnTypes) {
-        const QString returnType = retAndArgOverview.prettyType(type->returnType());
-        if (!returnType.isEmpty()) {
-            if (!endsWithPtrOrRef(returnType) || !(_overview->starBindFlags & Overview::BindToIdentifier))
-                _text.prepend(QLatin1Char(' '));
-            _text.prepend(returnType);
+        if (type->returnType().isAuto()) {
+            _text.prepend(QLatin1String("auto "));
+        }
+        else {
+        	const QString returnType = retAndArgOverview.prettyType(type->returnType());
+        	if (!returnType.isEmpty()) {
+            	if (!endsWithPtrOrRef(returnType) || !(_overview->starBindFlags & Overview::BindToIdentifier))
+                	_text.prepend(QLatin1Char(' '));
+            	_text.prepend(returnType);
+			}
         }
     }
 
@@ -499,8 +504,12 @@ void TypePrettyPrinter::visit(Function *type)
             }
         }
 
-        if (type->isVariadic())
+        if (type->isVariadic()) {
+            if (type->argumentCount() > 0) {
+                _text += QLatin1String(", ");
+            }
             _text += QLatin1String("...");
+        }
 
         _text += QLatin1Char(')');
         if (type->isConst()) {
@@ -527,6 +536,13 @@ void TypePrettyPrinter::visit(Function *type)
         if (const StringLiteral *spec = type->exceptionSpecification()) {
             appendSpace();
             _text += QLatin1String(spec->chars());
+        }
+    }
+    if (_overview->showReturnTypes && type->returnType().isAuto()) {
+        const QString returnType = _overview->prettyType(type->returnType());
+        if (!returnType.isEmpty()) {
+            _text += QLatin1String(" -> ");
+            _text += returnType;
         }
     }
 }
