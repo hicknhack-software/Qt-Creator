@@ -155,6 +155,7 @@ public:
                 newArg->resetEnclosingScope();
                 funTy->addMember(newArg);
             }
+            funTy->setVariadic(type->isVariadic());
 
             temps.append(funTy);
         }
