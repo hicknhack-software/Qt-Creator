@@ -140,7 +140,9 @@ public:
 
             funTy->setName(rewrite->rewriteName(type->name()));
 
-            funTy->setReturnType(rewrite->rewriteType(type->returnType()));
+            if (!type->returnType().isAuto()) {
+                funTy->setReturnType(rewrite->rewriteType(type->returnType()));
+            }
 
             // Function parameters have the function's enclosing scope.
             Scope *scope = nullptr;
@@ -153,6 +155,9 @@ public:
                 rewrite->env->enter(&useMinimalNames);
             }
 
+            if (type->returnType().isAuto()) {
+                funTy->setReturnType(rewrite->rewriteType(type->returnType()));
+            }
             for (unsigned i = 0, argc = type->argumentCount(); i < argc; ++i) {
                 Symbol *arg = type->argumentAt(i);
 
