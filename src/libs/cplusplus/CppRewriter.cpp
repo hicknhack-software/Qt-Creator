@@ -166,6 +166,7 @@ public:
                 newArg->resetEnclosingScope();
                 funTy->addMember(newArg);
             }
+            funTy->setVariadic(type->isVariadic());
 
             if (target) {
                 rewrite->env->switchScope(scope);
