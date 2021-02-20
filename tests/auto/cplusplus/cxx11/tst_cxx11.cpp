@@ -275,7 +275,7 @@ void tst_cxx11::lambdaType_data()
              "{\n"
              "    []() -> int { return 0; };\n"
              "}\n")
-        << _("int ()");
+        << _("auto () -> int");
 
     QTest::newRow("return expression")
         << _("void f()\n"
