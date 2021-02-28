@@ -166,7 +166,9 @@ OutputWindow::OutputWindow(Context context, const QString &settingsKey, QWidget 
     d->scrollTimer.setInterval(10);
     d->scrollTimer.setSingleShot(true);
     connect(&d->scrollTimer, &QTimer::timeout,
-            this, &OutputWindow::scrollToBottom);
+            this, [&]() {
+        if (d->scrollToBottom) { scrollToBottom(); }
+    });
     d->lastMessage.start();
 
     d->originalFontSize = font().pointSizeF();
@@ -348,6 +350,11 @@ void OutputWindow::updateFilterProperties(
     }
     d->filterMode = flags;
     filterNewContent();
+}
+
+void OutputWindow::disableScrollToBottom()
+{
+    d->scrollToBottom = false;
 }
 
 void OutputWindow::filterNewContent()
