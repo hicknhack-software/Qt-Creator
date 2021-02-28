@@ -618,11 +618,36 @@ ChangeSet FunctionDeclDefLink::changes(const Snapshot &snapshot, int targetOffse
 
         if (!newFunction->returnType().match(sourceFunction->returnType())
                 && !newFunction->returnType().match(targetFunction->returnType())) {
-            FullySpecifiedType type = rewriteType(newFunction->returnType(), &env, control);
-            const QString replacement = overview.prettyType(type, targetFunction->name());
-            changes.replace(returnTypeStart,
-                            targetFile->startOf(targetFunctionDeclarator->lparen_token),
-                            replacement);
+            if (newFunction->returnType().isAuto()) {
+                if (!targetFunctionDeclarator->trailing_return_type) {
+                    // switch from "int name();" to "auto name() -> int;"
+                    const QString replacement = QLatin1String("auto ") + overview.prettyName(targetFunction->name());
+                    changes.replace(returnTypeStart,
+                                    targetFile->startOf(targetFunctionDeclarator->lparen_token),
+                                    replacement);
+                }
+                const QString replacement = overview.prettyType(newFunction->returnType());
+                if (targetFunctionDeclarator->trailing_return_type) {
+                    returnTypeStart = targetFile->startOf(targetFunctionDeclarator->trailing_return_type->firstToken());
+                    auto returnTypeEnd = targetFile->endOf(targetFunctionDeclarator->trailing_return_type->lastToken()) - 1;
+                    changes.replace(returnTypeStart, returnTypeEnd, QLatin1String("-> ") + replacement);
+                }
+                else {
+                    returnTypeStart = targetFile->endOf(targetFunctionDeclarator->lastToken()) - 1;
+                    changes.insert(returnTypeStart, QLatin1String(" -> ") + replacement);
+                }
+            }
+            else {
+                if (targetFunctionDeclarator->trailing_return_type) {
+                    changes.remove(targetFile->startOf(targetFunctionDeclarator->trailing_return_type->firstToken()),
+                                   targetFile->endOf(targetFunctionDeclarator->trailing_return_type->lastToken()) - 1);
+                }
+                FullySpecifiedType type = rewriteType(newFunction->returnType(), &env, control);
+                const QString replacement = overview.prettyType(type, targetFunction->name());
+                changes.replace(returnTypeStart,
+                                targetFile->startOf(targetFunctionDeclarator->lparen_token),
+                                replacement);
+            }
         }
     } while (false);
 
