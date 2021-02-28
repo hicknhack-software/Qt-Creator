@@ -110,12 +110,14 @@ bool TypePrettyPrinter::switchNeedsParens(bool needsParens)
 
 void TypePrettyPrinter::visit(UndefinedType *)
 {
-    if (_fullySpecifiedType.isSigned() || _fullySpecifiedType.isUnsigned()) {
+    if (_fullySpecifiedType.isSigned() || _fullySpecifiedType.isUnsigned() || _fullySpecifiedType.isAuto()) {
         prependSpaceUnlessBracket();
         if (_fullySpecifiedType.isSigned())
             _text.prepend(QLatin1String("signed"));
         else if (_fullySpecifiedType.isUnsigned())
             _text.prepend(QLatin1String("unsigned"));
+        else if (_fullySpecifiedType.isAuto())
+            _text.prepend(QLatin1String("auto"));
     }
 
     prependCv(_fullySpecifiedType);
@@ -413,7 +415,7 @@ void TypePrettyPrinter::visit(Function *type)
     retAndArgOverview.showTemplateParameters = true;
 
     if (_overview->showReturnTypes) {
-        if (_overview->trailingReturnType) {
+        if (_overview->trailingReturnType || type->isTrailingReturnType()) {
             _text.prepend("auto ");
         } else {
             const QString returnType = retAndArgOverview.prettyType(type->returnType());
@@ -521,7 +523,7 @@ void TypePrettyPrinter::visit(Function *type)
         }
     }
 
-    if (_overview->showReturnTypes && _overview->trailingReturnType) {
+    if (_overview->showReturnTypes && (_overview->trailingReturnType || type->isTrailingReturnType())) {
         const QString returnType = retAndArgOverview.prettyType(type->returnType());
         if (!returnType.isEmpty())
             _text.append(" -> ").append(returnType);
