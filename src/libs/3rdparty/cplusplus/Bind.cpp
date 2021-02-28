@@ -378,9 +378,11 @@ FullySpecifiedType Bind::declarator(DeclaratorAST *ast, const FullySpecifiedType
     }
     if (!type->asFunctionType()) {
         ExpressionTy initializer = this->expression(ast->initializer);
-        if (cxx11Enabled && isAuto) {
+        if (cxx11Enabled && isAuto && ast->initializer) {
+            bool isConst = type.isConst();
             type = initializer;
             type.setAuto(true);
+            type.setConst(isConst);
         }
     }
 
@@ -1208,8 +1210,10 @@ Function *Bind::lambdaDeclarator(LambdaDeclaratorAST *ast)
     fun->setEndOffset(tokenAt(ast->lastToken() - 1).utf16charsEnd());
 
     FullySpecifiedType type;
-    if (ast->trailing_return_type)
+    if (ast->trailing_return_type) {
+        fun->setTrailingReturnType(true);
         type = this->trailingReturnType(ast->trailing_return_type, type);
+    }
     ast->symbol = fun;
 
     // int lparen_token = ast->lparen_token;
@@ -1241,6 +1245,8 @@ FullySpecifiedType Bind::trailingReturnType(TrailingReturnTypeAST *ast, const Fu
     if (! ast)
         return type;
 
+    type.setAuto(false); // keep return type alive
+
     // int arrow_token = ast->arrow_token;
     for (SpecifierListAST *it = ast->attributes; it; it = it->next) {
         type = this->specifier(it->value, type);
@@ -1250,6 +1256,7 @@ FullySpecifiedType Bind::trailingReturnType(TrailingReturnTypeAST *ast, const Fu
     }
     DeclaratorIdAST *declaratorId = nullptr;
     type = this->declarator(ast->declarator, type, &declaratorId);
+    type.setAuto(true);
     return type;
 }
 
@@ -3365,8 +3372,10 @@ bool Bind::visit(FunctionDeclaratorAST *ast)
     Function *fun = control()->newFunction(0, nullptr);
     fun->setStartOffset(tokenAt(ast->firstToken()).utf16charsBegin());
     fun->setEndOffset(tokenAt(ast->lastToken() - 1).utf16charsEnd());
-    if (ast->trailing_return_type)
+    if (ast->trailing_return_type) {
+        fun->setTrailingReturnType(true);
         _type = this->trailingReturnType(ast->trailing_return_type, _type);
+    }
     fun->setReturnType(_type);
 
     // "static", "virtual" etc.
