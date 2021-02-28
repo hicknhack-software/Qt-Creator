@@ -334,6 +334,9 @@ public:
     bool isAmbiguous() const { return f._isAmbiguous; } // internal
     void setAmbiguous(bool isAmbiguous) { f._isAmbiguous = isAmbiguous; } // internal
 
+    bool isTrailingReturnType() const { return f._isTrailingReturnType; }
+    void setTrailingReturnType(bool isTrailingReturnType) { f._isTrailingReturnType = isTrailingReturnType; }
+
     bool maybeValidPrototype(int actualArgumentCount) const;
 
     const StringLiteral *exceptionSpecification() { return _exceptionSpecification; }
@@ -370,6 +373,7 @@ private:
         unsigned _isAmbiguous: 1;
         unsigned _methodKey: 3;
         unsigned _refQualifier: 2;
+        unsigned _isTrailingReturnType :1;
     };
     union {
         unsigned _flags;
