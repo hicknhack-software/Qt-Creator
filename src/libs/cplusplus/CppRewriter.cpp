@@ -115,10 +115,11 @@ public:
             funTy->setVolatile(type->isVolatile());
             funTy->setRefQualifier(type->refQualifier());
             funTy->setExceptionSpecification(type->exceptionSpecification());
+            funTy->setTrailingReturnType(type->isTrailingReturnType());
 
             funTy->setName(rewrite->rewriteName(type->name()));
 
-            if (!type->returnType().isAuto()) {
+            if (!type->isTrailingReturnType()) {
                 funTy->setReturnType(rewrite->rewriteType(type->returnType()));
             }
 
@@ -133,7 +134,7 @@ public:
                 rewrite->env->enter(&useMinimalNames);
             }
 
-            if (type->returnType().isAuto()) {
+            if (type->isTrailingReturnType()) {
                 funTy->setReturnType(rewrite->rewriteType(type->returnType()));
             }
             for (unsigned i = 0, argc = type->argumentCount(); i < argc; ++i) {
