@@ -84,6 +84,8 @@ public:
             bool regexp,
             bool isInverted);
 
+    void disableScrollToBottom();
+
 signals:
     void wheelZoom();
 
