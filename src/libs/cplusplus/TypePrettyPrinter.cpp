@@ -420,7 +420,7 @@ void TypePrettyPrinter::visit(Function *type)
     retAndArgOverview.showTemplateParameters = true;
 
     if (_overview->showReturnTypes) {
-        if (_overview->trailingReturnType) {
+        if (_overview->trailingReturnType || type->isTrailingReturnType()) {
             _text.prepend("auto ");
         } else {
             const QString returnType = retAndArgOverview.prettyType(type->returnType());
@@ -534,7 +534,7 @@ void TypePrettyPrinter::visit(Function *type)
         }
     }
 
-    if (_overview->showReturnTypes && _overview->trailingReturnType) {
+    if (_overview->showReturnTypes && (_overview->trailingReturnType || type->isTrailingReturnType())) {
         const QString returnType = retAndArgOverview.prettyType(type->returnType());
         if (!returnType.isEmpty())
             _text.append(" -> ").append(returnType);
