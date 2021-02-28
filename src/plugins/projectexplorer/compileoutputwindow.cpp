@@ -256,6 +256,7 @@ void CompileOutputWindow::goToNext()
     m_outputWindow->setTextCursor(cursor);
     cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
     m_outputWindow->setTextCursor(cursor);
+    m_outputWindow->disableScrollToBottom();
 }
 
 void CompileOutputWindow::goToPrev()
@@ -278,6 +279,7 @@ void CompileOutputWindow::goToPrev()
     m_outputWindow->setTextCursor(cursor);
     cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
     m_outputWindow->setTextCursor(cursor);
+    m_outputWindow->disableScrollToBottom();
 }
 
 bool CompileOutputWindow::canNavigate() const
@@ -331,6 +333,7 @@ void CompileOutputWindow::showPositionOf(const Task &task)
 
     // Center cursor now:
     m_outputWindow->centerCursor();
+    m_outputWindow->disableScrollToBottom();
 }
 
 void CompileOutputWindow::scrollToFirstTask()
@@ -344,6 +347,7 @@ void CompileOutputWindow::scrollToFirstTask()
     m_outputWindow->setTextCursor(cursor);
     cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
     m_outputWindow->setTextCursor(cursor);
+    m_outputWindow->disableScrollToBottom();
 }
 
 void CompileOutputWindow::flush()
