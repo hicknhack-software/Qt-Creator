@@ -190,7 +190,9 @@ OutputWindow::OutputWindow(
     d->scrollTimer.setInterval(10ms);
     d->scrollTimer.setSingleShot(true);
     connect(&d->scrollTimer, &QTimer::timeout,
-            this, &OutputWindow::scrollToBottom);
+            this, [&]() {
+        if (d->scrollToBottom) { scrollToBottom(); }
+    });
     d->lastMessage.start();
 
     d->originalFontSize = font().pointSizeF();
@@ -776,6 +778,7 @@ void OutputWindow::goToFirstTaskPosition()
     setTextCursor(cursor);
     cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
     setTextCursor(cursor);
+    d->scrollToBottom = false;
 }
 
 void OutputWindow::goToNextTaskPosition()
@@ -798,6 +801,7 @@ void OutputWindow::goToNextTaskPosition()
     setTextCursor(cursor);
     cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
     setTextCursor(cursor);
+    d->scrollToBottom = false;
 }
 
 void OutputWindow::goToPreviousTaskPosition()
@@ -820,6 +824,7 @@ void OutputWindow::goToPreviousTaskPosition()
     setTextCursor(cursor);
     cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
     setTextCursor(cursor);
+    d->scrollToBottom = false;
 }
 
 QMimeData *OutputWindow::createMimeDataFromSelection() const
