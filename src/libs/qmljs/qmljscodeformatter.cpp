@@ -1176,15 +1176,21 @@ void QtStyleCodeFormatter::onEnter(int newState, int *indentDepth, int *savedInd
         if (parentState.type == expression
                 || parentState.type == objectliteral_assignment) {
             // undo the continuation indent of the expression
-            if (state(1).type == expression_or_label)
+            if (state(1).type == expression_or_label || state(1).type == binding_assignment)
                 *indentDepth = state(1).savedIndentDepth;
             else
                 *indentDepth = parentState.savedIndentDepth;
             *savedIndentDepth = *indentDepth;
         }
+        else if (parentState.type == paren_open && state(1).type == expression) {
+            if (state(2).type == binding_assignment)
+                *savedIndentDepth = state(2).savedIndentDepth;
+            else
+                *savedIndentDepth = state(1).savedIndentDepth;
+            *indentDepth = *savedIndentDepth;
+        }
         *indentDepth += m_indentSize;
         break;
-
 
     case statement_with_condition:
     case try_statement:
@@ -1193,8 +1199,10 @@ void QtStyleCodeFormatter::onEnter(int newState, int *indentDepth, int *savedInd
     case if_statement:
     case do_statement:
     case switch_statement:
-        if (firstToken || parentState.type == binding_assignment)
+        if (firstToken)
             *savedIndentDepth = tokenPosition;
+        if (parentState.type == binding_assignment)
+            *savedIndentDepth = state(1).savedIndentDepth;
         // ### continuation
         *indentDepth = *savedIndentDepth; // + 2*m_indentSize;
         // special case for 'else if'
