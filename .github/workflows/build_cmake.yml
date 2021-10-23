@@ -49,6 +49,7 @@ jobs:
     - name: Checkout submodules
       run: |
         git submodule set-url -- perfparser https://code.qt.io/qt-creator/perfparser.git
+        git submodule set-url -- qbs https://github.com/arBmind/qbs.git
         git submodule update --init --recursive
 
     - name: Download Ninja and CMake
@@ -476,7 +477,6 @@ jobs:
             --add-config=-DCMAKE_CXX_COMPILER_LAUNCHER=ccache
             --add-config=-DIDE_REVISION_URL=https://github.com/$ENV{GITHUB_REPOSITORY}/commits/$ENV{GITHUB_SHA}
             --zip-infix=-${{ matrix.config.artifact }}-${{ github.run_id }}
-            --no-qbs
           RESULT_VARIABLE result
           COMMAND_ECHO STDOUT
           OUTPUT_VARIABLE output
