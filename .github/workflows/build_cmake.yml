@@ -6,7 +6,7 @@ env:
   QT_VERSION: 5.15.2
   CLANG_VERSION: 120
   ELFUTILS_VERSION: 0.175
-  CMAKE_VERSION: 3.20.2
+  CMAKE_VERSION: 3.21.3
   NINJA_VERSION: 1.10.2
   BUILD_TYPE: Release
   CCACHE_VERSION: 4.2.1
@@ -384,10 +384,13 @@ jobs:
             message(FATAL_ERROR "Failed to install dependencies")
           endif()
         endif()
-        find_package(Python3 REQUIRED COMPONENTS Interpreter)
+        find_package(Python3 3.5...<3.10 REQUIRED COMPONENTS Interpreter)
         # hack to replace 32-bit python found by this script with 64-bit one
         # required for linking qtcreatorcdbext
         string(REPLACE "x86" "x64" Python3_EXECUTABLE "${Python3_EXECUTABLE}")
+        execute_process(
+          COMMAND ${Python3_EXECUTABLE} -m pip install --upgrade pip
+        )
         execute_process(
           COMMAND ${Python3_EXECUTABLE} -m pip install --user beautifulsoup4 lxml
           RESULT_VARIABLE result
