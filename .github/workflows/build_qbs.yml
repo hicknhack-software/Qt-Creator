@@ -13,9 +13,9 @@ jobs:
           - name: "Windows Latest MSVC"
             artifact: "Windows-MSVC"
             os: windows-latest
-            qt_version: "5.15.2"
+            qt_version: "6.2.1"
             qt_arch: "win64_msvc2019_64"
-            libclang_url: "https://download.qt.io/development_releases/prebuilt/libclang/libclang-release_120-based-windows-vs2019_64.7z"
+            libclang_url: "https://download.qt.io/development_releases/prebuilt/libclang/libclang-release_130-based-windows-vs2019_64.7z"
 
     steps:
       - name: Get LibClang
@@ -36,7 +36,7 @@ jobs:
         with:
           version: "${{ matrix.config.qt_version }}"
           arch: "${{ matrix.config.qt_arch }}"
-          modules: qtbase qtdeclarative qttools qtsvg qtserialport qtquickcontrols qtquickcontrols2 qtgraphicaleffects qtlocation qtimageformats qtquicktimeline qtquick3d qtscript
+          modules: qtbase qtdeclarative qttools qtsvg qttranslations qtimageformats qtserialport qtquicktimeline qtquick3d qt5compat qtshadertools
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
 
       - name: Install Qbs
@@ -45,9 +45,9 @@ jobs:
       - name: Setup Qbs
         run: |
           qbs setup-toolchains --detect
-          qbs setup-qt $Env:Qt5_DIR\bin\qmake.exe qt5-15
-          qbs config qt5-15.baseProfile MSVC2019-x64
-          qbs config defaultProfile qt5-15
+          qbs setup-qt $Env:Qt6_DIR\bin\qmake.exe qt6-2
+          qbs config qt6-2.baseProfile MSVC2019-x64
+          qbs config defaultProfile qt6-2
           qbs config --list profiles
 
       - uses: actions/checkout@v2
@@ -55,8 +55,9 @@ jobs:
           path: Repo
       - working-directory: Repo
         run: |
-          git submodule update --init src/plugins/help/qlitehtml/litehtml
-          git submodule update --init src/shared/qbs
+          git submodule set-url -- perfparser https://code.qt.io/qt-creator/perfparser.git
+          git submodule set-url -- qbs https://github.com/arBmind/qbs.git
+          git submodule update --init --recursive
 
       - uses: actions/setup-python@v2
         with:
@@ -75,7 +76,7 @@ jobs:
       - name: Deploy
         working-directory: ${{ github.workspace }}/install-root
         run: |
-          python -u ${{ github.workspace }}/Repo/scripts/deployqt.py -i --llvm-path ${{ github.workspace }}/libclang ${{ github.workspace }}/install-root/bin/qtcreator.exe $Env:Qt5_DIR/bin/qmake.exe
+          python -u ${{ github.workspace }}/Repo/scripts/deployqt.py -i --llvm-path ${{ github.workspace }}/libclang ${{ github.workspace }}/install-root/bin/qtcreator.exe $Env:Qt6_DIR/bin/qmake.exe
 
       - name: Pack
         working-directory: ${{ github.workspace }}/install-root
