@@ -27,13 +27,14 @@ Project {
         qbsSearchPaths: [project.ide_source_tree + "/qbs", qbsBaseDir + "/qbs-resources"]
 
         references: [
+            qbsBaseDir + "/share/share.qbs",
+            qbsBaseDir + "/src/app/apps.qbs",
             qbsBaseDir + "/src/lib/libs.qbs",
             qbsBaseDir + "/src/libexec/libexec.qbs",
             qbsBaseDir + "/src/plugins/plugins.qbs",
-            qbsBaseDir + "/share/share.qbs",
-            qbsBaseDir + "/src/app/apps.qbs",
-            qbsBaseDir + "/src/shared/bundledqt/bundledqt.qbs",
             qbsBaseDir + "/src/shared/json/json.qbs",
+            qbsBaseDir + "/src/shared/bundledqt/bundledqt.qbs",
+            qbsBaseDir + "/src/shared/variant/variant.qbs",
         ]
     }
 }
