@@ -44,63 +44,63 @@ ClangCodeModelServerProxy::ClangCodeModelServerProxy(ClangCodeModelClientInterfa
 
 void ClangCodeModelServerProxy::end()
 {
-    m_writeMessageBlock.write(EndMessage());
+    m_writeMessageBlock.write(MessageEnvelop::make(EndMessage()));
 }
 
 void ClangCodeModelServerProxy::documentsOpened(const DocumentsOpenedMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelServerProxy::documentsChanged(const DocumentsChangedMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelServerProxy::documentsClosed(const DocumentsClosedMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelServerProxy::unsavedFilesUpdated(const UnsavedFilesUpdatedMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelServerProxy::unsavedFilesRemoved(const UnsavedFilesRemovedMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelServerProxy::requestCompletions(const RequestCompletionsMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelServerProxy::requestAnnotations(const RequestAnnotationsMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelServerProxy::requestReferences(const RequestReferencesMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelServerProxy::requestFollowSymbol(const RequestFollowSymbolMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelServerProxy::requestToolTip(const RequestToolTipMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelServerProxy::documentVisibilityChanged(
     const DocumentVisibilityChangedMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 } // namespace ClangBackEnd

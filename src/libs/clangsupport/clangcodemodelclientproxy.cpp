@@ -82,37 +82,37 @@ ClangCodeModelClientProxy &ClangCodeModelClientProxy::operator=(ClangCodeModelCl
 
 void ClangCodeModelClientProxy::alive()
 {
-    m_writeMessageBlock.write(AliveMessage());
+    m_writeMessageBlock.write(MessageEnvelop::make(AliveMessage()));
 }
 
 void ClangCodeModelClientProxy::echo(const EchoMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelClientProxy::completions(const CompletionsMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelClientProxy::annotations(const AnnotationsMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelClientProxy::references(const ReferencesMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelClientProxy::followSymbol(const FollowSymbolMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelClientProxy::tooltip(const ToolTipMessage &message)
 {
-    m_writeMessageBlock.write(message);
+    m_writeMessageBlock.write(MessageEnvelop::make(message));
 }
 
 void ClangCodeModelClientProxy::readMessages()
