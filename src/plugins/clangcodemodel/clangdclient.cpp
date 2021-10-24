@@ -1093,7 +1093,7 @@ ClangdClient::ClangdCompletionAssistProcessor::generateCompletionItems(
             docText = Utils::get<QString>(*doc);
         else if (Utils::holds_alternative<MarkupContent>(*doc))
             docText = Utils::get<MarkupContent>(*doc).content();
-        return docText.contains("Annotation: qt_signal");
+        return docText.contains(QStringLiteral("Annotation: qt_signal"));
     };
     const QTextDocument *doc = document();
     const int pos = basePos();
@@ -2319,7 +2319,7 @@ static void semanticHighlighter(QFutureInterface<HighlightingResult> &future,
         return Range(startPos, endPos);
     };
     const auto isOutputParameter = [&ast, &doc, &tokenRange](const ExpandedSemanticToken &token) {
-        if (token.modifiers.contains("usedAsMutableReference"))
+        if (token.modifiers.contains(QStringLiteral("usedAsMutableReference")))
             return true;
         if (token.type != "variable" && token.type != "property" && token.type != "parameter")
             return false;
@@ -2348,16 +2348,16 @@ static void semanticHighlighter(QFutureInterface<HighlightingResult> &future,
               (const ExpandedSemanticToken &token) {
         TextStyles styles;
         if (token.type == "variable") {
-            if (token.modifiers.contains("functionScope")) {
+            if (token.modifiers.contains(QStringLiteral("functionScope"))) {
                 styles.mainStyle = C_LOCAL;
-            } else if (token.modifiers.contains("classScope")) {
+            } else if (token.modifiers.contains(QStringLiteral("classScope"))) {
                 styles.mainStyle = C_FIELD;
-            } else if (token.modifiers.contains("fileScope")
-                       || token.modifiers.contains("globalScope")) {
+            } else if (token.modifiers.contains(QStringLiteral("fileScope"))
+                       || token.modifiers.contains(QStringLiteral("globalScope"))) {
                 styles.mainStyle = C_GLOBAL;
             }
         } else if (token.type == "function" || token.type == "method") {
-            styles.mainStyle = token.modifiers.contains("virtual") ? C_VIRTUAL_METHOD : C_FUNCTION;
+            styles.mainStyle = token.modifiers.contains(QStringLiteral("virtual")) ? C_VIRTUAL_METHOD : C_FUNCTION;
             if (ast.isValid()) {
                 const QList<AstNode> path = getAstPath(ast, tokenRange(token));
                 if (path.length() > 1) {
@@ -2415,9 +2415,9 @@ static void semanticHighlighter(QFutureInterface<HighlightingResult> &future,
         } else if (token.type == "typeParameter") {
             // clangd reports both type and non-type template parameters as type parameters,
             // but the latter can be distinguished by the readonly modifier.
-            styles.mainStyle = token.modifiers.contains("readonly") ? C_PARAMETER : C_TYPE;
+            styles.mainStyle = token.modifiers.contains(QStringLiteral("readonly")) ? C_PARAMETER : C_TYPE;
         }
-        if (token.modifiers.contains("declaration"))
+        if (token.modifiers.contains(QStringLiteral("declaration")))
             styles.mixinStyles.push_back(C_DECLARATION);
         if (isOutputParameter(token))
             styles.mixinStyles.push_back(C_OUTPUT_ARGUMENT);
