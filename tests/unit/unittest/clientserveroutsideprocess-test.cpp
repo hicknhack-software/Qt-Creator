@@ -98,7 +98,7 @@ TEST_F(ClientServerOutsideProcess, SendDocumentsOpenedMessage)
     ClangBackEnd::DocumentsOpenedMessage documentsOpenedMessage({fileContainer},
                                                                 filePath,
                                                                 {filePath});
-    EchoMessage echoMessage(documentsOpenedMessage);
+    EchoMessage echoMessage(MessageEnvelop::make(documentsOpenedMessage));
 
     EXPECT_CALL(mockClangCodeModelClient, echo(echoMessage));
 
@@ -110,7 +110,7 @@ TEST_F(ClientServerOutsideProcess, SendDocumentsClosedMessage)
 {
     FileContainer fileContainer(Utf8StringLiteral("foo.cpp"), Utf8StringLiteral("projectId"));
     ClangBackEnd::DocumentsClosedMessage documentsClosedMessage({fileContainer});
-    EchoMessage echoMessage(documentsClosedMessage);
+    EchoMessage echoMessage(MessageEnvelop::make(documentsClosedMessage));
 
     EXPECT_CALL(mockClangCodeModelClient, echo(echoMessage));
 
@@ -121,7 +121,7 @@ TEST_F(ClientServerOutsideProcess, SendDocumentsClosedMessage)
 TEST_F(ClientServerOutsideProcess, SendCompleteCodeMessage)
 {
     RequestCompletionsMessage codeCompleteMessage(Utf8StringLiteral("foo.cpp"), 24, 33);
-    EchoMessage echoMessage(codeCompleteMessage);
+    EchoMessage echoMessage(MessageEnvelop::make(codeCompleteMessage));
 
     EXPECT_CALL(mockClangCodeModelClient, echo(echoMessage));
 
