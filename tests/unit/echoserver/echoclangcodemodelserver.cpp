@@ -45,57 +45,57 @@ void EchoClangCodeModelServer::end()
 
 void EchoClangCodeModelServer::documentsOpened(const DocumentsOpenedMessage &message)
 {
-    echoMessage(message);
+    echoMessage(MessageEnvelop::make(message));
 }
 
 void EchoClangCodeModelServer::documentsChanged(const DocumentsChangedMessage &message)
 {
-    echoMessage(message);
+    echoMessage(MessageEnvelop::make(message));
 }
 
 void EchoClangCodeModelServer::documentsClosed(const DocumentsClosedMessage &message)
 {
-    echoMessage(message);
+    echoMessage(MessageEnvelop::make(message));
 }
 
 void EchoClangCodeModelServer::unsavedFilesUpdated(const UnsavedFilesUpdatedMessage &message)
 {
-    echoMessage(message);
+    echoMessage(MessageEnvelop::make(message));
 }
 
 void EchoClangCodeModelServer::unsavedFilesRemoved(const UnsavedFilesRemovedMessage &message)
 {
-    echoMessage(message);
+    echoMessage(MessageEnvelop::make(message));
 }
 
 void EchoClangCodeModelServer::requestCompletions(const RequestCompletionsMessage &message)
 {
-    echoMessage(message);
+    echoMessage(MessageEnvelop::make(message));
 }
 
 void EchoClangCodeModelServer::requestAnnotations(const RequestAnnotationsMessage &message)
 {
-    echoMessage(message);
+    echoMessage(MessageEnvelop::make(message));
 }
 
 void EchoClangCodeModelServer::requestReferences(const RequestReferencesMessage &message)
 {
-    echoMessage(message);
+    echoMessage(MessageEnvelop::make(message));
 }
 
 void EchoClangCodeModelServer::requestFollowSymbol(const RequestFollowSymbolMessage &message)
 {
-    echoMessage(message);
+    echoMessage(MessageEnvelop::make(message));
 }
 
 void EchoClangCodeModelServer::requestToolTip(const RequestToolTipMessage &message)
 {
-    echoMessage(message);
+    echoMessage(MessageEnvelop::make(message));
 }
 
 void EchoClangCodeModelServer::documentVisibilityChanged(const DocumentVisibilityChangedMessage &message)
 {
-    echoMessage(message);
+    echoMessage(MessageEnvelop::make(message));
 }
 
 void EchoClangCodeModelServer::echoMessage(const MessageEnvelop &message)
@@ -104,4 +104,3 @@ void EchoClangCodeModelServer::echoMessage(const MessageEnvelop &message)
 }
 
 } // namespace ClangBackEnd
-
