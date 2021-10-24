@@ -91,31 +91,31 @@ void ReadAndWriteMessageBlock::TearDown()
 
 TEST_F(ReadAndWriteMessageBlock, WriteMessageAndTestSize)
 {
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
 
     ASSERT_EQ(17, buffer.size());
 }
 
 TEST_F(ReadAndWriteMessageBlock, WriteSecondMessageAndTestSize)
 {
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
 
     ASSERT_EQ(17, buffer.size());
 }
 
 TEST_F(ReadAndWriteMessageBlock, WriteTwoMessagesAndTestCount)
 {
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
 
     ASSERT_EQ(2, writeMessageBlock.counter());
 }
 
 TEST_F(ReadAndWriteMessageBlock, ReadThreeMessagesAndTestCount)
 {
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
     buffer.seek(0);
 
     ASSERT_THAT(readMessageBlock.readAll(), SizeIs(3));
@@ -125,8 +125,8 @@ TEST_F(ReadAndWriteMessageBlock, WriteMessagesToWriteBlockWithoutIoDeviceAndNoMe
 {
     ClangBackEnd::WriteMessageBlock writeMessageBlock;
 
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
     buffer.seek(0);
 
     ASSERT_THAT(readMessageBlock.readAll(), IsEmpty());
@@ -135,8 +135,8 @@ TEST_F(ReadAndWriteMessageBlock, WriteMessagesToWriteBlockWithoutIoDeviceAndNoMe
 TEST_F(ReadAndWriteMessageBlock, WriteMessagesToWriteBlockWithoutIoDeviceAndSetIoDeviceToNullPointerLater)
 {
     ClangBackEnd::WriteMessageBlock writeMessageBlock;
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
 
     writeMessageBlock.setLocalSocket(nullptr);
     buffer.seek(0);
@@ -147,8 +147,8 @@ TEST_F(ReadAndWriteMessageBlock, WriteMessagesToWriteBlockWithoutIoDeviceAndSetI
 TEST_F(ReadAndWriteMessageBlock, WriteMessagesToWriteBlockWithoutIoDeviceAndSetIoDeviceLater)
 {
     ClangBackEnd::WriteMessageBlock writeMessageBlock;
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
 
     writeMessageBlock.setIoDevice(&buffer);
     buffer.seek(0);
@@ -158,8 +158,8 @@ TEST_F(ReadAndWriteMessageBlock, WriteMessagesToWriteBlockWithoutIoDeviceAndSetI
 
 TEST_F(ReadAndWriteMessageBlock, ResetStateResetsCounter)
 {
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
     buffer.seek(0);
 
     writeMessageBlock.resetState();
@@ -170,7 +170,7 @@ TEST_F(ReadAndWriteMessageBlock, ResetStateResetsCounter)
 TEST_F(ReadAndWriteMessageBlock, ResetStateResetsWritingBlock)
 {
     ClangBackEnd::WriteMessageBlock writeMessageBlock;
-    writeMessageBlock.write(ClangBackEnd::EndMessage());
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(ClangBackEnd::EndMessage()));
 
     writeMessageBlock.resetState();
 
@@ -298,9 +298,9 @@ ClangBackEnd::MessageEnvelop ReadAndWriteMessageBlock::writeCompletionsMessage()
     ClangBackEnd::CompletionsMessage message(
         ClangBackEnd::CodeCompletions({Utf8StringLiteral("newFunction()")}), 1);
 
-    writeMessageBlock.write(message);
+    writeMessageBlock.write(ClangBackEnd::MessageEnvelop::make(message));
 
-    return message;
+    return ClangBackEnd::MessageEnvelop::make(message);
 }
 
 void ReadAndWriteMessageBlock::popLastCharacterFromBuffer()
@@ -325,7 +325,7 @@ void ReadAndWriteMessageBlock::readPartialMessage()
 template<class Type>
 void ReadAndWriteMessageBlock::CompareMessage(const Type &message)
 {
-    const ClangBackEnd::MessageEnvelop writeMessage = message;
+    const auto writeMessage = ClangBackEnd::MessageEnvelop::make(message);
     writeMessageBlock.write(writeMessage);
     buffer.seek(0);
 

@@ -39,12 +39,14 @@ class MessageEnvelop
 public:
     MessageEnvelop() = default;
 
-    template <class Message>
-    MessageEnvelop(const Message &message)
-        : messageType_(MessageTrait<Message>::enumeration)
+    template <class Message, auto type = MessageTrait<Message>::enumeration>
+    static auto make(const Message &message) ->  MessageEnvelop
     {
-        QDataStream stream(&data, QIODevice::WriteOnly);
+        auto r = MessageEnvelop{};
+        r.messageType_ = type;
+        QDataStream stream(&r.data, QIODevice::WriteOnly);
         stream << message;
+        return r;
     }
 
     template <class Message>
