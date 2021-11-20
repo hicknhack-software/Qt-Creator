@@ -27,12 +27,12 @@ jobs:
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
             is_msvc: true
           }
-        - {
-            name: "Windows Latest MinGW", artifact: "Windows-MinGW",
-            os: windows-latest,
-            cc: "gcc", cxx: "g++",
-            is_msvc: false
-          }
+        # - {
+        #     name: "Windows Latest MinGW", artifact: "Windows-MinGW",
+        #     os: windows-latest,
+        #     cc: "gcc", cxx: "g++",
+        #     is_msvc: false
+        #   }
         - {
             name: "Ubuntu Latest GCC", artifact: "Linux",
             os: ubuntu-latest,
