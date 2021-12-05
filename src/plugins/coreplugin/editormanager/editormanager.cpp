@@ -1662,7 +1662,7 @@ bool EditorManagerPrivate::closeEditors(const QList<IEditor*> &editors, CloseFla
         emit m_instance->editorAboutToClose(editor);
         removeEditor(editor, flag != CloseFlag::Suspend);
         if (EditorView *view = viewForEditor(editor)) {
-            editorsPerView.insert(view, editor);
+            editorsPerView.emplace(std::move(view), editor);
             if (QApplication::focusWidget()
                 && QApplication::focusWidget() == editor->widget()->focusWidget()) {
                 focusView = view;

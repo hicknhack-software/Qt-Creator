@@ -77,7 +77,7 @@ void NodeInstanceSignalSpy::registerProperty(const QMetaProperty &metaProperty, 
         QMetaMethod metaMethod = metaProperty.notifySignal();
         QMetaObject::connect(spiedObject, metaMethod.methodIndex(), this, methodeOffset, Qt::DirectConnection);
 
-        m_indexPropertyHash.insert(methodeOffset, propertyPrefix + PropertyName(metaProperty.name()));
+        m_indexPropertyHash.emplace(std::move(methodeOffset), propertyPrefix + PropertyName(metaProperty.name()));
 
 
         methodeOffset++;

@@ -828,7 +828,7 @@ void Qt5InformationNodeInstanceServer::resolveSceneRoots()
             m_active3DScene = newRoot;
             updateActiveScene = true;
         }
-        m_3DSceneMap.insert(newRoot, node);
+        m_3DSceneMap.emplace(std::move(newRoot), node);
 
         if (newRoot != oldRoot) {
             if (qobject_cast<QQuick3DCamera *>(node)) {
@@ -1466,7 +1466,7 @@ void Qt5InformationNodeInstanceServer::add3DScenes(const QList<ServerNodeInstanc
             QObject *sceneRoot = find3DSceneRoot(instance);
             QObject *obj = instance.internalObject();
             if (!m_3DSceneMap.contains(sceneRoot, obj)) {
-                m_3DSceneMap.insert(sceneRoot, obj);
+                m_3DSceneMap.emplace(std::move(sceneRoot), obj);
                 QObject::connect(obj, &QObject::destroyed,
                                  this, &Qt5InformationNodeInstanceServer::handleNode3DDestroyed);
             }

@@ -69,7 +69,7 @@ static void fill(Counter &counter, const typename Counter::Container &container,
             allocated += amount;
             counter.request(amount);
             void *alloc = malloc(amount);
-            allocations.insert(alloc, amount);
+            allocations.emplace(std::move(alloc), amount);
             counter.obtain(reinterpret_cast<quintptr>(alloc));
             QCOMPARE(counter.currentTotal(), allocated);
         }
