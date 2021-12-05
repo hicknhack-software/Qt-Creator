@@ -59,7 +59,8 @@ jobs:
           git submodule set-url -- qbs https://github.com/arBmind/qbs.git
           git submodule update --init --recursive
 
-      - uses: actions/setup-python@v2
+      - uses: arBmind/setup-python@v3
+        id: setup-python
         with:
           python-version: "3.x"
 
@@ -69,6 +70,7 @@ jobs:
           $Env:Path += ";${{ github.workspace }}\libclang\bin"
           $Env:LLVM_INSTALL_DIR = "${{ github.workspace }}\libclang"
           $Env:QTC_ENABLE_CLANG_LIBTOOLING = "true"
+          $Env:PYTHON_INSTALL_DIR = "${{ steps.setup-python.outputs.python-install-dir }}"
           qbs build -d $ENV:TMP\build `
             qbs.installRoot:${{ github.workspace }}/install-root `
             config:Release qbs.defaultBuildVariant:release
@@ -83,7 +85,7 @@ jobs:
         run: 7z a ../QtCreator-${{ matrix.config.qt_arch }}-${{ github.run_id }}.7z * -r
 
       - name: Upload
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           path: ${{ github.workspace }}/QtCreator-${{ matrix.config.qt_arch }}-${{ github.run_id }}.7z
           name: QtCreator-${{ matrix.config.qt_arch }}-${{ github.run_id }}.7z
