@@ -13,7 +13,7 @@ jobs:
           - name: "Windows Latest MSVC"
             artifact: "Windows-MSVC"
             os: windows-latest
-            qt_version: "6.2.1"
+            qt_version: "6.2.2"
             qt_arch: "win64_msvc2019_64"
             libclang_url: "https://download.qt.io/development_releases/prebuilt/libclang/libclang-release_130-based-windows-vs2019_64.7z"
 
