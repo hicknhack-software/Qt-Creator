@@ -16,6 +16,7 @@ jobs:
             qt_version: "6.2.2"
             qt_arch: "win64_msvc2019_64"
             libclang_url: "https://download.qt.io/development_releases/prebuilt/libclang/libclang-release_130-based-windows-vs2019_64.7z"
+            qbs_url: "https://download.qt.io/official_releases/qbs/1.21.0/qbs-windows-x86_64-1.21.0.zip"
 
     steps:
       - name: Get LibClang
@@ -23,6 +24,14 @@ jobs:
         run: file(DOWNLOAD "${{ matrix.config.libclang_url }}" ./libclang.7z SHOW_PROGRESS)
 
       - run: 7z x libclang.7z
+
+      - name: Get Qbs
+        shell: cmake -P {0}
+        run: file(DOWNLOAD "${{ matrix.config.qbs_url }}" ./qbs.zip SHOW_PROGRESS)
+
+      - run: |
+          7z x qbs.zip -oqbs
+          echo "${{ github.workspace }}/qbs/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Cache Qt
         id: cache-qt
@@ -38,9 +47,6 @@ jobs:
           arch: "${{ matrix.config.qt_arch }}"
           modules: qtbase qtdeclarative qttools qtsvg qttranslations qtimageformats qtserialport qtquicktimeline qtquick3d qt5compat qtshadertools
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
-
-      - name: Install Qbs
-        run: choco install qbs
 
       - name: Setup Qbs
         run: |
