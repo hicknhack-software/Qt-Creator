@@ -211,7 +211,6 @@ QtcLibrary {
         Artifact {
             filePath: {
                 var rel = FileInfo.relativePath(FileInfo.joinPaths(product.pythonInstallDir, "Lib"), input.filePath);
-                console.warn(rel);
                 return FileInfo.joinPaths("python-lib", rel);
             }
             fileTags: ["python-uncompiled"]
