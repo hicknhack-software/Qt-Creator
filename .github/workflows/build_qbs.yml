@@ -19,6 +19,7 @@ jobs:
             qt_arch_x86: "win32_msvc2019"
             libclang_url: "https://download.qt.io/development_releases/prebuilt/libclang/libclang-release_130-based-windows-vs2019_64.7z"
             qbs_url: "https://download.qt.io/official_releases/qbs/1.21.0/qbs-windows-x86_64-1.21.0.zip"
+            jom_url: "https://download.qt.io/official_releases/jom/jom_1_1_3.zip"
 
     steps:
       - name: Get LibClang
@@ -35,6 +36,10 @@ jobs:
           7z x qbs.zip -oqbs
           echo "${{ github.workspace }}/qbs/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
+      - name: Get JOM
+        shell: cmake -P {0}
+        run: file(DOWNLOAD "${{ matrix.config.jom_url }}" ./jom.zip SHOW_PROGRESS)
+
       - uses: actions/setup-python@v2
         with:
           python-version: "3.x"
@@ -44,7 +49,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ../Qt/${{ matrix.config.qt_version }}
-          key: QtCache_${{ matrix.config.qt_version }}-${{ matrix.config.qt_arch }}
+          key: QtCache-${{ matrix.config.qt_version }}-${{ matrix.config.qt_arch }}-2
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
@@ -52,14 +57,19 @@ jobs:
           version: "${{ matrix.config.qt_version }}"
           arch: "${{ matrix.config.qt_arch }}"
           modules: qtbase qtdeclarative qttools qtsvg qttranslations qtimageformats qtserialport qtquicktimeline qtquick3d qt5compat qtshadertools
+          tools: "tools_openssl_x64,1.1.1-10,qt.tools.openssl.win_x64"
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
+
+      - name: Copy OpenSSL DLLs
+        run: |
+          copy ../Qt/Tools/OpenSSL/Win_x64/bin/*.dll $Env:Qt6_DIR\bin
 
       - name: x86 Cache Qt
         id: cache-qt-x86
         uses: actions/cache@v1
         with:
           path: ../Qt/${{ matrix.config.qt_version_x86 }}
-          key: QtCache_${{ matrix.config.qt_version_x86 }}-${{ matrix.config.qt_arch_x86 }}
+          key: QtCache-${{ matrix.config.qt_version_x86 }}-${{ matrix.config.qt_arch_x86 }}
 
       - name: x86 Install Qt
         uses: jurplel/install-qt-action@v2
@@ -117,6 +127,9 @@ jobs:
             qbs.installRoot:${{ github.workspace }}/install-root `
             profile:qt5-15 config:Release qbs.defaultBuildVariant:release `
             -p qtcreatorcdbext
+
+      - name: Add JOM
+        run: 7z x jom.zip -o${{ github.workspace }}/install-root/bin/jom
 
       - name: Pack
         working-directory: ${{ github.workspace }}/install-root
