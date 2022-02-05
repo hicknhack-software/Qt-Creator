@@ -67,6 +67,8 @@ CompileOutputWindow::CompileOutputWindow(QAction *cancelBuildAction) :
     //: file name suggested for saving compile output
     m_outputWindow->setOutputFileNameHint(Tr::tr("compile-output.txt"));
 
+    connect(m_outputWindow, &Core::OutputWindow::hasPositionsChanged, this, &IOutputPane::navigateStateChanged);
+
     Utils::ProxyAction *cancelBuildProxyButton =
             Utils::ProxyAction::proxyActionWithIcon(cancelBuildAction,
                                                     Utils::Icons::STOP_SMALL_TOOLBAR.icon());
@@ -238,11 +240,10 @@ bool CompileOutputWindow::hasFilterContext() const
     return true;
 }
 
-void CompileOutputWindow::registerPositionOf(const Task &task, int linkedOutputLines, int skipLines,
-                                             int offset)
+void CompileOutputWindow::registerPositionOf(const Task &task, int linkedOutputLines, int skipLines)
 {
     m_outputWindow->registerPositionOf(
-        task.id(), linkedOutputLines, skipLines, offset, Core::OutputWindow::TaskSource::Direct);
+        task.id(), linkedOutputLines, skipLines, m_outputWindow->directTaskOffset(), Core::OutputWindow::TaskSource::Direct);
 }
 
 void CompileOutputWindow::scrollToFirstTask()
