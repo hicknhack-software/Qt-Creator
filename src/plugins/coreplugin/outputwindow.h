@@ -40,6 +40,7 @@ public:
 
     void appendMessage(const QString &out, Utils::OutputFormat format);
 
+    int directTaskOffset() const;
     void registerPositionOf(unsigned taskId, int linkedOutputLines, int skipLines, int offset = 0);
     bool knowsPositionOf(unsigned taskId) const;
     void showPositionOf(unsigned taskId);
@@ -73,6 +74,7 @@ public:
 
 signals:
     void wheelZoom();
+    void hasPositionsChanged();
 
 public slots:
     void setWordWrapEnabled(bool wrap);

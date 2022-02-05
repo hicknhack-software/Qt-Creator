@@ -37,9 +37,6 @@ private:
     void handleTaskStarted(const QString &desciption, int max);
     void handleProgress(int value);
 
-    void createTaskAndOutput(ProjectExplorer::Task::TaskType type,
-                             const QString &message, const QString &file, int line);
-
     Utils::BoolAspect *m_dryRunAspect = nullptr;
     Utils::BoolAspect *m_keepGoingAspect = nullptr;
 
