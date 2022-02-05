@@ -421,12 +421,11 @@ void QbsBuildStep::buildingDone(const ErrorInfo &error)
     m_session->disconnect(this);
     m_session = nullptr;
     m_lastWasSuccess = !error.hasError();
+    bool isFirst = true;
     for (const ErrorInfoItem &item : std::as_const(error.items)) {
-        createTaskAndOutput(
-                    ProjectExplorer::Task::Error,
-                    item.description,
-                    item.filePath.toString(),
-                    item.line);
+        emit addOutput(item.description, OutputFormat::Stdout);
+        if (isFirst) emit addTask(CompileTask(Task::Error, item.description, item.filePath, item.line), 1);
+        isFirst = false;
     }
 
     // Building can uncover additional target artifacts.
@@ -492,13 +491,6 @@ void QbsBuildStep::handleProcessResult(
         emit addOutput(line, OutputFormat::Stderr);
     for (const QString &line : stdOut)
         emit addOutput(line, OutputFormat::Stdout);
-}
-
-void QbsBuildStep::createTaskAndOutput(ProjectExplorer::Task::TaskType type, const QString &message,
-                                       const QString &file, int line)
-{
-    emit addOutput(message, OutputFormat::Stdout);
-    emit addTask(CompileTask(type, message, FilePath::fromString(file), line), 1);
 }
 
 QString QbsBuildStep::buildVariant() const
