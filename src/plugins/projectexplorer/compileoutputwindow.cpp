@@ -81,6 +81,8 @@ CompileOutputWindow::CompileOutputWindow(QAction *cancelBuildAction) :
     m_outputWindow->setUndoRedoEnabled(false);
     m_outputWindow->setMaxCharCount(Core::Constants::DEFAULT_MAX_CHAR_COUNT);
 
+    connect(m_outputWindow, &Core::OutputWindow::hasPositionsChanged, this, &IOutputPane::navigateStateChanged);
+
     Utils::ProxyAction *cancelBuildProxyButton =
             Utils::ProxyAction::proxyActionWithIcon(cancelBuildAction,
                                                     Utils::Icons::STOP_SMALL_TOOLBAR.icon());
@@ -222,10 +224,9 @@ bool CompileOutputWindow::canNavigate() const
     return true;
 }
 
-void CompileOutputWindow::registerPositionOf(const Task &task, int linkedOutputLines, int skipLines,
-                                             int offset)
+void CompileOutputWindow::registerPositionOf(const Task &task, int linkedOutputLines, int skipLines)
 {
-    m_outputWindow->registerPositionOf(task.taskId, linkedOutputLines, skipLines, offset);
+    m_outputWindow->registerPositionOf(task.taskId, linkedOutputLines, skipLines, m_outputWindow->directTaskOffset());
 }
 
 void CompileOutputWindow::scrollToFirstTask()
