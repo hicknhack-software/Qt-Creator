@@ -10,10 +10,10 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - name: "Windows Latest MSVC"
+          - name: "Windows 2022 MSVC"
             artifact: "Windows-MSVC"
-            os: windows-latest
-            qt_version: "6.2.2"
+            os: windows-2022
+            qt_version: "6.2.3"
             qt_arch: "win64_msvc2019_64"
             qt_modules: qtbase qtdeclarative qttools qtsvg qttranslations qtimageformats qtserialport qtquicktimeline qtquick3d qt5compat qtshadertools
             qt_tools: tools_openssl_x64,1.1.1-10,qt.tools.openssl.win_x64
@@ -42,7 +42,7 @@ jobs:
       - run: |
           7z x qbs.zip -oqbs
           echo "${{ github.workspace }}/qbs/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          
+
       - name: Get JOM
         shell: cmake -P {0}
         run: file(DOWNLOAD "${{ matrix.config.jom_url }}" ./jom.zip SHOW_PROGRESS)
@@ -80,7 +80,7 @@ jobs:
         run: |
           qbs setup-toolchains --detect
           qbs setup-qt $Env:Qt6_DIR\bin\qmake.exe qt-x64
-          qbs config profiles.qt-x64.baseProfile MSVC2019-x64
+          qbs config profiles.qt-x64.baseProfile MSVC0-x64
 
       - uses: actions/checkout@v2
         with:
@@ -127,7 +127,7 @@ jobs:
       - name: x86 Setup Qbs
         run: |
           qbs setup-qt $Env:Qt5_DIR\bin\qmake.exe qt-x86
-          qbs config profiles.qt-x86.baseProfile MSVC2019-x64_x86
+          qbs config profiles.qt-x86.baseProfile MSVC0-x64_x86
 
       - name: x86 Python
         uses: actions/setup-python@v2
