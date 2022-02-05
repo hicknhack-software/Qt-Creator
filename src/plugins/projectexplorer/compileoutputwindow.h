@@ -70,7 +70,7 @@ public:
 
     void appendText(const QString &text, BuildStep::OutputFormat format);
 
-    void registerPositionOf(const Task &task, int linkedOutputLines, int skipLines, int offset = 0);
+    void registerPositionOf(const Task &task, int linkedOutputLines, int skipLines);
     void scrollToFirstTask();
 
     void flush();

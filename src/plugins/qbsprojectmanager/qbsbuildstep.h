@@ -99,9 +99,6 @@ private:
             const QStringList &stdErr,
             bool success);
 
-    void createTaskAndOutput(ProjectExplorer::Task::TaskType type,
-                             const QString &message, const QString &file, int line);
-
     void setBuildVariant(const QString &variant);
     void setConfiguredArchitectures(const QStringList &architectures);
     QString profile() const;
