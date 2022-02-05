@@ -748,7 +748,8 @@ void BuildManager::nextStep()
         connect(d->m_currentBuildStep, &BuildStep::finished, instance(), finishedHandler);
         connect(d->m_currentBuildStep, &BuildStep::progress,
                 instance(), &BuildManager::progressChanged);
-        d->m_outputWindow->reset();
+        // d->m_outputWindow->reset();
+        d->m_outputWindow->outputFormatter()->reset();
         d->m_currentBuildStep->setupOutputFormatter(d->m_outputWindow->outputFormatter());
         d->m_currentBuildStep->run();
     } else {

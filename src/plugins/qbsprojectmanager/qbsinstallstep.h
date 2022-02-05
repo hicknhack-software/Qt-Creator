@@ -61,9 +61,6 @@ private:
     void handleTaskStarted(const QString &desciption, int max);
     void handleProgress(int value);
 
-    void createTaskAndOutput(ProjectExplorer::Task::TaskType type,
-                             const QString &message, const Utils::FilePath &file, int line);
-
     Utils::BoolAspect *m_cleanInstallRoot = nullptr;
     Utils::BoolAspect *m_dryRun = nullptr;
     Utils::BoolAspect *m_keepGoing = nullptr;
