@@ -41,6 +41,8 @@ public:
 
     void appendMessage(const QString &out, Utils::OutputFormat format);
 
+    int directTaskOffset() const;
+
     enum class TaskSource { Direct, Parsed };
     void registerPositionOf(
         unsigned taskId, int linkedOutputLines, int skipLines, int offset, TaskSource taskSource);
@@ -82,6 +84,7 @@ public:
 
 signals:
     void wheelZoom();
+    void hasPositionsChanged();
     void outputDiscarded();
     void cleanOldOutput();
 
