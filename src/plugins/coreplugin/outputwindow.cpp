@@ -106,6 +106,7 @@ public:
     QTimer scrollTimer;
     QElapsedTimer lastMessage;
     QHash<unsigned int, QPair<int, int>> taskPositions;
+    int lineCount = 0; // correct line count to apply offsets
 };
 
 } // namespace Internal
@@ -702,6 +703,12 @@ void OutputWindow::appendMessage(const QString &output, OutputFormat format)
         d->queuedOutput.last().first.append(output);
     if (!d->queueTimer.isActive())
         d->queueTimer.start();
+
+    d->lineCount += output.count('\n');
+}
+
+int OutputWindow::directTaskOffset() const {
+    return document()->blockCount() - d->lineCount;
 }
 
 void OutputWindow::registerPositionOf(unsigned taskId, int linkedOutputLines, int skipLines,
@@ -722,6 +729,7 @@ void OutputWindow::registerPositionOf(unsigned taskId, int linkedOutputLines, in
     const int lastLine = firstLine + linkedOutputLines - 1;
 
     d->taskPositions.insert(taskId, {firstLine, lastLine});
+    if (d->taskPositions.size() ==1) emit hasPositionsChanged();
 }
 
 bool OutputWindow::knowsPositionOf(unsigned taskId) const
@@ -843,8 +851,11 @@ void OutputWindow::clear()
 {
     d->formatter.clear();
     d->scrollToBottom = true;
+    auto hadTaskPositions = hasPositions();
     d->taskPositions.clear();
     d->startOfNewContentCursor.setPosition(0);
+    d->lineCount = 0;
+    if (hadTaskPositions) emit hasPositionsChanged();
 }
 
 void OutputWindow::clearLinesPrefixedWith(const QString& prefix, bool deleteTrailingLineBreak)
@@ -882,6 +893,8 @@ void OutputWindow::flush()
 void OutputWindow::reset()
 {
     flush();
+    d->queueTimer.stop();
+    clear();
     if (!d->queuedOutput.isEmpty()) {
         discardPendingToolOutput();
         flush();
