@@ -8,6 +8,7 @@
 #include "projectnodes.h"
 #include "projectexplorer.h"
 #include "projecttree.h"
+#include "projectvcsstatus.h"
 #include "session.h"
 #include "target.h"
 
@@ -237,9 +238,29 @@ QVariant FlatModel::data(const QModelIndex &index, int role) const
             font.setBold(true);
         return font;
     }
-    case Qt::ForegroundRole:
+    case Qt::ForegroundRole: {
+        using Core::VcsChangeType;
+        switch (ProjectVcsStatus::instance()->vcsStatusChanges(nodeForIndex(index))) {
+        case VcsChangeType::Unchanged: break;
+        case VcsChangeType::FileChanged: {
+            auto color = Utils::creatorTheme()->color(Utils::Theme::VcsBase_FileModified_TextColor);
+            return node->isEnabled() ? color
+                                     : color.lighter();
+        }
+        case VcsChangeType::FileUntracked: {
+            auto color = Utils::creatorTheme()->color(Utils::Theme::VcsBase_FileUnmerged_TextColor);
+            return node->isEnabled() ? color
+                                     : color.lighter();
+        }
+        case VcsChangeType::FolderContainsChanges: {
+            auto color = Utils::creatorTheme()->color(Utils::Theme::VcsBase_FolderModified_TextColor);
+            return node->isEnabled() ? color
+                                     : color.lighter();
+        }
+        }
         return node->isEnabled() ? QVariant()
                                  : Utils::creatorTheme()->color(Utils::Theme::TextColorDisabled);
+    }
     case Project::FilePathRole:
         return node->filePath().toString();
     case Project::isParsingRole:
