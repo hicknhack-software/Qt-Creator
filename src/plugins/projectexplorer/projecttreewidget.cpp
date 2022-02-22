@@ -30,6 +30,7 @@
 #include "projectmodels.h"
 #include "projectnodes.h"
 #include "projecttree.h"
+#include "projectvcsstatus.h"
 #include "session.h"
 
 #include <coreplugin/actionmanager/actionmanager.h>
@@ -294,6 +295,8 @@ ProjectTreeWidget::ProjectTreeWidget(QWidget *parent) : QWidget(parent)
             m_model, &FlatModel::onExpanded);
     connect(m_view, &QTreeView::collapsed,
             m_model, &FlatModel::onCollapsed);
+    connect(ProjectVcsStatus::instance(), &ProjectVcsStatus::vcsStatusChanged,
+            this, [this]() { m_model->layoutChanged(); });
 
     m_toggleSync = new QAction(this);
     m_toggleSync->setIcon(Icons::LINK_TOOLBAR.icon());
