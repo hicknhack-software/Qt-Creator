@@ -254,6 +254,7 @@ public:
     void vcsAnnotate(const FilePath &filePath, int line) final;
     void vcsDescribe(const FilePath &source, const QString &id) final { m_gitClient.show(source.toString(), id); };
     QString vcsTopic(const FilePath &directory) final;
+    Core::ChangeSets localChanges(const Utils::FilePath &directory) final;
 
     Core::ShellCommand *createInitialCheckoutCommand(const QString &url,
                                                      const Utils::FilePath &baseDirectory,
@@ -1915,6 +1916,32 @@ QString GitPluginPrivate::vcsTopic(const FilePath &directory)
     if (!commandInProgress.isEmpty())
         topic += " (" + commandInProgress + ')';
     return topic;
+}
+
+Core::ChangeSets GitPluginPrivate::localChanges(const Utils::FilePath &directory)
+{
+    QSet<QString> trackedChanges, untrackedChanges;
+    QString output = "";
+    const auto status = m_gitClient.gitStatus(directory,
+                                              StatusMode::NoSubmodules,
+                                              &output,
+                                              nullptr,
+                                              {"--porcelain"});
+    if (status == GitClient::StatusResult::StatusChanged) {
+        QTextStream stream(&output);
+        QString line;
+        while(stream.readLineInto(&line)) {
+            const auto & classFilePair = line.trimmed().split(QRegularExpression("\\s+"));
+            Q_ASSERT(classFilePair.count() == 2);
+            if (classFilePair[0].contains('D') || classFilePair[0].contains('?')) {
+                    untrackedChanges.insert(directory.pathAppended(classFilePair[1].trimmed()).toString());
+            }
+            else {
+                trackedChanges.insert(directory.pathAppended(classFilePair[1].trimmed()).toString());
+            }
+        }
+    }
+    return {trackedChanges, untrackedChanges};
 }
 
 Core::ShellCommand *GitPluginPrivate::createInitialCheckoutCommand(const QString &url,
