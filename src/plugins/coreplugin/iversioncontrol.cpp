@@ -161,6 +161,11 @@ QString IVersionControl::vcsTopic(const FilePath &topLevel)
     return data.topic = refreshTopic(topLevel);
 }
 
+VcsChangeSet IVersionControl::localChanges(const Utils::FilePath &)
+{
+    return {};
+}
+
 /*!
     Provides the \a fileTracker function object for use in \c vscTopic() cache handling.
 
