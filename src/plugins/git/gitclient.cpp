@@ -2315,7 +2315,7 @@ void GitClient::finishSubmoduleUpdate()
 }
 
 GitClient::StatusResult GitClient::gitStatus(const FilePath &workingDirectory, StatusMode mode,
-                                             QString *output, QString *errorMessage) const
+                                             QString *output, QString *errorMessage, QList<QString> options) const
 {
     // Run 'status'. Note that git returns exitcode 1 if there are no added files.
     QStringList arguments = {"status"};
@@ -2325,7 +2325,11 @@ GitClient::StatusResult GitClient::gitStatus(const FilePath &workingDirectory, S
         arguments << "--untracked-files=all";
     if (mode & NoSubmodules)
         arguments << "--ignore-submodules=all";
-    arguments << "--porcelain" << "-b";
+
+    for (const auto & option: options) {
+        arguments << option;
+    }
+    arguments << " -- " << workingDirectory.toString();
 
     QtcProcess proc;
     vcsFullySynchronousExec(proc, workingDirectory, arguments, silentFlags);

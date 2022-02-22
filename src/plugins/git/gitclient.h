@@ -325,7 +325,7 @@ public:
 
     enum StatusResult { StatusChanged, StatusUnchanged, StatusFailed };
     StatusResult gitStatus(const Utils::FilePath &workingDirectory, StatusMode mode,
-                           QString *output = nullptr, QString *errorMessage = nullptr) const;
+                           QString *output = nullptr, QString *errorMessage = nullptr, QList<QString> options = {"--porcelain", "-b"}) const;
 
     CommandInProgress checkCommandInProgress(const Utils::FilePath &workingDirectory) const;
     QString commandInProgressDescription(const Utils::FilePath &workingDirectory) const;
