@@ -254,6 +254,7 @@ public:
     void vcsAnnotate(const FilePath &filePath, int line) final;
     void vcsDescribe(const FilePath &source, const QString &id) final { m_gitClient.show(source.toString(), id); };
     QString vcsTopic(const FilePath &directory) final;
+    Core::VcsChangeSet localChanges(const Utils::FilePath &directory) final;
 
     Core::ShellCommand *createInitialCheckoutCommand(const QString &url,
                                                      const Utils::FilePath &baseDirectory,
@@ -1915,6 +1916,138 @@ QString GitPluginPrivate::vcsTopic(const FilePath &directory)
     if (!commandInProgress.isEmpty())
         topic += " (" + commandInProgress + ')';
     return topic;
+}
+
+struct GitChangeLine {
+    QChar x;
+    QChar y;
+    QString orig_path;
+    QString path;
+};
+template<class Callback>
+static void parseGitChangeOutput(const QString &output, Callback &&callback) {
+    // format see: https://git-scm.com/docs/git-status#_short_format
+    // XY filePath (-> other)
+    GitChangeLine change;
+    QStringView view{output};
+
+    auto parsePath = [&view](QString &output) {
+        output.clear();
+        if (view.startsWith('"')) {
+            // C escaped string
+            view = view.sliced(1);
+            while (true) {
+                if (view.isEmpty()) {
+                    output.clear();
+                    return output;
+                }
+                QChar front = view.front();
+                view = view.sliced(1);
+                if (front == '"') {
+                    return output;
+                }
+                if (front == '\\') {
+                    if (view.isEmpty()) {
+                        output.clear();
+                        return output;
+                    }
+                    front = view.front();
+                    view = view.sliced(1);
+                }
+                output += front;
+            }
+        }
+        else {
+            // no white-space string
+            while (!view.isEmpty()) {
+                QChar front = view.front();
+                view = view.sliced(1);
+                if (front == '\r' || front == '\n' || front == ' ') {
+                    break;
+                }
+                output += front;
+            }
+        }
+        return output;
+    };
+    auto parseNewline = [&view]() {
+        if (view.isEmpty()) {
+            return;
+        }
+        QChar front = view.front();
+        if (front == '\n') {
+            view = view.sliced(1);
+            if (view.startsWith('\r')) {
+                view = view.sliced(1);
+            }
+        }
+        else if (front == '\r') {
+            view = view.sliced(1);
+            if (view.startsWith('\n')) {
+                view = view.sliced(1);
+            }
+        }
+    };
+    auto skipLine = [&view]() {
+        while (!view.isEmpty()) {
+            QChar front = view.front();
+            if (front == '\n' || front == '\r') {
+                break;
+            }
+            view = view.sliced(1);
+        }
+    };
+
+    while (true) {
+        if (view.startsWith(QLatin1String{"## "})) {
+            skipLine();
+            parseNewline();
+            continue;
+        }
+        if (view.length() < 4) {
+            return;
+        }
+        change.x = view[0];
+        change.y = view[1];
+        view = view.sliced(3);
+        parsePath(change.path);
+        if (change.path.isEmpty()) {
+            return;
+        }
+        if (view.startsWith(QLatin1String{" -> "})) {
+            view = view.sliced(4);
+            change.orig_path = change.path;
+            parsePath(change.path);
+            if (change.path.isEmpty()) {
+                return;
+            }
+            callback(change);
+        }
+        else {
+            change.orig_path.clear();
+            callback(change);
+        }
+        parseNewline();
+    }
+}
+
+Core::VcsChangeSet GitPluginPrivate::localChanges(const Utils::FilePath &directory)
+{
+    auto changeSet = Core::VcsChangeSet{};
+    auto output = QString{};
+    const auto status = m_gitClient.gitStatus(directory,
+                                              StatusMode::NoSubmodules,
+                                              &output,
+                                              nullptr);
+    if (status == GitClient::StatusResult::StatusChanged) {
+        parseGitChangeOutput(output, [&](const GitChangeLine& change) {
+            bool isUntracked = (change.x == '?') || (change.x == 'D') || (change.y == 'D');
+            auto fileChangeType = isUntracked ? Core::VcsChangeType::FileUntracked : Core::VcsChangeType::FileChanged;
+            auto filePath = change.path;
+            changeSet.insert(directory.pathAppended(filePath), fileChangeType);
+        });
+    }
+    return changeSet;
 }
 
 Core::ShellCommand *GitPluginPrivate::createInitialCheckoutCommand(const QString &url,
