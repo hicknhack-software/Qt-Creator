@@ -341,6 +341,7 @@ VcsBase_FileModified_TextColor=ff0000ee
 VcsBase_FileDeleted_TextColor=ff800000
 VcsBase_FileRenamed_TextColor=ffd77d00
 VcsBase_FileUnmerged_TextColor=ffee0000
+VcsBase_FolderModified_TextColor=cc6600
 
 Bookmarks_TextMarkColor=ffa0a0ff
 
