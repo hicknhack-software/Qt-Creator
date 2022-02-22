@@ -136,6 +136,7 @@ add_qtc_plugin(ProjectExplorer
     projectpanelfactory.cpp projectpanelfactory.h
     projecttree.cpp projecttree.h
     projecttreewidget.cpp projecttreewidget.h
+    projectvcsstatus.cpp projectvcsstatus.h
     projectupdater.cpp projectupdater.h
     projectwelcomepage.cpp projectwelcomepage.h
     projectwindow.cpp projectwindow.h
