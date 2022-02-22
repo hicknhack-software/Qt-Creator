@@ -154,6 +154,11 @@ QString IVersionControl::vcsTopic(const FilePath &topLevel)
     return m_topicCache ? m_topicCache->topic(topLevel) : QString();
 }
 
+ChangeSets IVersionControl::localChanges(const Utils::FilePath &)
+{
+    return {};
+}
+
 IVersionControl::IVersionControl()
 {
     Core::VcsManager::addVersionControl(this);
