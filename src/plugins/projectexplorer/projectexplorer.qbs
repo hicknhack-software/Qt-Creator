@@ -120,6 +120,7 @@ QtcPlugin {
             "projecttree.cpp",
             "projecttree.h",
             "projecttreewidget.cpp", "projecttreewidget.h",
+            "projectvcsstatus.cpp", "projectvcsstatus.h",
             "projectupdater.cpp", "projectupdater.h",
             "projectwindow.cpp", "projectwindow.h",
             "projectwizardpage.cpp", "projectwizardpage.h",
