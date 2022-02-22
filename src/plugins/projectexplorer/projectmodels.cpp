@@ -10,6 +10,7 @@
 #include "projectexplorertr.h"
 #include "projectmanager.h"
 #include "projecttree.h"
+#include "projectvcsstatus.h"
 #include "target.h"
 
 #include <coreplugin/documentmanager.h>
@@ -250,7 +251,26 @@ QVariant FlatModel::data(const QModelIndex &index, int role) const
             font.setBold(true);
         return font;
     }
-    case Qt::ForegroundRole:
+    case Qt::ForegroundRole: {
+        using Core::VcsChangeType;
+        switch (ProjectVcsStatus::instance()->vcsStatusChanges(nodeForIndex(index))) {
+        case VcsChangeType::Unchanged: break;
+        case VcsChangeType::FileChanged: {
+            auto color = Utils::creatorTheme()->color(Utils::Theme::VcsBase_FileModified_TextColor);
+            return node->isEnabled() ? color
+                                     : color.lighter();
+        }
+        case VcsChangeType::FileUntracked: {
+            auto color = Utils::creatorTheme()->color(Utils::Theme::VcsBase_FileUnmerged_TextColor);
+            return node->isEnabled() ? color
+                                     : color.lighter();
+        }
+        case VcsChangeType::FolderContainsChanges: {
+            auto color = Utils::creatorTheme()->color(Utils::Theme::VcsBase_FolderModified_TextColor);
+            return node->isEnabled() ? color
+                                     : color.lighter();
+        }
+        }
         if (fileNode) {
             Core::VcsFileState state = fileNode->modificationState();
             if (state != Core::VcsFileState::Unknown)
@@ -258,6 +278,7 @@ QVariant FlatModel::data(const QModelIndex &index, int role) const
         }
         return node->isEnabled() ? QVariant()
                                  : Utils::creatorColor(Utils::Theme::TextColorDisabled);
+    }
     case Project::isParsingRole:
         return project && bs ? bs->isParsing() && !project->needsConfiguration() : false;
     case Project::UseUnavailableMarkerRole:
