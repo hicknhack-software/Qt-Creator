@@ -36,9 +36,14 @@
 #include <QObject>
 #include <QString>
 
+#include <tuple>
+
 QT_FORWARD_DECLARE_CLASS(QMenu);
 
 namespace Core {
+
+using ChangeSet = QSet<QString>;
+using ChangeSets = std::tuple<ChangeSet, ChangeSet>;
 
 class ShellCommand;
 
@@ -196,6 +201,8 @@ public:
      * Topic (e.g. name of the current branch)
      */
     virtual QString vcsTopic(const Utils::FilePath &topLevel);
+
+    virtual ChangeSets localChanges(const Utils::FilePath &directory);
 
     /*!
      * Display annotation for a file and scroll to line
