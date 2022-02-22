@@ -173,6 +173,11 @@ QString IVersionControl::vcsTopic(const FilePath &topLevel)
     return topic;
 }
 
+VcsChangeSet IVersionControl::localChanges(const Utils::FilePath &)
+{
+    return {};
+}
+
 void IVersionControl::fillDefaultFileActionMenu(QMenu *menu,
                                                 IVersionControl *vc,
                                                 const Utils::FilePath &topLevel,
