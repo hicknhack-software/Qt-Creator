@@ -164,6 +164,11 @@ QString IVersionControl::vcsTopic(const FilePath &topLevel)
     return data.topic = d->m_topicRefresher(topLevel);
 }
 
+VcsChangeSet IVersionControl::localChanges(const Utils::FilePath &)
+{
+    return {};
+}
+
 void IVersionControl::fillDefaultFileActionMenu(QMenu *menu,
                                                 IVersionControl *vc,
                                                 const Utils::FilePath &topLevel,
