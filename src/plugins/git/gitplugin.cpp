@@ -1922,8 +1922,7 @@ Core::ChangeSets GitPluginPrivate::localChanges(const Utils::FilePath &directory
     const auto status = m_gitClient.gitStatus(directory,
                                               StatusMode::NoSubmodules,
                                               &output,
-                                              nullptr,
-                                              {"--porcelain"});
+                                              nullptr);
     if (status == GitClient::StatusResult::StatusChanged) {
         QTextStream stream(&output);
         QString line;
