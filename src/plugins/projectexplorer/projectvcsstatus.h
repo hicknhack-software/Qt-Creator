@@ -5,9 +5,11 @@
 #include <QObject>
 
 #include <tuple>
+#include <optional>
 
 namespace Core {
 class IVersionControl;
+enum class VcsChangeType;
 }
 
 namespace ProjectExplorer {
@@ -17,13 +19,9 @@ class ProjectVcsStatus : public QObject
     Q_OBJECT
 
 public:
-    using ChangeSet = QSet<QString>;
-    struct ChangeSets {
-        ChangeSet untrackedChanges;
-        ChangeSet trackedChanges;
-    };
+    using VcsChangeSet = QHash<QString, Core::VcsChangeType>;
 
-    using ProjectStatusMap = QHash<QString, ChangeSets>;
+    using ProjectStatusMap = QHash<QString, VcsChangeSet>;
     using NodeFileList = QList<ProjectExplorer::FileNode *>;
 
     using UnSafeFolderNodePtr = const ProjectExplorer::FolderNode *;
@@ -36,7 +34,7 @@ public:
 
     static ProjectVcsStatus* instance();
 
-    bool hasVcsStatusChanges(ProjectExplorer::Node *) const;
+    std::optional<Core::VcsChangeType> vcsStatusChanges(ProjectExplorer::Node *) const;
 
     ProjectVcsStatus(const ProjectVcsStatus&) = delete;
     ProjectVcsStatus &operator=(const ProjectVcsStatus &) = delete;
