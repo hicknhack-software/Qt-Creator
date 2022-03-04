@@ -1921,23 +1921,33 @@ QString GitPluginPrivate::vcsTopic(const FilePath &directory)
 Core::ChangeSets GitPluginPrivate::localChanges(const Utils::FilePath &directory)
 {
     QSet<QString> trackedChanges, untrackedChanges;
+    auto splitPathIntoSet = [&] (const QString& path, QSet<QString> & paths) {
+        paths.insert(directory.pathAppended(path).toString());
+        const auto sectionCount = path.count("/");
+        for (auto i = 0; i < sectionCount; ++i)
+        {
+            paths.insert(directory.pathAppended(path.section('/', 0, i)).toString());
+        }
+    };
+
     QString output = "";
     const auto status = m_gitClient.gitStatus(directory,
                                               StatusMode::NoSubmodules,
                                               &output,
-                                              nullptr,
-                                              {"--porcelain"});
+                                              nullptr);
     if (status == GitClient::StatusResult::StatusChanged) {
         QTextStream stream(&output);
         QString line;
+        untrackedChanges.insert(directory.toString());
+        trackedChanges.insert(directory.toString());
         while(stream.readLineInto(&line)) {
             const auto & classFilePair = line.trimmed().split(QRegularExpression("\\s+"));
             Q_ASSERT(classFilePair.count() == 2);
             if (classFilePair[0].contains('D') || classFilePair[0].contains('?')) {
-                    untrackedChanges.insert(directory.pathAppended(classFilePair[1].trimmed()).toString());
+                splitPathIntoSet(classFilePair[1].trimmed(), untrackedChanges);
             }
             else {
-                trackedChanges.insert(directory.pathAppended(classFilePair[1].trimmed()).toString());
+                splitPathIntoSet(classFilePair[1].trimmed(), trackedChanges);
             }
         }
     }
