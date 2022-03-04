@@ -159,12 +159,7 @@ NodeFileList ProjectVcsStatus::changedFileNodesForCurrentProject() const
                 if (folderNode == nullptr) {
                     return false;
                 }
-                auto result = std::find_if(projectStatusCache.begin(),
-                                           projectStatusCache.end(),
-                                           [&](const QString & file) -> bool {
-                                               return hasSameStartPath(folderPathOf(folderNode), file);
-                                           });
-                return result != projectStatusCache.end();
+                return projectStatusCache.contains(folderPathOf(folderNode));
             });
     }
     return fileMap.values();
