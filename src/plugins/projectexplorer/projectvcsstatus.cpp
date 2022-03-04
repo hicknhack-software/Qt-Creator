@@ -12,8 +12,6 @@
 #include <QJsonArray>
 #include <QTimer>
 
-#include <algorithm>
-
 using namespace Core;
 
 namespace ProjectExplorer {
@@ -52,7 +50,7 @@ ProjectVcsStatus::ProjectVcsStatus(QObject *parent) : QObject(parent)
                 auto * vcs = Core::VcsManager::findVersionControlForDirectory(Utils::FilePath::fromString(projectPath));
                 if (!m_projectStatusCache.contains(projectPath) && vcs != nullptr) {
                     qDebug() << "Register project" << projectPath;
-                    m_projectStatusCache.insert(projectPath, ChangeSets{});
+                    m_projectStatusCache.insert(projectPath, Core::VcsChangeSet{});
                 }
             });
     connect(SessionManager::instance(), &SessionManager::projectRemoved,
@@ -89,44 +87,40 @@ void ProjectVcsStatus::checkStatus()
     emit vcsStatusChanged();
 }
 
-bool ProjectVcsStatus::hasVcsStatusChanges(ProjectExplorer::Node * node) const
+std::optional<Core::VcsChangeType> ProjectVcsStatus::vcsStatusChanges(ProjectExplorer::Node * node) const
 {
     if (node == nullptr) {
-        return false;
+        return std::nullopt;
     }
-    if (auto * fileNode = node->asFileNode()) {
-        return m_fileNodeFolderMap.contains(fileNode);
+    auto * fileNode = node->asFileNode();
+    if (fileNode != nullptr && m_fileNodeFolderMap.contains(fileNode)) {
+        Q_ASSERT(m_projectStatusCache[m_currentProject].contains(fileNode->filePath().toString()));
+        return m_projectStatusCache[m_currentProject][fileNode->filePath().toString()];
     }
     else if (auto * folderNode = node->asFolderNode()) {
         for (auto iter = m_filePathNodeMap.constBegin(); iter != m_filePathNodeMap.constEnd(); ++iter) {
             if (hasSameStartPath(folderPathOf(folderNode), iter.key()) && m_fileNodeFolderMap.value(iter.value()).contains(folderNode)) {
+                return Core::VcsChangeType::FolderContainsChanges;
+            }
+        }
+    }
+    return std::nullopt;
+}
+
+bool ProjectVcsStatus::updateProjectStatusCache()
+{
+    if (m_currentProject.count() != 0) {
+        auto & changeSet = m_projectStatusCache[m_currentProject];
+        auto * vcs = Core::VcsManager::findVersionControlForDirectory(Utils::FilePath::fromString(m_currentProject));
+        if (vcs != nullptr) {
+            auto newChangeSet = vcs->localChanges(Utils::FilePath::fromString(m_currentProject));
+            if (newChangeSet != changeSet) {
+                changeSet = newChangeSet;
                 return true;
             }
         }
     }
     return false;
-}
-
-bool ProjectVcsStatus::updateProjectStatusCache()
-{
-    bool hasTrackedChanges = false;
-    bool hasUnTrackedChanges = false;
-    if (m_currentProject.count() != 0) {
-        auto & changeSet = m_projectStatusCache[m_currentProject];
-        auto * vcs = Core::VcsManager::findVersionControlForDirectory(Utils::FilePath::fromString(m_currentProject));
-        if (vcs != nullptr) {
-            auto [newTrackedChanges, newUntrackedChanges] = vcs->localChanges(Utils::FilePath::fromString(m_currentProject));
-            hasTrackedChanges |= newTrackedChanges != changeSet.trackedChanges;
-            if (hasTrackedChanges) {
-                changeSet.trackedChanges = newTrackedChanges;
-            }
-            hasUnTrackedChanges |= newUntrackedChanges != changeSet.untrackedChanges;
-            if (hasUnTrackedChanges) {
-                changeSet.untrackedChanges = newUntrackedChanges;
-            }
-        }
-    }
-    return hasTrackedChanges || hasUnTrackedChanges;
 }
 
 NodeFileList ProjectVcsStatus::changedFileNodesForCurrentProject() const
@@ -140,7 +134,7 @@ NodeFileList ProjectVcsStatus::changedFileNodesForCurrentProject() const
         return {};
     }
     QHash<QString, ProjectExplorer::FileNode *> fileMap;
-    const auto & projectStatusCache = m_projectStatusCache.value(project->projectDirectory().toString()).trackedChanges;
+    const auto & projectStatusCache = m_projectStatusCache.value(project->projectDirectory().toString());
     if (projectNode != nullptr) {
         projectNode->forEachNode(
             [&](FileNode * fileNode) {

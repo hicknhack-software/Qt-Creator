@@ -273,6 +273,7 @@ public:
         VcsBase_FileDeleted_TextColor,
         VcsBase_FileRenamed_TextColor,
         VcsBase_FileUnmerged_TextColor,
+        VcsBase_FolderModified_TextColor,
 
         /* Bookmarks Plugin */
         Bookmarks_TextMarkColor,
