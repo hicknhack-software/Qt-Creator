@@ -217,14 +217,8 @@ QVariant FlatModel::data(const QModelIndex &index, int role) const
     ProjectVcsStatus * projectVcsStatus = ProjectVcsStatus::instance();
 
     switch (role) {
-    case Qt::DisplayRole: {
-        QString displayName = node->displayName();
-        auto result = projectVcsStatus->hasVcsStatusChanges(nodeForIndex(index));
-        if (result) {
-               displayName += "*";
-        }
-        return displayName;
-    }
+    case Qt::DisplayRole:
+        return node->displayName();
     case Qt::EditRole:
         return node->filePath().fileName();
     case Qt::ToolTipRole: {
@@ -263,9 +257,20 @@ QVariant FlatModel::data(const QModelIndex &index, int role) const
             font.setBold(true);
         return font;
     }
-    case Qt::ForegroundRole:
-        return node->isEnabled() ? QVariant()
-                                 : Utils::creatorTheme()->color(Utils::Theme::TextColorDisabled);
+    case Qt::ForegroundRole: {
+        if (node->isEnabled() == false) {
+            return Utils::creatorTheme()->color(Utils::Theme::TextColorDisabled);
+        }
+        auto result = projectVcsStatus->vcsStatusChanges(nodeForIndex(index));
+        if (result.has_value()) {
+            switch (*result) {
+            case Core::VcsChangeType::FileChanged : return Utils::creatorTheme()->color(Utils::Theme::VcsBase_FileModified_TextColor);
+            case Core::VcsChangeType::FileUntracked : return Utils::creatorTheme()->color(Utils::Theme::VcsBase_FileUnmerged_TextColor);
+            case Core::VcsChangeType::FolderContainsChanges : return Utils::creatorTheme()->color(Utils::Theme::VcsBase_FolderModified_TextColor);
+            }
+        }
+        return QVariant();
+    }
     case Project::FilePathRole:
         return node->filePath().toString();
     case Project::isParsingRole:

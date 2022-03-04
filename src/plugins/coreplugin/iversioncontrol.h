@@ -42,8 +42,12 @@ QT_FORWARD_DECLARE_CLASS(QMenu);
 
 namespace Core {
 
-using ChangeSet = QSet<QString>;
-using ChangeSets = std::tuple<ChangeSet, ChangeSet>;
+enum class VcsChangeType {
+    FileChanged,
+    FileUntracked,
+    FolderContainsChanges,
+};
+using VcsChangeSet = QHash<QString, VcsChangeType>;
 
 class ShellCommand;
 
@@ -202,7 +206,7 @@ public:
      */
     virtual QString vcsTopic(const Utils::FilePath &topLevel);
 
-    virtual ChangeSets localChanges(const Utils::FilePath &directory);
+    virtual VcsChangeSet localChanges(const Utils::FilePath &directory);
 
     /*!
      * Display annotation for a file and scroll to line
