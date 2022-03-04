@@ -254,7 +254,7 @@ public:
     void vcsAnnotate(const FilePath &filePath, int line) final;
     void vcsDescribe(const FilePath &source, const QString &id) final { m_gitClient.show(source.toString(), id); };
     QString vcsTopic(const FilePath &directory) final;
-    Core::ChangeSets localChanges(const Utils::FilePath &directory) final;
+    Core::VcsChangeSet localChanges(const Utils::FilePath &directory) final;
 
     Core::ShellCommand *createInitialCheckoutCommand(const QString &url,
                                                      const Utils::FilePath &baseDirectory,
@@ -1918,18 +1918,18 @@ QString GitPluginPrivate::vcsTopic(const FilePath &directory)
     return topic;
 }
 
-Core::ChangeSets GitPluginPrivate::localChanges(const Utils::FilePath &directory)
+Core::VcsChangeSet GitPluginPrivate::localChanges(const Utils::FilePath &directory)
 {
-    QSet<QString> trackedChanges, untrackedChanges;
-    auto splitPathIntoSet = [&] (const QString& path, QSet<QString> & paths) {
-        paths.insert(directory.pathAppended(path).toString());
-        const auto sectionCount = path.count("/");
+    auto changeSet = Core::VcsChangeSet{};
+    auto splitFilePath = [&] (const QString& filePath, bool isUntracked) {
+        auto fileChangeType = isUntracked ? Core::VcsChangeType::FileUntracked : Core::VcsChangeType::FileChanged;
+        changeSet.insert(directory.pathAppended(filePath).toString(), fileChangeType);
+        const auto sectionCount = filePath.count("/");
         for (auto i = 0; i < sectionCount; ++i)
         {
-            paths.insert(directory.pathAppended(path.section('/', 0, i)).toString());
+            changeSet.insert(directory.pathAppended(filePath.section('/', 0, i)).toString(), Core::VcsChangeType::FolderContainsChanges);
         }
     };
-
     QString output = "";
     const auto status = m_gitClient.gitStatus(directory,
                                               StatusMode::NoSubmodules,
@@ -1938,20 +1938,15 @@ Core::ChangeSets GitPluginPrivate::localChanges(const Utils::FilePath &directory
     if (status == GitClient::StatusResult::StatusChanged) {
         QTextStream stream(&output);
         QString line;
-        untrackedChanges.insert(directory.toString());
-        trackedChanges.insert(directory.toString());
+        changeSet.insert(directory.toString(), Core::VcsChangeType::FolderContainsChanges);
         while(stream.readLineInto(&line)) {
             const auto & classFilePair = line.trimmed().split(QRegularExpression("\\s+"));
             Q_ASSERT(classFilePair.count() == 2);
-            if (classFilePair[0].contains('D') || classFilePair[0].contains('?')) {
-                splitPathIntoSet(classFilePair[1].trimmed(), untrackedChanges);
-            }
-            else {
-                splitPathIntoSet(classFilePair[1].trimmed(), trackedChanges);
-            }
+            bool isUntracked = classFilePair[0].contains('D') || classFilePair[0].contains('?');
+            splitFilePath(classFilePair[1].trimmed(), isUntracked);
         }
     }
-    return {trackedChanges, untrackedChanges};
+    return changeSet;
 }
 
 Core::ShellCommand *GitPluginPrivate::createInitialCheckoutCommand(const QString &url,
