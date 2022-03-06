@@ -23,6 +23,8 @@ jobs:
             libclang_url: "https://download.qt.io/development_releases/prebuilt/libclang/libclang-release_140-based-windows-vs2019_64.7z"
             jom_url: "https://download.qt.io/official_releases/jom/jom_1_1_3.zip"
             qbs_url: "https://download.qt.io/official_releases/qbs/1.21.0/qbs-windows-x86_64-1.21.0.zip"
+            vcvars_x64: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat
+            vcvars_x86: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars32.bat
 
     steps:
       - name: Get LibClang
@@ -37,7 +39,7 @@ jobs:
 
       - name: Get Qbs
         shell: cmake -P {0}
-        run: file(DOWNLOAD "${{ matrix.config.qbs_url }}" ./qbs.zip SHOW_PROGRESS)
+        run: file(DOWNLOAD "${{ matrix.config.qbs_url }}" ./qbs.zip)
 
       - run: |
           7z x qbs.zip -oqbs
@@ -45,7 +47,7 @@ jobs:
 
       - name: Get JOM
         shell: cmake -P {0}
-        run: file(DOWNLOAD "${{ matrix.config.jom_url }}" ./jom.zip SHOW_PROGRESS)
+        run: file(DOWNLOAD "${{ matrix.config.jom_url }}" ./jom.zip)
 
       - name: Generate Cache Keys
         run: |
@@ -78,9 +80,9 @@ jobs:
 
       - name: Setup Qbs
         run: |
-          qbs setup-toolchains --detect
+          qbs setup-toolchains --type msvc $(cmd /c '"${{ matrix.config.vcvars_x64 }}" >nul & where cl') msvc-x64
           qbs setup-qt $Env:Qt6_DIR\bin\qmake.exe qt-x64
-          qbs config profiles.qt-x64.baseProfile MSVC0-x64
+          qbs config profiles.qt-x64.baseProfile msvc-x64
 
       - uses: actions/checkout@v2
         with:
@@ -126,8 +128,9 @@ jobs:
 
       - name: x86 Setup Qbs
         run: |
+          qbs setup-toolchains --type msvc $(cmd /c '"${{ matrix.config.vcvars_x86 }}" >nul & where cl') msvc-x86
           qbs setup-qt $Env:Qt5_DIR\bin\qmake.exe qt-x86
-          qbs config profiles.qt-x86.baseProfile MSVC0-x64_x86
+          qbs config profiles.qt-x86.baseProfile msvc-x86
 
       - name: x86 Python
         uses: actions/setup-python@v2
