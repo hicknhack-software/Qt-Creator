@@ -12,6 +12,7 @@ Project {
         Depends { name: "TextEditor" }
         Depends { name: "app_version_header" }
 
+        Depends { name: "LibGit2Cpp" }
         Depends { name: "libclang"; required: false }
         Depends { name: "clang_defines" }
 

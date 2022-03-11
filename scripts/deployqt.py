@@ -54,6 +54,7 @@ def get_args():
                         default=os.environ.get('LLVM_INSTALL_DIR'))
     parser.add_argument('qtcreator_binary', help='Path to Qt Creator binary (or the app bundle on macOS)')
     parser.add_argument('qmake_binary', help='Path to qmake binary')
+    parser.add_argument('--libgit2-path', help='Path to libgit2 installation.')
 
     args = parser.parse_args()
 
@@ -332,6 +333,47 @@ def deploy_elfutils(qtc_install_dir, chrpath_bin, args):
         print(file, '->', backends_install_path)
         shutil.copy(file, backends_install_path)
 
+def deploy_libgit2(qtc_install_dir, chrpath_bin, args):
+    if common.is_mac_platform():
+        return
+
+    version = '1.3.0'
+    def lib_name(name, version):
+        return ('lib' + name + '.so.' + version if common.is_linux_platform()
+                else name + '.dll')
+
+    lib_template = (os.path.join(args.libgit2_path, 'lib', '{}') if common.is_linux_platform()
+          else os.path.join(args.libgit2_path, 'bin', '{}'))
+
+    lib = lib_template.format(lib_name("git2", version))
+
+    if common.is_linux_platform():
+        install_path = os.path.join(qtc_install_dir, 'lib', 'libgit2')
+        backends_install_path = install_path
+    elif common.is_windows_platform():
+        install_path = os.path.join(qtc_install_dir, 'bin')
+        backends_install_path = os.path.join(qtc_install_dir, 'lib', 'libgit2')
+    if not os.path.exists(install_path):
+        os.makedirs(install_path)
+    if not os.path.exists(backends_install_path):
+        os.makedirs(backends_install_path)
+
+    print(lib, '->', install_path)
+    shutil.copy(lib, install_path)
+
+    if common.is_linux_platform():
+        # 1. fix rpath
+        qtcreator_lib_path = os.path.join(qtc_install_dir, 'lib', 'qtcreator', 'plugins')
+        relative_path = os.path.relpath(backends_install_path, qtcreator_lib_path)
+        subprocess.check_call([chrpath_bin, '-r', os.path.join('$ORIGIN', relative_path),
+                               os.path.join(qtcreator_lib_path, 'libGitScrollBarHighlighter.so')])
+        # 2. Create Symbolic link
+        cwd = os.getcwd()
+        os.chdir(backends_install_path);
+        os.symlink("libgit2.so.{}".format(version), "libgit2.so.1.3")
+        os.symlink("libgit2.so.{}".format(version), "libgit2.so")
+        os.chdir(cwd)
+
 def deploy_mac(args):
     (_, qt_install) = get_qt_install_info(args.qmake_binary)
 
@@ -401,6 +443,8 @@ def main():
 
     if args.elfutils_path:
         deploy_elfutils(install_dir, chrpath_bin, args)
+    if args.libgit2_path:
+        deploy_libgit2(install_dir, chrpath_bin, args)
     if not common.is_windows_platform():
         print("fixing rpaths...")
         common.fix_rpaths(install_dir, os.path.join(qt_deploy_prefix, 'lib'), qt_install_info, chrpath_bin)

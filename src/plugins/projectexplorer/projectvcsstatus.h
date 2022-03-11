@@ -2,28 +2,41 @@
 #pragma once
 #include "projectnodes.h"
 
+#include <libgit2cpp/gitrepo.h>
+
 #include <QObject>
 
+#include <unordered_map>
+#include <optional>
+
 namespace Core {
-class IVersionControl;
-enum class VcsChangeType;
-}
+class IEditor;
+class IDocument;
+} // namespace Core
 
 namespace ProjectExplorer {
 
-class ProjectVcsStatus : public QObject
+class PROJECTEXPLORER_EXPORT ProjectVcsStatus : public QObject
 {
     Q_OBJECT
 public:
-    static ProjectVcsStatus* instance();
+    struct FileDiff {
+        LibGit2Cpp::LineNumberClassMap fileChangeSet;
+    };
 
-    Core::VcsChangeType vcsStatusChanges(ProjectExplorer::Node *) const;
+    static ProjectVcsStatus *instance();
 
-    ProjectVcsStatus(const ProjectVcsStatus&) = delete;
+    LibGit2Cpp::VcsChangeType vcsStatusChanges(ProjectExplorer::Node *) const;
+    const FileDiff* currentVcsFileDiff() const;
+    std::optional<int> nextChangedLineNumber(int currentLineNumber);
+    std::optional<int> previousChangedLineNumber(int currentLineNumber);
+
+    ProjectVcsStatus(const ProjectVcsStatus &) = delete;
     ProjectVcsStatus &operator=(const ProjectVcsStatus &) = delete;
 
 signals:
     void vcsStatusChanged();
+    void currentFileDiffChanged();
 
 private slots:
     void checkStatus();
@@ -33,19 +46,29 @@ private:
     ProjectVcsStatus(QObject *parent = nullptr);
     ~ProjectVcsStatus() override;
 
-    bool updateProjectStatusCache();
+    void handleChangedFileDiff(Utils::FilePath filePath, LibGit2Cpp::LineNumberClassMap fileDiff);
+    void handleReceivedFileChangeSet(Utils::FilePath repositoryPath, LibGit2Cpp::VcsChangeSet fileChangeSet);
+    void setCurrentDocument(Core::IEditor *editor);
+    void handleClosedDocument(Core::IDocument *document);
 
-    using FilePath = Utils::FilePath;
-    using VcsChangeSet = QHash<FilePath, Core::VcsChangeType>;
-    struct ProjectStatus {
-        VcsChangeSet fileChanges;
-        mutable bool isFolderNodesCurrent{};
-        mutable QSet<FolderNode*> folderNodes;
+    struct ProjectStatus
+    {
+        LibGit2Cpp::GitRepo gitRepo;
+        LibGit2Cpp::VcsChangeSet fileChangeSet;
+        mutable bool isFolderNodesCurrent;
+        mutable QSet<FolderNode *> folderNodes;
+
+        ProjectStatus(const Utils::FilePath& path)
+            : gitRepo(path){}
     };
-    using ProjectStatusMap = QHash<FilePath, ProjectStatus>;
+    using ProjectStatusMap = std::unordered_map<Utils::FilePath, ProjectStatus>;
+    using FileDiffPointer = std::unique_ptr<FileDiff>;
+    using FileDiffCache = std::unordered_map<Utils::FilePath, FileDiffPointer>;
 
+    FileDiffCache m_fileDiffCache;
     ProjectStatusMap m_projectStatusCache;
-    FilePath m_currentProject;
+    Utils::FilePath m_currentProject;
+    Core::IDocument *m_currentDocument = nullptr;
 };
 
 } // namespace ProjectExplorer

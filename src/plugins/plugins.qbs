@@ -41,6 +41,7 @@ Project {
         "genericprojectmanager/genericprojectmanager.qbs",
         "git/git.qbs",
         "gitlab/gitlab.qbs",
+        "gitvcschanges/gitvcschanges.qbs",
         "glsleditor/glsleditor.qbs",
         "helloworld/helloworld.qbs",
         "help/help.qbs",
