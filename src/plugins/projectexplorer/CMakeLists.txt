@@ -1,5 +1,5 @@
 add_qtc_plugin(ProjectExplorer
-  DEPENDS QtcSsh Qt5::Qml
+  DEPENDS QtcSsh Qt5::Qml LibGit2Cpp
   PLUGIN_DEPENDS Core TextEditor
   PLUGIN_TEST_DEPENDS GenericProjectManager
   SOURCES

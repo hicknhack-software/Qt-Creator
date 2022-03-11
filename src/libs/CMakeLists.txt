@@ -17,6 +17,8 @@ add_subdirectory(ssh)
 add_subdirectory(sqlite)
 add_subdirectory(clangsupport)
 add_subdirectory(tracing)
+add_subdirectory(libgit2cpp)
+
 
 add_subdirectory(qtcreatorcdbext)
 

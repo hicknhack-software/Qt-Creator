@@ -51,13 +51,20 @@ struct CORE_EXPORT Highlight
         HighestPriority = 3
     };
 
-    Highlight(Utils::Id category, int position, Utils::Theme::Color color, Priority priority);
+    enum class ScrollbarSegment {
+        Left,
+        Right,
+        Both
+    };
+
+    Highlight(Utils::Id category, int position, Utils::Theme::Color color, Priority priority, ScrollbarSegment scrollbarSegment=ScrollbarSegment::Right);
     Highlight() = default;
 
     Utils::Id category;
     int position = -1;
     Utils::Theme::Color color = Utils::Theme::TextColorNormal;
     Priority priority = Invalid;
+    ScrollbarSegment scrollbarSegment;
 };
 
 class HighlightScrollBarOverlay;

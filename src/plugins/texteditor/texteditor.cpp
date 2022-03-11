@@ -5205,7 +5205,8 @@ void TextEditorWidgetPrivate::updateCurrentLineInScrollbar()
                         layout->lineForTextPosition(tc.positionInBlock()).lineNumber();
                 m_highlightScrollBarController->addHighlight({Constants::SCROLL_BAR_CURRENT_LINE, pos,
                                                               Theme::TextEditor_CurrentLine_ScrollBarColor,
-                                                              Highlight::HighestPriority});
+                                                              Highlight::HighestPriority,
+                                                              Highlight::ScrollbarSegment::Both});
             }
         }
     }
@@ -6314,7 +6315,8 @@ void TextEditorWidgetPrivate::updateHighlightScrollBarNow()
     if (!m_highlightScrollBarController)
         return;
 
-    m_highlightScrollBarController->removeAllHighlights();
+    m_highlightScrollBarController->removeHighlights(Constants::SCROLL_BAR_CURRENT_LINE);
+    m_highlightScrollBarController->removeHighlights(Constants::SCROLL_BAR_SEARCH_RESULT);
 
     updateCurrentLineInScrollbar();
 

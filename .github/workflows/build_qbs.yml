@@ -2,6 +2,9 @@ name: Qbs Build Matrix
 
 on: [push, pull_request]
 
+env:
+  LIBGIT2_VERSION: 1.3.0
+
 jobs:
   build:
     name: ${{ matrix.config.name }}
@@ -78,6 +81,31 @@ jobs:
         run: |
           copy ${{ runner.workspace }}/x64/Qt/Tools/OpenSSL/Win_x64/bin/*.dll $Env:Qt6_DIR\bin
 
+      - name: Download libgit2
+        id: libgit2Download
+        shell: cmake -P {0}
+        run: |
+          set(libgit2_version "$ENV{LIBGIT2_VERSION}")
+          set(libgit2_url "https://github.com/libgit2/libgit2/archive/refs/tags/v${libgit2_version}.zip")
+          file(DOWNLOAD "${libgit2_url}" ./v${libgit2_version}.zip SHOW_PROGRESS)
+          file(MAKE_DIRECTORY libgit2Src)
+          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf ../v${libgit2_version}.zip WORKING_DIRECTORY libgit2Src)
+          file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/libgit2Src/libgit2-${libgit2_version}" libgit2_src_dir)
+          message("::set-output name=libgit2_src_dir::${libgit2_src_dir}")
+
+      - name: Build libgit2
+        id: libgit2Build
+        run: |
+          cmake -B libgit2-build -DUSE_SSH=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=libgit2-install -DBUILD_CLAR=OFF "${{ steps.libgit2Download.outputs.libgit2_src_dir }}"
+          cmake --build libgit2-build --target install
+
+      - name: Install libgit2
+        id: libgit2Install
+        shell: cmake -P {0}
+        run: |
+          file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/libgit2-install" libgit2_install)
+          message("::set-output name=libgit2_install_dir::${libgit2_install}")
+
       - name: Setup Qbs
         run: |
           qbs setup-toolchains --type msvc $(cmd /c '"${{ matrix.config.vcvars_x64 }}" >nul & where cl') msvc-x64
@@ -94,6 +122,10 @@ jobs:
           git submodule set-url -- qbs https://github.com/arBmind/qbs.git
           git submodule update --init --recursive
 
+      - name: Debug LibGit2
+        run: |
+            echo "::debug::Set Path is ${{ steps.libgit2Install.outputs.libgit2_install_dir }}"
+
       - name: Build
         working-directory: Repo
         run: |
@@ -103,12 +135,13 @@ jobs:
           $Env:PYTHON_INSTALL_DIR = "$Env:pythonLocation"
           qbs build -d $ENV:TMP\build `
             qbs.installRoot:${{ github.workspace }}/install-root `
+            modules.libgit2.rootPath:${{ steps.libgit2Install.outputs.libgit2_install_dir }} `
             profile:qt-x64 config:Release qbs.defaultBuildVariant:release
 
       - name: Deploy
         working-directory: ${{ github.workspace }}/install-root
         run: |
-          python -u ${{ github.workspace }}/Repo/scripts/deployqt.py -i --llvm-path ${{ github.workspace }}/libclang ${{ github.workspace }}/install-root/bin/qtcreator.exe $Env:Qt6_DIR/bin/qmake.exe
+          python -u ${{ github.workspace }}/Repo/scripts/deployqt.py -i --llvm-path ${{ github.workspace }}/libclang --libgit2-path ${{ steps.libgit2Install.outputs.libgit2_install_dir }} ${{ github.workspace }}/install-root/bin/qtcreator.exe $Env:Qt6_DIR/bin/qmake.exe
 
       - name: x86 Cache Qt
         id: cache-qt-x86
@@ -138,6 +171,31 @@ jobs:
           python-version: "3.x"
           architecture: 'x86'
 
+      - name: x86 Download libgit2
+        id: libgit2Download86
+        shell: cmake -P {0}
+        run: |
+          set(libgit2_version "$ENV{LIBGIT2_VERSION}")
+          set(libgit2_url "https://github.com/libgit2/libgit2/archive/refs/tags/v${libgit2_version}.zip")
+          file(DOWNLOAD "${libgit2_url}" ./v${libgit2_version}.zip SHOW_PROGRESS)
+          file(MAKE_DIRECTORY libgit2SrcX86)
+          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf ../v${libgit2_version}.zip WORKING_DIRECTORY libgit2SrcX86)
+          file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/libgit2SrcX86/libgit2-${libgit2_version}" libgit2_src_dir_x86)
+          message("::set-output name=libgit2_src_dir_x86::${libgit2_src_dir_x86}")
+
+      - name: x86 Build libgit2
+        id: libgit2Build86
+        run: |
+          cmake -B libgit2-build86 -DUSE_SSH=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=libgit2-install86 -DBUILD_CLAR=OFF "${{ steps.libgit2Download86.outputs.libgit2_src_dir_x86 }}" -G "Visual Studio 17 2022" -A Win32
+          cmake --build libgit2-build86 --target install
+
+      - name: x86 Install libgit2
+        id: libgit2Install86
+        shell: cmake -P {0}
+        run: |
+          file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/libgit2-install86" libgit2_install86)
+          message("::set-output name=libgit2_install_dir_x86::${libgit2_install86}")
+
       - name: x86 Build
         working-directory: Repo
         run: |
@@ -145,6 +203,7 @@ jobs:
           qbs build -d $ENV:TMP\build-x86 `
             qbs.installRoot:${{ github.workspace }}/install-root `
             profile:qt-x86 config:Release qbs.defaultBuildVariant:release `
+            modules.libgit2.rootPath:${{ steps.libgit2Install86.outputs.libgit2_install_dir_x86 }} `
             -p qtcreatorcdbext
 
       - name: Add JOM

@@ -46,6 +46,7 @@
 #include <utils/pathchooser.h>
 #include <utils/stringutils.h>
 #include <utils/theme/theme.h>
+#include <libgit2cpp/gitrepo.h>
 
 #include <QButtonGroup>
 #include <QDialog>
@@ -68,6 +69,7 @@
 
 using namespace Core;
 using namespace Utils;
+using namespace LibGit2Cpp;
 
 namespace ProjectExplorer {
 namespace Internal {
@@ -205,15 +207,16 @@ FlatModel::FlatModel(QObject *parent)
 
 QVariant FlatModel::data(const QModelIndex &index, int role) const
 {
-    const Node * const node = nodeForIndex(index);
+    const Node *const node = nodeForIndex(index);
     if (!node)
         return QVariant();
 
-    const FolderNode * const folderNode = node->asFolderNode();
-    const ContainerNode * const containerNode = node->asContainerNode();
-    const Project * const project = containerNode ? containerNode->project() : nullptr;
-    const Target * const target = project ? project->activeTarget() : nullptr;
-    const BuildSystem * const bs = target ? target->buildSystem() : nullptr;
+    const FolderNode *const folderNode = node->asFolderNode();
+    const ContainerNode *const containerNode = node->asContainerNode();
+    const Project *const project = containerNode ? containerNode->project() : nullptr;
+    const Target *const target = project ? project->activeTarget() : nullptr;
+    const BuildSystem *const bs = target ? target->buildSystem() : nullptr;
+    ProjectVcsStatus *projectVcsStatus = ProjectVcsStatus::instance();
 
     switch (role) {
     case Qt::DisplayRole:
@@ -257,7 +260,6 @@ QVariant FlatModel::data(const QModelIndex &index, int role) const
         return font;
     }
     case Qt::ForegroundRole: {
-        using Core::VcsChangeType;
         switch (ProjectVcsStatus::instance()->vcsStatusChanges(nodeForIndex(index))) {
         case VcsChangeType::Unchanged: break;
         case VcsChangeType::FileChanged: {

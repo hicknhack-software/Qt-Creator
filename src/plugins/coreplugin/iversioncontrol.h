@@ -40,14 +40,6 @@ QT_FORWARD_DECLARE_CLASS(QMenu);
 
 namespace Core {
 
-enum class VcsChangeType {
-    Unchanged,
-    FileChanged,
-    FileUntracked,
-    FolderContainsChanges,
-};
-using VcsChangeSet = QHash<Utils::FilePath, VcsChangeType>;
-
 class ShellCommand;
 
 class CORE_EXPORT IVersionControl : public QObject
@@ -204,8 +196,6 @@ public:
      * Topic (e.g. name of the current branch)
      */
     virtual QString vcsTopic(const Utils::FilePath &topLevel);
-
-    virtual VcsChangeSet localChanges(const Utils::FilePath &directory);
 
     /*!
      * Display annotation for a file and scroll to line

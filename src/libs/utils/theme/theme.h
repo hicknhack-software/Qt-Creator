@@ -281,6 +281,9 @@ public:
         /* TextEditor Plugin */
         TextEditor_SearchResult_ScrollBarColor,
         TextEditor_CurrentLine_ScrollBarColor,
+        TextEditor_AddedLine_ScrollBarColor,
+        TextEditor_DeletedLine_ScrollBarColor,
+        TextEditor_AddedAndDeletedLine_ScrollBarColor,
 
         /* Debugger Plugin */
         Debugger_Breakpoint_TextMarkColor,

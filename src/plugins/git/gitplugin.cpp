@@ -254,7 +254,6 @@ public:
     void vcsAnnotate(const FilePath &filePath, int line) final;
     void vcsDescribe(const FilePath &source, const QString &id) final { m_gitClient.show(source.toString(), id); };
     QString vcsTopic(const FilePath &directory) final;
-    Core::VcsChangeSet localChanges(const Utils::FilePath &directory) final;
 
     Core::ShellCommand *createInitialCheckoutCommand(const QString &url,
                                                      const Utils::FilePath &baseDirectory,
@@ -2029,25 +2028,6 @@ static void parseGitChangeOutput(const QString &output, Callback &&callback) {
         }
         parseNewline();
     }
-}
-
-Core::VcsChangeSet GitPluginPrivate::localChanges(const Utils::FilePath &directory)
-{
-    auto changeSet = Core::VcsChangeSet{};
-    auto output = QString{};
-    const auto status = m_gitClient.gitStatus(directory,
-                                              StatusMode::NoSubmodules,
-                                              &output,
-                                              nullptr);
-    if (status == GitClient::StatusResult::StatusChanged) {
-        parseGitChangeOutput(output, [&](const GitChangeLine& change) {
-            bool isUntracked = (change.x == '?') || (change.x == 'D') || (change.y == 'D');
-            auto fileChangeType = isUntracked ? Core::VcsChangeType::FileUntracked : Core::VcsChangeType::FileChanged;
-            auto filePath = change.path;
-            changeSet.insert(directory.pathAppended(filePath), fileChangeType);
-        });
-    }
-    return changeSet;
 }
 
 Core::ShellCommand *GitPluginPrivate::createInitialCheckoutCommand(const QString &url,

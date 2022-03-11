@@ -27,5 +27,6 @@ Project {
         "updateinfo/updateinfo.qbs",
         "utils/utils.qbs",
         "valgrind/valgrind.qbs",
+        "libgit2cpp/libgit2cpp.qbs"
     ].concat(project.additionalAutotests)
 }

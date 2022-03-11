@@ -65,6 +65,10 @@ def get_arguments():
     parser.add_argument('--elfutils-path',
                         help='Path to elfutils installation for use by perfprofiler (Windows, Linux)')
 
+    # libgit2cpp
+    parser.add_argument('--libgit2-path',
+                        help='Path to libgit2 installation for use by libgit2cpp (Windows, Linux)')
+
     # signing
     parser.add_argument('--keychain-unlock-script',
                         help='Path to script for unlocking the keychain used for signing (macOS)')
@@ -165,6 +169,8 @@ def build_qtcreator(args, paths):
         prefix_paths += [paths.llvm]
     if paths.elfutils:
         prefix_paths += [paths.elfutils]
+    if paths.libgit2:
+        prefix_paths += [paths.libgit2]
     prefix_paths = [common.to_posix_path(fp) for fp in prefix_paths]
     cmake_args = ['cmake',
                   '-DCMAKE_PREFIX_PATH=' + ';'.join(prefix_paths),
@@ -320,7 +326,7 @@ def get_paths(args):
                                    ['qt', 'src', 'build', 'wininterrupt_build', 'qtcreatorcdbext_build',
                                     'install', 'dev_install', 'debug_install',
                                     'wininterrupt_install', 'qtcreatorcdbext_install', 'result',
-                                    'elfutils', 'llvm'])
+                                    'elfutils', 'llvm', 'libgit2'])
     build_path = os.path.abspath(args.build)
     install_path = os.path.join(build_path, 'install')
     qt_path = os.path.abspath(args.qt_path) if args.qt_path else None
@@ -336,7 +342,8 @@ def get_paths(args):
                  qtcreatorcdbext_install=os.path.join(install_path, 'qtcreatorcdbext'),
                  result=build_path,
                  elfutils=os.path.abspath(args.elfutils_path) if args.elfutils_path else None,
-                 llvm=os.path.abspath(args.llvm_path) if args.llvm_path else None)
+                 llvm=os.path.abspath(args.llvm_path) if args.llvm_path else None,
+                 libgit2=os.path.abspath(args.libgit2_path) if args.libgit2_path else None)
 
 def main():
     args = get_arguments()
