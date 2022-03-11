@@ -28,5 +28,6 @@ Project {
         "utils/utils.qbs",
         "3rdparty/syntax-highlighting/syntax-highlighting.qbs",
         "3rdparty/yaml-cpp/yaml-cpp.qbs",
+        "libgit2cpp/libgit2cpp.qbs"
     ].concat(qlitehtml).concat(project.additionalLibs)
 }

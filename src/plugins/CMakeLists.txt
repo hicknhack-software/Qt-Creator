@@ -17,6 +17,7 @@ add_subdirectory(diffeditor)
 add_subdirectory(emacskeys)
 add_subdirectory(macros)
 add_subdirectory(projectexplorer)
+add_subdirectory(gitvcschanges)
 add_subdirectory(silversearcher)
 
 # Level 3: (only depends on Level 2 and below)

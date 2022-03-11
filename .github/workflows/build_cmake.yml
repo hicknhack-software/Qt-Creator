@@ -14,6 +14,7 @@ env:
   NINJA_VERSION: 1.11.0
   BUILD_TYPE: Release
   CCACHE_VERSION: 4.6
+  LIBGIT2_VERSION: 1.3.0
   QT_MIRRORS: download.qt.io;mirrors.ocf.berkeley.edu/qt;ftp.fau.de/qtproject;mirror.bit.edu.cn/qtproject
 
 jobs:
@@ -396,6 +397,31 @@ jobs:
         file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/elfutils" elfutils_dir)
         message("::set-output name=elfutils_dir::${elfutils_dir}")
 
+    - name: Download libgit2
+      id: libgit2Download
+      shell: cmake -P {0}
+      run: |
+        set(libgit2_version "$ENV{LIBGIT2_VERSION}")
+        set(libgit2_url "https://github.com/libgit2/libgit2/archive/refs/tags/v${libgit2_version}.zip")
+        file(DOWNLOAD "${libgit2_url}" ./v${libgit2_version}.zip SHOW_PROGRESS)
+        file(MAKE_DIRECTORY libgit2Src)
+        execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf ../v${libgit2_version}.zip WORKING_DIRECTORY libgit2Src)
+        file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/libgit2Src/libgit2-${libgit2_version}" libgit2_src_dir)
+        message("::set-output name=libgit2_src_dir::${libgit2_src_dir}")
+
+    - name: Build libgit2
+      id: libgit2Build
+      run: |
+        cmake -B libgit2-build -DUSE_SSH=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=libgit2-install -DBUILD_CLAR=OFF "${{ steps.libgit2Download.outputs.libgit2_src_dir }}"
+        cmake --build libgit2-build --target install
+
+    - name: Install libgit2
+      id: libgit2Install
+      shell: cmake -P {0}
+      run: |
+        file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/libgit2-install" libgit2_install)
+        message("::set-output name=libgit2_install_dir::${libgit2_install}")
+
     - name: Download ccache
       shell: cmake -P {0}
       run: |
@@ -436,6 +462,9 @@ jobs:
           file(READ artifacts.json artifacts_json)
 
           string(JSON artifacts_length LENGTH "${artifacts_json}" "artifacts")
+          if (artifacts_length LESS 1)
+            break()
+          endif()
           math(EXPR artifacts_length "${artifacts_length} - 1")
           foreach(idx RANGE 0 ${artifacts_length})
             string(JSON artifact_js GET "${artifacts_json}" "artifacts" ${idx})
@@ -520,6 +549,14 @@ jobs:
           set(ELFUTILS_OPTION)
         endif()
 
+        if (NOT "${{ steps.libgit2Install.outputs.libgit2_install_dir }}" STREQUAL "")
+          message(STATUS "FOUND LIBGIT2")
+          set(LIBGIT2_OPTION "--libgit2-path;${{ steps.libgit2Install.outputs.libgit2_install_dir }}")
+        else()
+          message(STATUS "NOT-FOUND LIBGIT2")
+          set(LIBGIT2_OPTION)
+        endif()
+
         find_package(Python3 REQUIRED COMPONENTS Interpreter)
         string(REPLACE "x86" "x64" Python3_EXECUTABLE "${Python3_EXECUTABLE}")
 
@@ -551,6 +588,7 @@ jobs:
             ${WITH_TESTS}
             ${CDB_OPTION}
             ${ELFUTILS_OPTION}
+            ${LIBGIT2_OPTION}
             ${NO_DMG}
             --add-config=-DCMAKE_C_COMPILER_LAUNCHER=ccache
             --add-config=-DCMAKE_CXX_COMPILER_LAUNCHER=ccache
