@@ -13,16 +13,16 @@ jobs:
           - name: "Windows 2022 MSVC"
             artifact: "Windows-MSVC"
             os: windows-2022
-            qt_version: "6.2.4"
+            qt_version: "6.3.0"
             qt_arch: "win64_msvc2019_64"
             qt_modules: qtbase qtdeclarative qttools qtsvg qttranslations qtimageformats qtserialport qtquicktimeline qtquick3d qt5compat qtshadertools
             qt_tools: tools_openssl_x64,1.1.1-10,qt.tools.openssl.win_x64
             qt_version_x86: "5.15.2"
             qt_arch_x86: "win32_msvc2019"
             qt_modules_x86: qtbase qtdeclarative qttools qtsvg qtserialport qtquickcontrols qtquickcontrols2 qtgraphicaleffects qtlocation qtimageformats
-            libclang_url: "https://download.qt.io/development_releases/prebuilt/libclang/libclang-release_140-based-windows-vs2019_64.7z"
+            libclang_url: "https://download.qt.io/development_releases/prebuilt/libclang/libclang-release_14.0.0-based-windows-vs2019_64.7z"
             jom_url: "https://download.qt.io/official_releases/jom/jom_1_1_3.zip"
-            qbs_url: "https://download.qt.io/official_releases/qbs/1.21.0/qbs-windows-x86_64-1.21.0.zip"
+            qbs_url: "https://download.qt.io/official_releases/qbs/1.22.0/qbs-windows-x86_64-1.22.0.zip"
             vcvars_x64: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat
             vcvars_x86: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars32.bat
 
