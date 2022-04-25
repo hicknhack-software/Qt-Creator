@@ -7,6 +7,7 @@
 #include "session.h"
 
 #include <qbsprojectmanager/qbsnodes.h>
+#include <resourceeditor/resourcenode.h>
 
 #include <QApplication>
 #include <QJsonArray>
@@ -102,6 +103,14 @@ std::optional<Core::VcsChangeType> ProjectVcsStatus::vcsStatusChanges(ProjectExp
             if (hasSameStartPath(folderPathOf(folderNode), iter.key()) && m_fileNodeFolderMap.value(iter.value()).contains(folderNode)) {
                 return Core::VcsChangeType::FolderContainsChanges;
             }
+            else if (const auto * rfn = dynamic_cast<const ResourceEditor::ResourceFolderNode *>(folderNode)) {
+                auto * resourceTopLevel = findResourceTopLevelNode(folderNode);
+                if (resourceTopLevel != nullptr
+                    && hasSameStartPath(folderPathOf(resourceTopLevel), iter.key())
+                    && m_fileNodeFolderMap.value(iter.value()).contains(folderNode)) {
+                    return Core::VcsChangeType::FolderContainsChanges;
+                }
+            }
         }
     }
     return std::nullopt;
@@ -153,6 +162,15 @@ NodeFileList ProjectVcsStatus::changedFileNodesForCurrentProject() const
                 if (folderNode == nullptr) {
                     return false;
                 }
+                if (dynamic_cast<const ResourceEditor::ResourceTopLevelNode *>(folderNode) != nullptr) {
+                    return projectStatusCache.contains(folderPathOf(folderNode->parentFolderNode()));
+                }
+                else if (const auto * resourceFolder = dynamic_cast<const ResourceEditor::ResourceFolderNode *>(folderNode)) {
+                    // TODO (CvW) use ResourceFolderNode::resourceNode instead, only possible in a seperate plugin because of plugin deps.
+                    if (auto * resourceTopLevel = findResourceTopLevelNode(folderNode)) {
+                        return projectStatusCache.contains(folderPathOf(resourceTopLevel->parentFolderNode()));
+                    }
+                }
                 return projectStatusCache.contains(folderPathOf(folderNode));
             });
     }
@@ -188,6 +206,18 @@ void ProjectVcsStatus::removeDisappearedFileNodes(const NodeList & insertedNodes
             ++iter;
         }
     }
+}
+
+FolderNode *ProjectVcsStatus::findResourceTopLevelNode(const FolderNode * folderNode) const
+{
+    auto * parent = folderNode->parentFolderNode();
+    while(parent != nullptr) {
+        if (dynamic_cast<const ResourceEditor::ResourceTopLevelNode *>(parent) != nullptr) {
+            return parent;
+        }
+        parent = parent->parentFolderNode();
+    }
+    return nullptr;
 }
 
 }// namespace ProjectExplorer

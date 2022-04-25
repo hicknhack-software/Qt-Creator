@@ -75,6 +75,7 @@ private:
     NodeFileList changedFileNodesForCurrentProject() const;
     NodeList updateFileNodeCache(NodeFileList & changedFileNodes);
     void removeDisappearedFileNodes(const NodeList &);
+    ProjectExplorer::FolderNode* findResourceTopLevelNode(const ProjectExplorer::FolderNode*) const;
 
 private:
     static ProjectVcsStatus * m_instance;
