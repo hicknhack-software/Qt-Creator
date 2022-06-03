@@ -15,18 +15,20 @@ namespace ProjectExplorer {
 
 namespace {
 
-QSet<FolderNode*> extractFolderNodes(const QHash<Utils::FilePath, Core::VcsChangeType> &fileChanges, const Utils::FilePath& topLevel)
+QSet<FolderNode*> extractFolderNodes(const QHash<Utils::FilePath, Core::VcsChangeType> &fileChanges, Project *project)
 {
     QSet<FolderNode*> result;
-    auto *topNode = ProjectTree::nodeForFile(topLevel);
-    if (topNode == nullptr) {
+    if (fileChanges.count() < 1 || project->containerNode() == nullptr) {
         return result;
     }
-    auto *topFolder = topNode->asFolderNode();
-    if (topFolder == nullptr) {
+    result.insert(project->containerNode());
+
+    auto *projectNode = project->rootProjectNode();
+    if (projectNode == nullptr || projectNode->asFolderNode() == nullptr) {
         return result;
     }
-    result.insert(topFolder);
+    result.insert(projectNode->asFolderNode());
+
     for (auto it = fileChanges.keyBegin(); it != fileChanges.keyEnd(); ++it) {
         auto *node = ProjectTree::nodeForFile(*it);
         if (node == nullptr) {
@@ -49,10 +51,12 @@ ProjectVcsStatus::ProjectVcsStatus(QObject *parent) : QObject(parent)
             this, &ProjectVcsStatus::checkStatus);
     connect(Core::VcsManager::instance(), &Core::VcsManager::repositoryChanged,
             this, &ProjectVcsStatus::checkStatus);
-    connect(ProjectTree::instance(), &ProjectTree::subtreeChanged,
-            this, &ProjectVcsStatus::updateProjectFolder);
+    connect(ProjectTree::instance(), &ProjectTree::subtreeChanged, this, [this](FolderNode *node) {
+        checkStatus();
+        updateProjectFolder(node);
+    });
     connect(ProjectTree::instance(), &ProjectTree::currentProjectChanged,
-            this, [&] (ProjectExplorer::Project *project) {
+            this, [&](ProjectExplorer::Project *project) {
                 if (project != nullptr) {
                     m_currentProject = project->projectDirectory();
                 }
@@ -60,7 +64,7 @@ ProjectVcsStatus::ProjectVcsStatus(QObject *parent) : QObject(parent)
                     m_currentProject.clear();
                 }
             });
-    connect(qApp, &QApplication::applicationStateChanged, this, [=] (Qt::ApplicationState state) {
+    connect(qApp, &QApplication::applicationStateChanged, this, [=](Qt::ApplicationState state) {
         if (state == Qt::ApplicationState::ApplicationActive) {
             checkStatus();
         }
@@ -146,7 +150,7 @@ Core::VcsChangeType ProjectVcsStatus::vcsStatusChanges(ProjectExplorer::Node *no
     }
     else if (auto *folderNode = node->asFolderNode()) {
         if (!changeSet.isFolderNodesCurrent) {
-            changeSet.folderNodes = extractFolderNodes(changeSet.fileChanges, projectPath);
+            changeSet.folderNodes = extractFolderNodes(changeSet.fileChanges, project);
             changeSet.isFolderNodesCurrent = true;
         }
         if (auto iter = changeSet.folderNodes.find(folderNode); iter != changeSet.folderNodes.end()) {
