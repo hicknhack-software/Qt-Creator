@@ -171,31 +171,6 @@ jobs:
           python-version: "3.x"
           architecture: 'x86'
 
-      - name: x86 Download libgit2
-        id: libgit2Download86
-        shell: cmake -P {0}
-        run: |
-          set(libgit2_version "$ENV{LIBGIT2_VERSION}")
-          set(libgit2_url "https://github.com/libgit2/libgit2/archive/refs/tags/v${libgit2_version}.zip")
-          file(DOWNLOAD "${libgit2_url}" ./v${libgit2_version}.zip SHOW_PROGRESS)
-          file(MAKE_DIRECTORY libgit2SrcX86)
-          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf ../v${libgit2_version}.zip WORKING_DIRECTORY libgit2SrcX86)
-          file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/libgit2SrcX86/libgit2-${libgit2_version}" libgit2_src_dir_x86)
-          message("::set-output name=libgit2_src_dir_x86::${libgit2_src_dir_x86}")
-
-      - name: x86 Build libgit2
-        id: libgit2Build86
-        run: |
-          cmake -B libgit2-build86 -DUSE_SSH=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=libgit2-install86 -DBUILD_CLAR=OFF "${{ steps.libgit2Download86.outputs.libgit2_src_dir_x86 }}" -G "Visual Studio 17 2022" -A Win32
-          cmake --build libgit2-build86 --target install
-
-      - name: x86 Install libgit2
-        id: libgit2Install86
-        shell: cmake -P {0}
-        run: |
-          file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/libgit2-install86" libgit2_install86)
-          message("::set-output name=libgit2_install_dir_x86::${libgit2_install86}")
-
       - name: x86 Build
         working-directory: Repo
         run: |
@@ -203,7 +178,7 @@ jobs:
           qbs build -d $ENV:TMP\build-x86 `
             qbs.installRoot:${{ github.workspace }}/install-root `
             profile:qt-x86 config:Release qbs.defaultBuildVariant:release `
-            modules.libgit2.rootPath:${{ steps.libgit2Install86.outputs.libgit2_install_dir_x86 }} `
+            products.qtcreator.condition:false projects.Plugins.condition:false projects.Tools.condition:false `
             -p qtcreatorcdbext
 
       - name: Add JOM
