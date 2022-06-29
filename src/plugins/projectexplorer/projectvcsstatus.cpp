@@ -9,7 +9,6 @@
 #include <libgit2cpp/gitrepo.h>
 
 #include <QApplication>
-#include <QtConcurrent>
 #include <QJsonArray>
 #include <QTimer>
 
@@ -32,8 +31,7 @@ QSet<FolderNode *> extractFolderNodes(const LibGit2Cpp::VcsChangeSet &fileChange
     }
     for (auto it = fileChangeSet.keyBegin(); it != fileChangeSet.keyEnd(); ++it) {
         if (auto *fileNode = ProjectTree::nodeForFile(*it)) {
-            for (auto *folderNode = fileNode->parentFolderNode(); folderNode;
-                 folderNode = folderNode->parentFolderNode()) {
+            for (auto *folderNode = fileNode->parentFolderNode(); folderNode; folderNode = folderNode->parentFolderNode()) {
                 if (result.contains(folderNode)) {
                     break;
                 }
@@ -46,30 +44,24 @@ QSet<FolderNode *> extractFolderNodes(const LibGit2Cpp::VcsChangeSet &fileChange
 
 } // namespace
 
-ProjectVcsStatus::ProjectVcsStatus(QObject *parent)
-    : QObject(parent)
+ProjectVcsStatus::ProjectVcsStatus(QObject *parent) : QObject(parent)
 {
     LibGit2Cpp::init();
 
-    connect(Core::EditorManager::instance(),
-            &Core::EditorManager::saved,
-            this,
-            &ProjectVcsStatus::checkStatus);
-    connect(Core::VcsManager::instance(),
-            &Core::VcsManager::repositoryChanged,
-            this,
-            &ProjectVcsStatus::checkStatus);
+    connect(Core::EditorManager::instance(), &Core::EditorManager::saved,
+            this, &ProjectVcsStatus::checkStatus);
+    connect(Core::VcsManager::instance(), &Core::VcsManager::repositoryChanged,
+            this, &ProjectVcsStatus::checkStatus);
     connect(ProjectTree::instance(), &ProjectTree::subtreeChanged, this, [this](FolderNode *node) {
         checkStatus();
         updateProjectFolder(node);
     });
-    connect(ProjectTree::instance(),
-            &ProjectTree::currentProjectChanged,
-            this,
-            [&](ProjectExplorer::Project *project) {
+    connect(ProjectTree::instance(), &ProjectTree::currentProjectChanged,
+            this, [&](ProjectExplorer::Project *project) {
                 if (project != nullptr) {
                     m_currentProject = project->projectDirectory();
-                } else {
+                }
+                else {
                     m_currentProject.clear();
                 }
             });
@@ -78,10 +70,8 @@ ProjectVcsStatus::ProjectVcsStatus(QObject *parent)
             checkStatus();
         }
     });
-    connect(SessionManager::instance(),
-            &SessionManager::projectAdded,
-            this,
-            [&](ProjectExplorer::Project *project) {
+    connect(SessionManager::instance(), &SessionManager::projectAdded,
+            this, [&](ProjectExplorer::Project *project) {
                 auto projectPath = project->rootProjectDirectory();
                 auto projectIter = m_projectStatusCache.find(projectPath);
                 if (projectIter == m_projectStatusCache.end()) {
@@ -89,32 +79,25 @@ ProjectVcsStatus::ProjectVcsStatus(QObject *parent)
                     connect(&iter->second.gitRepo, &LibGit2Cpp::GitRepo::fileDiffReceived, this, &ProjectVcsStatus::handleChangedFileDiff);
                     connect(&iter->second.gitRepo, &LibGit2Cpp::GitRepo::fileChangeSetReceived, this, &ProjectVcsStatus::handleReceivedFileChangeSet);
                 }
-                qDebug() << "Register project" << projectPath;
             });
-    connect(SessionManager::instance(),
-            &SessionManager::projectRemoved,
-            this,
-            [&](ProjectExplorer::Project *project) {
+    connect(SessionManager::instance(), &SessionManager::projectRemoved,
+            this, [&](ProjectExplorer::Project *project) {
                 auto projectPath = project->rootProjectDirectory();
                 auto iter = m_projectStatusCache.find(projectPath);
                 if (iter != m_projectStatusCache.end()) {
-                    qDebug() << "Deregister project" << projectPath;
                     disconnect(&iter->second.gitRepo, &LibGit2Cpp::GitRepo::fileDiffReceived, this, &ProjectVcsStatus::handleChangedFileDiff);
                     disconnect(&iter->second.gitRepo, &LibGit2Cpp::GitRepo::fileChangeSetReceived, this, &ProjectVcsStatus::handleReceivedFileChangeSet);
                     m_projectStatusCache.erase(iter);
                 }
             });
-    connect(Core::EditorManager::instance(),
-            &Core::EditorManager::currentEditorChanged,
-            this,
-            &ProjectVcsStatus::setCurrentDocument);
-    connect(Core::EditorManager::instance(),
-            &Core::EditorManager::documentClosed,
-            this,
-            &ProjectVcsStatus::handleClosedDocument);
+    connect(Core::EditorManager::instance(), &Core::EditorManager::currentEditorChanged,
+            this, &ProjectVcsStatus::setCurrentDocument);
+    connect(Core::EditorManager::instance(), &Core::EditorManager::documentClosed,
+            this, &ProjectVcsStatus::handleClosedDocument);
 }
 
-ProjectVcsStatus::~ProjectVcsStatus() {
+ProjectVcsStatus::~ProjectVcsStatus()
+{
     LibGit2Cpp::shutdown();
 }
 
@@ -126,18 +109,16 @@ ProjectVcsStatus *ProjectVcsStatus::instance()
 
 void ProjectVcsStatus::checkStatus()
 {
-    if (m_projectStatusCache.empty()) {
+    if (m_currentProject.isEmpty()) {
         return;
     }
-    if (m_currentProject.isEmpty() == false) {
-        auto projectIter = m_projectStatusCache.find(m_currentProject);
-        if (projectIter != m_projectStatusCache.end()) {
-            projectIter->second.gitRepo.requestFileChangeSet();
-        }
-        if (m_currentDocument != nullptr
-            && projectIter != m_projectStatusCache.end()) {
-            projectIter->second.gitRepo.requestFileDiff(m_currentDocument->filePath());
-        }
+    auto projectIter = m_projectStatusCache.find(m_currentProject);
+    if (projectIter == m_projectStatusCache.end()) {
+        return;
+    }
+    projectIter->second.gitRepo.requestFileChangeSet();
+    if (m_currentDocument != nullptr) {
+        projectIter->second.gitRepo.requestFileDiff(m_currentDocument->filePath());
     }
 }
 
@@ -207,15 +188,11 @@ const ProjectVcsStatus::FileDiff* ProjectVcsStatus::currentVcsFileDiff() const
 
 std::optional<int> ProjectVcsStatus::nextChangedLineNumber(int currentLineNumber)
 {
-    if (m_currentDocument != nullptr) {
-        auto fileDiffIter = m_fileDiffCache.find(m_currentDocument->filePath());
-        if (fileDiffIter != m_fileDiffCache.end()) {
-            const auto & lines = fileDiffIter->second->fileChangeSet;
-            for (auto iter = lines.cbegin(), end = lines.cend(); iter != end; ++iter) {
-                if (iter->first > currentLineNumber) {
-                    return iter->first;
-                }
-            }
+    if (auto* fileDiff = currentVcsFileDiff()) {
+        const auto &lines = fileDiff->fileChangeSet;
+        auto iter = lines.upper_bound(currentLineNumber);
+        if (iter != lines.end()) {
+            return iter->first;
         }
     }
     return std::nullopt;
@@ -223,15 +200,12 @@ std::optional<int> ProjectVcsStatus::nextChangedLineNumber(int currentLineNumber
 
 std::optional<int> ProjectVcsStatus::previousChangedLineNumber(int currentLineNumber)
 {
-    if (m_currentDocument != nullptr) {
-        auto fileDiffIter = m_fileDiffCache.find(m_currentDocument->filePath());
-        if (fileDiffIter != m_fileDiffCache.end()) {
-            const auto & lines = fileDiffIter->second->fileChangeSet;
-            for (auto iter = lines.crbegin(), end = lines.crend(); iter != end; ++iter) {
-                if (iter->first < currentLineNumber) {
-                    return iter->first;
-                }
-            }
+    if (auto* fileDiff = currentVcsFileDiff()) {
+        const auto &lines = fileDiff->fileChangeSet;
+        auto iter = lines.lower_bound(currentLineNumber);
+        if (iter != lines.begin()) {
+            --iter;
+            return iter->first;
         }
     }
     return std::nullopt;
@@ -239,26 +213,32 @@ std::optional<int> ProjectVcsStatus::previousChangedLineNumber(int currentLineNu
 
 void ProjectVcsStatus::setCurrentDocument(Core::IEditor *editor)
 {
-    auto findProjectStatus = [this] (const Utils::FilePath & filePath) -> ProjectStatusMap::iterator {
-        return std::find_if(m_projectStatusCache.begin(),
-                            m_projectStatusCache.end(),
-                            [=](const ProjectStatusMap::value_type &item) -> bool {
-                                return filePath.isChildOf(item.first);
-                            });
-    };
-    if (editor != nullptr && editor->document() != nullptr) {
-        auto repoIterator = findProjectStatus(editor->document()->filePath());
-        if (repoIterator == m_projectStatusCache.end()) {
-            return;
-        }
-        m_currentDocument = editor->document();
-        connect(m_currentDocument, &QObject::destroyed, this, [=]() {
+    if (editor == nullptr) {
+        return;
+    }
+    auto document = editor->document();
+    if (document == nullptr) {
+        return;
+    }
+    auto filePath = document->filePath();
+    auto repoIterator = std::find_if(
+                m_projectStatusCache.begin(),
+                m_projectStatusCache.end(),
+                [&](const ProjectStatusMap::value_type &item) -> bool {
+                    return filePath.isChildOf(item.first);
+                });
+    if (repoIterator == m_projectStatusCache.end()) {
+        return;
+    }
+    m_currentDocument = document;
+    connect(document, &QObject::destroyed,
+            this, [this, document]() {
+        if (m_currentDocument == document) {
             m_currentDocument = nullptr;
-        });
-
-        if (repoIterator->second.fileChangeSet.contains(m_currentDocument->filePath())) {
-            repoIterator->second.gitRepo.requestFileDiff(m_currentDocument->filePath());
         }
+    });
+    if (repoIterator->second.fileChangeSet.contains(filePath)) {
+        repoIterator->second.gitRepo.requestFileDiff(filePath);
     }
 }
 

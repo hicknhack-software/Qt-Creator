@@ -16,6 +16,8 @@ class IDocument;
 
 namespace ProjectExplorer {
 
+using LibGit2Cpp::VcsChangeType;
+
 class PROJECTEXPLORER_EXPORT ProjectVcsStatus : public QObject
 {
     Q_OBJECT
@@ -26,7 +28,7 @@ public:
 
     static ProjectVcsStatus *instance();
 
-    LibGit2Cpp::VcsChangeType vcsStatusChanges(ProjectExplorer::Node *) const;
+    VcsChangeType vcsStatusChanges(ProjectExplorer::Node *) const;
     const FileDiff* currentVcsFileDiff() const;
     std::optional<int> nextChangedLineNumber(int currentLineNumber);
     std::optional<int> previousChangedLineNumber(int currentLineNumber);
