@@ -133,9 +133,9 @@ jobs:
           $Env:LLVM_INSTALL_DIR = "${{ github.workspace }}\libclang"
           $Env:QTC_ENABLE_CLANG_LIBTOOLING = "true"
           $Env:PYTHON_INSTALL_DIR = "$Env:pythonLocation"
+          $Env:LIBGIT2_INSTALL_DIR = "${{ steps.libgit2Install.outputs.libgit2_install_dir }}"
           qbs build -d $ENV:TMP\build `
             qbs.installRoot:${{ github.workspace }}/install-root `
-            modules.libgit2.rootPath:${{ steps.libgit2Install.outputs.libgit2_install_dir }} `
             profile:qt-x64 config:Release qbs.defaultBuildVariant:release
 
       - name: Deploy

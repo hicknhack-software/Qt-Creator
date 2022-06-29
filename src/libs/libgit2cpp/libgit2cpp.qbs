@@ -1,15 +1,29 @@
-import qbs 1.0
+import qbs
+import qbs.Probes
 
 Project {
     name: "LibGit2Cpp"
 
+    Probes.IncludeProbe {
+        id: libgit2IncludeProbe
+
+        names: ["git2.h"]
+        pathSuffixes: ["include"]
+        environmentPaths: ["LIBGIT2_INSTALL_DIR"]
+    }
+    Probes.LibraryProbe {
+        id: libgit2LibraryProbe
+
+        names: ["git2"]
+        pathSuffixes: ["lib"]
+        environmentPaths: ["LIBGIT2_INSTALL_DIR"]
+    }
+
     QtcLibrary {
-        id: myLib
+        condition: libgit2LibraryProbe.found && libgit2IncludeProbe.found
 
+        Depends { name: "cpp" }
         Depends { name: "Qt"; submodules: ["core", "concurrent"] }
-
-        Depends { name: "libgit2" }
-
         Depends { name: "Utils" }
 
         files: [
@@ -17,13 +31,9 @@ Project {
             "gitrepo.h",
             "libgit2cpp_global.h",
         ]
-        condition: libgit2.found
         cpp.defines: base.concat("LIBGIT2CPP_BUILD_LIB")
-
-        //readonly property bool debugFoo: {
-        //    if (libgit2.found) {
-        //        throw("utils " + myLib.builtByDefault)
-        //    }
-        //}
+        cpp.libraryPaths: libgit2LibraryProbe.found ? [libgit2LibraryProbe.path] : []
+        cpp.dynamicLibraries: libgit2LibraryProbe.found ? [libgit2LibraryProbe.names[0]] : []
+        cpp.includePaths: libgit2IncludeProbe.found ? [libgit2IncludeProbe.path] : []
     }
 }
