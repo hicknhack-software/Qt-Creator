@@ -49,6 +49,12 @@ namespace Core {
 */
 
 using ScrollbarSegment = Highlight::ScrollbarSegment;
+struct LineSegment {
+    int end{};
+    ScrollbarSegment segment{};
+};
+using MapLineRangeSegment = QMap<int, LineSegment>;
+using MapColorLineRangeSegment = QMap<Utils::Theme::Color, MapLineRangeSegment>;
 
 class HighlightScrollBarOverlay : public QWidget
 {
@@ -93,7 +99,8 @@ private:
     QRect handleRect() const;
 
     // line start to line end
-    QMap<Highlight::Priority, QMap<Utils::Theme::Color, QMap<int, QPair<int, ScrollbarSegment>>>> m_highlightCache;
+    using HighlightCache = QMap<Highlight::Priority, MapColorLineRangeSegment>;
+    HighlightCache m_highlightCache;
 
     QScrollBar *m_scrollBar;
     HighlightScrollBarController *m_highlightController;
@@ -212,11 +219,11 @@ void HighlightScrollBarOverlay::drawHighlights(QPainter *painter,
 
     const double lineHeight = m_highlightController->lineHeight();
 
-    for (const QMap<Utils::Theme::Color, QMap<int, QPair<int, ScrollbarSegment>>> &colors : qAsConst(m_highlightCache)) {
+    for (const MapColorLineRangeSegment &colors : qAsConst(m_highlightCache)) {
         const auto itColorEnd = colors.constEnd();
         for (auto itColor = colors.constBegin(); itColor != itColorEnd; ++itColor) {
             const QColor &color = creatorTheme()->color(itColor.key());
-            const QMap<int, QPair<int, ScrollbarSegment>> &positions = itColor.value();
+            const MapLineRangeSegment &positions = itColor.value();
             const auto itPosEnd = positions.constEnd();
             const auto firstPos = int(docStart / lineHeight);
             auto itPos = positions.upperBound(firstPos);
@@ -224,7 +231,7 @@ void HighlightScrollBarOverlay::drawHighlights(QPainter *painter,
                 --itPos;
             while (itPos != itPosEnd) {
                 const double posStart = itPos.key() * lineHeight;
-                const double posEnd = (itPos.value().first + 1) * lineHeight;
+                const double posEnd = (itPos.value().end + 1) * lineHeight;
                 if (posEnd < docStart) {
                     ++itPos;
                     continue;
@@ -237,11 +244,11 @@ void HighlightScrollBarOverlay::drawHighlights(QPainter *painter,
 
                 auto width = viewport.width() / 3;
                 auto x = viewport.left();
-                if (itPos.value().second == ScrollbarSegment::Right) {
+                if (itPos.value().segment == ScrollbarSegment::Right) {
                     x += width;
                     width *= 2;
                 }
-                else if (itPos.value().second == ScrollbarSegment::Both) {
+                else if (itPos.value().segment == ScrollbarSegment::Both) {
                     width *= 3;
                 }
                 const QRect rect(x, top, width, height);
@@ -271,35 +278,35 @@ bool HighlightScrollBarOverlay::eventFilter(QObject *object, QEvent *event)
     return QWidget::eventFilter(object, event);
 }
 
-static void insertPosition(QMap<int, QPair<int, ScrollbarSegment>> *map, int position, Highlight::ScrollbarSegment scrollbarSegment)
+static void insertPosition(MapLineRangeSegment &map, int position, Highlight::ScrollbarSegment scrollbarSegment)
 {
-    auto itNext = map->upperBound(position);
+    auto itNext = map.upperBound(position);
 
     bool gluedWithPrev = false;
-    if (itNext != map->begin()) {
+    if (itNext != map.begin()) {
         auto itPrev = std::prev(itNext);
         const int keyStart = itPrev.key();
-        const int keyEnd = itPrev.value().first;
+        const int keyEnd = itPrev.value().end;
         if (position >= keyStart && position <= keyEnd)
             return; // pos is already included
 
         if (keyEnd + 1 == position) {
             // glue with prev
-            (itPrev->first)++;
+            (itPrev->end)++;
             gluedWithPrev = true;
         }
     }
 
-    if (itNext != map->end() && itNext.key() == position + 1) {
-        const int keyEnd = itNext.value().first;
-        itNext = map->erase(itNext);
+    if (itNext != map.end() && itNext.key() == position + 1) {
+        const int keyEnd = itNext.value().end;
+        itNext = map.erase(itNext);
         if (gluedWithPrev) {
             // glue with prev and next
             auto itPrev = std::prev(itNext);
-            itPrev->first = keyEnd;
+            itPrev->end = keyEnd;
         } else {
             // glue with next
-            itNext = map->insert(itNext, position, {keyEnd, scrollbarSegment});
+            itNext = map.insert(itNext, position, {keyEnd, scrollbarSegment});
         }
         return; // glued
     }
@@ -307,7 +314,7 @@ static void insertPosition(QMap<int, QPair<int, ScrollbarSegment>> *map, int pos
     if (gluedWithPrev)
         return; // glued
 
-    map->insert(position, {position, scrollbarSegment});
+    map.insert(position, {position, scrollbarSegment});
 }
 
 void HighlightScrollBarOverlay::updateCache()
@@ -321,7 +328,7 @@ void HighlightScrollBarOverlay::updateCache()
     for (const QVector<Highlight> &highlights : highlightsForId) {
         for (const auto &highlight : highlights) {
             auto &highlightMap = m_highlightCache[highlight.priority][highlight.color];
-            insertPosition(&highlightMap, highlight.position, highlight.scrollbarSegment);
+            insertPosition(highlightMap, highlight.position, highlight.scrollbarSegment);
         }
     }
 

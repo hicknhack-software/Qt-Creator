@@ -46,7 +46,6 @@
 #include <utils/pathchooser.h>
 #include <utils/stringutils.h>
 #include <utils/theme/theme.h>
-#include <libgit2cpp/gitrepo.h>
 
 #include <QButtonGroup>
 #include <QDialog>
@@ -69,7 +68,6 @@
 
 using namespace Core;
 using namespace Utils;
-using namespace LibGit2Cpp;
 
 namespace ProjectExplorer {
 namespace Internal {
@@ -216,7 +214,6 @@ QVariant FlatModel::data(const QModelIndex &index, int role) const
     const Project *const project = containerNode ? containerNode->project() : nullptr;
     const Target *const target = project ? project->activeTarget() : nullptr;
     const BuildSystem *const bs = target ? target->buildSystem() : nullptr;
-    ProjectVcsStatus *projectVcsStatus = ProjectVcsStatus::instance();
 
     switch (role) {
     case Qt::DisplayRole:
