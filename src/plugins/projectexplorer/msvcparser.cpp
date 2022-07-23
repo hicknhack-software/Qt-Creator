@@ -152,20 +152,22 @@ MsvcParser::Result MsvcParser::processCompileLine(const QString &line)
         LinkSpecs linkSpecs;
         addLinkSpecForAbsoluteFilePath(linkSpecs, filePath, position.second, match, 1);
         if (!m_lastTask.isNull() && line.contains("note: ")) {
+            LinkSpecs adaptedLinkSpecs = linkSpecs;
             const int offset = std::accumulate(m_lastTask.details.cbegin(),
                     m_lastTask.details.cend(), 0,
                     [](int total, const QString &line) { return total + line.length() + 1;});
-            for (LinkSpec &ls : linkSpecs)
+            for (LinkSpec &ls : adaptedLinkSpecs)
                 ls.startPos += offset;
+            m_linkSpecs << adaptedLinkSpecs;
             ++m_lines;
         } else {
             flush();
             m_lastTask = CompileTask(taskType(match.captured(2)),
                                      match.captured(3) + match.captured(4).trimmed(), // description
                                      filePath, position.second);
+            m_linkSpecs = linkSpecs;
             m_lines = 1;
         }
-        m_linkSpecs << linkSpecs;
         m_lastTask.details.append(line);
         return {Status::InProgress, linkSpecs};
     }
