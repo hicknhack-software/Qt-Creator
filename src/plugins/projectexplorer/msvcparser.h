@@ -54,6 +54,8 @@ private:
     Task m_lastTask;
     LinkSpecs m_linkSpecs;
     int m_lines = 0;
+    bool m_isCaretDiagnostics = false;
+    bool m_expectCode = false;
 };
 
 class PROJECTEXPLORER_EXPORT ClangClParser :  public ProjectExplorer::OutputTaskParser
