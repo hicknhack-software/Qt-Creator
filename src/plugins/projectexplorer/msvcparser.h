@@ -27,6 +27,9 @@ private:
 
     QRegularExpression m_compileRegExp;
     QRegularExpression m_additionalInfoRegExp;
+
+    bool m_isCaretDiagnostics = false;
+    bool m_expectCode = false;
 };
 
 class PROJECTEXPLORER_EXPORT ClangClParser :  public ProjectExplorer::OutputTaskParser
