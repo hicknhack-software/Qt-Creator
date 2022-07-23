@@ -14,34 +14,62 @@
 using namespace Utils;
 
 namespace ProjectExplorer {
+namespace {
 
-// As of MSVC 2015: "foo.cpp(42) :" -> "foo.cpp(42):"
-static const char FILE_POS_PATTERN[] = "^(?:\\d+>)?(cl|LINK|.+?[^ ]) ?: ";
+auto constexpr filePosRegexString() -> std::string_view {
+    // As of MSVC 2015: "foo.cpp(42) :" -> "foo.cpp(42):"
+    return R"(^(?:\d+>)?(cl|LINK|.+?[^ ]) ?: )";
+}
 
-static QPair<FilePath, int> parseFileName(const QString &input)
+struct FileData {
+    FilePath fileName{};
+    int lineNo{-1};
+    int columnNo{-1};
+};
+
+auto parseFileName(QStringView input) -> FileData
 {
-    QString fileName = input;
-    if (fileName.startsWith("LINK") || fileName.startsWith("cl"))
-        return {{}, -1};
+    auto result = FileData{};
+
+    if (input.startsWith(QStringView{u"LINK "}) || input.startsWith(QStringView{u"cl "})){
+        return result;
+    }
+    auto& [fileName, lineNo, columnNo] = result;
 
     // Extract linenumber (if it is there):
-    int linenumber = -1;
-    if (fileName.endsWith(')')) {
-        int pos = fileName.lastIndexOf('(');
-        if (pos >= 0) {
-            // clang-cl gives column, too: "foo.cpp(34,1)" as opposed to MSVC "foo.cpp(34)".
-            int endPos = fileName.indexOf(',', pos + 1);
-            if (endPos < 0)
-                endPos = fileName.size() - 1;
-            bool ok = false;
-            const int n = fileName.mid(pos + 1, endPos - pos - 1).toInt(&ok);
-            if (ok) {
-                fileName = fileName.left(pos);
-                linenumber = n;
+    if (input.size() > 2 && input.endsWith(')')) {
+        auto rit = input.rbegin() + 1;
+        auto rend = input.rend();
+        auto f = 0;
+        auto n = -1;
+        while (rit != rend) {
+            auto ch = *rit++;
+            if (ch.isDigit()) {
+                if (n < 0) {
+                    n = ch.digitValue();
+                    f = 10;
+                }
+                else {
+                    n += ch.digitValue() * f;
+                    f *= 10;
+                }
+                continue;
             }
+            if (ch == u',') {
+                if (n >= 0) columnNo = n;
+                n = -1;
+                continue;
+            }
+            if (ch == u'(') {
+                if (n >= 0) lineNo = n;
+                input = input.sliced(0, rend - rit);
+                break;
+            }
+            break;
         }
     }
-    return {FilePath::fromUserInput(fileName), linenumber};
+    fileName = FilePath::fromUserInput(input.toString());
+    return result;
 }
 
 // nmake/jom messages.
@@ -78,15 +106,17 @@ static Task::TaskType taskType(const QString &category)
     return type;
 }
 
+} // namespace
+
 MsvcParser::MsvcParser()
 {
     setObjectName("MsvcParser");
     setOrigin("MSVC compiler");
 
-    m_compileRegExp.setPattern(QString(FILE_POS_PATTERN)
-                               + ".*(?:(warning|error) ([A-Z]+\\d{4} ?: )|note: )(.*)$");
+    m_compileRegExp.setPattern(QLatin1String(filePosRegexString())
+                               + R"(.*(?:(warning|error) ([A-Z]+\d{4} ?: )|note: )(.*)$)");
     QTC_CHECK(m_compileRegExp.isValid());
-    m_additionalInfoRegExp.setPattern("^        (?:(could be |or )\\s*')?(.*)\\((\\d+)\\) : (.*)$");
+    m_additionalInfoRegExp.setPattern(R"(^        (?:(could be |or )\s*')?(.*)\((\d+)\) : (.*)$)");
     QTC_CHECK(m_additionalInfoRegExp.isValid());
 }
 
@@ -97,36 +127,6 @@ Utils::Id MsvcParser::id()
 
 OutputLineParser::Result MsvcParser::handleLine(const QString &line, OutputFormat type)
 {
-    if (type == OutputFormat::StdOutFormat) {
-        QRegularExpressionMatch match = m_additionalInfoRegExp.match(line);
-        if (line.startsWith("        ") && !match.hasMatch()) {
-            if (currentTask().isNull())
-                return Status::NotHandled;
-            createOrAmendTask(Task::Unknown, {}, line, true);
-            return Status::InProgress;
-        }
-
-        const Result res = processCompileLine(line);
-        if (res.status != Status::NotHandled)
-            return res;
-        if (const Task t = handleNmakeJomMessage(line); !t.isNull()) {
-            setCurrentTask(t);
-            return Status::InProgress;
-        }
-        if (match.hasMatch()) {
-            QString description = match.captured(1) + match.captured(4).trimmed();
-            if (!match.captured(1).isEmpty())
-                description.chop(1); // Remove trailing quote
-            const FilePath filePath = absoluteFilePath(FilePath::fromUserInput(match.captured(2)));
-            const int lineNo = match.captured(3).toInt();
-            LinkSpecs linkSpecs;
-            addLinkSpecForAbsoluteFilePath(linkSpecs, filePath, lineNo, -1, match, 2);
-            createOrAmendTask(Task::Unknown, description, line, false, filePath, lineNo, 0, linkSpecs);
-            return {Status::InProgress, linkSpecs};
-        }
-        return Status::NotHandled;
-    }
-
     const Result res = processCompileLine(line);
     if (res.status != Status::NotHandled)
         return res;
@@ -147,23 +147,56 @@ bool MsvcParser::isContinuation(const QString &line) const
 
 MsvcParser::Result MsvcParser::processCompileLine(const QString &line)
 {
-    QRegularExpressionMatch match = m_compileRegExp.match(line);
-    if (match.hasMatch()) {
-        QPair<FilePath, int> position = parseFileName(match.captured(1));
-        const FilePath filePath = absoluteFilePath(position.first);
+    if (line.contains("cl.exe")) {
+        m_isCaretDiagnostics = line.contains("/diagnostics:caret");
+    }
+    if (QRegularExpressionMatch match = m_compileRegExp.match(line); match.hasMatch()) {
+        auto [rawFileName, lineNo, columnNo] = parseFileName(match.captured(1));
+        const FilePath filePath = absoluteFilePath(rawFileName);
         LinkSpecs linkSpecs;
-        addLinkSpecForAbsoluteFilePath(linkSpecs, filePath, position.second, -1, match, 1);
-        const QString &description = match.captured(3) + match.captured(4).trimmed();
+        addLinkSpecForAbsoluteFilePath(linkSpecs, filePath, lineNo, columnNo, match, 1);
+        const auto description = match.captured(3) + match.captured(4).trimmed();
         createOrAmendTask(
             taskType(match.captured(2)),
             description,
             line,
             false,
             filePath,
-            position.second,
-            0,
+            lineNo,
+            columnNo > 0 ? columnNo : 0,
             linkSpecs);
+        m_expectCode = m_isCaretDiagnostics;
         return {Status::InProgress, linkSpecs};
+    }
+    if (QRegularExpressionMatch match = m_additionalInfoRegExp.match(line); match.hasMatch()) {
+        QString description = match.captured(1) + match.captured(4).trimmed();
+        if (!match.captured(1).isEmpty())
+            description.chop(1); // Remove trailing quote
+        const FilePath filePath = absoluteFilePath(FilePath::fromUserInput(match.captured(2)));
+        const int lineNo = match.captured(3).toInt();
+        LinkSpecs linkSpecs;
+        addLinkSpecForAbsoluteFilePath(linkSpecs, filePath, lineNo, -1, match, 2);
+        createOrAmendTask(Task::Unknown, description, line, false, filePath, lineNo, 0, linkSpecs);
+        m_expectCode = m_isCaretDiagnostics;
+        return {Status::InProgress, linkSpecs};
+    }
+    if (!currentTask().isNull()) {
+        bool amend = false;
+        if (line.endsWith("^")) {
+            m_expectCode = false; // code was before
+            amend = true;
+        }
+        else if (line.startsWith("        ")) {
+            amend = true;
+        }
+        else if (m_expectCode) {
+            m_expectCode = false; // this is the expected code
+            amend = true;
+        }
+        if (amend) {
+            createOrAmendTask(Task::Unknown, {}, line, true);
+            return Status::InProgress;
+        }
     }
 
     flush();
@@ -179,7 +212,7 @@ MsvcParser::Result MsvcParser::processCompileLine(const QString &line)
 // ".\qwindowsgdinativeinterface.cpp(48,3) :  error: unknown type name 'errr'"
 static inline QString clangClCompilePattern()
 {
-    return QLatin1String(FILE_POS_PATTERN) + " ?(warning|error): (.*)$";
+    return QLatin1String(filePosRegexString()) + " ?(warning|error): (.*)$";
 }
 
 ClangClParser::ClangClParser()
@@ -230,13 +263,12 @@ OutputLineParser::Result ClangClParser::handleLine(const QString &line, OutputFo
     QRegularExpressionMatch match = m_compileRegExp.match(lne);
     if (match.hasMatch()) {
         flush();
-        const QPair<FilePath, int> position = parseFileName(match.captured(1));
-        const FilePath file = absoluteFilePath(position.first);
-        const int lineNo = position.second;
+        const auto [rawFileName, lineNo, columnNo] = parseFileName(match.captured(1));
+        const FilePath file = absoluteFilePath(rawFileName);
         LinkSpecs linkSpecs;
-        addLinkSpecForAbsoluteFilePath(linkSpecs, file, lineNo, -1, match, 1);
+        addLinkSpecForAbsoluteFilePath(linkSpecs, file, lineNo, columnNo, match, 1);
         createOrAmendTask(
-            taskType(match.captured(2)), match.captured(3).trimmed(), line, false, file, lineNo);
+            taskType(match.captured(2)), match.captured(3).trimmed(), line, false, file, lineNo, columnNo, linkSpecs);
         return {Status::InProgress, linkSpecs};
     }
 
