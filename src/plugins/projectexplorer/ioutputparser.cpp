@@ -73,6 +73,17 @@ const QList<OutputTaskParser::TaskInfo> OutputTaskParser::taskInfo() const
     return d->scheduledTasks;
 }
 
+bool OutputTaskParser::hasCurrentTask() const
+{
+    return !d->currentTask.isNull();
+}
+
+void OutputTaskParser::amendTaskDetails(const QString &originalLine)
+{
+    d->currentTask.details.append(originalLine);
+    ++d->lineCount;
+}
+
 void OutputTaskParser::scheduleTask(const Task &task, int outputLines, int skippedLines)
 {
     TaskInfo ts(task, outputLines, skippedLines);
