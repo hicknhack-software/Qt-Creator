@@ -91,44 +91,6 @@ Utils::Id MsvcParser::id()
 
 OutputLineParser::Result MsvcParser::handleLine(const QString &line, OutputFormat type)
 {
-    if (type == OutputFormat::StdOutFormat) {
-        QRegularExpressionMatch match = m_additionalInfoRegExp.match(line);
-        if (line.startsWith("        ") && !match.hasMatch()) {
-            if (m_lastTask.isNull())
-                return Status::NotHandled;
-
-            m_lastTask.details.append(rightTrimmed(line));
-            ++m_lines;
-            return Status::InProgress;
-        }
-
-        const Result res = processCompileLine(line);
-        if (res.status != Status::NotHandled)
-            return res;
-        const Task t = handleNmakeJomMessage(line);
-        if (!t.isNull()) {
-            flush();
-            m_lastTask = t;
-            m_lines = 1;
-            return Status::InProgress;
-        }
-        if (match.hasMatch()) {
-            QString description = match.captured(1)
-                    + match.captured(4).trimmed();
-            if (!match.captured(1).isEmpty())
-                description.chop(1); // Remove trailing quote
-            const FilePath filePath = absoluteFilePath(FilePath::fromUserInput(match.captured(2)));
-            const int lineNo = match.captured(3).toInt();
-            LinkSpecs linkSpecs;
-            addLinkSpecForAbsoluteFilePath(linkSpecs, filePath, lineNo, match, 2);
-            m_lastTask = CompileTask(Task::Unknown, description, filePath, lineNo);
-            m_lastTask.details << line;
-            m_lines = 1;
-            return {Status::InProgress, linkSpecs};
-        }
-        return Status::NotHandled;
-    }
-
     const Result res = processCompileLine(line);
     if (res.status != Status::NotHandled)
         return res;
@@ -145,8 +107,10 @@ OutputLineParser::Result MsvcParser::handleLine(const QString &line, OutputForma
 
 MsvcParser::Result MsvcParser::processCompileLine(const QString &line)
 {
-    QRegularExpressionMatch match = m_compileRegExp.match(line);
-    if (match.hasMatch()) {
+    if (line.contains("cl.exe")) {
+        m_isCaretDiagnostics = line.contains("/diagnostics:caret");
+    }
+    if (QRegularExpressionMatch match = m_compileRegExp.match(line); match.hasMatch()) {
         QPair<FilePath, int> position = parseFileName(match.captured(1));
         const FilePath filePath = absoluteFilePath(position.first);
         LinkSpecs linkSpecs;
@@ -159,6 +123,7 @@ MsvcParser::Result MsvcParser::processCompileLine(const QString &line)
             for (LinkSpec &ls : adaptedLinkSpecs)
                 ls.startPos += offset;
             m_linkSpecs << adaptedLinkSpecs;
+            m_expectCode = m_isCaretDiagnostics;
             ++m_lines;
         } else {
             flush();
@@ -166,10 +131,47 @@ MsvcParser::Result MsvcParser::processCompileLine(const QString &line)
                                      match.captured(3) + match.captured(4).trimmed(), // description
                                      filePath, position.second);
             m_linkSpecs = linkSpecs;
+            m_expectCode = m_isCaretDiagnostics;
             m_lines = 1;
         }
         m_lastTask.details.append(line);
         return {Status::InProgress, linkSpecs};
+    }
+    if (QRegularExpressionMatch match = m_additionalInfoRegExp.match(line); match.hasMatch()) {
+        QString description = match.captured(1)
+                + match.captured(4).trimmed();
+        if (!match.captured(1).isEmpty())
+            description.chop(1); // Remove trailing quote
+        const FilePath filePath = absoluteFilePath(FilePath::fromUserInput(match.captured(2)));
+        const int lineNo = match.captured(3).toInt();
+        LinkSpecs linkSpecs;
+        addLinkSpecForAbsoluteFilePath(linkSpecs, filePath, lineNo, match, 2);
+        flush();
+        m_lastTask = CompileTask(Task::Unknown, description, filePath, lineNo);
+        m_linkSpecs = linkSpecs;
+        m_expectCode = m_isCaretDiagnostics;
+        m_lines = 1;
+        m_lastTask.details.append(line);
+        return {Status::InProgress, linkSpecs};
+    }
+    if (!m_lastTask.isNull()) {
+        bool amend = false;
+        if (line.endsWith("^")) {
+            m_expectCode = false; // code was before
+            amend = true;
+        }
+        else if (line.startsWith("        ")) {
+            amend = true;
+        }
+        else if (m_expectCode) {
+            m_expectCode = false; // this is the expected code
+            amend = true;
+        }
+        if (amend) {
+            m_lastTask.details.append(line);
+            ++m_lines;
+            return Status::InProgress;
+        }
     }
 
     flush();
