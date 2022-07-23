@@ -28,6 +28,9 @@ public:
     const QList<TaskInfo> taskInfo() const;
 
 protected:
+    bool hasCurrentTask() const;
+    void amendTaskDetails(const QString &originalLine);
+
     void flush() override;
 
     void setOrigin(const QString &source);
