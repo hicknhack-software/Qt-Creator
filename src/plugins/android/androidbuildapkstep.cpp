@@ -1100,3 +1100,5 @@ AndroidBuildApkStepFactory::AndroidBuildApkStepFactory()
 
 } // namespace Internal
 } // namespace Android
+
+#include "moc_androidbuildapkstep.cpp"

@@ -263,3 +263,5 @@ bool PropertiesSortModel::lessThan(const QModelIndex &left, const QModelIndex &r
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_propertytreeitem.cpp"

@@ -330,3 +330,5 @@ bool SubmitFieldWidget::comboIndexChange(int pos, int index)
 }
 
 }
+
+#include "moc_submitfieldwidget.cpp"

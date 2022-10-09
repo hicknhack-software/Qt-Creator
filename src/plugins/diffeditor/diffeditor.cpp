@@ -619,3 +619,5 @@ void DiffEditor::showDiffView(IDiffView *view)
 } // namespace DiffEditor
 
 #include "diffeditor.moc"
+
+#include "moc_diffeditor.cpp"

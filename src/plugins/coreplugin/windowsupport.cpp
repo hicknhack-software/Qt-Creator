@@ -223,3 +223,5 @@ void WindowList::setWindowVisible(QWidget *window, bool visible)
 
 } // Internal
 } // Core
+
+#include "moc_windowsupport.cpp"

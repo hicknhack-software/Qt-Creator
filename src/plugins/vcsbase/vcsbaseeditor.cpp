@@ -1674,3 +1674,5 @@ void VcsBaseEditorWidget::testLogResolving(const VcsEditorFactory &factory,
 #endif
 
 #include "vcsbaseeditor.moc"
+
+#include "moc_vcsbaseeditor.cpp"

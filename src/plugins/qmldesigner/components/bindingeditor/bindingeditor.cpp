@@ -305,3 +305,5 @@ QVariant BindingEditor::stateModelNode() const
 }
 
 } // QmlDesigner namespace
+
+#include "moc_bindingeditor.cpp"

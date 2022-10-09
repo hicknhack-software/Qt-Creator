@@ -511,3 +511,5 @@ const PerfProfilerStatisticsMainModel *PerfProfilerStatisticsRelativesModel::mai
 
 } // namespace Internal
 } // namespace PerfProfiler
+
+#include "moc_perfprofilerstatisticsmodel.cpp"

@@ -909,3 +909,5 @@ void RunConfigurationSelectionDialog::updateLabels()
 
 } // namespace Internal
 } // namespace Autotest
+
+#include "moc_testrunner.cpp"

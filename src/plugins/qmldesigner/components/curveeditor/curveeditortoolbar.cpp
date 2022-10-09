@@ -151,3 +151,5 @@ void CurveEditorToolBar::updateBoundsSilent(int start, int end)
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_curveeditortoolbar.cpp"

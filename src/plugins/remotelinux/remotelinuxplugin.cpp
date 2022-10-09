@@ -125,3 +125,5 @@ bool RemoteLinuxPlugin::initialize(const QStringList &arguments, QString *errorM
 
 } // namespace Internal
 } // namespace RemoteLinux
+
+#include "moc_remotelinuxplugin.cpp"

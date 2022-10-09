@@ -106,3 +106,5 @@ void BaseAnnotationHighlighter::setFontSettings(const TextEditor::FontSettings &
 }
 
 } // namespace VcsBase
+
+#include "moc_baseannotationhighlighter.cpp"

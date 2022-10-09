@@ -70,3 +70,5 @@ void OpenWithDialog::currentItemChanged(QListWidgetItem *current, QListWidgetIte
 {
     setOkButtonEnabled(current);
 }
+
+#include "moc_openwithdialog.cpp"

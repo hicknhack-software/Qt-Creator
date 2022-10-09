@@ -15,3 +15,5 @@ HelloWorldWindow::HelloWorldWindow(QWidget *parent)
     layout->addWidget(new QTextEdit(tr("Focus me to activate my context!")));
     setWindowTitle(tr("Hello, world!"));
 }
+
+#include "moc_helloworldwindow.cpp"

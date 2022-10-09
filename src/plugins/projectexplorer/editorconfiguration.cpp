@@ -405,3 +405,5 @@ TabSettings actualTabSettings(const Utils::FilePath &file,
 }
 
 } // ProjectExplorer
+
+#include "moc_editorconfiguration.cpp"

@@ -150,3 +150,5 @@ QVariant PropertyChangesModel::modelNodeBackend() const
 
 } // namespace Experimental
 } // namespace QmlDesigner
+
+#include "moc_propertychangesmodel.cpp"

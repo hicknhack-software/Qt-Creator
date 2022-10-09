@@ -333,3 +333,5 @@ void ClearCaseSync::verifyFileNotManagedDynamicView()
 #endif
 
 } // ClearCase::Internal
+
+#include "moc_clearcasesync.cpp"

@@ -380,3 +380,7 @@ void AndroidServiceWidget::removeService()
 
 } // namespace Internal
 } // namespace Android
+
+#include "moc_androidservicewidget_p.cpp"
+
+#include "moc_androidservicewidget.cpp"

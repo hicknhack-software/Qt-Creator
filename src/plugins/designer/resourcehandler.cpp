@@ -144,3 +144,5 @@ void ResourceHandler::updateResourcesHelper(bool updateProjectResources)
 
 } // namespace Internal
 } // namespace Designer
+
+#include "moc_resourcehandler.cpp"

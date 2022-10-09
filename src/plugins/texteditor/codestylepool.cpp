@@ -252,3 +252,5 @@ void CodeStylePool::exportCodeStyle(const FilePath &fileName, ICodeStylePreferen
 }
 
 } // TextEditor
+
+#include "moc_codestylepool.cpp"

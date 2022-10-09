@@ -92,3 +92,5 @@ void showHelpUrl(const QString &url, HelpViewerLocation location)
 
 } // HelpManager
 } // Core
+
+#include "moc_helpmanager.cpp"

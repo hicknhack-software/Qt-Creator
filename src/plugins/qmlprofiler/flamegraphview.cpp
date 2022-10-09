@@ -78,3 +78,5 @@ void FlameGraphView::contextMenuEvent(QContextMenuEvent *ev)
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_flamegraphview.cpp"

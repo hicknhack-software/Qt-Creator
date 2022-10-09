@@ -148,3 +148,5 @@ SeparateDebugInfoAspect::SeparateDebugInfoAspect()
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_buildaspects.cpp"

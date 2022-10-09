@@ -585,3 +585,5 @@ void LanguageClientManager::projectAdded(ProjectExplorer::Project *project)
 }
 
 } // namespace LanguageClient
+
+#include "moc_languageclientmanager.cpp"

@@ -66,3 +66,5 @@ void CurrentProjectFilter::refresh(QFutureInterface<void> &future)
     QMetaObject::invokeMethod(this, &CurrentProjectFilter::markFilesAsOutOfDate,
                               Qt::QueuedConnection);
 }
+
+#include "moc_currentprojectfilter.cpp"

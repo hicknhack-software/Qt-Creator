@@ -91,3 +91,5 @@ void ColorToolButton::paintEvent(QPaintEvent *e)
         p.fillRect(r, QBrush(c));
     }
 }
+
+#include "moc_colortoolbutton.cpp"

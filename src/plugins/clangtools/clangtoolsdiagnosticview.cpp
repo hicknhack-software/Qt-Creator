@@ -387,3 +387,5 @@ void DiagnosticView::openEditorForCurrentIndex()
 } // namespace ClangTools
 
 #include "clangtoolsdiagnosticview.moc"
+
+#include "moc_clangtoolsdiagnosticview.cpp"

@@ -633,3 +633,5 @@ void ActionEditorDialog::insertAndSetUndefined(QComboBox *comboBox)
 }
 
 } // QmlDesigner namespace
+
+#include "moc_actioneditordialog.cpp"

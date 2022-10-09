@@ -443,3 +443,5 @@ void FormEditorScene::setAnnotationVisibility(bool status)
 
 }
 
+
+#include "moc_formeditorscene.cpp"

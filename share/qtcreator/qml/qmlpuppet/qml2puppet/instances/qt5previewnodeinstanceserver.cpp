@@ -127,3 +127,5 @@ bool Qt5PreviewNodeInstanceServer::isPreviewServer() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_qt5previewnodeinstanceserver.cpp"

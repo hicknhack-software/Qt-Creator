@@ -71,3 +71,5 @@ ExtensionSystem::IPlugin::ShutdownFlag LanguageClientPlugin::aboutToShutdown()
 }
 
 } // namespace LanguageClient
+
+#include "moc_languageclientplugin.cpp"

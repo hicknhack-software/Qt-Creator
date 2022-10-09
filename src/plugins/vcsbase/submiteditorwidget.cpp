@@ -767,3 +767,5 @@ void SubmitEditorWidget::setEmptyFileListEnabled(bool e)
 }
 
 } // namespace VcsBase
+
+#include "moc_submiteditorwidget.cpp"

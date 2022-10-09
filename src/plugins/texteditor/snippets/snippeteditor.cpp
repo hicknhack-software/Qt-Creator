@@ -45,3 +45,5 @@ void SnippetEditorWidget::contextMenuEvent(QContextMenuEvent *e)
 }
 
 } // namespace
+
+#include "moc_snippeteditor.cpp"

@@ -244,3 +244,5 @@ void CMakeManager::buildFileContextMenu()
     if (Node *node = ProjectTree::currentNode())
         buildFile(node);
 }
+
+#include "moc_cmakeprojectmanager.cpp"

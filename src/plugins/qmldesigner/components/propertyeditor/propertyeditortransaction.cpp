@@ -46,3 +46,5 @@ void PropertyEditorTransaction::timerEvent(QTimerEvent *timerEvent)
 
 } //QmlDesigner
 
+
+#include "moc_propertyeditortransaction.cpp"

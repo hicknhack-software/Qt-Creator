@@ -69,3 +69,5 @@ namespace ADS
     }
 
 } // namespace ADS
+
+#include "moc_docksplitter.cpp"

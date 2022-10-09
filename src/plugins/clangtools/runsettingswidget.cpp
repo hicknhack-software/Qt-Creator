@@ -129,3 +129,5 @@ RunSettings RunSettingsWidget::toSettings() const
 }
 
 } // ClangTools::Internal
+
+#include "moc_runsettingswidget.cpp"

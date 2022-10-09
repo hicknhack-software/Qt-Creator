@@ -49,3 +49,5 @@ void AllProjectsFilter::refresh(QFutureInterface<void> &future)
     Q_UNUSED(future)
     QMetaObject::invokeMethod(this, &AllProjectsFilter::markFilesAsOutOfDate, Qt::QueuedConnection);
 }
+
+#include "moc_allprojectsfilter.cpp"

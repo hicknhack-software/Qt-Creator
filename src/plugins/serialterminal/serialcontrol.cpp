@@ -220,3 +220,5 @@ void SerialControl::handleError(QSerialPort::SerialPortError error)
 
 } // namespace Internal
 } // namespace SerialTerminal
+
+#include "moc_serialcontrol.cpp"

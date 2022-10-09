@@ -1102,3 +1102,5 @@ QSize CompletionDelegate::sizeHint(const QStyleOptionViewItem &option, const QMo
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_locatorwidget.cpp"

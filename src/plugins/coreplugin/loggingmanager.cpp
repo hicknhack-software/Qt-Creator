@@ -302,3 +302,5 @@ bool LoggingViewManager::enabledInOriginalRules(const QMessageLogContext &contex
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_loggingmanager.cpp"

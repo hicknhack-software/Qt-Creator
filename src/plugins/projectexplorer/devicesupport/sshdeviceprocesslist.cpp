@@ -78,3 +78,5 @@ void SshDeviceProcessList::setFinished()
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_sshdeviceprocesslist.cpp"

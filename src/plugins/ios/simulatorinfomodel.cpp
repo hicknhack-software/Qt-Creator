@@ -142,3 +142,5 @@ void SimulatorInfoModel::populateSimulators(const SimulatorInfoList &simulatorLi
 
 } // namespace Internal
 } // namespace Ios
+
+#include "moc_simulatorinfomodel.cpp"

@@ -200,3 +200,5 @@ void ComponentTextModifier::handleOriginalTextChanged()
 
     emit textChanged();
 }
+
+#include "moc_componenttextmodifier.cpp"

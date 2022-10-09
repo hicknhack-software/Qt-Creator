@@ -695,3 +695,5 @@ void QbsProjectManagerPlugin::buildNamedProduct(QbsProject *project, const QStri
 
 } // namespace Internal
 } // namespace QbsProjectManager
+
+#include "moc_qbsprojectmanagerplugin.cpp"

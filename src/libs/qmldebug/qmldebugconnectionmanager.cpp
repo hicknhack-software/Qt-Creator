@@ -231,3 +231,5 @@ void QmlDebugConnectionManager::stopConnectionTimer()
 }
 
 } // namespace QmlDebug
+
+#include "moc_qmldebugconnectionmanager.cpp"

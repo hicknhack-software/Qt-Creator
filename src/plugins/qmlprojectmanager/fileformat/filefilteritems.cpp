@@ -292,3 +292,5 @@ FileFilterItem::FileFilterItem(const QString &fileFilter, QObject *parent)
 
 } // namespace QmlProjectManager
 
+
+#include "moc_filefilteritems.cpp"

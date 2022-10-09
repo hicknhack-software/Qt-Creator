@@ -425,3 +425,5 @@ void SelectionBoxGeometry::spatialNodeUpdateNeeded()
 }
 
 #endif // QUICK3D_MODULE
+
+#include "moc_selectionboxgeometry.cpp"

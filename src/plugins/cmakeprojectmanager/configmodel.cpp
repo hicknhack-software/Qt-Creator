@@ -694,3 +694,5 @@ QString ConfigModelTreeItem::currentValue() const
 }
 
 } // CMakeProjectManager::Internal
+
+#include "moc_configmodel.cpp"

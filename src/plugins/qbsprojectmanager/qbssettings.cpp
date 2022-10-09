@@ -220,3 +220,5 @@ void QbsSettingsPage::finish()
 
 } // namespace Internal
 } // namespace QbsProjectManager
+
+#include "moc_qbssettings.cpp"

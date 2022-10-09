@@ -334,3 +334,5 @@ void DataModel::setShortenTemplates(bool enabled)
 
 } // namespace Valgrind
 } // namespace Callgrind
+
+#include "moc_callgrinddatamodel.cpp"

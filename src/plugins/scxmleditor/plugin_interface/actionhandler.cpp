@@ -67,3 +67,5 @@ QAction *ActionHandler::action(ActionType type) const
 
     return nullptr;
 }
+
+#include "moc_actionhandler.cpp"

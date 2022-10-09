@@ -126,3 +126,5 @@ void QmlProfilerNotesModel::clear()
 }
 
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilernotesmodel.cpp"

@@ -477,3 +477,5 @@ void BaseTextFind::setMultiTextCursorProvider(const CursorProvider &provider)
 }
 
 } // namespace Core
+
+#include "moc_basetextfind.cpp"

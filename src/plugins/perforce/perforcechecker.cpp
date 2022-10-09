@@ -200,3 +200,5 @@ void PerforceChecker::setUseOverideCursor(bool v)
 }
 }
 
+
+#include "moc_perforcechecker.cpp"

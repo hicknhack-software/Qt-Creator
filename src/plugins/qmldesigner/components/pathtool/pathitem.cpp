@@ -949,3 +949,5 @@ PathUpdateDisabler::~PathUpdateDisabler()
 }
 
 }
+
+#include "moc_pathitem.cpp"

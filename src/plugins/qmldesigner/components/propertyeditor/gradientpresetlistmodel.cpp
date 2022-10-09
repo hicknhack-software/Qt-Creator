@@ -89,3 +89,5 @@ void GradientPresetListModel::registerDeclarativeType()
 {
     qmlRegisterType<GradientPresetListModel>("HelperWidgets", 2, 0, "GradientPresetListModel");
 }
+
+#include "moc_gradientpresetlistmodel.cpp"

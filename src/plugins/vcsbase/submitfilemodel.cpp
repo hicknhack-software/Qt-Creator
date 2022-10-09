@@ -235,3 +235,5 @@ void SubmitFileModel::setFileStatusQualifier(FileStatusQualifier &&func)
 }
 
 } // namespace VcsBase
+
+#include "moc_submitfilemodel.cpp"

@@ -82,3 +82,5 @@ void ItemLibraryItemsModel::addRoleNames()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_itemlibraryitemsmodel.cpp"

@@ -232,3 +232,5 @@ bool TestVersionControl::managesFile(const FilePath &workingDirectory, const QSt
 
 } // namespace Core
 #endif
+
+#include "moc_iversioncontrol.cpp"

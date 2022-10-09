@@ -53,3 +53,5 @@ void StackBrowser::goNext()
 
 } // namespace Callgrind
 } // namespace Valgrind
+
+#include "moc_callgrindstackbrowser.cpp"

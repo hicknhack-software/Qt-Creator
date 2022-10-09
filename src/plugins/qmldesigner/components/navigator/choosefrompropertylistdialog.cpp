@@ -181,3 +181,5 @@ void ChooseFromPropertyListDialog::fillList(const QStringList &propNames)
 }
 
 }
+
+#include "moc_choosefrompropertylistdialog.cpp"

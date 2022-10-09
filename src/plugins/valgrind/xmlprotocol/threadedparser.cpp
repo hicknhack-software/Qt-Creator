@@ -119,3 +119,5 @@ bool ThreadedParser::waitForFinished()
 
 } // namespace XmlProtocol
 } // namespace Valgrind
+
+#include "moc_threadedparser.cpp"

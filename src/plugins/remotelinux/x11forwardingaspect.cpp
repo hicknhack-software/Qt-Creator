@@ -39,3 +39,5 @@ QString X11ForwardingAspect::display() const
 }
 
 } // namespace RemoteLinux
+
+#include "moc_x11forwardingaspect.cpp"

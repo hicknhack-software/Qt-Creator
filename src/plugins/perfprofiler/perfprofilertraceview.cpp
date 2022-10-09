@@ -85,3 +85,5 @@ void PerfProfilerTraceView::updateCursorPosition()
 } // namespace Internal
 } // namespace PerfProfiler
 
+
+#include "moc_perfprofilertraceview.cpp"

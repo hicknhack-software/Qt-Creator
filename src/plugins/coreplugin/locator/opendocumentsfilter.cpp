@@ -106,3 +106,5 @@ void OpenDocumentsFilter::accept(const LocatorFilterEntry &selection,
     Q_UNUSED(selectionLength)
     BaseFileFilter::openEditorAt(selection);
 }
+
+#include "moc_opendocumentsfilter.cpp"

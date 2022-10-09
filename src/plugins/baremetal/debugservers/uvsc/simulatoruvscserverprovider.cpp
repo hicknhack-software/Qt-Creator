@@ -154,3 +154,5 @@ void SimulatorUvscServerProviderConfigWidget::setFromProvider()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_simulatoruvscserverprovider.cpp"

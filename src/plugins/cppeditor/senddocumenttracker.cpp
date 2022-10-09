@@ -234,3 +234,5 @@ void DocumentTrackerTest::testResetChangedContentStartPositionIfLastRevisionIsSe
 #endif
 
 } // namespace CppEditor
+
+#include "moc_senddocumenttracker.cpp"

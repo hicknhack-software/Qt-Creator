@@ -492,3 +492,5 @@ void TimelineToolBar::resizeEvent([[maybe_unused]] QResizeEvent *event)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_timelinetoolbar.cpp"

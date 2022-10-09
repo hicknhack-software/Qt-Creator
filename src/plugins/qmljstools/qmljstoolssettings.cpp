@@ -136,3 +136,5 @@ QmlJSCodeStylePreferences *QmlJSToolsSettings::globalCodeStyle()
 }
 
 } // namespace QmlJSTools
+
+#include "moc_qmljstoolssettings.cpp"

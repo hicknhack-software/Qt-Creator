@@ -609,3 +609,5 @@ void SubComponentManager::addAndParseImport(const Import &import)
 
 } // namespace QmlDesigner
 
+
+#include "moc_subcomponentmanager.cpp"

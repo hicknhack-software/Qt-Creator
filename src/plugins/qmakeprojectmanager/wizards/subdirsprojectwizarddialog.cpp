@@ -40,3 +40,5 @@ QtProjectParameters SubdirsProjectWizardDialog::parameters() const
 
 } // namespace Internal
 } // namespace QmakeProjectManager
+
+#include "moc_subdirsprojectwizarddialog.cpp"

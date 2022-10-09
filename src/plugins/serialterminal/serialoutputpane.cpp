@@ -736,3 +736,5 @@ void SerialOutputPane::sendInput()
 } // namespace SerialTerminal
 
 #include "serialoutputpane.moc"
+
+#include "moc_serialoutputpane.cpp"

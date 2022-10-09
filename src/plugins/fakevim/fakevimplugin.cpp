@@ -2208,3 +2208,5 @@ void FakeVimPlugin::setupTest(QString *title, FakeVimHandler **handler, QWidget 
 } // namespace FakeVim
 
 #include "fakevimplugin.moc"
+
+#include "moc_fakevimplugin.cpp"

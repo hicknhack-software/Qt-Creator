@@ -173,3 +173,5 @@ void CreateSimulatorDialog::populateRuntimes(const DeviceTypeInfo &deviceType)
 }
 
 } // Ios::Internal
+
+#include "moc_createsimulatordialog.cpp"

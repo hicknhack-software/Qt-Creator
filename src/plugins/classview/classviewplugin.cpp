@@ -45,3 +45,5 @@ bool ClassViewPlugin::initialize(const QStringList &arguments, QString *errorMes
 
 } // namespace Internal
 } // namespace ClassView
+
+#include "moc_classviewplugin.cpp"

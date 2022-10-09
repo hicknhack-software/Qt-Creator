@@ -335,3 +335,5 @@ bool SimpleProjectWizard::postGenerateFiles(const QWizard *w, const GeneratedFil
 } // namespace GenericProjectManager
 
 #include "simpleprojectwizard.moc"
+
+#include "moc_simpleprojectwizard.cpp"

@@ -128,3 +128,5 @@ const QList<IBundleProvider *> IBundleProvider::allBundleProviders()
 }
 
 } // end namespace QmlJSTools
+
+#include "moc_qmljsbundleprovider.cpp"

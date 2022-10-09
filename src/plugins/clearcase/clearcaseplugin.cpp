@@ -2756,3 +2756,5 @@ void ClearCasePlugin::testVcsStatusDynamicNotManaged()
 } // namespace ClearCase
 
 #include "clearcaseplugin.moc"
+
+#include "moc_clearcaseplugin.cpp"

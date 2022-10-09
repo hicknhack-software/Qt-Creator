@@ -490,3 +490,5 @@ void BuildStep::setSummaryUpdater(const std::function<QString()> &summaryUpdater
 }
 
 } // ProjectExplorer
+
+#include "moc_buildstep.cpp"

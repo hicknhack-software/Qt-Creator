@@ -200,3 +200,5 @@ void CommandBuilderAspect::updateGui()
 
 } // namespace Internal
 } // namespace IncrediBuild
+
+#include "moc_commandbuilderaspect.cpp"

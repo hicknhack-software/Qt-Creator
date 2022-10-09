@@ -197,3 +197,5 @@ QColor Theme::qmlDesignerBorderColor() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_theme.cpp"

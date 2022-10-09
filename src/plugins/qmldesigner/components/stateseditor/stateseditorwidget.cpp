@@ -157,3 +157,9 @@ void StatesEditorWidget::reloadQmlSource()
 }
 
 } // QmlDesigner
+
+#ifdef MOC_INCLUDE_FOLDER
+#include "stateseditor/moc_stateseditorwidget.cpp"
+#else
+#include "moc_stateseditorwidget.cpp"
+#endif

@@ -183,3 +183,5 @@ void AndroidPlugin::askUserAboutAndroidSetup()
 
 } // namespace Internal
 } // namespace Android
+
+#include "moc_androidplugin.cpp"

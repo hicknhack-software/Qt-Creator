@@ -47,9 +47,6 @@ add_qtc_plugin(QmlDesigner
     designermcumanager.cpp designermcumanager.h
     richtexteditordialog.cpp richtexteditordialog.h
     editorproxy.cpp editorproxy.h
-  EXPLICIT_MOC
-    components/propertyeditor/propertyeditorvalue.h
-    components/connectioneditor/connectionviewwidget.h
   EXTRA_TRANSLATIONS
     "${PROJECT_SOURCE_DIR}/share/qtcreator/qmldesigner"
   PROPERTIES
@@ -425,6 +422,7 @@ extend_qtc_plugin(QmlDesigner
     stateseditormodel.cpp stateseditormodel.h
     stateseditorview.cpp stateseditorview.h
     stateseditorwidget.cpp stateseditorwidget.h
+  DEFINES MOC_INCLUDE_FOLDER
 )
 
 extend_qtc_plugin(QmlDesigner

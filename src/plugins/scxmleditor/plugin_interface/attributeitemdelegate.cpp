@@ -19,3 +19,5 @@ ScxmlTag *AttributeItemDelegate::tag() const
 {
     return m_tag;
 }
+
+#include "moc_attributeitemdelegate.cpp"

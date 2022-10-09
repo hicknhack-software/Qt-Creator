@@ -1009,3 +1009,5 @@ int AbstractView::minorQtQuickVersion() const
 
 
 } // namespace QmlDesigner
+
+#include "moc_abstractview.cpp"

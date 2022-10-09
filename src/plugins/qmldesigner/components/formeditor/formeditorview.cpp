@@ -957,3 +957,5 @@ void FormEditorView::delayedReset()
 
 }
 
+
+#include "moc_formeditorview.cpp"

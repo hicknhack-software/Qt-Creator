@@ -117,3 +117,5 @@ QmlJSTools::SemanticInfo SemanticInfoUpdater::makeNewSemanticInfo(const QmlJS::D
 
 } // namespace Internal
 } // namespace QmlJSEditor
+
+#include "moc_qmljssemanticinfoupdater.cpp"

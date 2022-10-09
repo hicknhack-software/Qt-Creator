@@ -123,3 +123,5 @@ ExtensionSystem::IPlugin::ShutdownFlag SquishPlugin::aboutToShutdown()
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_squishplugin.cpp"

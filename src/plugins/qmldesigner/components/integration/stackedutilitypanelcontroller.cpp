@@ -48,3 +48,5 @@ QWidget* StackedUtilityPanelController::contentWidget() const
 
 }  // namespace QmlDesigner
 
+
+#include "moc_stackedutilitypanelcontroller.cpp"

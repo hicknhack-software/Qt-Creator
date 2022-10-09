@@ -409,3 +409,5 @@ quint32 BaseEngineDebugClient::queryObjectsForLocation(
 }
 
 } // namespace QmlDebug
+
+#include "moc_baseenginedebugclient.cpp"

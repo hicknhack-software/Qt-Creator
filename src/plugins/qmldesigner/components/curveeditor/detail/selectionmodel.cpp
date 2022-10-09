@@ -106,3 +106,5 @@ void SelectionModel::changeSelection([[maybe_unused]] const QItemSelection &sele
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_selectionmodel.cpp"

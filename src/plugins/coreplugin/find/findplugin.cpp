@@ -470,3 +470,5 @@ QTextDocument::FindFlags textDocumentFlagsForFindFlags(FindFlags flags)
 }
 
 } // namespace Core
+
+#include "moc_findplugin.cpp"

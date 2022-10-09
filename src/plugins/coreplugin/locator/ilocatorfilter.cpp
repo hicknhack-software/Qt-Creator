@@ -644,3 +644,5 @@ bool ILocatorFilter::isOldSetting(const QByteArray &state)
            The result has the highest number of matches for the regular
            expression.
 */
+
+#include "moc_ilocatorfilter.cpp"

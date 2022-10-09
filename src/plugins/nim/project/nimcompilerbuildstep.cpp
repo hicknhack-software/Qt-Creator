@@ -218,3 +218,5 @@ NimCompilerBuildStepFactory::NimCompilerBuildStepFactory()
 }
 
 } // namespace Nim
+
+#include "moc_nimcompilerbuildstep.cpp"

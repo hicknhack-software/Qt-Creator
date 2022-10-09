@@ -96,3 +96,5 @@ void RemoteLinuxSignalOperation::runnerDone()
 }
 
 } // RemoteLinux
+
+#include "moc_remotelinuxsignaloperation.cpp"

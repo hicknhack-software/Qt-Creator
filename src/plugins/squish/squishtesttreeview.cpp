@@ -255,3 +255,5 @@ void SquishTestTreeItemDelegate::setModelData(QWidget *editor, QAbstractItemMode
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_squishtesttreeview.cpp"

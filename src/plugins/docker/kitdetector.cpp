@@ -384,3 +384,5 @@ void KitDetectorPrivate::autoDetect()
 }
 
 } // Docker::Internal
+
+#include "moc_kitdetector.cpp"

@@ -858,3 +858,5 @@ bool MainWidget::event(QEvent *e)
 
     return QWidget::event(e);
 }
+
+#include "moc_mainwidget.cpp"

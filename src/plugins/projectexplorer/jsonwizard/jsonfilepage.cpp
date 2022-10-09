@@ -46,3 +46,5 @@ bool JsonFilePage::validatePage()
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_jsonfilepage.cpp"

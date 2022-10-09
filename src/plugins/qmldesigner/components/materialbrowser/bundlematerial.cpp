@@ -71,3 +71,5 @@ bool BundleMaterial::visible() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_bundlematerial.cpp"

@@ -141,3 +141,5 @@ void BaseConnectionManager::callCrashCallback()
 }
 } // namespace QmlDesigner
 
+
+#include "moc_baseconnectionmanager.cpp"

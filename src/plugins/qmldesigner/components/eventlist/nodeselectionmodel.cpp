@@ -71,3 +71,5 @@ void NodeSelectionModel::reselect()
 }
 
 } // namespace QmlDesigner.
+
+#include "moc_nodeselectionmodel.cpp"

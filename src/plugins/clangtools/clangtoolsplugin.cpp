@@ -179,3 +179,5 @@ QVector<QObject *> ClangToolsPlugin::createTestObjects() const
 
 } // namespace Internal
 } // namespace ClangTools
+
+#include "moc_clangtoolsplugin.cpp"

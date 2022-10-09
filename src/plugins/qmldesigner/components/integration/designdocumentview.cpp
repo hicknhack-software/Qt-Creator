@@ -234,3 +234,5 @@ void DesignDocumentView::copyModelNodes(const QList<ModelNode> &nodesToCopy)
 }
 
 }// namespace QmlDesigner
+
+#include "moc_designdocumentview.cpp"

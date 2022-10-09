@@ -166,3 +166,5 @@ CommonOptionsPage::CommonOptionsPage()
 
 } // namespace Internal
 } // namespace VcsBase
+
+#include "moc_commonvcssettings.cpp"

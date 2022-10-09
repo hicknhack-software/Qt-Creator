@@ -40,3 +40,5 @@ void TodoItemsScanner::processCommentLine(const QString &fileName, const QString
 
 }
 }
+
+#include "moc_todoitemsscanner.cpp"

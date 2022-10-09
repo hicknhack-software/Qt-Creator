@@ -750,3 +750,5 @@ QRectF GraphicsView::rangeMaxHandle(const QRectF &rect)
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_graphicsview.cpp"

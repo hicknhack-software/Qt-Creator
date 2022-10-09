@@ -450,3 +450,5 @@ void DirectoryFilter::setExclusionFilters(const QStringList &exclusionFilters)
 }
 
 } // namespace Core
+
+#include "moc_directoryfilter.cpp"

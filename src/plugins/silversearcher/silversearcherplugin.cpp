@@ -26,3 +26,5 @@ QVector<QObject *> SilverSearcherPlugin::createTestObjects() const
 #endif
 } // namespace Internal
 } // namespace SilverSearcher
+
+#include "moc_silversearcherplugin.cpp"

@@ -129,3 +129,5 @@ void NimToolChainConfigWidget::fillUI()
 }
 
 }
+
+#include "moc_nimtoolchainfactory.cpp"

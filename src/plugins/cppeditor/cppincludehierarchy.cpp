@@ -536,3 +536,5 @@ void CppIncludeHierarchyFactory::restoreSettings(QSettings *settings, int positi
 } // namespace CppEditor
 
 #include "cppincludehierarchy.moc"
+
+#include "moc_cppincludehierarchy.cpp"

@@ -426,3 +426,5 @@ bool ElementTasks::handleContextMenuAction(const qmt::DElement *element, const q
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_elementtasks.cpp"

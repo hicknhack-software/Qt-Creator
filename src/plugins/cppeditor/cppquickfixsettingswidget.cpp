@@ -254,3 +254,5 @@ void CppQuickFixSettingsWidget::currentCustomItemChanged(QListWidgetItem *newIte
         this->ui->lineEdit_customTemplateReturnExpression->setText("");
     }
 }
+
+#include "moc_cppquickfixsettingswidget.cpp"

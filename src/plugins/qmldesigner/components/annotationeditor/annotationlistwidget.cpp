@@ -95,3 +95,5 @@ void AnnotationListWidget::changeAnnotation(const QModelIndex &index)
 }
 
 }
+
+#include "moc_annotationlistwidget.cpp"

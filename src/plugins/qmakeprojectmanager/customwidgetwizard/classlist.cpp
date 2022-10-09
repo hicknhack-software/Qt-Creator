@@ -146,3 +146,5 @@ void ClassList::slotCurrentRowChanged(const QModelIndex &current, const QModelIn
 
 } // namespace Internal
 } // namespace QmakeProjectManager
+
+#include "moc_classlist.cpp"

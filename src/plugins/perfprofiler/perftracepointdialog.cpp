@@ -146,3 +146,5 @@ void PerfTracePointDialog::reject()
 
 } // namespace Internal
 } // namespace PerfProfiler
+
+#include "moc_perftracepointdialog.cpp"

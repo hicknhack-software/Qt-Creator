@@ -309,3 +309,5 @@ AndroidSdkPackage::PackageType GenericSdkPackage::type() const
 }
 
 } // namespace Android
+
+#include "moc_androidsdkpackage.cpp"

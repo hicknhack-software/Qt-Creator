@@ -576,3 +576,5 @@ IosDeviceInfoWidget::IosDeviceInfoWidget(const IDevice::Ptr &device)
 
 } // namespace Internal
 } // namespace Ios
+
+#include "moc_iosdevice.cpp"

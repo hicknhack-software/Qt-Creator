@@ -155,3 +155,5 @@ void IEditor::setDuplicateSupported(bool duplicatesSupported)
 }
 
 } // namespace Core
+
+#include "moc_ieditor.cpp"

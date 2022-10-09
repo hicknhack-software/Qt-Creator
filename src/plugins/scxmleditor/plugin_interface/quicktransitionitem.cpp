@@ -111,3 +111,5 @@ void QuickTransitionItem::paint(QPainter *painter, const QStyleOptionGraphicsIte
 
     painter->restore();
 }
+
+#include "moc_quicktransitionitem.cpp"

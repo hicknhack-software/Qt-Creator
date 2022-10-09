@@ -64,3 +64,5 @@ bool AppMainWindow::winEvent(MSG *msg, long *result)
 
 } // namespace Utils
 
+
+#include "moc_appmainwindow.cpp"

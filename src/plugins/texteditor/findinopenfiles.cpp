@@ -97,3 +97,5 @@ void FindInOpenFiles::updateEnabledState()
 {
     emit enabledChanged(isEnabled());
 }
+
+#include "moc_findinopenfiles.cpp"

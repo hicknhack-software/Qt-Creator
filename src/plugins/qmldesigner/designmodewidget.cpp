@@ -580,3 +580,5 @@ void DesignModeWidget::initialize()
 
 } // namespace Internal
 } // namespace Designer
+
+#include "moc_designmodewidget.cpp"

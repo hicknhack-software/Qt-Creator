@@ -225,3 +225,5 @@ bool NodeListView::setEventIds(const ModelNode &node, const QStringList &events)
 }
 
 } // namespace QmlDesigner.
+
+#include "moc_nodelistview.cpp"

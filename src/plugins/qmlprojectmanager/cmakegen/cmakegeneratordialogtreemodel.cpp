@@ -173,3 +173,5 @@ CheckableFileTreeItem* CMakeGeneratorDialogTreeModel::nodeForIndex(const QModelI
 
 } //GenerateCmake
 } //QmlProjectManager
+
+#include "moc_cmakegeneratordialogtreemodel.cpp"

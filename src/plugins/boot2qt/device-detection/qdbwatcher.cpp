@@ -140,3 +140,5 @@ void QdbWatcher::retry()
 
 } // namespace Internal
 } // namespace Qdb
+
+#include "moc_qdbwatcher.cpp"

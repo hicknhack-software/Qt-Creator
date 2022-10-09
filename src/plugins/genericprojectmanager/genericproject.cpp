@@ -706,3 +706,5 @@ void GenericProject::removeFilesTriggered(const FilePaths &filesToRemove)
 
 } // namespace Internal
 } // namespace GenericProjectManager
+
+#include "moc_genericproject.cpp"

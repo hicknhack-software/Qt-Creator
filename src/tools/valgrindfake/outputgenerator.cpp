@@ -142,3 +142,5 @@ void OutputGenerator::writeOutput()
         m_output->waitForBytesWritten(-1);
     emit finished();
 }
+
+#include "moc_outputgenerator.cpp"

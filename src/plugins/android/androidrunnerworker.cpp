@@ -843,3 +843,5 @@ void AndroidRunnerWorker::onProcessIdChanged(qint64 pid)
 
 } // namespace Internal
 } // namespace Android
+
+#include "moc_androidrunnerworker.cpp"

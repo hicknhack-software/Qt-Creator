@@ -37,3 +37,5 @@ void GlobalFileChangeBlocker::applicationStateChanged(Qt::ApplicationState state
 }
 
 } // namespace Utils
+
+#include "moc_globalfilechangeblocker.cpp"

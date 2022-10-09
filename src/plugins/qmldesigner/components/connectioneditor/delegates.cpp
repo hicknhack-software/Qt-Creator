@@ -411,3 +411,5 @@ QWidget *BackendDelegate::createEditor(QWidget *parent, const QStyleOptionViewIt
 } // namesapce Internal
 
 } // namespace QmlDesigner
+
+#include "moc_delegates.cpp"

@@ -106,3 +106,5 @@ void ElidingLabel::setAdditionalToolTipSeparator(const QString &newAdditionalToo
 }
 
 } // namespace Utils
+
+#include "moc_elidinglabel.cpp"

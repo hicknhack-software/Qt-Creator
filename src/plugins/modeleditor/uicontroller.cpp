@@ -86,3 +86,5 @@ void UiController::loadSettings(QSettings *settings)
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_uicontroller.cpp"

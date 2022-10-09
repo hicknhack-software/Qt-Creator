@@ -74,3 +74,5 @@ void Nim::Suggest::NimSuggestCache::onEditorClosed(Core::IEditor *editor)
 
 }
 }
+
+#include "moc_nimsuggestcache.cpp"

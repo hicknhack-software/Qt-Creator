@@ -357,3 +357,5 @@ void ActionEditor::invokeEditor(SignalHandlerProperty signalHandler,
 }
 
 } // QmlDesigner namespace
+
+#include "moc_actioneditor.cpp"

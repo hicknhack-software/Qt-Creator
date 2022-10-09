@@ -39,3 +39,5 @@ void GradientPresetDefaultListModel::addAllPresets()
             addItem(GradientPresetItem(preset));
     }
 }
+
+#include "moc_gradientpresetdefaultlistmodel.cpp"

@@ -150,3 +150,5 @@ void OutputCollector::bytesAvailable()
 }
 
 } // Debugger::Internal
+
+#include "moc_outputcollector.cpp"

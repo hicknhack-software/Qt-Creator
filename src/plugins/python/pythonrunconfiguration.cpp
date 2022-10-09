@@ -315,3 +315,5 @@ PythonOutputFormatterFactory::PythonOutputFormatterFactory()
 }
 
 } // Python::Internal
+
+#include "moc_pythonrunconfiguration.cpp"

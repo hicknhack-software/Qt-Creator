@@ -39,3 +39,5 @@ void ColorThemeDialog::save()
 {
     m_colorSettings->save();
 }
+
+#include "moc_colorthemedialog.cpp"

@@ -128,3 +128,5 @@ void DriverSelectionCpuDllView::refresh()
 } // namespace Uv
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_uvtargetdriverselection.cpp"

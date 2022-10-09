@@ -616,3 +616,5 @@ QVariant EasingCurveEditor::modelNodeBackend() const
 }
 
 } //QmlDesigner
+
+#include "moc_propertyeditorcontextobject.cpp"

@@ -703,3 +703,5 @@ void PerfProfilerTool::clearUi()
 
 } // namespace Internal
 } // namespace PerfProfiler
+
+#include "moc_perfprofilertool.cpp"

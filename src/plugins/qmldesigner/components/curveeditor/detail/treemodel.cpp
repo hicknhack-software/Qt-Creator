@@ -270,3 +270,5 @@ TreeItem *TreeModel::find(const QString &id)
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_treemodel.cpp"

@@ -1744,3 +1744,5 @@ void PerforcePlugin::testLogResolving()
 } // namespace Perforce
 
 #include "perforceplugin.moc"
+
+#include "moc_perforceplugin.cpp"

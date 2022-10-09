@@ -1858,3 +1858,5 @@ const QList<Document::DiagnosticMessage> CppModelManager::diagnosticMessages()
 }
 
 } // namespace CppEditor
+
+#include "moc_cppmodelmanager.cpp"

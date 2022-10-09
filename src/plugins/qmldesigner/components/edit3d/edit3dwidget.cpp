@@ -359,3 +359,5 @@ void Edit3DWidget::dropEvent(QDropEvent *dropEvent)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_edit3dwidget.cpp"

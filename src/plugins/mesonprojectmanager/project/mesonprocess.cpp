@@ -160,3 +160,5 @@ void MesonProcess::processStandardError()
 
 } // namespace Internal
 } // namespace MesonProjectManager
+
+#include "moc_mesonprocess.cpp"

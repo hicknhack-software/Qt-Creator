@@ -94,3 +94,5 @@ void DiagnosticView::mouseDoubleClickEvent(QMouseEvent *event)
 } // namespace Cppcheck
 
 //#include "clangtoolsdiagnosticview.moc"
+
+#include "moc_cppcheckdiagnosticview.cpp"

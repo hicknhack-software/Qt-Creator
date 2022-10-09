@@ -689,3 +689,5 @@ void VcsBaseSubmitEditor::filterUntrackedFilesOfProject(const QString &repositor
 }
 
 } // namespace VcsBase
+
+#include "moc_vcsbasesubmiteditor.cpp"

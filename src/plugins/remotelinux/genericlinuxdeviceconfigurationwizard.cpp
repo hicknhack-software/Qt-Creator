@@ -67,3 +67,5 @@ IDevice::Ptr GenericLinuxDeviceConfigurationWizard::device()
 }
 
 } // namespace RemoteLinux
+
+#include "moc_genericlinuxdeviceconfigurationwizard.cpp"

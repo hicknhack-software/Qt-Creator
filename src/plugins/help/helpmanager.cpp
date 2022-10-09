@@ -373,3 +373,5 @@ void HelpManagerPrivate::writeSettings()
 
 } // Internal
 } // Core
+
+#include "moc_helpmanager.cpp"

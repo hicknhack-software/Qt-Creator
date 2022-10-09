@@ -145,3 +145,5 @@ SearchResultFilterModel *SearchResultTreeView::model() const
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_searchresulttreeview.cpp"

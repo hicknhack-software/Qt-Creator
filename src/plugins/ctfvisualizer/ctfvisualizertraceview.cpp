@@ -52,3 +52,5 @@ void CtfVisualizerTraceView::selectByTypeId(int typeId)
 } // namespace Internal
 } // namespace CtfVisualizer
 
+
+#include "moc_ctfvisualizertraceview.cpp"

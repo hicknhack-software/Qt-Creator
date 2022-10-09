@@ -146,3 +146,5 @@ namespace ADS {
     }
 
 } // namespace ADS
+
+#include "moc_elidinglabel.cpp"

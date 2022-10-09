@@ -411,3 +411,5 @@ void SquishPerspective::setPerspectiveMode(PerspectiveMode mode)
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_squishperspective.cpp"

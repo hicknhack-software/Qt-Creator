@@ -50,3 +50,5 @@ bool HelpViewerFindSupport::find(const QString &txt,
         showWrapIndicator(m_viewer);
     return found;
 }
+
+#include "moc_helpfindsupport.cpp"

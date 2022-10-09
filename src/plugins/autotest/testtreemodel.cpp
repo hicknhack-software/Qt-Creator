@@ -936,3 +936,5 @@ bool TestTreeSortFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex 
 }
 
 } // namespace Autotest
+
+#include "moc_testtreemodel.cpp"

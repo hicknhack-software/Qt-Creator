@@ -382,3 +382,5 @@ LibraryDetailsWidget::LibraryDetailsWidget(QWidget *parent)
 }
 
 } // QmakeProjectManager::Internal
+
+#include "moc_addlibrarywizard.cpp"

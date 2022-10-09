@@ -163,3 +163,5 @@ QStringList QnxDeviceTester::versionSpecificCommandsToTest(int versionNumber) co
 }
 
 } // Qnx::Internal
+
+#include "moc_qnxdevicetester.cpp"

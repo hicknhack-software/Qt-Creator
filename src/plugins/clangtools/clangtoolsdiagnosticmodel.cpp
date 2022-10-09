@@ -703,3 +703,5 @@ void DiagnosticFilterModel::setFilterOptions(const OptionalFilterOptions &filter
 
 } // namespace Internal
 } // namespace ClangTools
+
+#include "moc_clangtoolsdiagnosticmodel.cpp"

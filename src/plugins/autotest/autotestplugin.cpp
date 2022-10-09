@@ -494,3 +494,5 @@ bool ChoicePair::matches(const ProjectExplorer::RunConfiguration *rc) const
 } // Autotest
 
 #include "autotestplugin.moc"
+
+#include "moc_autotestplugin.cpp"

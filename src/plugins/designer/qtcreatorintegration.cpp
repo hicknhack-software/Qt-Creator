@@ -571,3 +571,5 @@ void QtCreatorIntegration::slotSyncSettingsToDesigner()
     setHeaderSuffix(Utils::mimeTypeForName(CppEditor::Constants::CPP_HEADER_MIMETYPE).preferredSuffix());
     setHeaderLowercase(FormClassWizardPage::lowercaseHeaderFiles());
 }
+
+#include "moc_qtcreatorintegration.cpp"

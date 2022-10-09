@@ -104,3 +104,5 @@ ClazyStandaloneRunner::ClazyStandaloneRunner(const ClangDiagnosticConfig &config
 
 } // namespace Internal
 } // namespace ClangTools
+
+#include "moc_clangtidyclazyrunner.cpp"

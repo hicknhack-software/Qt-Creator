@@ -24,3 +24,5 @@ ScxmlTag *AttributeItemModel::tag() const
 {
     return m_tag;
 }
+
+#include "moc_attributeitemmodel.cpp"

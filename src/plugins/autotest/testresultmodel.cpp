@@ -526,3 +526,5 @@ bool TestResultFilterModel::acceptTestCaseResult(const QModelIndex &srcIndex) co
 
 } // namespace Internal
 } // namespace Autotest
+
+#include "moc_testresultmodel.cpp"

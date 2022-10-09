@@ -77,3 +77,5 @@ void CppLocatorData::flushPendingDocument(bool force) const
 }
 
 } // namespace CppEditor
+
+#include "moc_cpplocatordata.cpp"

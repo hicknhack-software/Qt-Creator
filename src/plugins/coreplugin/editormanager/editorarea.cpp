@@ -105,3 +105,5 @@ void EditorArea::updateCloseSplitButton()
 
 } // Internal
 } // Core
+
+#include "moc_editorarea.cpp"

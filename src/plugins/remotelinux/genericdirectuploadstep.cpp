@@ -67,3 +67,5 @@ QString GenericDirectUploadStep::displayName()
 }
 
 } //namespace RemoteLinux
+
+#include "moc_genericdirectuploadstep.cpp"

@@ -997,3 +997,5 @@ void HelpWidget::highlightSearchTerms(HelpViewer *viewer)
 
 } // Internal
 } // Help
+
+#include "moc_helpwidget.cpp"

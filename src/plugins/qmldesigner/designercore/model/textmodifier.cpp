@@ -27,3 +27,5 @@ QmlJS::Snapshot TextModifier::qmljsSnapshot()
     else
         return QmlJS::Snapshot();
 }
+
+#include "moc_textmodifier.cpp"

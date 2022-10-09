@@ -71,3 +71,5 @@ QString CommitEditor::repoRoot() const
 }
 
 } // Mercurial::Internal
+
+#include "moc_commiteditor.cpp"

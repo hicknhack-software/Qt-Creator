@@ -860,3 +860,5 @@ void QmakeBuildConfiguration::restrictNextBuild(const RunConfiguration *rc)
 } // namespace QmakeProjectManager
 
 #include <qmakebuildconfiguration.moc>
+
+#include "moc_qmakebuildconfiguration.cpp"

@@ -67,3 +67,5 @@ void StyledSeparator::paintEvent(QPaintEvent *event)
     option.palette = palette();
     style()->drawPrimitive(QStyle::PE_IndicatorToolBarSeparator, &option, &painter, this);
 }
+
+#include "moc_styledbar.cpp"

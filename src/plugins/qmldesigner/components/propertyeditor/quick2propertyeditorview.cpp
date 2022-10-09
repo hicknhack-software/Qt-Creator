@@ -76,3 +76,5 @@ void Quick2PropertyEditorView::registerQmlTypes()
 }
 
 } //QmlDesigner
+
+#include "moc_quick2propertyeditorview.cpp"

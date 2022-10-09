@@ -429,3 +429,5 @@ void BoostTestOutputReader::reportNoOutputFinish(const QString &description, Res
 
 } // namespace Internal
 } // namespace Autotest
+
+#include "moc_boosttestoutputreader.cpp"

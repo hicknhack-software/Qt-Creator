@@ -197,3 +197,5 @@ bool CodeGenerator::uiAsInheritance()
 }
 
 } // namespace QtSupport
+
+#include "moc_codegenerator.cpp"

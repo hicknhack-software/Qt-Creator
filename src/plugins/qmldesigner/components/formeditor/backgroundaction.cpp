@@ -79,3 +79,5 @@ QList<QColor> BackgroundAction::colors()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_backgroundaction.cpp"

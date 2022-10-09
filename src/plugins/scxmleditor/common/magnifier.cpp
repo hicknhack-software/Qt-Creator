@@ -110,3 +110,5 @@ void Magnifier::paintEvent(QPaintEvent *e)
     p.setBrush(m_gradientBrush);
     p.drawRect(rect());
 }
+
+#include "moc_magnifier.cpp"

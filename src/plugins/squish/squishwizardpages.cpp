@@ -384,3 +384,5 @@ bool SquishFileGenerator::allDone(const ProjectExplorer::JsonWizard *wizard, Cor
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_squishwizardpages.cpp"

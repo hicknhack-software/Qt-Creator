@@ -10,3 +10,5 @@ QtConfigWidget::QtConfigWidget()
 }
 
 } // namespace QtSupport
+
+#include "moc_qtconfigwidget.cpp"

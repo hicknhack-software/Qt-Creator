@@ -1147,3 +1147,5 @@ void FindToolBar::updateReplaceEnabled()
 }
 
 } // Core::Internal
+
+#include "moc_findtoolbar.cpp"

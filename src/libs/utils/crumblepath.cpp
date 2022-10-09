@@ -247,3 +247,4 @@ void CrumblePath::clear()
 } // namespace Utils
 
 #include "crumblepath.moc"
+#include "moc_crumblepath.cpp"

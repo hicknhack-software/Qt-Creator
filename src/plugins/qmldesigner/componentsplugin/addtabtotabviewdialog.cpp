@@ -37,3 +37,5 @@ QString AddTabToTabViewDialog::create(const QString &tabName, QWidget *parent)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_addtabtotabviewdialog.cpp"

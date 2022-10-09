@@ -161,3 +161,5 @@ void PlainTextEditModifier::reactivateChangeSignals()
         emit textChanged();
     }
 }
+
+#include "moc_plaintexteditmodifier.cpp"

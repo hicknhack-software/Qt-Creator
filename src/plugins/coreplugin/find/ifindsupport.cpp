@@ -169,3 +169,5 @@ void IFindSupport::showWrapIndicator(QWidget *parent)
     Utils::FadingIndicator::showPixmap(parent, Utils::StyleHelper::dpiSpecificImageFile(
                                            QLatin1String(":/find/images/wrapindicator.png")));
 }
+
+#include "moc_ifindsupport.cpp"

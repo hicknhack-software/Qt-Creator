@@ -96,3 +96,5 @@ CanvasStyleDialog::CanvasStyleDialog(const CanvasStyle &style, QWidget *parent)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_canvasstyledialog.cpp"

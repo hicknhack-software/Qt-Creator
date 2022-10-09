@@ -441,3 +441,5 @@ ClangToolRunner *ClangToolRunWorker::createRunner()
 
 } // namespace Internal
 } // namespace ClangTools
+
+#include "moc_clangtoolruncontrol.cpp"

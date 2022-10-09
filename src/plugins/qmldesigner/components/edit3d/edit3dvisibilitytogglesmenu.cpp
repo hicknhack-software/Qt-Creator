@@ -26,3 +26,5 @@ void Edit3DVisibilityTogglesMenu::mouseReleaseEvent(QMouseEvent *e)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_edit3dvisibilitytogglesmenu.cpp"

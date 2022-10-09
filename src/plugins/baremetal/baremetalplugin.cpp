@@ -89,3 +89,5 @@ void BareMetalPlugin::extensionsInitialized()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_baremetalplugin.cpp"

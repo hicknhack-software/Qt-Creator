@@ -212,3 +212,5 @@ void TodoItemsProvider::setupItemsModel()
 
 }
 }
+
+#include "moc_todoitemsprovider.cpp"

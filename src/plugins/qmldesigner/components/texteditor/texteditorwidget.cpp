@@ -224,3 +224,5 @@ void TextEditorWidget::dropEvent(QDropEvent *dropEvent)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_texteditorwidget.cpp"

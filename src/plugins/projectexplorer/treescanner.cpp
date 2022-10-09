@@ -169,3 +169,5 @@ void TreeScanner::scanForFiles(FutureInterface &fi, const Utils::FilePath& direc
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_treescanner.cpp"

@@ -159,3 +159,5 @@ ValidatingPropertyContainerLineEdit::ValidatingPropertyContainerLineEdit(const Q
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_propertyitemdelegate.cpp"

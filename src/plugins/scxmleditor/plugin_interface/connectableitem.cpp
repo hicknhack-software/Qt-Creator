@@ -794,3 +794,5 @@ int ConnectableItem::inputTransitionCount() const
 {
     return m_inputTransitions.count();
 }
+
+#include "moc_connectableitem.cpp"

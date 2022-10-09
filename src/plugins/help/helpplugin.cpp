@@ -646,3 +646,5 @@ void HelpPluginPrivate::doSetupIfNeeded()
 
 } // Internal
 } // Help
+
+#include "moc_helpplugin.cpp"

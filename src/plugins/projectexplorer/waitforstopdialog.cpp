@@ -62,3 +62,5 @@ void WaitForStopDialog::runControlFinished(const RunControl *runControl)
         updateProgressText();
     }
 }
+
+#include "moc_waitforstopdialog.cpp"

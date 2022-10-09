@@ -276,3 +276,5 @@ void OpenOcdGdbServerProviderConfigWidget::setFromProvider()
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_openocdgdbserverprovider.cpp"

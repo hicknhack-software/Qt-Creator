@@ -158,3 +158,5 @@ void ConfigurationDialog::updateDocumentation(const QString &word, const QString
 }
 
 } // Beautifier::Internal
+
+#include "moc_configurationdialog.cpp"

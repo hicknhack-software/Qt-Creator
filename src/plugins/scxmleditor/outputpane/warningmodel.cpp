@@ -231,3 +231,5 @@ void WarningModel::warningDestroyed(QObject *w)
     m_countChecker->start();
     emit warningsChanged();
 }
+
+#include "moc_warningmodel.cpp"

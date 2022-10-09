@@ -577,3 +577,5 @@ void ListItemDelegate::goon()
 }
 
 } // namespace Core
+
+#include "moc_welcomepagehelper.cpp"

@@ -74,3 +74,5 @@ void NavigationWidgetFactory::restoreSettings(QSettings *settings, int position,
 
 } // namespace Internal
 } // namespace ClassView
+
+#include "moc_classviewnavigationwidgetfactory.cpp"

@@ -249,3 +249,5 @@ void WorkspaceModel::runWorkspaceNameInputDialog(WorkspaceNameInputDialog *works
 }
 
 } // namespace ADS
+
+#include "moc_workspacemodel.cpp"

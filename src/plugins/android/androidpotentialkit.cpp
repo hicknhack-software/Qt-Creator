@@ -102,3 +102,5 @@ void AndroidPotentialKitWidget::recheck()
         }
     }
 }
+
+#include "moc_androidpotentialkit.cpp"

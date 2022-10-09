@@ -240,3 +240,5 @@ void OpenEditorsWindow::addItem(DocumentModel::Entry *entry,
     if (m_editorList->topLevelItemCount() == 1)
         m_editorList->setCurrentItem(item);
 }
+
+#include "moc_openeditorswindow.cpp"

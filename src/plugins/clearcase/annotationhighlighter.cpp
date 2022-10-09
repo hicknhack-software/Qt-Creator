@@ -17,3 +17,5 @@ QString ClearCaseAnnotationHighlighter::changeNumber(const QString &block) const
 }
 
 } // ClearCase::Internal
+
+#include "moc_annotationhighlighter.cpp"

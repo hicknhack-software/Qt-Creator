@@ -180,3 +180,5 @@ Core::LocatorFilterEntry CppFunctionsFilter::filterEntryFromIndexItem(IndexItem:
 }
 
 } // namespace CppEditor
+
+#include "moc_cpplocatorfilter.cpp"

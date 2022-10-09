@@ -114,3 +114,5 @@ QTableView *SignalListDialog::tableView() const
 }
 
 } // QmlDesigner namespace
+
+#include "moc_signallistdialog.cpp"

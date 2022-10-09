@@ -697,3 +697,5 @@ void ExternalToolRunner::readStandardError()
 }
 
 } // namespace Core
+
+#include "moc_externaltool.cpp"

@@ -1110,3 +1110,5 @@ DebuggerEngine *createLldbEngine()
 }
 
 } // Debugger::Internal
+
+#include "moc_lldbengine.cpp"

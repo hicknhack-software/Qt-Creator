@@ -273,3 +273,5 @@ void ItemLibraryImport::setAllCategoriesVisible(bool visible)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_itemlibraryimport.cpp"

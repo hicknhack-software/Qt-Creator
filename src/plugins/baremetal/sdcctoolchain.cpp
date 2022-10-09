@@ -488,3 +488,5 @@ void SdccToolChainConfigWidget::handleCompilerCommandChange()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_sdcctoolchain.cpp"

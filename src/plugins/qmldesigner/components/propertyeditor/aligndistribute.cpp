@@ -674,3 +674,5 @@ bool AlignDistribute::executePixelPerfectDialog() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_aligndistribute.cpp"

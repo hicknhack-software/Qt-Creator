@@ -180,3 +180,5 @@ void QmakeProjectManagerPlugin::testQmakeOutputParsers()
 } // QmakeProjectManager
 
 #endif
+
+#include "moc_qmakeparser.cpp"

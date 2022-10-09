@@ -2090,3 +2090,5 @@ void CppCompletionAssistInterface::getCppSpecifics() const
 }
 
 } // CppEditor::Internal
+
+#include "moc_cppcompletionassist.cpp"

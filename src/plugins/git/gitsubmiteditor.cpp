@@ -264,3 +264,5 @@ QByteArray GitSubmitEditor::fileContents() const
 }
 
 } // Git::Internal
+
+#include "moc_gitsubmiteditor.cpp"

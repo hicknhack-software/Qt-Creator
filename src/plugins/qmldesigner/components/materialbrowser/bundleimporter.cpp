@@ -336,3 +336,5 @@ FilePath BundleImporter::resolveBundleImportPath()
 }
 
 } // namespace QmlDesigner::Internal
+
+#include "moc_bundleimporter.cpp"

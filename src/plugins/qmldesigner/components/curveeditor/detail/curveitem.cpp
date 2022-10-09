@@ -501,3 +501,5 @@ void CurveItem::markDirty()
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_curveitem.cpp"

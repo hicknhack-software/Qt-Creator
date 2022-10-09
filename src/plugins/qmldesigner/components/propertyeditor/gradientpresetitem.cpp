@@ -178,3 +178,5 @@ QDataStream &operator>>(QDataStream &stream, GradientPresetItem &gradient)
     stream >> gradient.m_presetName;
     return stream;
 }
+
+#include "moc_gradientpresetitem.cpp"

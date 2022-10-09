@@ -845,3 +845,5 @@ void Edit3DView::dropBundleMaterial(const QPointF &pos)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_edit3dview.cpp"

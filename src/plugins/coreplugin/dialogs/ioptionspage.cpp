@@ -289,3 +289,5 @@ QIcon IOptionsPageProvider::categoryIcon() const
 }
 
 } // Core
+
+#include "moc_ioptionspage.cpp"

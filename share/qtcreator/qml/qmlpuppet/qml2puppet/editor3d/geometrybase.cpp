@@ -57,3 +57,5 @@ void GeometryBase::updateGeometry()
 }
 
 #endif // QUICK3D_MODULE
+
+#include "moc_geometrybase.cpp"

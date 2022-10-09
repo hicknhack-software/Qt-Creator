@@ -425,3 +425,5 @@ bool SnippetsCollection::isGroupKnown(const QString &groupId) const
 
 } // Internal
 } // TextEditor
+
+#include "moc_snippetscollection.cpp"

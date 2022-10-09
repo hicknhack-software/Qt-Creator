@@ -116,3 +116,5 @@ void AddTabDesignerAction::addNewTab()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_addtabdesigneraction.cpp"

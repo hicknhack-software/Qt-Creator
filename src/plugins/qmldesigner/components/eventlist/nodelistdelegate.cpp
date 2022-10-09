@@ -66,3 +66,5 @@ void NodeListDelegate::close()
 }
 
 } // namespace QmlDesigner.
+
+#include "moc_nodelistdelegate.cpp"

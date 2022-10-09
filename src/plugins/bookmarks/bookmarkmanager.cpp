@@ -794,3 +794,5 @@ NavigationView BookmarkViewFactory::createWidget()
 }
 
 } // Bookmarks::Internal
+
+#include "moc_bookmarkmanager.cpp"

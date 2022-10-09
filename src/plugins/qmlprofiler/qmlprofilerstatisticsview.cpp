@@ -388,3 +388,5 @@ void QmlProfilerStatisticsRelativesView::jumpToItem(int typeIndex)
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilerstatisticsview.cpp"

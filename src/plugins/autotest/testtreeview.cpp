@@ -41,3 +41,5 @@ void TestTreeView::deselectAll()
 
 } // namespace Internal
 } // namespace Autotest
+
+#include "moc_testtreeview.cpp"

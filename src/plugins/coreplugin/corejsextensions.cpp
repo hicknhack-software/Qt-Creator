@@ -177,3 +177,5 @@ QString UtilsJsExtension::qtQuickVersion(const QString &filePath) const
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_corejsextensions.cpp"

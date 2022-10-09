@@ -1095,3 +1095,5 @@ void QmlJSEditorFactory::decorateEditor(TextEditorWidget *editor)
 }
 
 } // namespace QmlJSEditor
+
+#include "moc_qmljseditor.cpp"

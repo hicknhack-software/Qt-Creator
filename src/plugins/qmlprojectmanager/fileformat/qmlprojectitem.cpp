@@ -114,3 +114,5 @@ void QmlProjectItem::addToEnviroment(const QString &key, const QString &value)
 }
 
 } // namespace QmlProjectManager
+
+#include "moc_qmlprojectitem.cpp"

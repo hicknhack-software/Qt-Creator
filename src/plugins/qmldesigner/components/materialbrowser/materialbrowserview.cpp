@@ -473,3 +473,5 @@ void MaterialBrowserView::instancesCompleted(const QVector<ModelNode> &completed
 }
 
 } // namespace QmlDesigner
+
+#include "moc_materialbrowserview.cpp"

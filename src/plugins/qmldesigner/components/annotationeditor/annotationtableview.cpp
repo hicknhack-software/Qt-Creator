@@ -470,3 +470,5 @@ QVariant AnnotationTableView::commentToData(Comment const& comment, QMetaType::T
 }
 
 } // namespace QmlDesigner
+
+#include "moc_annotationtableview.cpp"

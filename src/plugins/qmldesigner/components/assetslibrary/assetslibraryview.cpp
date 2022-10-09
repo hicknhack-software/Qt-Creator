@@ -104,3 +104,5 @@ AssetsLibraryView::ImageCacheData *AssetsLibraryView::imageCacheData()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_assetslibraryview.cpp"

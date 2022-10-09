@@ -193,3 +193,5 @@ void BuildOptionDelegate::setModelData(QWidget *editor,
 
 } // namespace Internal
 } // namespace MesonProjectManager
+
+#include "moc_buildoptionsmodel.cpp"

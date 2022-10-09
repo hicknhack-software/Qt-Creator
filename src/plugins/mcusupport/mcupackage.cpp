@@ -474,3 +474,5 @@ QVariant McuToolChainPackage::debuggerId() const
 }
 
 } // namespace McuSupport::Internal
+
+#include "moc_mcupackage.cpp"

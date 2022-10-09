@@ -353,3 +353,5 @@ void TransitionEditorView::asyncUpdate(const ModelNode &transition)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_transitioneditorview.cpp"

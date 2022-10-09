@@ -41,3 +41,5 @@ int PendingChangesDialog::changeNumber() const
     int i = item->data(234).toInt(&ok);
     return ok ? i : -1;
 }
+
+#include "moc_pendingchangesdialog.cpp"

@@ -258,3 +258,5 @@ void ModelsManager::openDiagram(ExtDocumentController *documentController,
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_modelsmanager.cpp"

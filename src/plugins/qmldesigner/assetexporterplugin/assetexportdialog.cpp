@@ -197,3 +197,5 @@ void AssetExportDialog::onTaskAdded(const ProjectExplorer::Task &task)
 }
 
 }
+
+#include "moc_assetexportdialog.cpp"

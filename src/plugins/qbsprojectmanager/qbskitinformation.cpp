@@ -104,3 +104,5 @@ KitAspectWidget *QbsKitAspect::createConfigWidget(Kit *k) const
 
 } // namespace Internal
 } // namespace QbsProjectManager
+
+#include "moc_qbskitinformation.cpp"

@@ -96,3 +96,5 @@ void InteractiveConnectionManager::puppetAlive(Connection &connection)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_interactiveconnectionmanager.cpp"

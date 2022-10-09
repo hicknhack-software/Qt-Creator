@@ -181,3 +181,5 @@ void TestOutputReader::sendAndResetSanitizerResult()
 }
 
 } // namespace Autotest
+
+#include "moc_testoutputreader.cpp"

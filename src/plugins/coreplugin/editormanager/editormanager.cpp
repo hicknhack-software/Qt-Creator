@@ -3815,3 +3815,5 @@ void EditorManager::setWindowTitleVcsTopicHandler(WindowTitleHandler handler)
 {
     d->m_titleVcsTopicHandler = handler;
 }
+
+#include "moc_editormanager.cpp"

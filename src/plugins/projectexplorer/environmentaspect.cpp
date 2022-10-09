@@ -122,3 +122,5 @@ Environment EnvironmentAspect::BaseEnvironment::unmodifiedBaseEnvironment() cons
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_environmentaspect.cpp"

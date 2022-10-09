@@ -1083,3 +1083,5 @@ const char *PerspectiveState::savesHeaderKey()
 }
 
 } // Utils
+
+#include "moc_debuggermainwindow.cpp"

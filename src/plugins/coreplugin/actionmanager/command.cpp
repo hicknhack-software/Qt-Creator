@@ -548,3 +548,5 @@ QToolButton *Command::toolButtonWithAppendedShortcut(QAction *action, Command *c
 }
 
 } // namespace Core
+
+#include "moc_command.cpp"

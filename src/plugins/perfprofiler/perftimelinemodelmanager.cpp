@@ -115,3 +115,5 @@ void PerfTimelineModelManager::clear()
 
 } // namespace Internal
 } // namespace PerfProfiler
+
+#include "moc_perftimelinemodelmanager.cpp"

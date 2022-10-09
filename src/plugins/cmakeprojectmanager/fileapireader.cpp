@@ -383,3 +383,5 @@ void FileApiReader::replyDirectoryHasChanged(const QString &directory) const
 }
 
 } // CMakeProjectManager::Internal
+
+#include "moc_fileapireader.cpp"

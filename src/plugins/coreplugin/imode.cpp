@@ -117,3 +117,5 @@ bool IMode::isEnabled() const
 }
 
 } // namespace Core
+
+#include "moc_imode.cpp"

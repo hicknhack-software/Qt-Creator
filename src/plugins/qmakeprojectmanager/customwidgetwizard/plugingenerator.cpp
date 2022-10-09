@@ -338,3 +338,5 @@ QString PluginGenerator::cStringQuote(QString s)
 
 }
 }
+
+#include "moc_plugingenerator.cpp"

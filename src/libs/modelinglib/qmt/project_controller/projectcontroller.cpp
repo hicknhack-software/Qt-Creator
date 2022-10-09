@@ -87,3 +87,5 @@ void ProjectController::saveAs(const QString &fileName)
 }
 
 } // namespace qmt
+
+#include "moc_projectcontroller.cpp"

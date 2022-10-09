@@ -20,3 +20,5 @@ void PropertyEditorWidget::resizeEvent(QResizeEvent * event)
 }
 
 }
+
+#include "moc_propertyeditorwidget.cpp"

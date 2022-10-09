@@ -207,3 +207,5 @@ bool SaveItemsDialog::alwaysSaveChecked()
 {
     return m_saveBeforeBuildCheckBox->isChecked();
 }
+
+#include "moc_saveitemsdialog.cpp"

@@ -471,3 +471,5 @@ void QmlDesignerProjectManager::update()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_qmldesignerprojectmanager.cpp"

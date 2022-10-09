@@ -138,3 +138,5 @@ void AndroidExtraLibraryListModel::removeEntries(QModelIndexList list)
 }
 
 } // Android
+
+#include "moc_androidextralibrarylistmodel.cpp"

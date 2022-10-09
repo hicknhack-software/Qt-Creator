@@ -89,3 +89,5 @@ QCheckBox *OptionsPopup::createCheckboxForCommand(Id id)
 }
 
 } // namespace Core
+
+#include "moc_optionspopup.cpp"

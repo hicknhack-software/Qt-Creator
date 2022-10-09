@@ -654,3 +654,5 @@ SearchResultTreeModel *SearchResultFilterModel::sourceModel() const
 } // namespace Core
 
 #include <searchresulttreemodel.moc>
+
+#include "moc_searchresulttreemodel.cpp"

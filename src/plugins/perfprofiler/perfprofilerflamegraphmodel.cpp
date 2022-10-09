@@ -400,3 +400,5 @@ void Payload::countLostRequest()
 
 } // namespace Internal
 } // namespace PerfProfiler
+
+#include "moc_perfprofilerflamegraphmodel.cpp"

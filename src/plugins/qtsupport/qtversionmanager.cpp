@@ -655,3 +655,5 @@ QtVersionManager::DocumentationSetting QtVersionManager::documentationSetting()
 }
 
 } // namespace QtVersion
+
+#include "moc_qtversionmanager.cpp"

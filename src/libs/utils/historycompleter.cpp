@@ -251,3 +251,5 @@ void HistoryCompleter::setSettings(QtcSettings *settings)
 }
 
 } // namespace Utils
+
+#include "moc_historycompleter.cpp"

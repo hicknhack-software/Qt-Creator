@@ -197,3 +197,5 @@ GDB 32bit | Api             | Api             | N/A             | Win32         
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_desktopprocesssignaloperation.cpp"

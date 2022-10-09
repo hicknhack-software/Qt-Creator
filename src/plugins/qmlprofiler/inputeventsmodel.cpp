@@ -163,3 +163,5 @@ InputEventsModel::Item::Item(InputEventType type, int a, int b) :
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_inputeventsmodel.cpp"

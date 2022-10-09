@@ -214,3 +214,5 @@ void WinDebugInterface::startIfNeeded() { }
 } // namespace ProjectExplorer
 
 #endif
+
+#include "moc_windebuginterface.cpp"

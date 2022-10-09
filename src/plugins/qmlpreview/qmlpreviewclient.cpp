@@ -100,3 +100,5 @@ void QmlPreviewClient::stateChanged(QmlDebug::QmlDebugClient::State state)
 }
 
 } // namespace QmlPreview
+
+#include "moc_qmlpreviewclient.cpp"

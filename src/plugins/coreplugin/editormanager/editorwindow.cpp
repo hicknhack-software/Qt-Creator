@@ -98,3 +98,5 @@ void EditorWindow::updateWindowTitle()
 
 } // Internal
 } // Core
+
+#include "moc_editorwindow.cpp"

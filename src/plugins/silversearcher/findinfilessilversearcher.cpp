@@ -210,3 +210,5 @@ void FindInFilesSilverSearcher::readSettings(QSettings *settings)
 }
 
 } // namespace SilverSearcher
+
+#include "moc_findinfilessilversearcher.cpp"

@@ -251,3 +251,5 @@ QString CppToolsJsExtension::includeStatement(
 }
 
 } // namespace CppEditor::Internal
+
+#include "moc_cpptoolsjsextension.cpp"

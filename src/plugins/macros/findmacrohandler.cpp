@@ -201,3 +201,5 @@ void FindMacroHandler::startRecording(Macro* macro)
     if (current)
         changeEditor(current);
 }
+
+#include "moc_findmacrohandler.cpp"

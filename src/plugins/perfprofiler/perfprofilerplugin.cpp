@@ -86,3 +86,5 @@ QVector<QObject *> PerfProfilerPlugin::createTestObjects() const
 
 } // namespace Internal
 } // namespace PerfProfiler
+
+#include "moc_perfprofilerplugin.cpp"

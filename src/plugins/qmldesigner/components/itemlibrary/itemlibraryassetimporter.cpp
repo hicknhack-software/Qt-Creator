@@ -768,3 +768,5 @@ bool ItemLibraryAssetImporter::isCancelled() const
 }
 
 } // QmlDesigner
+
+#include "moc_itemlibraryassetimporter.cpp"

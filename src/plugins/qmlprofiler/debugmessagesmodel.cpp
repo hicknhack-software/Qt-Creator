@@ -107,3 +107,5 @@ QVariantMap DebugMessagesModel::location(int index) const
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_debugmessagesmodel.cpp"

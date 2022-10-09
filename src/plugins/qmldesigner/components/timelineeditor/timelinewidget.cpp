@@ -632,3 +632,5 @@ TimelineView *TimelineWidget::timelineView() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_timelinewidget.cpp"

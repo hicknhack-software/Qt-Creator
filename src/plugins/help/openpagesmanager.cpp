@@ -230,3 +230,5 @@ void OpenPagesManager::openPagesContextMenu(const QPoint &point)
 }
 
 } // Help::Internal
+
+#include "moc_openpagesmanager.cpp"

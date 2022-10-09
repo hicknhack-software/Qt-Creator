@@ -535,3 +535,5 @@ void SearchResultWidget::updateMatchesFoundLabel()
 } // namespace Core
 
 #include "searchresultwidget.moc"
+
+#include "moc_searchresultwidget.cpp"

@@ -414,3 +414,5 @@ QTabWidget *ClangDiagnosticConfigsWidget::tabWidget() const
 } // CppEditor namespace
 
 #include "clangdiagnosticconfigswidget.moc"
+
+#include "moc_clangdiagnosticconfigswidget.cpp"

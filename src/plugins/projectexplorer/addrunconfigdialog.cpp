@@ -165,3 +165,5 @@ void AddRunConfigDialog::accept()
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_addrunconfigdialog.cpp"

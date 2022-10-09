@@ -126,3 +126,5 @@ void TodoItemsModel::todoItemsListUpdated()
 
 }
 }
+
+#include "moc_todoitemsmodel.cpp"

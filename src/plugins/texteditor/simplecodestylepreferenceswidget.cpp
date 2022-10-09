@@ -73,3 +73,5 @@ TabSettingsWidget *SimpleCodeStylePreferencesWidget::tabSettingsWidget() const
 }
 
 } // namespace TextEditor
+
+#include "moc_simplecodestylepreferenceswidget.cpp"

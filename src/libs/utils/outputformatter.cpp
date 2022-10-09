@@ -662,3 +662,5 @@ void OutputFormatter::appendMessage(const QString &text, OutputFormat format)
 }
 
 } // namespace Utils
+
+#include "moc_outputformatter.cpp"

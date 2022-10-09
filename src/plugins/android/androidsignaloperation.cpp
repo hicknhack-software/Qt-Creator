@@ -124,3 +124,5 @@ void AndroidSignalOperation::interruptProcess(const QString &filePath)
 
 } // Internal
 } // Android
+
+#include "moc_androidsignaloperation.cpp"

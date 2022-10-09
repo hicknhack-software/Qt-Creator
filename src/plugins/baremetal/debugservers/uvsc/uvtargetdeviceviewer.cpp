@@ -197,3 +197,5 @@ DeviceSelection DeviceSelectionDialog::selection() const
 } // namespace Uv
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_uvtargetdeviceviewer.cpp"

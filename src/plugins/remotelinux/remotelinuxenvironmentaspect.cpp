@@ -75,3 +75,5 @@ void RemoteLinuxEnvironmentAspect::toMap(QVariantMap &map) const
 
 } // namespace RemoteLinux
 
+
+#include "moc_remotelinuxenvironmentaspect.cpp"

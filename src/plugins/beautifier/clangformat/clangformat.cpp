@@ -226,3 +226,5 @@ Command ClangFormat::command(int offset, int length) const
 
 } // namespace Internal
 } // namespace Beautifier
+
+#include "moc_clangformat.cpp"

@@ -81,3 +81,5 @@ void CommandButton::updateToolTip()
         setToolTip(Utils::ProxyAction::stringWithAppendedShortcut(m_toolTipBase,
                                                                   m_command->keySequence()));
 }
+
+#include "moc_commandbutton.cpp"

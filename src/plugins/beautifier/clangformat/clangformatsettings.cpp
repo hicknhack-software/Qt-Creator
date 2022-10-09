@@ -217,3 +217,5 @@ void ClangFormatSettings::readStyles()
 
 } // namespace Internal
 } // namespace Beautifier
+
+#include "moc_clangformatsettings.cpp"

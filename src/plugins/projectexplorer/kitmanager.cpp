@@ -814,3 +814,5 @@ QString KitFeatureProvider::displayNameForPlatform(Id id) const
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_kitmanager.cpp"

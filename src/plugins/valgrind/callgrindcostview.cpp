@@ -74,3 +74,5 @@ CostDelegate::CostFormat CostView::costFormat() const
 
 } // namespace Internal
 } // namespace Valgrind
+
+#include "moc_callgrindcostview.cpp"

@@ -132,3 +132,5 @@ void AllProjectsFind::readSettings(QSettings *settings)
     readCommonSettings(settings, "*", "");
     settings->endGroup();
 }
+
+#include "moc_allprojectsfind.cpp"

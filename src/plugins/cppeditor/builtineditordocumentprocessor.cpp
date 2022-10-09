@@ -311,3 +311,5 @@ SemanticInfo::Source BuiltinEditorDocumentProcessor::createSemanticInfoSource(bo
 }
 
 } // namespace CppEditor
+
+#include "moc_builtineditordocumentprocessor.cpp"

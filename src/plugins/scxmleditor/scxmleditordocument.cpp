@@ -139,3 +139,5 @@ void ScxmlEditorDocument::syncXmlFromDesignWidget()
 {
     document()->setPlainText(designWidgetContents());
 }
+
+#include "moc_scxmleditordocument.cpp"

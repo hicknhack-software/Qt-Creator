@@ -955,3 +955,5 @@ const QLoggingCategory &FlatModel::logger()
 } // namespace Internal
 } // namespace ProjectExplorer
 
+
+#include "moc_projectmodels.cpp"

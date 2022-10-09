@@ -309,3 +309,5 @@ void CppcheckTool::finishParsing()
 
 } // namespace Internal
 } // namespace Cppcheck
+
+#include "moc_cppchecktool.cpp"

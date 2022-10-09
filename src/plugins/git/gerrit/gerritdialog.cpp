@@ -363,3 +363,5 @@ void GerritDialog::setProgressIndicatorVisible(bool v)
 
 } // namespace Internal
 } // namespace Gerrit
+
+#include "moc_gerritdialog.cpp"

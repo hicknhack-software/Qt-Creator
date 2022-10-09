@@ -158,3 +158,5 @@ QVector<QObject *> McuSupportPlugin::createTestObjects() const
 
 } // namespace Internal
 } // namespace McuSupport
+
+#include "moc_mcusupportplugin.cpp"

@@ -182,3 +182,5 @@ void ChangeStyleAction::currentContextChanged(const SelectionContext &selectionC
 }
 
 } // namespace QmlDesigner
+
+#include "moc_changestyleaction.cpp"

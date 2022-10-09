@@ -1104,3 +1104,5 @@ void TextDocument::moveMark(TextMark *mark, int previousLine)
 }
 
 } // namespace TextEditor
+
+#include "moc_textdocument.cpp"

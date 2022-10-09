@@ -65,3 +65,5 @@ void NimProject::setExcludedFiles(const QStringList &excludedFiles)
 }
 
 } // namespace Nim
+
+#include "moc_nimproject.cpp"

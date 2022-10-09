@@ -36,3 +36,5 @@ void MovableFrame::mouseReleaseEvent(QMouseEvent *e)
     QFrame::mouseReleaseEvent(e);
     m_mouseDown = false;
 }
+
+#include "moc_movableframe.cpp"

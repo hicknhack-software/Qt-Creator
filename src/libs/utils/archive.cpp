@@ -180,3 +180,5 @@ void Archive::unarchive()
 }
 
 } // namespace Utils
+
+#include "moc_archive.cpp"

@@ -170,3 +170,5 @@ void TimelineZoomControl::clampRangeToWindow()
 }
 
 } // namespace Timeline
+
+#include "moc_timelinezoomcontrol.cpp"

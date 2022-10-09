@@ -477,3 +477,5 @@ void GraphicsScene::resetZValues()
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_graphicsscene.cpp"

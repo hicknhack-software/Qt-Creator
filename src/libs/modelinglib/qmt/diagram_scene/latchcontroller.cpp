@@ -276,3 +276,5 @@ void LatchController::applyLatches()
 }
 
 } // namespace qmt
+
+#include "moc_latchcontroller.cpp"

@@ -280,3 +280,5 @@ ConnectionView *ConnectionView::instance()
 } // namesapce Internal
 
 } // namespace QmlDesigner
+
+#include "moc_connectionview.cpp"

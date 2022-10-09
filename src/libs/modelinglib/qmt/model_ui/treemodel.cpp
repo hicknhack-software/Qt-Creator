@@ -813,3 +813,5 @@ QIcon TreeModel::createIcon(StereotypeIcon::Element stereotypeIconElement, Style
 }
 
 } // namespace qmt
+
+#include "moc_treemodel.cpp"

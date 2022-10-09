@@ -124,3 +124,5 @@ void printPropertyType(const ModelNode &node, const PropertyName &name)
 }
 
 } // namespace QmlDesigner.
+
+#include "moc_eventlistutils.cpp"

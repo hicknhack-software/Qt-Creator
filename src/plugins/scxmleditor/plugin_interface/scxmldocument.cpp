@@ -682,3 +682,5 @@ QFileInfo ScxmlDocument::qtBinDir() const
 {
     return m_qtBinDir;
 }
+
+#include "moc_scxmldocument.cpp"

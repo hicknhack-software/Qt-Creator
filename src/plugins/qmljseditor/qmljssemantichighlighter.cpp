@@ -623,3 +623,5 @@ int SemanticHighlighter::startRevision() const
 }
 
 } // namespace QmlJSEditor
+
+#include "moc_qmljssemantichighlighter.cpp"

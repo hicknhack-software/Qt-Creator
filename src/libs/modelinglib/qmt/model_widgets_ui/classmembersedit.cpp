@@ -573,3 +573,5 @@ QList<MClassMember> ClassMembersEdit::parse(const QString &text, bool *ok)
 }
 
 } // namespace qmt
+
+#include "moc_classmembersedit.cpp"

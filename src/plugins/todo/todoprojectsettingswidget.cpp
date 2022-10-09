@@ -139,3 +139,5 @@ void TodoProjectSettingsWidget::excludedPatternChanged(QListWidgetItem *item)
 
 } // namespace Internal
 } // namespace Todo
+
+#include "moc_todoprojectsettingswidget.cpp"

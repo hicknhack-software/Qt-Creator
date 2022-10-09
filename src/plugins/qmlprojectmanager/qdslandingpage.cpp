@@ -210,3 +210,5 @@ void QdsLandingPage::setCmakeResources(const QStringList &resources)
 
 } // namespace Internal
 } // namespace QmlProjectManager
+
+#include "moc_qdslandingpage.cpp"

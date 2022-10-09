@@ -89,3 +89,5 @@ bool MesonProjectPlugin::initialize(const QStringList & /*arguments*/, QString *
 } // namespace MesonProjectManager
 
 #include "mesonprojectplugin.moc"
+
+#include "moc_mesonprojectplugin.cpp"

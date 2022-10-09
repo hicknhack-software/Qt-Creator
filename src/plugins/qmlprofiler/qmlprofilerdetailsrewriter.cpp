@@ -189,3 +189,5 @@ void QmlProfilerDetailsRewriter::populateFileFinder(const ProjectExplorer::Targe
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilerdetailsrewriter.cpp"

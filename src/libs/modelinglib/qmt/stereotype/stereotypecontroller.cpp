@@ -258,3 +258,5 @@ void StereotypeController::addToolbar(const Toolbar &toolbar)
 }
 
 } // namespace qmt
+
+#include "moc_stereotypecontroller.cpp"

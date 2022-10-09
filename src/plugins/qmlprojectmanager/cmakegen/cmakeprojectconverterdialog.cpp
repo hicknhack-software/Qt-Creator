@@ -200,3 +200,5 @@ bool CmakeProjectConverterDialog::isValid()
 
 } //GenerateCmake
 } //QmlProjectManager
+
+#include "moc_cmakeprojectconverterdialog.cpp"

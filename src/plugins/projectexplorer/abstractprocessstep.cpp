@@ -383,3 +383,5 @@ void AbstractProcessStep::handleProcessDone()
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_abstractprocessstep.cpp"

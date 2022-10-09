@@ -258,3 +258,5 @@ void JsonSummaryPage::updateProjectData(FolderNode *node)
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_jsonsummarypage.cpp"

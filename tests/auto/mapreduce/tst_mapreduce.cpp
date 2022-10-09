@@ -343,3 +343,5 @@ void tst_MapReduce::moveOnlyType()
 QTEST_GUILESS_MAIN(tst_MapReduce)
 
 #include "tst_mapreduce.moc"
+
+#include "moc_mapreduce.cpp"

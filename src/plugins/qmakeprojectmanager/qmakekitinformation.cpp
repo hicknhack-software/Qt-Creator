@@ -147,3 +147,5 @@ QString QmakeKitAspect::defaultMkspec(const Kit *k)
 
 } // namespace Internal
 } // namespace QmakeProjectManager
+
+#include "moc_qmakekitinformation.cpp"

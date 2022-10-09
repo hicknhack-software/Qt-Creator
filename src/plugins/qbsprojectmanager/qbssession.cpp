@@ -657,3 +657,5 @@ Location locationFromObject(const QJsonObject &o)
 } // namespace QbsProjectManager
 
 #include <qbssession.moc>
+
+#include "moc_qbssession.cpp"

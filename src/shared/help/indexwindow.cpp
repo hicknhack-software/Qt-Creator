@@ -395,3 +395,5 @@ void IndexFilterModel::sourceModelReset()
 {
     filter(m_filter, m_wildcard);
 }
+
+#include "moc_indexwindow.cpp"

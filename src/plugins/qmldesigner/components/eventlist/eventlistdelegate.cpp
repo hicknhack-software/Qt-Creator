@@ -185,3 +185,5 @@ void EventListDelegate::close()
 }
 
 } // namespace QmlDesigner.
+
+#include "moc_eventlistdelegate.cpp"

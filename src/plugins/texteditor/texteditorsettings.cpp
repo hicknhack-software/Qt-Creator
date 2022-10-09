@@ -604,3 +604,5 @@ void TextEditorSettings::resetFontZoom()
 }
 
 } // TextEditor
+
+#include "moc_texteditorsettings.cpp"

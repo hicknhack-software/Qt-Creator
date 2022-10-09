@@ -378,3 +378,5 @@ QString MacroManager::macrosDirectory()
 
 } // Internal
 } // Macros
+
+#include "moc_macromanager.cpp"

@@ -104,3 +104,5 @@ void ScxmlUiFactory::initPlugins()
     for (int i = 0; i < m_plugins.count(); ++i)
         m_plugins[i]->init(this);
 }
+
+#include "moc_scxmluifactory.cpp"

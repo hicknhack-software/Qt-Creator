@@ -546,3 +546,5 @@ const QLoggingCategory &ModelIndexer::logger()
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_modelindexer.cpp"

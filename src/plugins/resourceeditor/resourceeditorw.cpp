@@ -313,3 +313,5 @@ void ResourceEditorW::onRedo()
 }
 
 } // ResourceEditor::Internal
+
+#include "moc_resourceeditorw.cpp"

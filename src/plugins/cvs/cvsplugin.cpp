@@ -1493,3 +1493,5 @@ void CvsPlugin::testLogResolving()
 #endif
 
 } // namespace Cvs::Internal
+
+#include "moc_cvsplugin.cpp"

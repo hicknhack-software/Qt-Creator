@@ -55,3 +55,5 @@ void StatusLabel::clearStatusMessage()
 }
 
 } // namespace Utils
+
+#include "moc_statuslabel.cpp"

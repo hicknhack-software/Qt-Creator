@@ -536,3 +536,5 @@ GlslCompletionAssistInterface::GlslCompletionAssistInterface(const QTextCursor &
 
 } // namespace Internal
 } // namespace GlslEditor
+
+#include "moc_glslcompletionassist.cpp"

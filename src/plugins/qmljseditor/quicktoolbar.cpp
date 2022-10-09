@@ -438,3 +438,5 @@ void QuickToolBar::onPropertyRemoved(const QString &propertyName)
 }
 
 } //QmlDesigner
+
+#include "moc_quicktoolbar.cpp"

@@ -67,3 +67,5 @@ void AddSignalHandlerDialog::handleAccepted()
     m_signal = m_ui->comboBox->currentText();
     emit signalSelected();
 }
+
+#include "moc_addsignalhandlerdialog.cpp"

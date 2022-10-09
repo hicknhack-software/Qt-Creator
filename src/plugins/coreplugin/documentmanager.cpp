@@ -1567,3 +1567,4 @@ FileChangeBlocker::~FileChangeBlocker()
 } // namespace Core
 
 #include "documentmanager.moc"
+#include "moc_documentmanager.cpp"

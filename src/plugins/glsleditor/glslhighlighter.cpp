@@ -295,3 +295,5 @@ bool GlslHighlighter::isPPKeyword(QStringView text) const
 
 } // namespace Internal
 } // namespace GlslEditor
+
+#include "moc_glslhighlighter.cpp"

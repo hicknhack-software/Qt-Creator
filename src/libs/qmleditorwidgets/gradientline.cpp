@@ -319,3 +319,5 @@ void GradientLine::setCurrentIndex(int i)
 }
 
 } //QmlEditorWidgets
+
+#include "moc_gradientline.cpp"

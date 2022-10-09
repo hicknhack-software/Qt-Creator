@@ -331,3 +331,5 @@ QString IFindFilter::descriptionForFindFlags(FindFlags flags)
 }
 
 } // namespace Core
+
+#include "moc_ifindfilter.cpp"

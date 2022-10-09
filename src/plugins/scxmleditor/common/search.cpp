@@ -98,3 +98,5 @@ void Search::rowActivated(const QModelIndex &index)
     if (m_document)
         m_document->setCurrentTag(m_model->tag(m_proxyModel->mapToSource(index)));
 }
+
+#include "moc_search.cpp"

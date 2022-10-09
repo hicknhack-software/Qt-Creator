@@ -535,3 +535,5 @@ QHash<Id, Command *> NavigationWidget::commandMap() const
 }
 
 } // namespace Core
+
+#include "moc_navigationwidget.cpp"

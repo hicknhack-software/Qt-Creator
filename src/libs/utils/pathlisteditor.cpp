@@ -224,3 +224,5 @@ void PathListEditor::deletePathAtCursor()
 }
 
 } // namespace Utils
+
+#include "moc_pathlisteditor.cpp"

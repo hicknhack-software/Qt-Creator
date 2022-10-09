@@ -172,3 +172,5 @@ void CustomColorDialog::enterEvent(QEnterEvent *)
 
 
 } //QmlEditorWidgets
+
+#include "moc_customcolordialog.cpp"

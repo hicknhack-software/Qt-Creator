@@ -170,3 +170,5 @@ void TextItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *e)
     setCursor(Qt::ArrowCursor);
     QGraphicsTextItem::hoverLeaveEvent(e);
 }
+
+#include "moc_textitem.cpp"

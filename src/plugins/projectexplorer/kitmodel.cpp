@@ -325,3 +325,5 @@ void KitModel::changeDefaultKit()
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_kitmodel.cpp"

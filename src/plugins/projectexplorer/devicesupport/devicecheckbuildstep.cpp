@@ -68,3 +68,5 @@ QString DeviceCheckBuildStep::displayName()
 {
     return tr("Check for a configured device");
 }
+
+#include "moc_devicecheckbuildstep.cpp"

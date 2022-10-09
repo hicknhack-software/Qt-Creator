@@ -326,3 +326,5 @@ void ShortCutManager::goIntoComponent()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_shortcutmanager.cpp"

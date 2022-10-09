@@ -101,3 +101,5 @@ ClangEditorDocumentProcessor *ClangEditorDocumentProcessor::get(const QString &f
 
 } // namespace Internal
 } // namespace ClangCodeModel
+
+#include "moc_clangeditordocumentprocessor.cpp"

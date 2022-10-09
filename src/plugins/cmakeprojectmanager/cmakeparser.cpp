@@ -362,3 +362,5 @@ void Internal::CMakeProjectPlugin::testCMakeParser()
 } // CMakeProjectManager
 
 #endif
+
+#include "moc_cmakeparser.cpp"

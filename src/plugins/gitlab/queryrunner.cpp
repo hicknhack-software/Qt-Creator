@@ -124,3 +124,5 @@ void QueryRunner::start()
 }
 
 } // namespace GitLab
+
+#include "moc_queryrunner.cpp"

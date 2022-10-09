@@ -445,3 +445,5 @@ void EditorToolBar::setNavigationVisible(bool isVisible)
 }
 
 } // Core
+
+#include "moc_editortoolbar.cpp"

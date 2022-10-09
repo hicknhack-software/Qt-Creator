@@ -80,3 +80,5 @@ void SortedTreeModel::startDelayedSortTimer()
 }
 
 } // namespace qmt
+
+#include "moc_sortedtreemodel.cpp"

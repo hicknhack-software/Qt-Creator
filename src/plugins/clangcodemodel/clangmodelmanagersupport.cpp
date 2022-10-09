@@ -887,3 +887,5 @@ void ClangModelManagerSupport::reinitializeBackendDocuments(const QStringList &p
 
 } // Internal
 } // ClangCodeModel
+
+#include "moc_clangmodelmanagersupport.cpp"

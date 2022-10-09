@@ -186,3 +186,5 @@ BuildStep *BuildStepList::at(int position) const
 }
 
 } // ProjectExplorer
+
+#include "moc_buildsteplist.cpp"

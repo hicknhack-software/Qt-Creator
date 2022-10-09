@@ -9,3 +9,5 @@ ImageProvider::ImageProvider(QObject *parent)
     : QObject(parent)
 {
 }
+
+#include "moc_imageprovider.cpp"

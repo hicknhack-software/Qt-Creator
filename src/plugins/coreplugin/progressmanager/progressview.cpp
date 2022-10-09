@@ -80,3 +80,5 @@ void ProgressView::reposition()
             m_referenceWidget->mapTo(parentWidget(), m_referenceWidget->rect().topRight());
     move(topRightReferenceInParent - rect().bottomRight());
 }
+
+#include "moc_progressview.cpp"

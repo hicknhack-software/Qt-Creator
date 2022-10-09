@@ -599,3 +599,5 @@ void QmakeProjectManagerPluginPrivate::enableBuildFileMenus(const FilePath &file
 
 } // Internal
 } // QmakeProjectManager
+
+#include "moc_qmakeprojectmanagerplugin.cpp"

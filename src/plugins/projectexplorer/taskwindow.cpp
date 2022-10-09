@@ -1010,3 +1010,5 @@ void TaskDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
 } // namespace ProjectExplorer
 
 #include "taskwindow.moc"
+
+#include "moc_taskwindow.cpp"

@@ -413,3 +413,5 @@ QStringList MakeStep::availableTargets() const
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_makestep.cpp"

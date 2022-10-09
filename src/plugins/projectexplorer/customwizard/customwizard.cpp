@@ -558,3 +558,5 @@ void CustomProjectWizard::handleProjectParametersChanged(const QString &name,
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_customwizard.cpp"

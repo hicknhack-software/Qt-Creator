@@ -69,3 +69,5 @@ bool SignalListDelegate::editorEvent(QEvent *event,
 }
 
 } // QmlDesigner namespace
+
+#include "moc_signallistdelegate.cpp"

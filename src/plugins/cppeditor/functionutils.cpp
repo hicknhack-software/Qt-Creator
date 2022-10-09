@@ -355,3 +355,5 @@ void FunctionUtilsTest::testVirtualFunctions_data()
 
 } // namespace CppEditor::Internal
 #endif // WITH_TESTS
+
+#include "moc_functionutils.cpp"

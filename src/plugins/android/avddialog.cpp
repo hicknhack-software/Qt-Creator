@@ -341,3 +341,5 @@ bool AvdDialog::eventFilter(QObject *obj, QEvent *event)
 }
 
 } // Android::Internal
+
+#include "moc_avddialog.cpp"

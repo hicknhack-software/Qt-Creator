@@ -541,3 +541,5 @@ QString LspLogMessage::displayText() const
 }
 
 } // namespace LanguageClient
+
+#include "moc_lspinspector.cpp"

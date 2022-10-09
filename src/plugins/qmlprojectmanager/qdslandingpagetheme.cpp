@@ -32,3 +32,5 @@ void QdsLandingPageTheme::setupTheme(QQmlEngine *engine)
 }
 
 } //QmlProjectManager
+
+#include "moc_qdslandingpagetheme.cpp"

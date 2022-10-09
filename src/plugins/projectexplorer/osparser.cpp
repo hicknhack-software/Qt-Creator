@@ -41,3 +41,5 @@ Utils::OutputLineParser::Result OsParser::handleLine(const QString &line, Utils:
     }
     return Status::NotHandled;
 }
+
+#include "moc_osparser.cpp"

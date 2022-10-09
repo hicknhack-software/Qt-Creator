@@ -495,3 +495,5 @@ void ContextPaneWidget::setLineButton()
 } //QmlDesigner
 
 
+
+#include "moc_contextpanewidget.cpp"

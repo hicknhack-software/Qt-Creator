@@ -362,3 +362,5 @@ BuildInfo QbsBuildConfigurationFactory::createBuildInfo(BuildConfiguration::Buil
 
 } // namespace Internal
 } // namespace QbsProjectManager
+
+#include "moc_qbsbuildconfiguration.cpp"

@@ -122,3 +122,5 @@ ClangToolsOptionsPage::ClangToolsOptionsPage()
 }
 
 } // ClangTools::Internal
+
+#include "moc_settingswidget.cpp"

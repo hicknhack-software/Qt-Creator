@@ -78,3 +78,5 @@ QStringList PerforceEditorWidget::annotationPreviousVersions(const QString &v) c
 
 } // namespace Internal
 } // namespace Perforce
+
+#include "moc_perforceeditor.cpp"

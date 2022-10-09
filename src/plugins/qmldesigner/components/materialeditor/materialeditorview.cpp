@@ -1127,3 +1127,5 @@ void MaterialEditorView::reloadQml()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_materialeditorview.cpp"

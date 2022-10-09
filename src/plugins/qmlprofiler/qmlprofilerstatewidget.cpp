@@ -138,3 +138,5 @@ void QmlProfilerStateWidget::updateDisplay()
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilerstatewidget.cpp"

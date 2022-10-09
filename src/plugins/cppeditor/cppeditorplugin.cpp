@@ -873,3 +873,5 @@ QString correspondingHeaderOrSource(const QString &fileName, bool *wasHeader, Ca
 }
 
 } // namespace CppEditor
+
+#include "moc_cppeditorplugin.cpp"

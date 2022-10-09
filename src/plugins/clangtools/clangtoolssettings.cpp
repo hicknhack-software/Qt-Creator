@@ -208,3 +208,5 @@ QVersionNumber ClangToolsSettings::clazyVersion()
 
 } // namespace Internal
 } // namespace ClangTools
+
+#include "moc_clangtoolssettings.cpp"

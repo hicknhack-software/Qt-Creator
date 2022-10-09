@@ -93,3 +93,5 @@ const Style *StyleController::relationStarterStyle()
 }
 
 } // namespace qmt
+
+#include "moc_stylecontroller.cpp"

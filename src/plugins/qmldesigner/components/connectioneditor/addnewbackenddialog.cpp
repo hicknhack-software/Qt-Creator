@@ -89,3 +89,5 @@ void AddNewBackendDialog::invalidate()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_addnewbackenddialog.cpp"

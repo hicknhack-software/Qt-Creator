@@ -301,7 +301,7 @@ QString StatesEditorModel::activeStateGroup() const
 {
     if (auto stateGroup = m_statesEditorView->activeStatesGroupNode())
         return stateGroup.displayName();
-  
+
     return {};
 }
 
@@ -460,3 +460,9 @@ void StatesEditorModel::evaluateExtend()
 
 } // namespace Experimental
 } // namespace QmlDesigner
+
+#ifdef MOC_INCLUDE_FOLDER
+#include "stateseditornew/moc_stateseditormodel.cpp"
+#else
+#include "moc_stateseditormodel.cpp"
+#endif

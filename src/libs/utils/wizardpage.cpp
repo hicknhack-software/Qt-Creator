@@ -58,3 +58,5 @@ bool WizardPage::handleAccept()
 }
 
 } // namespace Utils
+
+#include "moc_wizardpage.cpp"

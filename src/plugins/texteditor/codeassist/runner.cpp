@@ -44,3 +44,5 @@ void ProcessorRunner::setAssistInterface(AssistInterface *interface)
 {
     m_interface = interface;
 }
+
+#include "moc_runner.cpp"

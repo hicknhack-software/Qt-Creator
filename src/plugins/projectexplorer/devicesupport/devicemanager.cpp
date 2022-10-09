@@ -794,3 +794,5 @@ void ProjectExplorerPlugin::testDeviceManager()
 } // namespace ProjectExplorer
 
 #endif // WITH_TESTS
+
+#include "moc_devicemanager.cpp"

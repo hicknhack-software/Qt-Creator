@@ -57,3 +57,5 @@ void LocalProcessList::reportDelayedKillStatus(const QString &errorMessage)
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_localprocesslist.cpp"

@@ -716,3 +716,5 @@ void Parser::parse(QIODevice *device)
 
 } // namespace XmlParser
 } // namespace Valgrind
+
+#include "moc_parser.cpp"

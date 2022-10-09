@@ -152,3 +152,5 @@ Core::IDocument::OpenResult ModelDocument::load(QString *errorString, const QStr
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_modeldocument.cpp"

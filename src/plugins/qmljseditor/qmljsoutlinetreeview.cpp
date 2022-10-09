@@ -59,3 +59,5 @@ void QmlJSOutlineTreeView::collapseAllExceptRoot()
 
 } // namespace Internal
 } // namespace QmlJSEditor
+
+#include "moc_qmljsoutlinetreeview.cpp"

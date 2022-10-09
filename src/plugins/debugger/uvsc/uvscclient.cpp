@@ -1210,3 +1210,5 @@ bool UvscClient::executeCommand(const QString &cmd, QString &output)
 }
 
 } // Debugger::Internal
+
+#include "moc_uvscclient.cpp"

@@ -196,3 +196,5 @@ void TaskHub::requestPopup()
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_taskhub.cpp"

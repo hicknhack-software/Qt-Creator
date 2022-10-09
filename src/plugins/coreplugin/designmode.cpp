@@ -215,3 +215,5 @@ void DesignMode::destroyModeIfRequired()
 }
 
 } // namespace Core
+
+#include "moc_designmode.cpp"

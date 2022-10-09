@@ -304,3 +304,5 @@ QModelIndex TodoOutputPane::previousModelIndex()
 
 } // namespace Internal
 } // namespace Todo
+
+#include "moc_todooutputpane.cpp"

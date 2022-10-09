@@ -57,3 +57,5 @@ void ToolItemSettings::store()
 }
 
 } // MesonProjectManager::Internal
+
+#include "moc_toolitemsettings.cpp"

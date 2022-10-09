@@ -1001,3 +1001,5 @@ void BadgeLabel::calculateSize()
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_outputpanemanager.cpp"

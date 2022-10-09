@@ -737,3 +737,7 @@ void QmlJSEditorDocument::triggerPendingUpdates()
 }
 
 } // QmlJSEditor
+
+#include "moc_qmljseditordocument_p.cpp"
+
+#include "moc_qmljseditordocument.cpp"

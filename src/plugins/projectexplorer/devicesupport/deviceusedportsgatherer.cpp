@@ -324,3 +324,5 @@ QUrl ChannelProvider::channel(int i) const
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_deviceusedportsgatherer.cpp"

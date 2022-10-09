@@ -532,3 +532,5 @@ int ClangdSettings::Data::defaultCompletionResults()
 }
 
 } // namespace CppEditor
+
+#include "moc_cppcodemodelsettings.cpp"

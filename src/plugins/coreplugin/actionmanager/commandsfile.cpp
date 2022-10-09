@@ -134,3 +134,5 @@ bool CommandsFile::exportCommands(const QList<ShortcutItem *> &items)
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_commandsfile.cpp"

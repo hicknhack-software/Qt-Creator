@@ -213,3 +213,5 @@ void TransitionEditorPropertyItem::select()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_transitioneditorpropertyitem.cpp"

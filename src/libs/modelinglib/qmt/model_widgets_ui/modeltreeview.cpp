@@ -262,3 +262,5 @@ void ModelTreeView::contextMenuEvent(QContextMenuEvent *event)
 }
 
 } // namespace qmt
+
+#include "moc_modeltreeview.cpp"

@@ -316,3 +316,5 @@ void SymbolsFindFilterConfigWidget::setState() const
 }
 
 } // namespace CppEditor::Internal
+
+#include "moc_symbolsfindfilter.cpp"

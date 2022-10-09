@@ -81,3 +81,5 @@ void NavigatorGraphicsView::mouseMoveEvent(QMouseEvent *event)
     if (m_mouseDown)
         emit moveMainViewTo(mapToScene(event->pos()));
 }
+
+#include "moc_navigatorgraphicsview.cpp"

@@ -186,3 +186,5 @@ void ColorControl::mousePressEvent(QMouseEvent *event)
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_timelinecontrols.cpp"

@@ -128,3 +128,5 @@ ExtraCompiler *QScxmlcGeneratorFactory::create(
 }
 
 } // namespace QtSupport
+
+#include "moc_qscxmlcgenerator.cpp"

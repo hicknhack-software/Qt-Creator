@@ -53,3 +53,5 @@ void TimelinePlaceholder::paint(QPainter *painter, const QStyleOptionGraphicsIte
 }
 
 } // namespace QmlDesigner
+
+#include "moc_timelineplaceholder.cpp"

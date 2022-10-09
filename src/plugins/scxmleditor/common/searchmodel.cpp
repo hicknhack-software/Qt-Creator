@@ -125,3 +125,5 @@ void SearchModel::setFilter(const QString &filter)
 {
     m_strFilter = filter;
 }
+
+#include "moc_searchmodel.cpp"

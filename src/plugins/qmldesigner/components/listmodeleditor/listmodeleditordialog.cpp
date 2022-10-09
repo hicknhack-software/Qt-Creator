@@ -136,3 +136,5 @@ void ListModelEditorDialog::moveRowsUp()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_listmodeleditordialog.cpp"

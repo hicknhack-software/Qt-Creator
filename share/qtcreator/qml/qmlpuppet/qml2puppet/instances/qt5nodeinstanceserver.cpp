@@ -527,3 +527,5 @@ void Qt5NodeInstanceServer::reparentInstances(const ReparentInstancesCommand &co
 }
 
 } // QmlDesigner
+
+#include "moc_qt5nodeinstanceserver.cpp"

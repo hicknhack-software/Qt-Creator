@@ -283,3 +283,5 @@ FilePath BaseFileFilter::ListIterator::filePath() const
 }
 
 } // Core
+
+#include "moc_basefilefilter.cpp"

@@ -109,3 +109,5 @@ void GeneratedCodeModelSupport::update(const QList<ProjectExplorer::ExtraCompile
 }
 
 } // namespace CppEditor
+
+#include "moc_generatedcodemodelsupport.cpp"

@@ -1844,3 +1844,5 @@ bool CppCodeModelInspectorDialog::event(QEvent *e)
 } // namespace CppEditor
 
 #include "cppcodemodelinspectordialog.moc"
+
+#include "moc_cppcodemodelinspectordialog.cpp"

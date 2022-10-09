@@ -264,3 +264,5 @@ void CurrentDocumentFind::candidateAggregationChanged()
         emit candidateChanged();
     }
 }
+
+#include "moc_currentdocumentfind.cpp"

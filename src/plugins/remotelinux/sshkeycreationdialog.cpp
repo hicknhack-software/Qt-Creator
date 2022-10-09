@@ -157,3 +157,5 @@ FilePath SshKeyCreationDialog::publicKeyFilePath() const
 }
 
 } // namespace RemoteLinux
+
+#include "moc_sshkeycreationdialog.cpp"

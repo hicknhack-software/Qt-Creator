@@ -318,3 +318,5 @@ void QmlJSHighlighter::onClosingParenthesis(QChar parenthesis, int pos, bool atE
 }
 
 } // namespace QmlJSEditor
+
+#include "moc_qmljshighlighter.cpp"

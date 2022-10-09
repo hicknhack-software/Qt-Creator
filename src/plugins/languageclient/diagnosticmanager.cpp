@@ -220,3 +220,5 @@ DiagnosticManager::Marks::~Marks()
 }
 
 } // namespace LanguageClient
+
+#include "moc_diagnosticmanager.cpp"

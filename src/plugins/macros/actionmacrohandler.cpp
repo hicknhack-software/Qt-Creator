@@ -83,3 +83,5 @@ void ActionMacroHandler::addCommand(Id id)
 
 } // namespace Internal
 } // namespace Macros
+
+#include "moc_actionmacrohandler.cpp"

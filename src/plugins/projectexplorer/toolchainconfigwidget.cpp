@@ -123,3 +123,5 @@ QStringList ToolChainConfigWidget::splitString(const QString &s)
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_toolchainconfigwidget.cpp"

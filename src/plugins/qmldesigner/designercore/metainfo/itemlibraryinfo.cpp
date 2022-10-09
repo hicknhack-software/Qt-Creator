@@ -351,3 +351,5 @@ void ItemLibraryInfo::setBaseInfo(ItemLibraryInfo *baseInfo)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_itemlibraryinfo.cpp"

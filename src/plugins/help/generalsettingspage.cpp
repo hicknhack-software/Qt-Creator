@@ -513,3 +513,5 @@ void GeneralSettingsPage::finish()
 
 } // Internal
 } // Help
+
+#include "moc_generalsettingspage.cpp"

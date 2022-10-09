@@ -428,3 +428,5 @@ void QrcEditor::onRedo()
 }
 
 } // ResourceEditor::Internal
+
+#include "moc_qrceditor.cpp"

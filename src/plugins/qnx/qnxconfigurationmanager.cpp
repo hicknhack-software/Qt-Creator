@@ -124,3 +124,5 @@ void QnxConfigurationManager::restoreConfigurations()
 }
 
 } // Qnx::Internal
+
+#include "moc_qnxconfigurationmanager.cpp"

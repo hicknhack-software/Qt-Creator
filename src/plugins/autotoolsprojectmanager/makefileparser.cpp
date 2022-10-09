@@ -554,3 +554,5 @@ void MakefileParser::parseIncludePaths()
 }
 
 } // AutotoolsProjectManager::Internal
+
+#include "moc_makefileparser.cpp"

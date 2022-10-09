@@ -1426,3 +1426,5 @@ void SquishTools::setupAndStartSquishRunnerProcess(const QStringList &args)
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_squishtools.cpp"

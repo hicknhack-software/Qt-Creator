@@ -147,3 +147,5 @@ void NimSuggest::onClientDisconnected()
 
 } // namespace Suggest
 } // namespace Nim
+
+#include "moc_nimsuggest.cpp"

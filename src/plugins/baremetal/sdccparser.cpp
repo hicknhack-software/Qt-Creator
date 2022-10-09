@@ -314,3 +314,5 @@ void BareMetalPlugin::testSdccOutputParsers()
 } // namespace BareMetal
 
 #endif // WITH_TESTS
+
+#include "moc_sdccparser.cpp"

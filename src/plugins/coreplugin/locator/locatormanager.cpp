@@ -82,3 +82,5 @@ bool LocatorManager::locatorHasFocus()
 }
 
 } // namespace Core
+
+#include "moc_locatormanager.cpp"

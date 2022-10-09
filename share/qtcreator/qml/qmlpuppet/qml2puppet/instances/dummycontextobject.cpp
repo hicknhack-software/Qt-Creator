@@ -29,3 +29,5 @@ bool DummyContextObject::runningInDesigner() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_dummycontextobject.cpp"

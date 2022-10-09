@@ -153,3 +153,5 @@ void VcsPlugin::slotSettingsChanged()
 
 } // namespace Internal
 } // namespace VcsBase
+
+#include "moc_vcsplugin.cpp"

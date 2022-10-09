@@ -70,3 +70,5 @@ void RichTextEditorProxy::setRichText(const QString &text)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_richtexteditorproxy.cpp"

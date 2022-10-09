@@ -298,3 +298,5 @@ bool GitSubmitEditorWidget::emailIsValid() const
 }
 
 } // Git::Internal
+
+#include "moc_gitsubmiteditorwidget.cpp"

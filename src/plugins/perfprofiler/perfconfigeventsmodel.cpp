@@ -403,3 +403,5 @@ PerfConfigEventsModel::EventDescription PerfConfigEventsModel::parseEvent(
 
 } // namespace Internal
 } // namespace PerfProfiler
+
+#include "moc_perfconfigeventsmodel.cpp"

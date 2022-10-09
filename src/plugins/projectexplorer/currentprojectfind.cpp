@@ -108,3 +108,5 @@ void CurrentProjectFind::readSettings(QSettings *settings)
     readCommonSettings(settings, "*", "");
     settings->endGroup();
 }
+
+#include "moc_currentprojectfind.cpp"

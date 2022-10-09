@@ -82,3 +82,5 @@ void FunctionFilter::accept(const Core::LocatorFilterEntry &selection,
     const LocatorData::Entry entry = qvariant_cast<LocatorData::Entry>(selection.internalData);
     Core::EditorManager::openEditorAt({entry.fileName, entry.line, entry.column});
 }
+
+#include "moc_qmljsfunctionfilter.cpp"

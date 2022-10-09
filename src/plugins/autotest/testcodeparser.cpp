@@ -459,3 +459,5 @@ void TestCodeParser::releaseParserInternals()
 
 } // namespace Internal
 } // namespace Autotest
+
+#include "moc_testcodeparser.cpp"

@@ -1660,3 +1660,5 @@ void DiffEditor::Internal::DiffEditorPlugin::testFilterPatch()
 #endif // WITH_TESTS
 
 #include "diffeditorplugin.moc"
+
+#include "moc_diffeditorplugin.cpp"

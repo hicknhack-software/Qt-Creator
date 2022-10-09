@@ -211,3 +211,5 @@ void ErrorWidget::exportWarnings()
         out << values.join(",") << "\n";
     }
 }
+
+#include "moc_errorwidget.cpp"

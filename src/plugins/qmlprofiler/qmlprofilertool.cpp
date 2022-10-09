@@ -863,3 +863,5 @@ void QmlProfilerTool::toggleVisibleFeature(QAction *action)
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilertool.cpp"

@@ -137,3 +137,5 @@ QmlMultiLanguageAspect *QmlMultiLanguageAspect::current(ProjectExplorer::Target 
 }
 
 } // namespace QmlProjectManager
+
+#include "moc_qmlmultilanguageaspect.cpp"

@@ -2772,3 +2772,5 @@ void Qt5InformationNodeInstanceServer::update3DViewState(
 }
 
 } // namespace QmlDesigner
+
+#include "moc_qt5informationnodeinstanceserver.cpp"

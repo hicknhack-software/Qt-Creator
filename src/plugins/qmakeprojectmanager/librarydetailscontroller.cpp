@@ -1147,3 +1147,5 @@ QString InternalLibraryDetailsController::snippet() const
 
 } // Internal
 } // QmakeProjectManager
+
+#include "moc_librarydetailscontroller.cpp"

@@ -309,3 +309,5 @@ void NodeInstanceServerProxy::changePreviewImageSize(const ChangePreviewImageSiz
 }
 
 } // namespace QmlDesigner
+
+#include "moc_nodeinstanceserverproxy.cpp"

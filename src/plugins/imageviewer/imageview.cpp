@@ -371,3 +371,5 @@ void ImageView::hideEvent(QHideEvent *)
 
 } // namespace Internal
 } // namespace ImageView
+
+#include "moc_imageview.cpp"

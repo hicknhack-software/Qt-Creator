@@ -112,3 +112,5 @@ void MessageOutputWindow::updateFilter()
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_messageoutputwindow.cpp"

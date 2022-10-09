@@ -246,3 +246,5 @@ QDebug operator<<(QDebug debug, const Core::Context &context)
 
     \sa contextHelp()
 */
+
+#include "moc_icontext.cpp"

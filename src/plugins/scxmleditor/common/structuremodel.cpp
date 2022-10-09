@@ -312,3 +312,5 @@ void StructureModel::endTagChange(ScxmlDocument::TagChange change, ScxmlTag *tag
         break;
     }
 }
+
+#include "moc_structuremodel.cpp"

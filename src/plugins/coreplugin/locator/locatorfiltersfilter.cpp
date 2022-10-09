@@ -80,3 +80,5 @@ void LocatorFiltersFilter::accept(const LocatorFilterEntry &selection,
         *selectionStart = shortcutString.length() + 1;
     }
 }
+
+#include "moc_locatorfiltersfilter.cpp"

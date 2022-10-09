@@ -295,3 +295,5 @@ bool IconRenderer::initRhi()
 #endif
     return true;
 }
+
+#include "moc_iconrenderer.cpp"

@@ -137,3 +137,5 @@ void OpenPagesSwitcher::selectPageUpDown(int summand)
         m_openPagesWidget->scrollTo(index, QAbstractItemView::PositionAtCenter);
     }
 }
+
+#include "moc_openpagesswitcher.cpp"

@@ -68,3 +68,5 @@ QList<BundleMaterial *> BundleMaterialCategory::categoryMaterials() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_bundlematerialcategory.cpp"

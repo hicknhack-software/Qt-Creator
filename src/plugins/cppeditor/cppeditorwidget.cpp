@@ -1403,3 +1403,5 @@ void CppEditorWidget::enableTestMode() { d->inTestMode = true; }
 } // namespace CppEditor
 
 #include "cppeditorwidget.moc"
+
+#include "moc_cppeditorwidget.cpp"

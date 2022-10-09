@@ -358,3 +358,5 @@ void ComponentViewController::doCreateComponentModel(const QString &filePath, qm
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_componentviewcontroller.cpp"

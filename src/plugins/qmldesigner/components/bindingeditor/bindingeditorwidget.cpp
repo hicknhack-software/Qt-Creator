@@ -142,3 +142,5 @@ void BindingEditorFactory::decorateEditor(TextEditor::TextEditorWidget *editor)
 }
 
 } // QmlDesigner namespace
+
+#include "moc_bindingeditorwidget.cpp"

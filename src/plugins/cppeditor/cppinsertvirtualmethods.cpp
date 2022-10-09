@@ -1981,3 +1981,5 @@ InsertVirtualMethods *InsertVirtualMethods::createTestFactory()
 } // namespace CppEditor
 
 #include "cppinsertvirtualmethods.moc"
+
+#include "moc_cppinsertvirtualmethods.cpp"

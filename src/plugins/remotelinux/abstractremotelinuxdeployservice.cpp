@@ -158,3 +158,5 @@ void AbstractRemoteLinuxDeployService::setFinished()
 }
 
 } // namespace RemoteLinux
+
+#include "moc_abstractremotelinuxdeployservice.cpp"

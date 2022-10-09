@@ -38,3 +38,5 @@ void AndroidQmlToolingSupport::stop()
 
 } // namespace Internal
 } // namespace Android
+
+#include "moc_androidqmltoolingsupport.cpp"

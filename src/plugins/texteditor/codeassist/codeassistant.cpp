@@ -639,3 +639,5 @@ void CodeAssistant::invoke(AssistKind kind, IAssistProvider *provider)
 }
 
 } // namespace TextEditor
+
+#include "moc_codeassistant.cpp"

@@ -40,3 +40,5 @@ QAction *ShowInEditorTaskHandler::createAction(QObject *parent) const
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_showineditortaskhandler.cpp"

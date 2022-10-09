@@ -163,3 +163,5 @@ void PipPackageInfo::parseField(const QString &field, const QStringList &data)
 }
 
 } // Python::Internal
+
+#include "moc_pipsupport.cpp"

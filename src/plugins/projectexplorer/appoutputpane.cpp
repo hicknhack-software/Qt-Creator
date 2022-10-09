@@ -890,3 +890,5 @@ AppOutputSettingsPage::AppOutputSettingsPage()
 
 #include "appoutputpane.moc"
 
+
+#include "moc_appoutputpane.cpp"

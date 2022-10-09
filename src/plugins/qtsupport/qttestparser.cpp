@@ -116,3 +116,5 @@ void QtSupportPlugin::testQtTestOutputParser()
 
 } // namespace Internal
 } // namespace QtSupport
+
+#include "moc_qttestparser.cpp"

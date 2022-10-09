@@ -307,3 +307,5 @@ void ModelManager::addTaskInternal(const QFuture<void> &result, const QString &m
 
 } // namespace Internal
 } // namespace QmlJSTools
+
+#include "moc_qmljsmodelmanager.cpp"

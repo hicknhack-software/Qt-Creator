@@ -299,3 +299,5 @@ void AnnotationListDelegate::paint(QPainter *painter, const QStyleOptionViewItem
 }
 
 }
+
+#include "moc_annotationlist.cpp"

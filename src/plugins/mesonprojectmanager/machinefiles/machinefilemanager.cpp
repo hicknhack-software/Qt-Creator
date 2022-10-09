@@ -117,3 +117,5 @@ void MachineFileManager::cleanupMachineFiles()
 
 } // namespace Internal
 } // namespace MesonProjectManager
+
+#include "moc_machinefilemanager.cpp"

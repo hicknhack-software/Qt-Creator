@@ -314,3 +314,5 @@ CompileOutputSettingsPage::CompileOutputSettingsPage()
 
 } // Internal
 } // ProjectExplorer
+
+#include "moc_compileoutputwindow.cpp"

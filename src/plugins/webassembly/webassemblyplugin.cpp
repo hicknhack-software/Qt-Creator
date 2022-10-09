@@ -96,3 +96,5 @@ void WebAssemblyPlugin::askUserAboutEmSdkSetup()
 
 } // namespace Internal
 } // namespace WebAssembly
+
+#include "moc_webassemblyplugin.cpp"

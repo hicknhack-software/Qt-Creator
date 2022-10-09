@@ -628,3 +628,5 @@ bool VariableChooser::eventFilter(QObject *obj, QEvent *event)
 }
 
 } // namespace Internal
+
+#include "moc_variablechooser.cpp"

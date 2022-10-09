@@ -61,3 +61,5 @@ QString BareMetalDeviceConfigurationWizardSetupPage::debugServerProviderId() con
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_baremetaldeviceconfigurationwizardpages.cpp"

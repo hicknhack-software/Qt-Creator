@@ -477,3 +477,5 @@ FilePath GerritPlugin::findLocalRepository(const QString &project, const QString
 } // namespace Gerrit
 
 #include "gerritplugin.moc"
+
+#include "moc_gerritplugin.cpp"

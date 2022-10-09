@@ -32,3 +32,5 @@ bool VcsJsExtension::isValidRepoUrl(const QString &vcsId, const QString &locatio
 
 } // namespace Internal
 } // namespace VcsBase
+
+#include "moc_vcsjsextension.cpp"

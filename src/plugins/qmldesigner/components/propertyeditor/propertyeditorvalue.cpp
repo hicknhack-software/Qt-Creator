@@ -689,3 +689,5 @@ void PropertyEditorNodeWrapper::update()
         emit typeChanged();
     }
 }
+
+#include "moc_propertyeditorvalue.cpp"

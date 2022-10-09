@@ -588,3 +588,5 @@ AndroidDeployQtStepFactory::AndroidDeployQtStepFactory()
 
 } // Internal
 } // Android
+
+#include "moc_androiddeployqtstep.cpp"

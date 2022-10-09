@@ -641,3 +641,5 @@ void IarToolChainConfigWidget::handlePlatformCodeGenFlagsChange()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_iarewtoolchain.cpp"

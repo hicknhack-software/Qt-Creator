@@ -423,3 +423,5 @@ void CppCodeStyleSettingsPage::finish()
 }
 
 } // namespace CppEditor::Internal
+
+#include "moc_cppcodestylesettingspage.cpp"

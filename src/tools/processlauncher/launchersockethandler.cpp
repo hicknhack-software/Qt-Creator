@@ -278,3 +278,4 @@ void LauncherSocketHandler::removeProcess(quintptr token)
 } // namespace Utils
 
 #include <launchersockethandler.moc>
+#include "moc_launchersockethandler.cpp"

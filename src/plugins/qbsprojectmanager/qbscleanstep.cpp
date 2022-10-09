@@ -157,3 +157,5 @@ QbsCleanStepFactory::QbsCleanStepFactory()
 
 } // namespace Internal
 } // namespace QbsProjectManager
+
+#include "moc_qbscleanstep.cpp"

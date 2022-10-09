@@ -1045,3 +1045,5 @@ bool IosToolHandler::isRunning() const
 } // namespace Ios
 
 #include "iostoolhandler.moc"
+
+#include "moc_iostoolhandler.cpp"

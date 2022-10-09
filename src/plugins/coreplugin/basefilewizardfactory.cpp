@@ -317,3 +317,5 @@ QString BaseFileWizardFactory::preferredSuffix(const QString &mimeType)
 */
 
 } // namespace Core
+
+#include "moc_basefilewizardfactory.cpp"

@@ -322,3 +322,5 @@ void Structure::showMenu(const QModelIndex &index, const QPoint &globalPos)
         }
     }
 }
+
+#include "moc_structure.cpp"

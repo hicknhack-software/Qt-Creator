@@ -69,3 +69,5 @@ const QList<AssetsLibraryDir *> AssetsLibraryDirsModel::assetsDirs() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_assetslibrarydirsmodel.cpp"

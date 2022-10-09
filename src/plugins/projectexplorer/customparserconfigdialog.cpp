@@ -462,3 +462,5 @@ void CustomParserConfigDialog::changed()
 }
 
 } // ProjectExplorer::Internal
+
+#include "moc_customparserconfigdialog.cpp"

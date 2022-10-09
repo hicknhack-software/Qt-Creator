@@ -139,3 +139,5 @@ void ConnectionManager::printProcessOutput(QProcess *process, const QString &con
 }
 
 } // namespace QmlDesigner
+
+#include "moc_connectionmanager.cpp"

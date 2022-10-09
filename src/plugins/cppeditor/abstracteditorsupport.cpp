@@ -54,3 +54,5 @@ bool AbstractEditorSupport::usePragmaOnce()
 
 } // namespace CppEditor
 
+
+#include "moc_abstracteditorsupport.cpp"

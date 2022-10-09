@@ -114,3 +114,5 @@ int SeekerSlider::position() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_seekerslider.cpp"

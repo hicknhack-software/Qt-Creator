@@ -415,3 +415,5 @@ bool ToolTip::eventFilter(QObject *o, QEvent *event)
     }
     return false;
 }
+
+#include "moc_tooltip.cpp"

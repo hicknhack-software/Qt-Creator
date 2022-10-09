@@ -214,3 +214,5 @@ void ProjectExplorerPlugin::testLinuxIccOutputParsers()
 }
 
 #endif
+
+#include "moc_linuxiccparser.cpp"

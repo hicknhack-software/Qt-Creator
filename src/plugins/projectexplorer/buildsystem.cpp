@@ -394,3 +394,5 @@ CommandLine BuildSystem::commandLineForTests(const QList<QString> & /*tests*/,
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_buildsystem.cpp"

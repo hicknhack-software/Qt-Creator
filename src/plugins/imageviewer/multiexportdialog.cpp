@@ -311,3 +311,5 @@ void MultiExportDialog::setExportFileName(QString f)
 }
 
 } // ImageViewer:Internal
+
+#include "moc_multiexportdialog.cpp"

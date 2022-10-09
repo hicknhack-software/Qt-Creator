@@ -51,3 +51,5 @@ void RichTextEditorDialog::setTextToFormEditorItem(QString text)
 }
 
 } //namespace QmlDesigner
+
+#include "moc_richtexteditordialog.cpp"

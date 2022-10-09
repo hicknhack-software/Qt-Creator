@@ -423,3 +423,5 @@ bool TaskFilterModel::filterAcceptsTask(const Task &task) const
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_taskmodel.cpp"

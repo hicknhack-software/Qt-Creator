@@ -855,3 +855,5 @@ StudioWelcomeSettingsPage::StudioWelcomeSettingsPage()
 } // namespace StudioWelcome
 
 #include "studiowelcomeplugin.moc"
+
+#include "moc_studiowelcomeplugin.cpp"

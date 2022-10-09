@@ -159,3 +159,5 @@ void PanelsWidget::addGlobalSettingsProperties(ProjectSettingsWidget *widget)
 }
 
 } // ProjectExplorer
+
+#include "moc_panelswidget.cpp"

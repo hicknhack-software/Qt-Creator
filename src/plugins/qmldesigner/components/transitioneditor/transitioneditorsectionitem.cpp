@@ -806,3 +806,5 @@ bool TransitionEditorBarItem::validateBounds(qreal distance)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_transitioneditorsectionitem.cpp"

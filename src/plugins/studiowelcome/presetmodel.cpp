@@ -190,3 +190,5 @@ QString PresetModel::fontIconCode(int index) const
 
     return presetItem->fontIconCode;
 }
+
+#include "moc_presetmodel.cpp"

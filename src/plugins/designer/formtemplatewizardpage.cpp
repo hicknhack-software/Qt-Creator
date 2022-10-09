@@ -110,3 +110,5 @@ QString FormTemplateWizardPage::stripNamespaces(const QString &className)
 
 } // namespace Internal
 } // namespace Designer
+
+#include "moc_formtemplatewizardpage.cpp"

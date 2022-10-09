@@ -124,3 +124,5 @@ void HelpIndexFilter::invalidateCache()
 {
     m_needsUpdate = true;
 }
+
+#include "moc_helpindexfilter.cpp"

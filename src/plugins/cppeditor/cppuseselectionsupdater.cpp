@@ -199,3 +199,5 @@ void CppUseSelectionsUpdater::updateUnusedSelections(const CursorInfo::Ranges &r
 
 } // namespace Internal
 } // namespace CppEditor
+
+#include "moc_cppuseselectionsupdater.cpp"

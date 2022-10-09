@@ -173,3 +173,5 @@ void PropertyModel::setupModel()
 
 } // namespace Experimental
 } // namespace QmlDesigner
+
+#include "moc_propertymodel.cpp"

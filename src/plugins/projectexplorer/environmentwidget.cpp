@@ -526,3 +526,5 @@ void EnvironmentWidget::invalidateCurrentIndex()
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_environmentwidget.cpp"

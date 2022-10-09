@@ -42,3 +42,5 @@ void DiagramsViewManager::onDiagramRenamed(const qmt::MDiagram *diagram)
 } // namespace ModelEditor
 
 
+
+#include "moc_diagramsviewmanager.cpp"

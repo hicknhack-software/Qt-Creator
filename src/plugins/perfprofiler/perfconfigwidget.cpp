@@ -368,3 +368,5 @@ void SettingsDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionV
 } // namespace PerfProfiler
 
 #include "perfconfigwidget.moc"
+
+#include "moc_perfconfigwidget.cpp"

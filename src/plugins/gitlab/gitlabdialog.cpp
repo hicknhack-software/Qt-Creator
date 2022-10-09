@@ -374,3 +374,5 @@ void GitLabDialog::cloneSelected()
 }
 
 } // namespace GitLab
+
+#include "moc_gitlabdialog.cpp"

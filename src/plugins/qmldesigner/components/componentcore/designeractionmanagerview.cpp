@@ -164,3 +164,5 @@ void DesignerActionManagerView::setupContext(SelectionContext::UpdateMode update
 
 
 } // namespace QmlDesigner
+
+#include "moc_designeractionmanagerview.cpp"

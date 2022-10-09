@@ -104,3 +104,5 @@ void QtQuickCompilerAspect::addToLayout(LayoutBuilder &builder)
 }
 
 } // namespace QtSupport
+
+#include "moc_qtbuildaspects.cpp"

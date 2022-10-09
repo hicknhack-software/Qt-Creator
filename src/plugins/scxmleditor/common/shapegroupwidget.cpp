@@ -59,3 +59,5 @@ void ShapeGroupWidget::createUi()
     layout()->addWidget(toolBar);
     layout()->addWidget(m_content);
 }
+
+#include "moc_shapegroupwidget.cpp"

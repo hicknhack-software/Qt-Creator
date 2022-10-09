@@ -456,3 +456,5 @@ bool NameValueModel::currentEntryIsPathList(const QModelIndex &current) const
 }
 
 } // namespace Utils
+
+#include "moc_namevaluemodel.cpp"

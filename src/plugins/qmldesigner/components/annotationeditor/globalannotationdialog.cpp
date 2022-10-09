@@ -152,3 +152,5 @@ DefaultAnnotationsModel *GlobalAnnotationDialog::defaultAnnotations() const
 
 
 } //namespace QmlDesigner
+
+#include "moc_globalannotationdialog.cpp"

@@ -110,3 +110,5 @@ void StyleModel::setBackendModel(QStandardItemModel *model)
         m_filteredItems.clear();
     }
 }
+
+#include "moc_stylemodel.cpp"

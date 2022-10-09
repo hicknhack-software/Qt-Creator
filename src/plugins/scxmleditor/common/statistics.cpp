@@ -152,3 +152,5 @@ void Statistics::setDocument(ScxmlDocument *doc)
     m_proxyModel->sort(1, Qt::DescendingOrder);
     m_levels->setText(QString::fromLatin1("%1").arg(m_model->levels()));
 }
+
+#include "moc_statistics.cpp"

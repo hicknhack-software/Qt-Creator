@@ -386,3 +386,5 @@ const QString &CtfTimelineModel::reuse(const QString &value)
 } // namespace Internal
 } // namespace CtfVisualizer
 
+
+#include "moc_ctftimelinemodel.cpp"

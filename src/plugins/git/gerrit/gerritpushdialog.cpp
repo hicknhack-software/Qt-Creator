@@ -388,3 +388,5 @@ QString GerritPushDialog::reviewers() const
 
 } // namespace Internal
 } // namespace Gerrit
+
+#include "moc_gerritpushdialog.cpp"

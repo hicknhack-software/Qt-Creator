@@ -33,3 +33,5 @@ void SnapLine::hideLine()
 {
     setVisible(false);
 }
+
+#include "moc_snapline.cpp"

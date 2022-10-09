@@ -168,3 +168,5 @@ MesonBuildConfigurationFactory::MesonBuildConfigurationFactory()
 
 } // namespace Internal
 } // namespace MesonProjectManager
+
+#include "moc_mesonbuildconfiguration.cpp"

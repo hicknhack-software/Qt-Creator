@@ -266,3 +266,5 @@ QPointer<MaterialBrowserBundleModel> MaterialBrowserWidget::materialBrowserBundl
 
 
 } // namespace QmlDesigner
+
+#include "moc_materialbrowserwidget.cpp"

@@ -149,3 +149,5 @@ QSet<Utils::Id> FilterKitAspectsDialog::irrelevantAspects() const
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_filterkitaspectsdialog.cpp"

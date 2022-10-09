@@ -134,3 +134,5 @@ void PerfSettings::resetToDefault()
 }
 
 } // namespace PerfProfiler
+
+#include "moc_perfsettings.cpp"

@@ -493,3 +493,5 @@ void CustomToolChainConfigWidget::makeReadOnlyImpl()
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_customtoolchain.cpp"

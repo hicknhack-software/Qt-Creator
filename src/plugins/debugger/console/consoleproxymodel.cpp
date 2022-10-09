@@ -58,3 +58,5 @@ void ConsoleProxyModel::onRowsInserted(const QModelIndex &index, int start, int 
 }
 
 } // Debugger::Internal
+
+#include "moc_consoleproxymodel.cpp"

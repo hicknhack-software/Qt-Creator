@@ -94,3 +94,5 @@ void FixedSizeClickLabel::mouseReleaseEvent(QMouseEvent *ev)
 }
 
 } // namespace Utils
+
+#include "moc_fixedsizeclicklabel.cpp"

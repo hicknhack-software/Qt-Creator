@@ -886,3 +886,5 @@ Qt::ItemFlags RegisterEditItem::flags(int column) const
 }
 
 } // Debugger::Internal
+
+#include "moc_registerhandler.cpp"

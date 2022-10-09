@@ -140,3 +140,5 @@ void CodecSelector::buttonClicked(QAbstractButton *button)
 }
 
 } // namespace Core
+
+#include "moc_codecselector.cpp"

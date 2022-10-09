@@ -168,3 +168,5 @@ DriverSelection DriverSelectionDialog::selection() const
 } // namespace Uv
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_uvtargetdriverviewer.cpp"

@@ -515,3 +515,5 @@ void QdsNewDialog::removeCurrentPreset()
     m_categoryModel->reset();
     m_presetModel->reset();
 }
+
+#include "moc_qdsnewdialog.cpp"

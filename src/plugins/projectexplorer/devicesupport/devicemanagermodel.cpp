@@ -170,3 +170,5 @@ int DeviceManagerModel::indexForId(Utils::Id id) const
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_devicemanagermodel.cpp"

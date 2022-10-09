@@ -88,3 +88,5 @@ void PluginErrorView::update(PluginSpec *spec)
     m_ui->state->setToolTip(tooltip);
     m_ui->errorString->setText(spec->errorString());
 }
+
+#include "moc_pluginerrorview.cpp"

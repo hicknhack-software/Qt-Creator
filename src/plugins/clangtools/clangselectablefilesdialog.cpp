@@ -360,3 +360,5 @@ void SelectableFilesDialog::accept()
 } // namespace ClangTools
 
 #include "clangselectablefilesdialog.moc"
+
+#include "moc_clangselectablefilesdialog.cpp"

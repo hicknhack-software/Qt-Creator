@@ -66,3 +66,5 @@ QString CppPreProcessorDialog::extraPreprocessorDirectives() const
 }
 
 } // CppEditor::Internal
+
+#include "moc_cpppreprocessordialog.cpp"

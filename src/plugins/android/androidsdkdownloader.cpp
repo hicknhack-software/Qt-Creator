@@ -196,3 +196,5 @@ void AndroidSdkDownloader::downloadFinished(QNetworkReply *reply)
 
 } // Internal
 } // Android
+
+#include "moc_androidsdkdownloader.cpp"

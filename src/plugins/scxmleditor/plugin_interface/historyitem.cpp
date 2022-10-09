@@ -62,3 +62,5 @@ bool HistoryItem::canStartTransition(ItemType type) const
         return false;
     }
 }
+
+#include "moc_historyitem.cpp"

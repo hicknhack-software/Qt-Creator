@@ -301,3 +301,5 @@ void StLinkUtilGdbServerProviderConfigWidget::setFromProvider()
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_stlinkutilgdbserverprovider.cpp"

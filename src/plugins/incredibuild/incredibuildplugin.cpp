@@ -33,3 +33,5 @@ bool IncrediBuildPlugin::initialize(const QStringList &arguments, QString *error
 
 } // namespace Internal
 } // namespace IncrediBuild
+
+#include "moc_incredibuildplugin.cpp"

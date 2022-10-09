@@ -58,3 +58,5 @@ bool SubversionSubmitEditor::setFileContents(const QByteArray &contents)
     setDescription(QString::fromUtf8(contents));
     return true;
 }
+
+#include "moc_subversionsubmiteditor.cpp"

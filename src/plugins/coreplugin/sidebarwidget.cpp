@@ -187,3 +187,5 @@ void SideBarWidget::setCloseIcon(const QIcon &icon)
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_sidebarwidget.cpp"

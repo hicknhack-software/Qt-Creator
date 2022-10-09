@@ -106,3 +106,5 @@ void GlobalAnnotationEditor::applyChanges()
 }
 
 } //namespace QmlDesigner
+
+#include "moc_globalannotationeditor.cpp"

@@ -403,3 +403,5 @@ void FancyActionBar::setIconsOnly(bool iconsOnly)
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_fancyactionbar.cpp"

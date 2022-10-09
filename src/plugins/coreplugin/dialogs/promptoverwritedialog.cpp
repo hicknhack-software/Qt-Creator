@@ -132,3 +132,5 @@ bool PromptOverwriteDialog::isFileChecked(const QString &f) const
 }
 
 } // namespace Core
+
+#include "moc_promptoverwritedialog.cpp"

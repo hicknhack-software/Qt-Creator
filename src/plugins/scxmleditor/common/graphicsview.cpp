@@ -306,3 +306,5 @@ double GraphicsView::maxZoomValue() const
 {
     return m_maxZoomValue;
 }
+
+#include "moc_graphicsview.cpp"

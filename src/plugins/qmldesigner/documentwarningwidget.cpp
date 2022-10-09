@@ -209,3 +209,5 @@ void DocumentWarningWidget::setMessages(const QList<DocumentMessage> &messages)
 }
 
 } // namespace Designer
+
+#include "moc_documentwarningwidget.cpp"

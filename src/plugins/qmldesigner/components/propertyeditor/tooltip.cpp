@@ -36,3 +36,5 @@ void Tooltip::registerDeclarativeType()
 {
     qmlRegisterType<Tooltip>("HelperWidgets", 2, 0, "Tooltip");
 }
+
+#include "moc_tooltip.cpp"

@@ -124,3 +124,5 @@ void SimulatorOperationDialog::updateInputs()
 }
 
 } // Ios::Internal
+
+#include "moc_simulatoroperationdialog.cpp"

@@ -410,3 +410,5 @@ void Manager::setFlatMode(bool flat)
 
 } // namespace Internal
 } // namespace ClassView
+
+#include "moc_classviewmanager.cpp"

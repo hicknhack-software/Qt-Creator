@@ -93,3 +93,5 @@ void TreeView::mousePressEvent(QMouseEvent *event)
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_treeview.cpp"

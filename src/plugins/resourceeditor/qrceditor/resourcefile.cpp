@@ -1247,3 +1247,5 @@ EntryBackup * RelativeResourceModel::removeEntry(const QModelIndex &index)
 }
 
 } // ResourceEditor::Internal
+
+#include "moc_resourcefile_p.cpp"

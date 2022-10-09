@@ -76,3 +76,5 @@ void MacroLocatorFilter::accept(const Core::LocatorFilterEntry &selection,
 
     MacroManager::instance()->executeMacro(selection.displayName);
 }
+
+#include "moc_macrolocatorfilter.cpp"

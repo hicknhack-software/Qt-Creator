@@ -221,3 +221,5 @@ DependenciesWidget::DependenciesWidget(Project *project, QWidget *parent) : Proj
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_dependenciespanel.cpp"

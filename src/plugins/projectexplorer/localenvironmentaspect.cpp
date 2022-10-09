@@ -44,3 +44,5 @@ LocalEnvironmentAspect::LocalEnvironmentAspect(Target *target, bool includeBuild
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_localenvironmentaspect.cpp"

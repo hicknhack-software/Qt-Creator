@@ -192,3 +192,5 @@ void OutputTabWidget::buttonClicked(PaneTitleButton *button, bool checked)
         close();
     }
 }
+
+#include "moc_outputtabwidget.cpp"

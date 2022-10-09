@@ -176,3 +176,5 @@ void FileNameValidatingLineEdit::setRequiredExtensions(const QStringList &extens
 }
 
 } // namespace Utils
+
+#include "moc_filenamevalidatinglineedit.cpp"

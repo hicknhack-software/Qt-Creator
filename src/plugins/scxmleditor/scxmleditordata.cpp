@@ -217,3 +217,5 @@ QWidget *ScxmlEditorData::createModeWidget()
 
 } // namespace Internal
 } // namespace ScxmlEditor
+
+#include "moc_scxmleditordata.cpp"

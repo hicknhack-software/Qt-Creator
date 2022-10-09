@@ -284,3 +284,5 @@ void BuiltinEditorDocumentParser::setReleaseSourceAndAST(bool release)
 }
 
 } // namespace CppEditor
+
+#include "moc_builtineditordocumentparser.cpp"

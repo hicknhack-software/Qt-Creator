@@ -653,3 +653,5 @@ QDebug &operator<<(QDebug &stream, std::shared_ptr<ProvisioningProfile> profile)
 
 } // namespace Internal
 } // namespace Ios
+
+#include "moc_iosconfigurations.cpp"

@@ -172,3 +172,5 @@ void QnxPluginPrivate::updateDebuggerActions()
 }
 
 } // Qnx::Internal
+
+#include "moc_qnxplugin.cpp"

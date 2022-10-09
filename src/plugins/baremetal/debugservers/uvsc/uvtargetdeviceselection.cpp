@@ -434,3 +434,5 @@ void DeviceSelectionAlgorithmView::refresh()
 } // namespace Uv
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_uvtargetdeviceselection.cpp"

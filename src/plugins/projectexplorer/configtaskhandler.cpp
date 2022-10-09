@@ -38,3 +38,5 @@ QAction *ConfigTaskHandler::createAction(QObject *parent) const
     action->setToolTip(Core::ICore::msgShowOptionsDialogToolTip());
     return action;
 }
+
+#include "moc_configtaskhandler.cpp"

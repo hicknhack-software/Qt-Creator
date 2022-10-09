@@ -77,3 +77,5 @@ QNetworkReply* NetworkAccessManager::createRequest(Operation op, const QNetworkR
 
 
 } // namespace utils
+
+#include "moc_networkaccessmanager.cpp"

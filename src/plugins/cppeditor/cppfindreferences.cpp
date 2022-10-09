@@ -823,3 +823,5 @@ void CppFindReferences::createWatcher(const QFuture<CPlusPlus::Usage> &future, S
 
 } // namespace Internal
 } // namespace CppEditor
+
+#include "moc_cppfindreferences.cpp"

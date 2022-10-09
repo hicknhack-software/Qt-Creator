@@ -48,3 +48,5 @@ CPlusPlus::Snapshot CppModelManagerBase::snapshot() const
 }
 
 } // namespace CPlusPlus
+
+#include "moc_cppmodelmanagerbase.cpp"

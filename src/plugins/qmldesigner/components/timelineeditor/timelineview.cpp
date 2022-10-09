@@ -678,3 +678,5 @@ void TimelineView::updateAnimationCurveEditor()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_timelineview.cpp"

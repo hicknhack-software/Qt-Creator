@@ -21,3 +21,5 @@ void TimelineContext::contextHelp(const Core::IContext::HelpCallback &callback) 
 }
 
 } // namespace QmlDesigner
+
+#include "moc_timelinecontext.cpp"

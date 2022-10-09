@@ -239,3 +239,5 @@ LocalQmlProfilerSupport::LocalQmlProfilerSupport(RunControl *runControl, const Q
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilerruncontrol.cpp"

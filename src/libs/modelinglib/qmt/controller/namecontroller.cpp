@@ -247,3 +247,5 @@ bool NameController::parseClassName(const QString &fullClassName, QString *umlNa
 }
 
 } // namespace qmt
+
+#include "moc_namecontroller.cpp"

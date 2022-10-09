@@ -287,3 +287,5 @@ void EasingGraph::paintEvent(QPaintEvent *event)
 }
 
 QT_END_NAMESPACE
+
+#include "moc_easinggraph.cpp"

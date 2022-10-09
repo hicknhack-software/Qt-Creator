@@ -434,3 +434,5 @@ void CppHighlighter::highlightDoxygenComment(const QString &text, int position, 
     setFormatWithSpaces(text, initial, it - uc - initial, format);
 }
 
+
+#include "moc_cpphighlighter.cpp"

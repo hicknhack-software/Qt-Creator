@@ -14,5 +14,4 @@ add_qtc_plugin(ImageViewer
     imageviewerfile.cpp imageviewerfile.h
     imageviewerplugin.cpp imageviewerplugin.h
     multiexportdialog.cpp multiexportdialog.h
-  EXPLICIT_MOC imageviewer.h
 )

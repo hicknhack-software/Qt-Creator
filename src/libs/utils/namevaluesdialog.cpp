@@ -126,3 +126,5 @@ std::optional<NameValueItems> NameValuesDialog::getNameValueItems(QWidget *paren
 }
 
 } // namespace Utils
+
+#include "moc_namevaluesdialog.cpp"

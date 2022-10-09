@@ -42,3 +42,5 @@ void MaterialEditorDynamicPropertiesProxyModel::registerDeclarativeType()
     DynamicPropertiesProxyModel::registerDeclarativeType();
     qmlRegisterType<MaterialEditorDynamicPropertiesProxyModel>("HelperWidgets", 2, 0, "MaterialEditorDynamicPropertiesModel");
 }
+
+#include "moc_materialeditordynamicpropertiesproxymodel.cpp"

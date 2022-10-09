@@ -784,3 +784,5 @@ void TestResultsPane::showTestResult(const QModelIndex &index)
 
 } // namespace Internal
 } // namespace Autotest
+
+#include "moc_testresultspane.cpp"

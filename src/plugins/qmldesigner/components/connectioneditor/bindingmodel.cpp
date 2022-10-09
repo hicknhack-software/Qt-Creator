@@ -443,3 +443,5 @@ void BindingModel::handleException()
 } // namespace Internal
 
 } // namespace QmlDesigner
+
+#include "moc_bindingmodel.cpp"

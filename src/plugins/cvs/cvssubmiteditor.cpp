@@ -44,3 +44,5 @@ void CvsSubmitEditor::setStateList(const StateFilePairs &statusOutput)
 }
 
 } // Cvs::Internal
+
+#include "moc_cvssubmiteditor.cpp"

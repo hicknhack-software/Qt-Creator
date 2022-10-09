@@ -138,3 +138,5 @@ void CustomWidgetWidgetsWizardPage::slotCheckCompleteness()
 }
 }
 }
+
+#include "moc_customwidgetwidgetswizardpage.cpp"

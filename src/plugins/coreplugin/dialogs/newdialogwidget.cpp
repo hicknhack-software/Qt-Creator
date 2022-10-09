@@ -511,3 +511,5 @@ void NewDialogWidget::setSelectedPlatform(int /*platform*/)
     //The static cast allows us to keep PlatformFilterProxyModel anonymous
     static_cast<PlatformFilterProxyModel *>(m_filterProxyModel)->setPlatform(selectedPlatform());
 }
+
+#include "moc_newdialogwidget.cpp"

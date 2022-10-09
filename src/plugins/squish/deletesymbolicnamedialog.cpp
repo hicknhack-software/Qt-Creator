@@ -139,3 +139,5 @@ void DeleteSymbolicNameDialog::onSelectionChanged(const QItemSelection &selectio
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_deletesymbolicnamedialog.cpp"

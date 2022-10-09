@@ -172,3 +172,5 @@ void SelectableItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_selectableitem.cpp"

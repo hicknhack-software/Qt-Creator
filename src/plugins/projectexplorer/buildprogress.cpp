@@ -96,3 +96,5 @@ void BuildProgress::updateState()
     m_errorLabel->setVisible(haveErrors);
     m_contentWidget->setVisible(haveWarnings || haveErrors);
 }
+
+#include "moc_buildprogress.cpp"

@@ -78,3 +78,5 @@ const ExternalEditorList IExternalEditor::externalEditors(const Utils::MimeType 
 }
 
 } // Core
+
+#include "moc_iexternaleditor.cpp"

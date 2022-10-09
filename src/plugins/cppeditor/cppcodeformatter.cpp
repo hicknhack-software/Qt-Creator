@@ -1692,3 +1692,5 @@ bool QtStyleCodeFormatter::shouldClearPaddingOnEnter(int state)
 }
 
 } // namespace CppEditor
+
+#include "moc_cppcodeformatter.cpp"

@@ -132,3 +132,5 @@ void PaletteBox::keyPressEvent(QKeyEvent *event)
 }
 
 } // namespace qmt
+
+#include "moc_palettebox.cpp"

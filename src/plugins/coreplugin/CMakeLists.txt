@@ -156,7 +156,6 @@ add_qtc_plugin(Core
     versiondialog.cpp versiondialog.h
     welcomepagehelper.cpp welcomepagehelper.h
     windowsupport.cpp windowsupport.h
-  EXPLICIT_MOC dialogs/filepropertiesdialog.h
 )
 
 extend_qtc_plugin(Core

@@ -82,3 +82,5 @@ void NimCodeStylePreferencesWidget::updatePreview()
 
 } // namespace Nim
 
+
+#include "moc_nimcodestylepreferenceswidget.cpp"

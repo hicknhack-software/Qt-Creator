@@ -98,3 +98,5 @@ void QmlProfilerViewManager::clear()
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilerviewmanager.cpp"

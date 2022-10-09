@@ -692,3 +692,5 @@ GenericProposalModelPtr GenericProposalWidget::model()
 } // namespace TextEditor
 
 #include "genericproposalwidget.moc"
+
+#include "moc_genericproposalwidget.cpp"

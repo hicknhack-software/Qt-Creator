@@ -104,3 +104,5 @@ bool VersionDialog::event(QEvent *event)
     }
     return QDialog::event(event);
 }
+
+#include "moc_versiondialog.cpp"

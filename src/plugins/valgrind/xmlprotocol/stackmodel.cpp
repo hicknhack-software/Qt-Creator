@@ -207,3 +207,5 @@ void StackModel::clear()
 
 } // namespace XmlProtocol
 } // namespace Valgrind
+
+#include "moc_stackmodel.cpp"

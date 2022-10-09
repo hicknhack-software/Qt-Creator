@@ -139,3 +139,5 @@ TreeViewComboBoxView *TreeViewComboBox::view() const
 {
     return m_view;
 }
+
+#include "moc_treeviewcombobox.cpp"

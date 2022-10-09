@@ -97,3 +97,5 @@ void RemoteLinuxEnvironmentAspectWidget::stopFetchEnvironment()
 }
 
 } // RemoteLinux
+
+#include "moc_remotelinuxenvironmentaspectwidget.cpp"

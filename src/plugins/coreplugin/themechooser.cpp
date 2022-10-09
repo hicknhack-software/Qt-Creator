@@ -234,3 +234,5 @@ Theme *ThemeEntry::createTheme(Id id)
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_themechooser.cpp"

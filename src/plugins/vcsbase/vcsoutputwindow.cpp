@@ -460,3 +460,5 @@ void VcsOutputWindow::clearRepository()
 }
 
 } // namespace VcsBase
+
+#include "moc_vcsoutputwindow.cpp"

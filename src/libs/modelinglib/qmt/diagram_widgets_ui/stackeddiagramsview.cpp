@@ -99,3 +99,5 @@ MDiagram *StackedDiagramsView::diagram(DiagramView *diagramView) const
 }
 
 } // namespace qmt
+
+#include "moc_stackeddiagramsview.cpp"

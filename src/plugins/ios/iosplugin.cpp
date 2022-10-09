@@ -98,3 +98,5 @@ bool IosPlugin::initialize(const QStringList &arguments, QString *errorMessage)
 
 } // namespace Internal
 } // namespace Ios
+
+#include "moc_iosplugin.cpp"

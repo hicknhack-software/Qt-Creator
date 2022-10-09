@@ -24,3 +24,5 @@ CppQuickFixOperation::CppQuickFixOperation(const CppQuickFixInterface &interface
 CppQuickFixOperation::~CppQuickFixOperation() = default;
 
 } // namespace CppEditor::Internal
+
+#include "moc_cppquickfix.cpp"

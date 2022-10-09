@@ -165,3 +165,5 @@ void QtSingleApplication::activateWindow()
 }
 
 } // namespace SharedTools
+
+#include "moc_qtsingleapplication.cpp"

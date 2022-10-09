@@ -775,3 +775,5 @@ void Internal::CorePlugin::testOutputFormatter()
 }
 #endif // WITH_TESTS
 } // namespace Core
+
+#include "moc_outputwindow.cpp"

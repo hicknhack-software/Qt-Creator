@@ -237,3 +237,9 @@ bool StatesEditorModel::hasAnnotation(int internalNodeId) const
 }
 
 } // namespace QmlDesigner
+
+#ifdef MOC_INCLUDE_FOLDER
+#include "stateseditor/moc_stateseditormodel.cpp"
+#else
+#include "moc_stateseditormodel.cpp"
+#endif

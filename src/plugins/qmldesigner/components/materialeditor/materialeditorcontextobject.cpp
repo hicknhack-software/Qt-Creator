@@ -449,3 +449,5 @@ void MaterialEditorContextObject::goIntoComponent()
 }
 
 } // QmlDesigner
+
+#include "moc_materialeditorcontextobject.cpp"

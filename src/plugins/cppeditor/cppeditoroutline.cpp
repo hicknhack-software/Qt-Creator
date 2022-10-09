@@ -183,3 +183,5 @@ void CppEditorOutline::gotoSymbolInEditor()
 } // namespace CppEditor::Internal
 
 #include <cppeditoroutline.moc>
+
+#include "moc_cppeditoroutline.cpp"

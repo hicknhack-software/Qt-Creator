@@ -291,3 +291,5 @@ void PathTool::pathChanged()
 }
 
 }
+
+#include "moc_pathtool.cpp"

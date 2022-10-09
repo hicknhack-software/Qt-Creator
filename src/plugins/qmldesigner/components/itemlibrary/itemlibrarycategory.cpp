@@ -119,3 +119,5 @@ void ItemLibraryCategory::setCategorySelected(bool selected)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_itemlibrarycategory.cpp"

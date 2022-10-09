@@ -194,3 +194,5 @@ void CtfVisualizerTool::loadJson()
 
 }  // namespace Internal
 }  // namespace CtfVisualizer
+
+#include "moc_ctfvisualizertool.cpp"

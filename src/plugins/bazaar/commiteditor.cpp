@@ -57,3 +57,5 @@ void CommitEditor::setFields(const QString &repositoryRoot, const BranchInfo &br
 }
 
 } // Bazaar::Internal
+
+#include "moc_commiteditor.cpp"

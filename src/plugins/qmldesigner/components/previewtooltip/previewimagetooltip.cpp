@@ -54,3 +54,5 @@ void PreviewImageTooltip::setImage(const QImage &image, bool scale)
 }
 
 }
+
+#include "moc_previewimagetooltip.cpp"

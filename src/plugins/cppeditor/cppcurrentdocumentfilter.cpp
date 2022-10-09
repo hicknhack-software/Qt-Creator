@@ -167,3 +167,5 @@ QList<IndexItem::Ptr> CppCurrentDocumentFilter::itemsOfCurrentDocument()
 }
 
 } // namespace CppEditor::Internal
+
+#include "moc_cppcurrentdocumentfilter.cpp"

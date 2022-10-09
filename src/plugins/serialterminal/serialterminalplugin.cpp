@@ -45,3 +45,5 @@ void SerialTerminalPlugin::settingsChanged(const Settings &settings)
 
 } // namespace Internal
 } // namespace SerialTerminal
+
+#include "moc_serialterminalplugin.cpp"

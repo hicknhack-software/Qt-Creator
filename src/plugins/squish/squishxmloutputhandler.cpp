@@ -323,3 +323,5 @@ void SquishXmlOutputHandler::outputAvailable(const QByteArray &output)
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_squishxmloutputhandler.cpp"

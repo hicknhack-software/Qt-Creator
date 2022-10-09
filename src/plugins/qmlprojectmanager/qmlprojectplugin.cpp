@@ -453,3 +453,5 @@ Utils::FilePath QmlProjectPlugin::projectFilePath()
 
 } // namespace Internal
 } // namespace QmlProjectManager
+
+#include "moc_qmlprojectplugin.cpp"

@@ -84,3 +84,5 @@ QSize ManualRunDialog::sizeHint() const
 
 } // namespace Internal
 } // namespace Cppcheck
+
+#include "moc_cppcheckmanualrundialog.cpp"

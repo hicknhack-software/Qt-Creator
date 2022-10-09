@@ -49,3 +49,5 @@ QList<QString> StereotypesController::fromString(const QString &stereotypes)
 }
 
 } // namespace qmt
+
+#include "moc_stereotypescontroller.cpp"

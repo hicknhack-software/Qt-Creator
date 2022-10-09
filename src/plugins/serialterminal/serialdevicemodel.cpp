@@ -113,3 +113,5 @@ QVariant SerialDeviceModel::data(const QModelIndex &index, int role) const
 
 } // namespace Internal
 } // namespace SerialTerminal
+
+#include "moc_serialdevicemodel.cpp"

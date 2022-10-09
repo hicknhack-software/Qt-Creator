@@ -151,3 +151,5 @@ void PluginDialog::openErrorDetails()
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_plugindialog.cpp"

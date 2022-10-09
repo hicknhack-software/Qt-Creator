@@ -482,3 +482,5 @@ bool SquishTestTreeSortModel::lessThan(const QModelIndex &left, const QModelInde
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_squishtesttreemodel.cpp"

@@ -197,3 +197,5 @@ void Edit3DCanvas::positionBusyInidicator()
 }
 
 }
+
+#include "moc_edit3dcanvas.cpp"

@@ -30,3 +30,5 @@ WarningItem *SCGraphicsItemProvider::createWarningItem(const QString &key, BaseI
 
     return nullptr;
 }
+
+#include "moc_graphicsitemprovider.cpp"

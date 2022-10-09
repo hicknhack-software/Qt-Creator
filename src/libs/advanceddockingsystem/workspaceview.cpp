@@ -208,3 +208,5 @@ QStringList WorkspaceView::selectedWorkspaces() const
 }
 
 } // namespace ADS
+
+#include "moc_workspaceview.cpp"

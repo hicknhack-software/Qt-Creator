@@ -356,3 +356,5 @@ bool ScannerGeneratorFactory::validateData(Id typeId, const QVariant &data, QStr
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_jsonwizardgeneratorfactory.cpp"

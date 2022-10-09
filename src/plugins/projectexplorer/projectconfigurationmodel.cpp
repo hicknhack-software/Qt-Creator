@@ -136,3 +136,5 @@ void ProjectConfigurationModel::removeProjectConfiguration(ProjectConfiguration 
 }
 
 } // ProjectExplorer
+
+#include "moc_projectconfigurationmodel.cpp"

@@ -247,3 +247,5 @@ TimelineForm *TimelineSettingsDialog::currentTimelineForm() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_timelinesettingsdialog.cpp"

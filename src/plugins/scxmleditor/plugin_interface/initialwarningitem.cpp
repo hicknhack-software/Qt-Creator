@@ -28,3 +28,5 @@ void InitialWarningItem::check()
     if (m_parentItem)
         setWarningActive(SceneUtils::hasSiblingStates(m_parentItem));
 }
+
+#include "moc_initialwarningitem.cpp"

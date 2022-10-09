@@ -232,3 +232,5 @@ void ComponentView::nodeSourceChanged(const ModelNode &node, const QString &/*ne
     }
 }
 } // namespace QmlDesigner
+
+#include "moc_componentview.cpp"

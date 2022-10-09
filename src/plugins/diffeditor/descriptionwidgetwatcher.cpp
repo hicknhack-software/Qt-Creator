@@ -54,3 +54,5 @@ TextEditor::TextEditorWidget *DescriptionWidgetWatcher::descriptionWidget(Core::
 }
 
 } // namespace DiffEditor
+
+#include "moc_descriptionwidgetwatcher.cpp"

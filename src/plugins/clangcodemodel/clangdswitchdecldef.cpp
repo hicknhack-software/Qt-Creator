@@ -175,3 +175,5 @@ void ClangdSwitchDeclDef::Private::handleDeclDefSwitchReplies()
 }
 
 } // namespace ClangCodeModel::Internal
+
+#include "moc_clangdswitchdecldef.cpp"

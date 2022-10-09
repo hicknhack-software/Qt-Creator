@@ -339,3 +339,5 @@ bool AndroidCreateKeystoreCertificate::validateUserInput()
 }
 
 } // Android::Internal
+
+#include "moc_androidcreatekeystorecertificate.cpp"

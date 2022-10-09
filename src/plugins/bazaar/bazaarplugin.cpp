@@ -988,3 +988,5 @@ void BazaarPluginPrivate::changed(const QVariant &v)
 }
 
 } // Bazaar::Internal
+
+#include "moc_bazaarplugin.cpp"

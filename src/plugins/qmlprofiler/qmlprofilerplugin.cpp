@@ -142,3 +142,5 @@ QVector<QObject *> QmlProfiler::Internal::QmlProfilerPlugin::createTestObjects()
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilerplugin.cpp"

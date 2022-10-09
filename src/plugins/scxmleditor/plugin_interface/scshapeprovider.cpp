@@ -158,3 +158,5 @@ QByteArray SCShapeProvider::scxmlCode(int groupIndex, int shapeIndex, ScxmlTag *
 
     return QByteArray();
 }
+
+#include "moc_scshapeprovider.cpp"

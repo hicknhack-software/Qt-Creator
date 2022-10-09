@@ -157,3 +157,5 @@ void CurveEditor::updateStatusLine()
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_curveeditor.cpp"

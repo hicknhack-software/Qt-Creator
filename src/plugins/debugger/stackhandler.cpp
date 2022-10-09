@@ -498,3 +498,5 @@ void StackHandler::reloadFullStack()
 }
 
 } // Debugger::Internal
+
+#include "moc_stackhandler.cpp"

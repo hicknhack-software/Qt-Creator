@@ -35,3 +35,5 @@ void WrappableLineEdit::insertFromMimeData(const QMimeData *source)
 }
 
 } // namespace CppEditor
+
+#include "moc_wrappablelineedit.cpp"

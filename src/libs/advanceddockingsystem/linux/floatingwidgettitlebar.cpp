@@ -150,3 +150,5 @@ void FloatingWidgetTitleBar::updateStyle()
 }
 
 } // namespace ADS
+
+#include "moc_floatingwidgettitlebar.cpp"

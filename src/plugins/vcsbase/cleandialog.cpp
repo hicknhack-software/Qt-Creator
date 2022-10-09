@@ -301,3 +301,5 @@ void CleanDialog::updateSelectAllCheckBox()
 }
 
 } // namespace VcsBase
+
+#include "moc_cleandialog.cpp"

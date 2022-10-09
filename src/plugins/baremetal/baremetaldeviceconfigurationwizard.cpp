@@ -38,3 +38,5 @@ ProjectExplorer::IDevice::Ptr BareMetalDeviceConfigurationWizard::device() const
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_baremetaldeviceconfigurationwizard.cpp"

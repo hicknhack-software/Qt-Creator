@@ -245,3 +245,5 @@ void CurveEditorStyleDialog::printStyle()
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_curveeditorstyledialog.cpp"

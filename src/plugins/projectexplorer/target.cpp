@@ -929,3 +929,5 @@ bool Target::fromMap(const QVariantMap &map)
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_target.cpp"

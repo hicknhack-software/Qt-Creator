@@ -152,3 +152,5 @@ void TransitionEditorSettingsDialog::addTransitionTab(const QmlTimeline &node)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_transitioneditorsettingsdialog.cpp"

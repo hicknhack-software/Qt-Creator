@@ -314,3 +314,5 @@ void BackendModel::handleDataChanged(const QModelIndex &topLeft, const QModelInd
 } // namespace Internal
 
 } // namespace QmlDesigner
+
+#include "moc_backendmodel.cpp"

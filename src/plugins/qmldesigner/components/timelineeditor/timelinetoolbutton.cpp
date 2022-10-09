@@ -141,3 +141,5 @@ void TimelineToolButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_timelinetoolbutton.cpp"

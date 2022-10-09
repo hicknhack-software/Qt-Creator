@@ -61,3 +61,5 @@ bool ModelUtilities::haveDependency(const qmt::MObject *source,
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_modelutilities.cpp"

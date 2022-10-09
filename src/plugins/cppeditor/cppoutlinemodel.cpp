@@ -305,3 +305,5 @@ QModelIndex OutlineModel::indexForPosition(int line, int column,
 }
 
 } // namespace CppEditor::Internal
+
+#include "moc_cppoutlinemodel.cpp"

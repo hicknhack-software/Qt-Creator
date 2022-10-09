@@ -66,3 +66,5 @@ QSharedPointer<PluginOptions> CustomWidgetWizardDialog::pluginOptions() const
 
 } // namespace Internal
 } // namespace QmakeProjectManager
+
+#include "moc_customwidgetwizarddialog.cpp"

@@ -40,3 +40,5 @@ void ScxmlEditorPlugin::extensionsInitialized()
 
 } // Internal
 } // ScxmlEditor
+
+#include "moc_scxmleditorplugin.cpp"

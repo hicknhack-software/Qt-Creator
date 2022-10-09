@@ -46,3 +46,5 @@ bool FormWindowEditor::isDesignModePreferred() const
 
 } // namespace Designer
 
+
+#include "moc_formwindoweditor.cpp"

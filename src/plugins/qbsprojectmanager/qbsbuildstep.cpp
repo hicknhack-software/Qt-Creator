@@ -885,3 +885,5 @@ QbsBuildStepFactory::QbsBuildStepFactory()
 } // namespace QbsProjectManager
 
 #include "qbsbuildstep.moc"
+
+#include "moc_qbsbuildstep.cpp"

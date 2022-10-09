@@ -237,3 +237,5 @@ namespace ADS
     }
 
 } // namespace ADS
+
+#include "moc_dockfocuscontroller.cpp"

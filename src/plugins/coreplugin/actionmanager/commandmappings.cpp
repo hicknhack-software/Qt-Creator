@@ -205,3 +205,5 @@ void CommandMappings::setFilterText(const QString &text)
 }
 
 } // namespace Core
+
+#include "moc_commandmappings.cpp"

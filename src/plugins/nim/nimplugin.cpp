@@ -118,3 +118,5 @@ void NimPlugin::extensionsInitialized()
 }
 
 } // namespace Nim
+
+#include "moc_nimplugin.cpp"

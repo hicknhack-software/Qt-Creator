@@ -387,3 +387,5 @@ quint64 DisassemblerAgent::address() const
 }
 
 } // Debugger::Internal
+
+#include "moc_disassembleragent.cpp"

@@ -366,3 +366,5 @@ void KitManagerConfigWidget::showEvent(QShowEvent *event)
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_kitmanagerconfigwidget.cpp"

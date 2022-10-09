@@ -174,3 +174,5 @@ void BindingEditorDialog::checkBoxChanged(int state)
 }
 
 } // QmlDesigner namespace
+
+#include "moc_bindingeditordialog.cpp"

@@ -798,3 +798,5 @@ bool QmlBuildSystem::renameFile(Node * context, const FilePath &oldFilePath, con
 
 } // namespace QmlProjectManager
 
+
+#include "moc_qmlproject.cpp"

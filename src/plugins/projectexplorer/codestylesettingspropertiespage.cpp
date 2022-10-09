@@ -56,3 +56,5 @@ CodeStyleSettingsWidget::CodeStyleSettingsWidget(Project *project)
 }
 
 } // ProjectExplorer::Internal
+
+#include "moc_codestylesettingspropertiespage.cpp"

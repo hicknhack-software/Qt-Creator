@@ -735,3 +735,5 @@ CMakeBuildStepFactory::CMakeBuildStepFactory()
 } // CMakeProjectManager::Internal
 
 #include <cmakebuildstep.moc>
+
+#include "moc_cmakebuildstep.cpp"

@@ -229,3 +229,5 @@ void FilePropertiesDialog::setPermission(QFile::Permissions newPermissions, bool
 }
 
 } // Core
+
+#include "moc_filepropertiesdialog.cpp"

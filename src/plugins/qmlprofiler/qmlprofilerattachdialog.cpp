@@ -93,3 +93,5 @@ void QmlProfilerAttachDialog::setKitId(Utils::Id id)
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilerattachdialog.cpp"

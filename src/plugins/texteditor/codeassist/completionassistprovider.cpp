@@ -33,3 +33,5 @@ bool CompletionAssistProvider::isContinuationChar(const QChar &c) const
 {
     return c.isLetterOrNumber() || c == QLatin1Char('_');
 }
+
+#include "moc_completionassistprovider.cpp"

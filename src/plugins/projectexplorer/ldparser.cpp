@@ -147,3 +147,5 @@ void LdParser::flush()
     m_incompleteTask.clear();
     scheduleTask(t, 1);
 }
+
+#include "moc_ldparser.cpp"

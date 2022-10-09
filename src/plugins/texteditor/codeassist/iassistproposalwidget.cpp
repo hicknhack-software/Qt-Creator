@@ -124,3 +124,5 @@ void IAssistProposalWidget::setBasePosition(int basePosition)
 
     This signal is emitted whenever \a proposalItem is chosen to be applied.
 */
+
+#include "moc_iassistproposalwidget.cpp"

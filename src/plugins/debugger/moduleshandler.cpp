@@ -308,3 +308,5 @@ void ModulesHandler::endUpdateAll()
 }
 
 } // namespace Debugger::Internal
+
+#include "moc_moduleshandler.cpp"

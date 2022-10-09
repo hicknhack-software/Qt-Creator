@@ -349,3 +349,5 @@ void ProjectIntroPage::setUseAsDefaultPath(bool u)
 }
 
 } // namespace Utils
+
+#include "moc_projectintropage.cpp"

@@ -277,3 +277,5 @@ void ToolChainManager::addBadToolchain(const Utils::FilePath &toolchain)
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_toolchainmanager.cpp"

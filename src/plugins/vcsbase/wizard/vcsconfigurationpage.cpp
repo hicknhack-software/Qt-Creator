@@ -165,3 +165,5 @@ void VcsConfigurationPage::openConfiguration()
 }
 
 } // namespace VcsBase
+
+#include "moc_vcsconfigurationpage.cpp"

@@ -74,3 +74,5 @@ FormClassWizardParameters FormClassWizardDialog::parameters() const
 
 } // namespace Internal
 } // namespace Designer
+
+#include "moc_formclasswizarddialog.cpp"

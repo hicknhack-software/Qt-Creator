@@ -54,3 +54,5 @@ void FakeToolTip::resizeEvent(QResizeEvent *)
 }
 
 } // namespace Utils
+
+#include "moc_faketooltip.cpp"

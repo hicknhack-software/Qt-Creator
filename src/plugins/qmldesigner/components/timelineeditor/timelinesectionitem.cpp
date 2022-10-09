@@ -1218,3 +1218,5 @@ bool TimelineBarItem::validateBounds(qreal distance)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_timelinesectionitem.cpp"

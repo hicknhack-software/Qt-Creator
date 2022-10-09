@@ -207,3 +207,5 @@ void VcsBaseDiffEditorController::setProcessEnvironment(const Environment &value
 }
 
 } // namespace VcsBase
+
+#include "moc_vcsbasediffeditorcontroller.cpp"

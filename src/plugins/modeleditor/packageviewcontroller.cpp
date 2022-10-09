@@ -137,3 +137,5 @@ bool PackageViewController::haveMatchingStereotypes(const qmt::MObject *object1,
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_packageviewcontroller.cpp"

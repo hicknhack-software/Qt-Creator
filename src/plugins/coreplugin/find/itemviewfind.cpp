@@ -315,3 +315,5 @@ QModelIndex ItemViewFind::followingIndex(const QModelIndex &idx, bool backward, 
 }
 
 } // namespace Core
+
+#include "moc_itemviewfind.cpp"

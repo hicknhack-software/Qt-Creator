@@ -456,3 +456,5 @@ void FileSystemWatcher::slotDirectoryChanged(const QString &path)
 }
 
 } // namespace Utils
+
+#include "moc_filesystemwatcher.cpp"

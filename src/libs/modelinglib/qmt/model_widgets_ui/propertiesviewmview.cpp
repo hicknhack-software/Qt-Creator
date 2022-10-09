@@ -1701,3 +1701,5 @@ void PropertiesView::MView::assignEmbeddedModelElement(const QList<BASE *> &base
 }
 
 } // namespace qmt
+
+#include "moc_propertiesviewmview.cpp"

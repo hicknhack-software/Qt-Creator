@@ -47,3 +47,5 @@ void NimbleProject::setExcludedFiles(const QStringList &excludedFiles)
 }
 
 
+
+#include "moc_nimbleproject.cpp"

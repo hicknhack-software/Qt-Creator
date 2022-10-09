@@ -2628,3 +2628,5 @@ void Imports::dump() const
 }
 
 #endif
+
+#include "moc_qmljsinterpreter.cpp"

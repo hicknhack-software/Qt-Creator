@@ -63,3 +63,5 @@ void PuppetBuildProgressDialog::newBuildOutput(const QByteArray &standardOutput)
 }
 
 }
+
+#include "moc_puppetbuildprogressdialog.cpp"

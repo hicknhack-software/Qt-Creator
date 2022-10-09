@@ -197,3 +197,9 @@ void StatesEditorWidget::reloadQmlSource()
 
 } // namespace Experimental
 } // namespace QmlDesigner
+
+#ifdef MOC_INCLUDE_FOLDER
+#include "stateseditornew/moc_stateseditorwidget.cpp"
+#else
+#include "moc_stateseditorwidget.cpp"
+#endif

@@ -200,3 +200,5 @@ void ColorBox::mouseMoveEvent(QMouseEvent *e)
 
 
 } //QmlEditorWidgets
+
+#include "moc_colorbox.cpp"

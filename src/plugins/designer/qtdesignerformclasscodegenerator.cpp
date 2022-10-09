@@ -215,3 +215,5 @@ QVariant QtDesignerFormClassCodeGenerator::generateFormClassCode(const FormClass
 }
 
 } // namespace Designer
+
+#include "moc_qtdesignerformclasscodegenerator.cpp"

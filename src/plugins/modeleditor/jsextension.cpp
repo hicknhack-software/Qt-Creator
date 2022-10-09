@@ -14,3 +14,5 @@ QString ModelEditor::Internal::JsExtension::elementNameToFileName(const QString 
 {
     return qmt::NameController::convertElementNameToBaseFileName(element);
 }
+
+#include "moc_jsextension.cpp"

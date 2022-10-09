@@ -346,3 +346,5 @@ void AndroidSdkModel::refreshData()
 
 } // namespace Internal
 } // namespace Android
+
+#include "moc_androidsdkmodel.cpp"

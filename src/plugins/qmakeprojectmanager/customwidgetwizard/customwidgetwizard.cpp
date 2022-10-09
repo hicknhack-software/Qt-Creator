@@ -55,3 +55,5 @@ Core::GeneratedFiles CustomWidgetWizard::generateFiles(const QWizard *w,
 
 } // namespace Internal
 } // namespace QmakeProjectManager
+
+#include "moc_customwidgetwizard.cpp"

@@ -53,3 +53,5 @@ QString SaveDialog::description() const
 }
 
 } // Macros::Internal
+
+#include "moc_savedialog.cpp"

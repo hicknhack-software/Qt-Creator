@@ -37,3 +37,5 @@ void TextFieldCheckBox::slotStateChanged(int cs)
 }
 
 } // namespace Utils
+
+#include "moc_textfieldcheckbox.cpp"

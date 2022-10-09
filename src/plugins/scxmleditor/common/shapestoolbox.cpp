@@ -63,3 +63,5 @@ void ShapesToolbox::initView()
     m_shapeGroupsLayout->update();
     update();
 }
+
+#include "moc_shapestoolbox.cpp"

@@ -136,3 +136,5 @@ bool CustomWidgetPluginWizardPage::isComplete() const
 
 } // namespace Internal
 } // namespace QmakeProjectManager
+
+#include "moc_customwidgetpluginwizardpage.cpp"

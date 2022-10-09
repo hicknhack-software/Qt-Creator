@@ -410,3 +410,5 @@ void ContextPaneTextWidget::timerEvent(QTimerEvent *event)
 }
 
 } //QmlDesigner
+
+#include "moc_contextpanetextwidget.cpp"

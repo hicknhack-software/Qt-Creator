@@ -24,3 +24,5 @@ int ProcessInterface::controlSignalToInt(ControlSignal controlSignal)
 }
 
 } // Utils
+
+#include "moc_processinterface.cpp"

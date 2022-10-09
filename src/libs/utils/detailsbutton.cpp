@@ -111,3 +111,5 @@ void DetailsButton::paintEvent(QPaintEvent *e)
                                            : QStyle::PE_IndicatorArrowDown, &arrowOpt, &p, this);
     }
 }
+
+#include "moc_detailsbutton.cpp"

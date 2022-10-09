@@ -158,3 +158,5 @@ void AbstractEditorDialog::textChanged()
 }
 
 } // QmlDesigner namespace
+
+#include "moc_abstracteditordialog.cpp"

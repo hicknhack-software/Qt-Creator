@@ -83,3 +83,5 @@ void ModelNodePositionRecalculator::replaced(int offset, int oldLength, int newL
     }
     m_dirtyAreas.insert(offset - newLength + oldLength, newLength);
 }
+
+#include "moc_modelnodepositionrecalculator.cpp"

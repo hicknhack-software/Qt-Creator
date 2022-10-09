@@ -283,3 +283,5 @@ bool UrlLocatorFilter::isCustomFilter() const
 }
 
 } // namespace Core
+
+#include "moc_urllocatorfilter.cpp"

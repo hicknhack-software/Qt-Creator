@@ -557,3 +557,5 @@ void ReadOnlyFilesDialogPrivate::initDialog(const FilePaths &filePaths)
 }
 
 }// namespace Core
+
+#include "moc_readonlyfilesdialog.cpp"

@@ -319,3 +319,5 @@ QmlProfilerModelManager *FlameGraphModel::modelManager() const
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_flamegraphmodel.cpp"

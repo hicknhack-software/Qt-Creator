@@ -99,3 +99,5 @@ QToolButton *ColorPicker::createButton(const QColor &color)
 
     return button;
 }
+
+#include "moc_colorpicker.cpp"

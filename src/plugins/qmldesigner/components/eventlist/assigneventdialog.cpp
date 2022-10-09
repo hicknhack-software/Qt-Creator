@@ -165,3 +165,5 @@ void AssignEventDialog::postShow()
 }
 
 } // namespace QmlDesigner.
+
+#include "moc_assigneventdialog.cpp"

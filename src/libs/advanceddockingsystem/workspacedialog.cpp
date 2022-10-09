@@ -194,3 +194,5 @@ void WorkspaceDialog::updateActions(const QStringList &workspaces)
 }
 
 } // namespace ADS
+
+#include "moc_workspacedialog.cpp"

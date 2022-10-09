@@ -474,3 +474,5 @@ QString CheckableMessageBox::msgDoNotShowAgain()
 }
 
 } // namespace Utils
+
+#include "moc_checkablemessagebox.cpp"

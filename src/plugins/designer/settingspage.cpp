@@ -102,3 +102,5 @@ bool SettingsPageProvider::matches(const QRegularExpression &regex) const
     }
     return false;
 }
+
+#include "moc_settingspage.cpp"

@@ -65,3 +65,5 @@ AddToVcsDialog::~AddToVcsDialog() = default;
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_addtovcsdialog.cpp"

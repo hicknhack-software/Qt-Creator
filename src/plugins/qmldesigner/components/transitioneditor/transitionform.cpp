@@ -185,3 +185,5 @@ void TransitionForm::setupStatesLists()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_transitionform.cpp"

@@ -175,3 +175,5 @@ void StateProperties::updateContent()
         m_contentEdit->setPlainText(content());
     }
 }
+
+#include "moc_stateproperties.cpp"

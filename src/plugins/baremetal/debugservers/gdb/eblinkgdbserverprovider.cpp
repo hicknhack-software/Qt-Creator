@@ -370,3 +370,5 @@ void EBlinkGdbServerProviderConfigWidget::discard()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_eblinkgdbserverprovider.cpp"

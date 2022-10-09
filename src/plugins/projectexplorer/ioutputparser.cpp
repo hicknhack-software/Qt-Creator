@@ -111,3 +111,5 @@ void OutputTaskParser::runPostPrintActions(QPlainTextEdit *edit)
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_ioutputparser.cpp"

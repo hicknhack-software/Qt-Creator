@@ -534,3 +534,5 @@ void CppEditorDocument::onDiagnosticsChanged(const QString &fileName, const QStr
 
 } // namespace Internal
 } // namespace CppEditor
+
+#include "moc_cppeditordocument.cpp"

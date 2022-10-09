@@ -157,3 +157,5 @@ QObject *QmlPreviewWidgetPlugin::getPreviewPlugin()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_qmlpreviewplugin.cpp"

@@ -430,3 +430,5 @@ void ProcessExtraCompiler::cleanUp()
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_extracompiler.cpp"

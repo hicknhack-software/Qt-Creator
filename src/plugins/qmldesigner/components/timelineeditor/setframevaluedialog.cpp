@@ -146,3 +146,5 @@ QWidget* SetFrameValueDialog::createValueControl(const QVariant& value)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_setframevaluedialog.cpp"

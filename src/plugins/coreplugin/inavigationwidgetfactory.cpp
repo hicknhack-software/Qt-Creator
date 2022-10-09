@@ -162,3 +162,5 @@ void INavigationWidgetFactory::removeRootPath(Utils::Id /*path*/)
 {
 
 }
+
+#include "moc_inavigationwidgetfactory.cpp"

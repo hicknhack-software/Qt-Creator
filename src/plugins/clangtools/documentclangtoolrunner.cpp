@@ -387,3 +387,5 @@ ClangToolRunner *DocumentClangToolRunner::createRunner(const ClangDiagnosticConf
 
 } // namespace Internal
 } // namespace ClangTools
+
+#include "moc_documentclangtoolrunner.cpp"

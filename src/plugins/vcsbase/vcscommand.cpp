@@ -420,3 +420,5 @@ CommandResult::CommandResult(const QtcProcess &process)
 {}
 
 } // namespace VcsBase
+
+#include "moc_vcscommand.cpp"

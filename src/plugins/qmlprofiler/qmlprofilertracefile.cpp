@@ -854,3 +854,5 @@ QmlProfilerNotesModel *QmlProfilerTraceFile::qmlNotes()
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilertracefile.cpp"

@@ -711,3 +711,5 @@ void ShortcutInput::setConflictChecker(const ShortcutInput::ConflictChecker &fun
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_shortcutsettings.cpp"

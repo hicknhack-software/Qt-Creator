@@ -1610,3 +1610,5 @@ void MainWindow::restoreWindowState()
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_mainwindow.cpp"

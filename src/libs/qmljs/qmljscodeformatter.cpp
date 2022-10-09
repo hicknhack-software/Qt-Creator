@@ -1367,3 +1367,5 @@ void QtStyleCodeFormatter::adjustIndent(const QList<Token> &tokens, int startLex
 }
 
 } // namespace QmlJS
+
+#include "moc_qmljscodeformatter.cpp"

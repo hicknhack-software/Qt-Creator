@@ -132,3 +132,5 @@ void EventListDialog::closeEvent([[maybe_unused]] QCloseEvent *event)
 }
 
 } // namespace QmlDesigner.
+
+#include "moc_eventlistdialog.cpp"

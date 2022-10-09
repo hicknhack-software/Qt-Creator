@@ -177,3 +177,5 @@ Command Uncrustify::command(const QString &cfgFile, bool fragment) const
 
 } // namespace Internal
 } // namespace Beautifier
+
+#include "moc_uncrustify.cpp"

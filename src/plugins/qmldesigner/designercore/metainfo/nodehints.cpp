@@ -429,3 +429,5 @@ bool JSObject::potentialChildIsSubclassOf(const QString &typeName)
 } //Internal
 
 } // namespace QmlDesigner
+
+#include "moc_nodehints.cpp"

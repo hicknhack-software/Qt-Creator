@@ -102,3 +102,5 @@ CustomExecutableRunWorkerFactory::CustomExecutableRunWorkerFactory()
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_customexecutablerunconfiguration.cpp"

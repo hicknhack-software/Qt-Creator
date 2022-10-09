@@ -598,3 +598,5 @@ void ProjectWizardPage::setProjectUiVisible(bool visible)
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_projectwizardpage.cpp"

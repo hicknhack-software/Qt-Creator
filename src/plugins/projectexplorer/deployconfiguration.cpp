@@ -252,3 +252,5 @@ DefaultDeployConfigurationFactory::DefaultDeployConfigurationFactory()
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_deployconfiguration.cpp"

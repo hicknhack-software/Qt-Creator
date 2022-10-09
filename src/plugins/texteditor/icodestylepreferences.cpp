@@ -254,3 +254,5 @@ void ICodeStylePreferences::codeStyleRemoved(ICodeStylePreferences *preferences)
 }
 
 } // TextEditor
+
+#include "moc_icodestylepreferences.cpp"

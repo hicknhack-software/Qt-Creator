@@ -241,3 +241,5 @@ namespace Core {
 */
 
 } // namespace Core
+
+#include "moc_ioutputpane.cpp"

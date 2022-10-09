@@ -1753,3 +1753,5 @@ Utils::FilePath ModelManagerInterface::fileToSource(const Utils::FilePath &path)
 }
 
 } // namespace QmlJS
+
+#include "moc_qmljsmodelmanagerinterface.cpp"

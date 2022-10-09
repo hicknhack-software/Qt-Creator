@@ -1133,3 +1133,5 @@ void SideBySideDiffEditorWidget::syncCursor(SideDiffEditorWidget *source, SideDi
 } // namespace DiffEditor
 
 #include "sidebysidediffeditorwidget.moc"
+
+#include "moc_sidebysidediffeditorwidget.cpp"

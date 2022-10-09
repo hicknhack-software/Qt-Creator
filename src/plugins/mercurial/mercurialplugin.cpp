@@ -895,3 +895,5 @@ void MercurialPlugin::testLogResolving()
 #endif
 
 } // Mercurial::Internal
+
+#include "moc_mercurialplugin.cpp"

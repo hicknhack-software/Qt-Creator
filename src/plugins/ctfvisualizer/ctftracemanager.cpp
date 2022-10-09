@@ -285,3 +285,5 @@ void CtfTraceManager::clearAll()
 
 } // namespace Internal
 } // namespace CtfVisualizer
+
+#include "moc_ctftracemanager.cpp"

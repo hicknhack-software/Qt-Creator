@@ -35,3 +35,5 @@ void QQuick3DAreaLight::setHeight(float height)
 }
 
 #endif
+
+#include "moc_qquick3darealight_p.cpp"

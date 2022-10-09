@@ -2214,3 +2214,5 @@ bool MsvcToolChain::WarningFlagAdder::triggered() const
 } // namespace ProjectExplorer
 
 Q_DECLARE_METATYPE(ProjectExplorer::Internal::MsvcToolChain::Platform)
+
+#include "moc_msvctoolchain.cpp"

@@ -59,3 +59,5 @@ void CtfStatisticsView::selectByTitle(const QString &title)
 
 }  // Internal
 }  // CtfVisualizer
+
+#include "moc_ctfstatisticsview.cpp"

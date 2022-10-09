@@ -53,3 +53,5 @@ void TestTreeItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
 
 } // namespace Internal
 } // namespace Autotest
+
+#include "moc_testtreeitemdelegate.cpp"

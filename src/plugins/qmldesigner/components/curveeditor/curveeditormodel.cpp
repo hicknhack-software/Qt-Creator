@@ -377,3 +377,5 @@ AnimationCurve CurveEditorModel::createDoubleCurve(const QmlDesigner::QmlTimelin
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_curveeditormodel.cpp"

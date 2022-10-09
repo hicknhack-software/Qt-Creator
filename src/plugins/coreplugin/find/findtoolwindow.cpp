@@ -384,3 +384,5 @@ void FindToolWindow::findCompleterActivated(const QModelIndex &index)
 }
 
 } // Core::Internal
+
+#include "moc_findtoolwindow.cpp"

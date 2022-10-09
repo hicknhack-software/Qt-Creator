@@ -47,3 +47,5 @@ bool NinjaParser::hasFatalErrors() const
 
 } // namespace Internal
 } // namespace MesonProjectManager
+
+#include "moc_ninjaparser.cpp"

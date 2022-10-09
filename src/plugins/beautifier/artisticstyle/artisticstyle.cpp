@@ -145,3 +145,5 @@ Command ArtisticStyle::command(const QString &cfgFile) const
 
 } // namespace Internal
 } // namespace Beautifier
+
+#include "moc_artisticstyle.cpp"

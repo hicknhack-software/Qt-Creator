@@ -212,3 +212,5 @@ void MesonBuildSystem::updateKit(ProjectExplorer::Kit *kit)
 
 } // namespace Internal
 } // namespace MesonProjectManager
+
+#include "moc_mesonbuildsystem.cpp"

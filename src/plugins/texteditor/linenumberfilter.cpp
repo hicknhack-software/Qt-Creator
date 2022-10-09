@@ -85,3 +85,5 @@ void LineNumberFilter::accept(const LocatorFilterEntry &selection,
         EditorManager::activateEditor(editor);
     }
 }
+
+#include "moc_linenumberfilter.cpp"

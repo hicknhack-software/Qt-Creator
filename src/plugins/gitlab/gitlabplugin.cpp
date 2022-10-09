@@ -334,3 +334,5 @@ void GitLabPlugin::linkedStateChanged(bool enabled)
 }
 
 } // namespace GitLab
+
+#include "moc_gitlabplugin.cpp"

@@ -799,3 +799,5 @@ BuildConfiguration *BuildConfigurationFactory::clone(Target *parent,
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_buildconfiguration.cpp"

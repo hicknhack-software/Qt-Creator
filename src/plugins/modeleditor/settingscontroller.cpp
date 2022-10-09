@@ -36,3 +36,5 @@ void SettingsController::load(QSettings *settings)
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_settingscontroller.cpp"

@@ -919,3 +919,5 @@ void ItemLibraryAssetImportDialog::toggleAdvanced()
 }
 
 }
+
+#include "moc_itemlibraryassetimportdialog.cpp"

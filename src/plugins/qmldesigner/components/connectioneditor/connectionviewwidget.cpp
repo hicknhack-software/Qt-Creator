@@ -613,3 +613,5 @@ void ConnectionViewWidget::backendTableViewSelectionChanged(const QModelIndex &c
 } // namespace Internal
 
 } // namespace QmlDesigner
+
+#include "moc_connectionviewwidget.cpp"

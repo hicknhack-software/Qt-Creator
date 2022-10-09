@@ -372,3 +372,5 @@ QByteArray QPacket::data() const
 } // namespace QmlDebug
 
 #include <qpacketprotocol.moc>
+
+#include "moc_qpacketprotocol.cpp"

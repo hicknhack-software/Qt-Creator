@@ -1076,3 +1076,5 @@ int CppSelectionChanger::currentASTStep() const
 }
 
 } // namespace CppEditor
+
+#include "moc_cppselectionchanger.cpp"

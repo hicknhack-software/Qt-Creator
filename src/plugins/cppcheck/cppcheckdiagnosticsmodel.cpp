@@ -118,3 +118,5 @@ void DiagnosticsModel::add(const Diagnostic &diagnostic)
 
 } // namespace Internal
 } // namespace Cppcheck
+
+#include "moc_cppcheckdiagnosticsmodel.cpp"

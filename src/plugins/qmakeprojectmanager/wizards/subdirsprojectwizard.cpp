@@ -87,3 +87,5 @@ bool SubdirsProjectWizard::postGenerateFiles(const QWizard *w, const Core::Gener
 
 } // namespace Internal
 } // namespace QmakeProjectManager
+
+#include "moc_subdirsprojectwizard.cpp"

@@ -118,3 +118,5 @@ void ConfigurationPanel::updateButtons()
 }
 
 } // Beautifier::Internal
+
+#include "moc_configurationpanel.cpp"

@@ -934,3 +934,5 @@ bool GeneralHelper::getBounds(QQuick3DViewport *view3D, QQuick3DNode *node, QVec
 }
 
 #endif // QUICK3D_MODULE
+
+#include "moc_generalhelper.cpp"

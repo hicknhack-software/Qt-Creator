@@ -154,3 +154,5 @@ void FunctionHintAssistProvider::setTriggerCharacters(
 }
 
 } // namespace LanguageClient
+
+#include "moc_languageclientfunctionhint.cpp"

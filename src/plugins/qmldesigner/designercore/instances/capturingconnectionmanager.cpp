@@ -57,3 +57,5 @@ void CapturingConnectionManager::writeCommand(const QVariant &command)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_capturingconnectionmanager.cpp"

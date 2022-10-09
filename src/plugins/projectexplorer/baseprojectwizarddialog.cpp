@@ -179,3 +179,5 @@ void BaseProjectWizardDialog::setRequiredFeatures(const QSet<Id> &featureSet)
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_baseprojectwizarddialog.cpp"

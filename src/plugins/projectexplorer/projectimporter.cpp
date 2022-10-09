@@ -407,3 +407,5 @@ ProjectImporter::findOrCreateToolChains(const ToolChainDescription &tcd) const
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_projectimporter.cpp"

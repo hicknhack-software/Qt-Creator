@@ -138,3 +138,5 @@ QDebug operator<<(QDebug os, const QmlDesigner::AssetExporterView::LoadState &s)
     return os;
 }
 QT_END_NAMESPACE
+
+#include "moc_assetexporterview.cpp"

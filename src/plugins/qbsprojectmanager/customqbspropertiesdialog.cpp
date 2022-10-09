@@ -104,3 +104,5 @@ void CustomQbsPropertiesDialog::handleCurrentItemChanged()
 
 } // namespace Internal
 } // namespace QbsProjectManager
+
+#include "moc_customqbspropertiesdialog.cpp"

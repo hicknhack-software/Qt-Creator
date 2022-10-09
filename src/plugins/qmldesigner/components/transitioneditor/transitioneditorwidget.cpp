@@ -432,3 +432,5 @@ void TransitionEditorWidget::openEasingCurveEditor()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_transitioneditorwidget.cpp"

@@ -53,3 +53,5 @@ void FileCrumbLabel::setPath(const FilePath &path)
 }
 
 } // Utils
+
+#include "moc_filecrumblabel.cpp"

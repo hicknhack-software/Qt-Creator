@@ -164,3 +164,5 @@ void FormResizer::mainContainerChanged()
         setMaximumSize(maxWidgetSize);
     }
 }
+
+#include "moc_formresizer.cpp"

@@ -106,3 +106,5 @@ void CodeStyleEditor::finish()
     if (m_widget)
         m_widget->finish();
 }
+
+#include "moc_codestyleeditor.cpp"

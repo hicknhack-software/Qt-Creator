@@ -677,3 +677,5 @@ QStringList OptionsDialog::sdkManagerArguments() const
 }
 
 } // Android::Internal
+
+#include "moc_androidsdkmanagerwidget.cpp"

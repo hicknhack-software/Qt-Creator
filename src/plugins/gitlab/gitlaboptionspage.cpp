@@ -288,3 +288,5 @@ void GitLabOptionsPage::finish()
 }
 
 } // namespace GitLab
+
+#include "moc_gitlaboptionspage.cpp"

@@ -649,3 +649,5 @@ void TimelineKeyframeItem::contextMenuEvent(QGraphicsSceneContextMenuEvent *even
 }
 
 } // namespace QmlDesigner
+
+#include "moc_timelinepropertyitem.cpp"

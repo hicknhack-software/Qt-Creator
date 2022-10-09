@@ -119,3 +119,5 @@ bool TodoPlugin::initialize(const QStringList& args, QString *errMsg)
 
 } // namespace Internal
 } // namespace Todo
+
+#include "moc_todoplugin.cpp"

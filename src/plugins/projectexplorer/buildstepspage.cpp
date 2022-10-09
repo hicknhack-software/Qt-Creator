@@ -350,3 +350,5 @@ void BuildStepListWidget::updateBuildStepButtonsState()
 
 } // Internal
 } // ProjectExplorer
+
+#include "moc_buildstepspage.cpp"

@@ -95,3 +95,5 @@ bool EditableTextItem::isReturnKey(QKeyEvent *event) const
 }
 
 } // namespace qmt
+
+#include "moc_editabletextitem.cpp"

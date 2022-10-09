@@ -90,3 +90,5 @@ void QmlProfilerActions::registerActions()
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_qmlprofileractions.cpp"

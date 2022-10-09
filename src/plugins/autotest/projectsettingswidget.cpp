@@ -136,3 +136,5 @@ void ProjectTestSettingsWidget::onActiveFrameworkChanged(QTreeWidgetItem *item, 
 
 } // namespace Internal
 } // namespace Autotest
+
+#include "moc_projectsettingswidget.cpp"

@@ -453,3 +453,5 @@ Id KitHasMergedHeaderPathsWithQmlImportPaths::id()
 }
 
 } // namespace QtSupport
+
+#include "moc_qtkitinformation.cpp"

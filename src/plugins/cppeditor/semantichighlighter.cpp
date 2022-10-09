@@ -322,3 +322,5 @@ void SemanticHighlighter::updateFormatMapFromFontSettings()
 }
 
 } // namespace CppEditor
+
+#include "moc_semantichighlighter.cpp"

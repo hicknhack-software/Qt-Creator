@@ -639,3 +639,5 @@ QWidget *ProjectWelcomePage::createWidget() const
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_projectwelcomepage.cpp"

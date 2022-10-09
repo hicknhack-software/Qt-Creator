@@ -188,3 +188,5 @@ void RightPaneWidget::clearWidget()
         m_widget = nullptr;
     }
 }
+
+#include "moc_rightpane.cpp"

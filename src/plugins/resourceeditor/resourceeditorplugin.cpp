@@ -447,3 +447,5 @@ void ResourceEditorPlugin::onUndoStackChanged(ResourceEditorW const *editor,
 }
 
 } // ResourceEditor::Internal
+
+#include "moc_resourceeditorplugin.cpp"

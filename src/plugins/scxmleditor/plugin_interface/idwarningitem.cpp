@@ -64,3 +64,5 @@ void IdWarningItem::checkDuplicates(const QString &id)
         }
     }
 }
+
+#include "moc_idwarningitem.cpp"

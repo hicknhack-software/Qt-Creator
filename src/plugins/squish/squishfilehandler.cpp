@@ -497,3 +497,5 @@ QStringList SquishFileHandler::suitePathsAsStringList() const
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_squishfilehandler.cpp"

@@ -445,3 +445,5 @@ void MercurialClient::parsePullOutput(const QString &output)
 }
 
 } // Mercurial::Internal
+
+#include "moc_mercurialclient.cpp"

@@ -152,3 +152,5 @@ void DragTool::mouseMoveEvent(QMouseEvent *event)
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_dragtool.cpp"

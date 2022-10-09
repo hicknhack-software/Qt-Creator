@@ -1205,3 +1205,5 @@ void ClangTool::updateForCurrentState()
 } // namespace ClangTools
 
 #include "clangtool.moc"
+
+#include "moc_clangtool.cpp"

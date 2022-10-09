@@ -175,3 +175,5 @@ bool SquishResultFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex 
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_squishresultmodel.cpp"

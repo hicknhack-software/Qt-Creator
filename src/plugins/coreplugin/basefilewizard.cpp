@@ -132,3 +132,5 @@ void BaseFileWizard::generateFileList()
 }
 
 } // namespace Core
+
+#include "moc_basefilewizard.cpp"

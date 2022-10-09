@@ -50,3 +50,5 @@ void NameValueValidator::fixup(QString &input) const
 }
 
 } // namespace Utils
+
+#include "moc_namevaluevalidator.cpp"

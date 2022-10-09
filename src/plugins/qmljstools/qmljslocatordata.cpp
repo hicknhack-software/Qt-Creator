@@ -236,3 +236,5 @@ void LocatorData::onAboutToRemoveFiles(const Utils::FilePaths &files)
         m_entries.remove(file);
     }
 }
+
+#include "moc_qmljslocatordata.cpp"

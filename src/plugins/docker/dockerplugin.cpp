@@ -64,3 +64,5 @@ bool DockerPlugin::initialize(const QStringList &arguments, QString *errorString
 }
 
 } // Docker::Interanl
+
+#include "moc_dockerplugin.cpp"

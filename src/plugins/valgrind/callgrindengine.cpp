@@ -275,3 +275,5 @@ void CallgrindToolRunner::cleanupTempFile()
 
 } // Internal
 } // Valgrind
+
+#include "moc_callgrindengine.cpp"

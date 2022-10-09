@@ -747,3 +747,5 @@ bool ExamplesListModelFilter::leaveFilterAcceptsRowBeforeFiltering(const Core::L
 
 } // namespace Internal
 } // namespace QtSupport
+
+#include "moc_exampleslistmodel.cpp"

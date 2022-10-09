@@ -75,3 +75,5 @@ void BaseEditorDocumentProcessor::runParser(QFutureInterface<void> &future,
 }
 
 } // namespace CppEditor
+
+#include "moc_baseeditordocumentprocessor.cpp"

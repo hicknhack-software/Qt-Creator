@@ -231,3 +231,5 @@ FindInFiles *FindInFiles::instance()
 {
     return m_instance;
 }
+
+#include "moc_findinfiles.cpp"

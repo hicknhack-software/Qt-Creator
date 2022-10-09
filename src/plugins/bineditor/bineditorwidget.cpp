@@ -1736,3 +1736,5 @@ void BinEditorWidget::setMarkup(const QList<Markup> &markup)
 }
 
 } // BinEditor::Internal
+
+#include "moc_bineditorwidget.cpp"

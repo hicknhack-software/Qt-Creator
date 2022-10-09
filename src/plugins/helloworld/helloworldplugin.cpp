@@ -123,3 +123,5 @@ void HelloWorldPlugin::sayHelloWorld()
 
 } // namespace Internal
 } // namespace HelloWorld
+
+#include "moc_helloworldplugin.cpp"

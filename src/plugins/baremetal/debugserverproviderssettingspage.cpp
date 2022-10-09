@@ -439,3 +439,5 @@ DebugServerProvidersSettingsPage::DebugServerProvidersSettingsPage()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_debugserverproviderssettingspage.cpp"

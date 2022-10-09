@@ -68,3 +68,5 @@ void LineGeometry::doUpdateGeometry()
 }
 
 #endif // QUICK3D_MODULE
+
+#include "moc_linegeometry.cpp"

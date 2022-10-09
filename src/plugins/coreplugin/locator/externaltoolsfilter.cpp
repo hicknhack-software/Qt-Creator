@@ -82,3 +82,5 @@ void ExternalToolsFilter::prepareSearch(const QString &entry)
     m_results = {};
     m_results << bestEntries << betterEntries << goodEntries << configEntry;
 }
+
+#include "moc_externaltoolsfilter.cpp"

@@ -704,3 +704,5 @@ void ProjectExplorerPlugin::testCustomOutputParsers()
 } // namespace ProjectExplorer
 
 #include <customparser.moc>
+
+#include "moc_customparser.cpp"

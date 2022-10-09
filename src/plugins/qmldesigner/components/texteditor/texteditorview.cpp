@@ -285,3 +285,5 @@ void TextEditorView::instancePropertyChanged(const QList<QPair<ModelNode, Proper
 }
 
 } // namespace QmlDesigner
+
+#include "moc_texteditorview.cpp"

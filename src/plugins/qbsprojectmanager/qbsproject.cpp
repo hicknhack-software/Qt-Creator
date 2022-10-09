@@ -1178,3 +1178,5 @@ void QbsBuildSystem::updateBuildTargetData()
 
 } // namespace Internal
 } // namespace QbsProjectManager
+
+#include "moc_qbsproject.cpp"

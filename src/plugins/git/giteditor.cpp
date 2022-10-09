@@ -389,3 +389,5 @@ bool GitEditorWidget::caseSensitive() const
 }
 
 } // Git::Internal
+
+#include "moc_giteditor.cpp"

@@ -192,3 +192,5 @@ int RemoteModel::findRemoteByName(const QString &name) const
 
 } // Git::Internal
 
+
+#include "moc_remotemodel.cpp"

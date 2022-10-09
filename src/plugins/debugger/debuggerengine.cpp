@@ -2895,3 +2895,5 @@ void CppDebuggerEngine::validateRunParameters(DebuggerRunParameters &rp)
 } // namespace Debugger
 
 #include "debuggerengine.moc"
+
+#include "moc_debuggerengine.cpp"

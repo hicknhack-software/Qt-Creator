@@ -203,3 +203,5 @@ void PerfProfilerRunner::start()
 } // namespace PerfProfiler
 
 #include "perfprofilerruncontrol.moc"
+
+#include "moc_perfprofilerruncontrol.cpp"

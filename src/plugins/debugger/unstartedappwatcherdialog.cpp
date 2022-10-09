@@ -337,3 +337,5 @@ void UnstartedAppWatcherDialog::setWaitingState(UnstartedAppWacherState state)
 }
 
 } // Debugger::Internal
+
+#include "moc_unstartedappwatcherdialog.cpp"

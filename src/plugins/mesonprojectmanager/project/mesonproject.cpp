@@ -57,3 +57,5 @@ ProjectExplorer::DeploymentKnowledge MesonProject::deploymentKnowledge() const
 
 } // namespace Internal
 } // namespace MesonProjectManager
+
+#include "moc_mesonproject.cpp"

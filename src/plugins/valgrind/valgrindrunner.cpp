@@ -231,3 +231,5 @@ XmlProtocol::ThreadedParser *ValgrindRunner::parser() const
 }
 
 } // namespace Valgrind
+
+#include "moc_valgrindrunner.cpp"

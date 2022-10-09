@@ -396,3 +396,5 @@ void ProjectExplorerPlugin::testGnuMakeParserTaskMangling()
 } // ProjectExplorer
 
 #endif
+
+#include "moc_gnumakeparser.cpp"

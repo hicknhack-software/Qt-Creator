@@ -1254,3 +1254,5 @@ QRectF TransitionItem::wholeBoundingRect() const
 {
     return boundingRect().united(m_eventTagItem->sceneBoundingRect());
 }
+
+#include "moc_transitionitem.cpp"

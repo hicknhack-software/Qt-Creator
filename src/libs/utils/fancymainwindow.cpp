@@ -564,3 +564,5 @@ void FancyMainWindow::setDockActionsVisible(bool v)
 }
 
 } // namespace Utils
+
+#include "moc_fancymainwindow.cpp"

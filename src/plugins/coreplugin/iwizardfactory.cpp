@@ -462,3 +462,5 @@ void IWizardFactory::setDetailsPageQmlPath(const QString &filePath)
         m_detailsPageQmlPath = QUrl::fromLocalFile(filePath);
     }
 }
+
+#include "moc_iwizardfactory.cpp"

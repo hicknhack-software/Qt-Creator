@@ -207,3 +207,5 @@ QList<QVariant> DropMimeData::values() const
 }
 
 } // namespace Utils
+
+#include "moc_dropsupport.cpp"

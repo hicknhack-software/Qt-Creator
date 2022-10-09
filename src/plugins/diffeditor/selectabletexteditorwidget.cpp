@@ -120,3 +120,5 @@ void SelectableTextEditorWidget::paintBlock(QPainter *painter,
 
 } // namespace Internal
 } // namespace DiffEditor
+
+#include "moc_selectabletexteditorwidget.cpp"

@@ -177,3 +177,5 @@ QString ComponentNameDialog::isValid() const
 
     return QString();
 }
+
+#include "moc_qmljscomponentnamedialog.cpp"

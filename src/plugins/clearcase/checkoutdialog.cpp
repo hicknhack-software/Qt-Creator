@@ -135,3 +135,5 @@ void CheckOutDialog::toggleUnreserved(bool checked)
 }
 
 } // ClearCase::Internal
+
+#include "moc_checkoutdialog.cpp"

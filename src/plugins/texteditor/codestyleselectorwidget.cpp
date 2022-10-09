@@ -292,3 +292,5 @@ QString CodeStyleSelectorWidget::displayName(ICodeStylePreferences *codeStyle) c
 }
 
 } // TextEditor
+
+#include "moc_codestyleselectorwidget.cpp"

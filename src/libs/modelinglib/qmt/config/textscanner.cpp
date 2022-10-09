@@ -283,3 +283,5 @@ Token TextScanner::scanOperator(const SourceChar &firstChar)
 }
 
 } // namespace qmt
+
+#include "moc_textscanner.cpp"

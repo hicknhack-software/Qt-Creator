@@ -258,3 +258,5 @@ IAssistProvider::RunType NimCompletionAssistProvider::runType() const
 }
 
 #include "nimcompletionassistprovider.moc"
+
+#include "moc_nimcompletionassistprovider.cpp"

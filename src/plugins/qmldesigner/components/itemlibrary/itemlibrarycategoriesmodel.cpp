@@ -207,3 +207,5 @@ void ItemLibraryCategoriesModel::addRoleNames()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_itemlibrarycategoriesmodel.cpp"

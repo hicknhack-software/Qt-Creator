@@ -530,3 +530,5 @@ QVariant JsonWizardJsExtension::value(const QString &name) const
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_jsonwizard.cpp"

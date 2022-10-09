@@ -130,3 +130,5 @@ bool TopicChooser::eventFilter(QObject *object, QEvent *event)
     }
     return QDialog::eventFilter(object, event);
 }
+
+#include "moc_topicchooser.cpp"

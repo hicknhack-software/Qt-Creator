@@ -189,3 +189,5 @@ SemanticInfo SemanticInfoUpdater::semanticInfo() const
 }
 
 } // namespace CppEditor
+
+#include "moc_cppsemanticinfoupdater.cpp"

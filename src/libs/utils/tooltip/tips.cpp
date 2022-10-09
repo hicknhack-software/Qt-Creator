@@ -286,3 +286,5 @@ bool WidgetTip::equals(int typeId, const QVariant &other, const QVariant &otherC
 
 } // namespace Internal
 } // namespace Utils
+
+#include "moc_tips.cpp"

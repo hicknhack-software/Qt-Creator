@@ -176,3 +176,5 @@ void QmlJSCodeStyleSettingsPage::finish()
 
 } // namespace Internal
 } // namespace QmlJSTools
+
+#include "moc_qmljscodestylesettingspage.cpp"

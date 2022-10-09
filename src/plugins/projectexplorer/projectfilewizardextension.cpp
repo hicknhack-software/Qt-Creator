@@ -263,3 +263,5 @@ void ProjectFileWizardExtension::applyCodeStyle(GeneratedFile *file) const
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_projectfilewizardextension.cpp"

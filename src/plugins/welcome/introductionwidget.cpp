@@ -385,3 +385,5 @@ void IntroductionWidget::resizeToParent()
 
 } // namespace Internal
 } // namespace Welcome
+
+#include "moc_introductionwidget.cpp"

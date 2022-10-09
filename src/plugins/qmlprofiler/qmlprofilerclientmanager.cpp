@@ -121,3 +121,5 @@ void QmlProfilerClientManager::logState(const QString &message)
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilerclientmanager.cpp"

@@ -219,3 +219,5 @@ const QString &AnnotationEditorWidget::customId() const
 
 
 } //namespace QmlDesigner
+
+#include "moc_annotationeditorwidget.cpp"

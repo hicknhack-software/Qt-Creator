@@ -323,3 +323,5 @@ void BuildSettingsWidget::deleteConfiguration(BuildConfiguration *deleteConfigur
 
     m_target->removeBuildConfiguration(deleteConfiguration);
 }
+
+#include "moc_buildsettingspropertiespage.cpp"

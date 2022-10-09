@@ -282,3 +282,5 @@ void SignalList::removeConnection(const QModelIndex &modelIndex)
 }
 
 } // QmlDesigner namespace
+
+#include "moc_signallist.cpp"

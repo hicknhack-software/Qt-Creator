@@ -66,3 +66,5 @@ ValidatingContainerNameLineEdit::ValidatingContainerNameLineEdit(const QStringLi
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_symbolnameitemdelegate.cpp"

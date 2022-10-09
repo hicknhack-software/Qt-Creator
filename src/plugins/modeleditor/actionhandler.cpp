@@ -221,3 +221,5 @@ Core::Command *ActionHandler::registerCommand(const Utils::Id &id, void (ModelEd
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_actionhandler.cpp"

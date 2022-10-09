@@ -9,3 +9,5 @@ UtilsProvider::UtilsProvider(QObject *parent)
     : QObject(parent)
 {
 }
+
+#include "moc_utilsprovider.cpp"

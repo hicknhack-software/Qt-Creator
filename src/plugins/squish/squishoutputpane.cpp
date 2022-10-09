@@ -393,3 +393,5 @@ void SquishOutputPane::enableAllFiltersTriggered()
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_squishoutputpane.cpp"

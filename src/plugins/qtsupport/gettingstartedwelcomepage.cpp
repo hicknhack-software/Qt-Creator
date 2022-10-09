@@ -335,3 +335,5 @@ QWidget *ExamplesWelcomePage::createWidget() const
 
 } // namespace Internal
 } // namespace QtSupport
+
+#include "moc_gettingstartedwelcomepage.cpp"

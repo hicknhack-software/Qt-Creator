@@ -220,3 +220,4 @@ void PlotViewer::paintEvent(QPaintEvent *)
 } // Debugger::Internal
 
 #include "imageviewer.moc"
+#include "moc_imageviewer.cpp"

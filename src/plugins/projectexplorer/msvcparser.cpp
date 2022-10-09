@@ -716,3 +716,5 @@ void ProjectExplorerPlugin::testClangClOutputParsers()
 } // namespace ProjectExplorer
 
 #endif // WITH_TEST
+
+#include "moc_msvcparser.cpp"

@@ -26,3 +26,5 @@ void BaseToolsClient::recurseObjectIdList(const ObjectReference &ref,
 }
 
 } // namespace QmlDebug
+
+#include "moc_basetoolsclient.cpp"

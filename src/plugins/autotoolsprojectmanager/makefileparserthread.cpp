@@ -94,3 +94,5 @@ void MakefileParserThread::run()
 }
 
 } // AutotoolsProjectManager::Internal
+
+#include "moc_makefileparserthread.cpp"

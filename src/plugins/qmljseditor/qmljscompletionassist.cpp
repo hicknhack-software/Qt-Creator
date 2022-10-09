@@ -1048,3 +1048,5 @@ bool QmlJSAssistProposalModel::keepPerfectMatch(AssistReason reason) const
 }
 
 } // namespace QmlJSEditor
+
+#include "moc_qmljscompletionassist.cpp"

@@ -218,3 +218,5 @@ bool NinjaBuildStep::fromMap(const QVariantMap &map)
 
 } // namespace Internal
 } // namespace MesonProjectManager
+
+#include "moc_ninjabuildstep.cpp"

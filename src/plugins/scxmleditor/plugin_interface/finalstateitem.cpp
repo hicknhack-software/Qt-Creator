@@ -56,3 +56,5 @@ bool FinalStateItem::canStartTransition(ItemType type) const
     Q_UNUSED(type)
     return false;
 }
+
+#include "moc_finalstateitem.cpp"

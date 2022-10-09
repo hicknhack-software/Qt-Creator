@@ -65,3 +65,5 @@ QString formatTime(qint64 timestamp, qint64 reference)
 }
 
 }
+
+#include "moc_timelineformattime.cpp"

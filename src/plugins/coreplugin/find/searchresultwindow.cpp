@@ -887,3 +887,5 @@ void SearchResult::popup()
 } // namespace Core
 
 #include "searchresultwindow.moc"
+
+#include "moc_searchresultwindow.cpp"

@@ -662,3 +662,5 @@ void ScxmlTag::readXml(QXmlStreamReader &xml, bool checkCopyId)
         initialTag->appendChild(initialTransitionTag);
     }
 }
+
+#include "moc_scxmltag.cpp"

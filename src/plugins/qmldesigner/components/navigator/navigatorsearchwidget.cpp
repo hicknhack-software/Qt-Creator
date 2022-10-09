@@ -99,3 +99,5 @@ void NavigatorSearchWidget::clear()
 }
 
 } // QmlDesigner
+
+#include "moc_navigatorsearchwidget.cpp"

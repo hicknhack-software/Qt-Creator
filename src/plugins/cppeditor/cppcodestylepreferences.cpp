@@ -86,3 +86,5 @@ void CppCodeStylePreferences::fromMap(const QVariantMap &map)
 }
 
 } // namespace CppEditor
+
+#include "moc_cppcodestylepreferences.cpp"

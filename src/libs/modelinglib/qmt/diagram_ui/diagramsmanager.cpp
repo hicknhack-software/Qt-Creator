@@ -172,3 +172,5 @@ void DiagramsManager::onDataChanged(const QModelIndex &topleft, const QModelInde
 }
 
 } // namespace qmt
+
+#include "moc_diagramsmanager.cpp"

@@ -217,3 +217,5 @@ void TerminalRunner::stubDone()
 
 } // Debugger::Internal
 
+
+#include "moc_terminal.cpp"

@@ -672,3 +672,7 @@ Command *ActionContainer::addSeparator(Id group)
 }
 
 } // namespace Core
+
+#include "moc_actioncontainer_p.cpp"
+
+#include "moc_actioncontainer.cpp"

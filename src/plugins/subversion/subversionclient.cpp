@@ -301,3 +301,5 @@ void SubversionClient::describe(const FilePath &workingDirectory, int changeNumb
 } // namespace Subversion
 
 #include "subversionclient.moc"
+
+#include "moc_subversionclient.cpp"

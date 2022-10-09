@@ -190,3 +190,5 @@ void UncrustifySettings::createDocumentationFile() const
 
 } // namespace Internal
 } // namespace Beautifier
+
+#include "moc_uncrustifysettings.cpp"

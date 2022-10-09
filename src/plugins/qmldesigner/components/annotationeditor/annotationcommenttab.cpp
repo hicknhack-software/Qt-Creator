@@ -191,3 +191,5 @@ int AnnotationCommentTab::compareFileChecksum(const QString &firstFile, const QS
 }
 
 } //namespace QmlDesigner
+
+#include "moc_annotationcommenttab.cpp"

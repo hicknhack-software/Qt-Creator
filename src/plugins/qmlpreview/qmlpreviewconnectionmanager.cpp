@@ -246,3 +246,5 @@ void QmlPreviewConnectionManager::destroyClients()
 
 } // namespace Internal
 } // namespace QmlPreview
+
+#include "moc_qmlpreviewconnectionmanager.cpp"

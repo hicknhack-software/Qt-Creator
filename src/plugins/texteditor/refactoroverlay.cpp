@@ -83,3 +83,5 @@ RefactorMarkers RefactorMarker::filterOutType(const RefactorMarkers &markers, co
 }
 
 } // namespace TextEditor
+
+#include "moc_refactoroverlay.cpp"

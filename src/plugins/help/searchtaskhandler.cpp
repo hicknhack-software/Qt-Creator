@@ -28,3 +28,5 @@ QAction *SearchTaskHandler::createAction(QObject *parent) const
 {
     return new QAction(Tr::tr("Get Help Online"), parent);
 }
+
+#include "moc_searchtaskhandler.cpp"

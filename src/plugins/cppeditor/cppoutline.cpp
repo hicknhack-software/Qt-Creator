@@ -232,3 +232,5 @@ TextEditor::IOutlineWidget *CppOutlineWidgetFactory::createWidget(Core::IEditor 
 
 } // namespace Internal
 } // namespace CppEditor
+
+#include "moc_cppoutline.cpp"

@@ -14,9 +14,7 @@ add_qtc_library(ExtensionSystem
     pluginspec.cpp pluginspec.h pluginspec_p.h
     pluginview.cpp pluginview.h
   EXPLICIT_MOC
-    pluginmanager.h
     pluginmanager_p.h
-  SKIP_AUTOMOC pluginmanager.cpp
 )
 
 find_package(Qt5 COMPONENTS Test QUIET)

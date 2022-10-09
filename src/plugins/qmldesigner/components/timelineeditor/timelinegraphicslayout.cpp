@@ -148,3 +148,5 @@ TimelineRulerSectionItem *TimelineGraphicsLayout::ruler() const
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_timelinegraphicslayout.cpp"

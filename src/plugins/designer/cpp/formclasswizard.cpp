@@ -84,3 +84,5 @@ Core::GeneratedFiles FormClassWizard::generateFiles(const QWizard *w, QString *e
 
 } // Internal
 } // Designer
+
+#include "moc_formclasswizard.cpp"

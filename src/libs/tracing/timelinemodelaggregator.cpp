@@ -282,3 +282,5 @@ QVariantMap TimelineModelAggregator::prevItem(int selectedModel, int selectedIte
 }
 
 } // namespace Timeline
+
+#include "moc_timelinemodelaggregator.cpp"

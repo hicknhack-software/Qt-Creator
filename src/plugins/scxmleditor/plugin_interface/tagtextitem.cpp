@@ -120,3 +120,5 @@ QPointF TagTextItem::movePoint() const
 {
     return m_movePoint;
 }
+
+#include "moc_tagtextitem.cpp"

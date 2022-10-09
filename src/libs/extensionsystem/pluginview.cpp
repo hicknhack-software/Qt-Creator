@@ -434,3 +434,5 @@ void PluginView::cancelChanges()
 }
 
 } // namespace ExtensionSystem
+
+#include "moc_pluginview.cpp"

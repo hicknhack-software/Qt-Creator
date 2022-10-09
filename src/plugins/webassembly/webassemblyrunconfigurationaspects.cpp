@@ -158,3 +158,5 @@ Even if your browser was not detected, you can use --browser /path/to/browser/ex
 
 } // namespace Internal
 } // namespace Webassembly
+
+#include "moc_webassemblyrunconfigurationaspects.cpp"

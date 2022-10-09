@@ -373,3 +373,5 @@ void TextBrowserHelpWidget::resizeEvent(QResizeEvent *e)
 }
 
 } // Help::Internal
+
+#include "moc_textbrowserhelpviewer.cpp"

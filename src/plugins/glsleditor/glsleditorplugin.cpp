@@ -153,3 +153,5 @@ const GlslEditorPlugin::InitFile *GlslEditorPlugin::shaderInit(int variant)
 
 } // namespace Internal
 } // namespace GlslEditor
+
+#include "moc_glsleditorplugin.cpp"

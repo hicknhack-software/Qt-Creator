@@ -375,3 +375,5 @@ QMimeData *CppTypeHierarchyModel::mimeData(const QModelIndexList &indexes) const
 } // namespace CppEditor
 
 #include "cpptypehierarchy.moc"
+
+#include "moc_cpptypehierarchy.cpp"

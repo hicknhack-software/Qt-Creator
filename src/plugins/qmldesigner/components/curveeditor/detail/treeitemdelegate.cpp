@@ -108,3 +108,5 @@ bool TreeItemDelegate::editorEvent(QEvent *event,
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_treeitemdelegate.cpp"

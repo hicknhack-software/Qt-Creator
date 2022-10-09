@@ -52,3 +52,5 @@ void ProxyCredentialsDialog::setPassword(const QString &passwd)
     ui->passwordLineEdit->setText(passwd);
 }
 
+
+#include "moc_proxycredentialsdialog.cpp"

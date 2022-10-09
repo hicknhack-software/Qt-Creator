@@ -208,3 +208,5 @@ void SessionDialog::updateActions(const QStringList &sessions)
 }
 
 } // ProjectExplorer::Internal
+
+#include "moc_sessiondialog.cpp"

@@ -81,3 +81,5 @@ void ColorControl::mousePressEvent(QMouseEvent *event)
 } // End namespace StyleEditor.
 
 } // End namespace QmlDesigner.
+
+#include "moc_colorcontrol.cpp"

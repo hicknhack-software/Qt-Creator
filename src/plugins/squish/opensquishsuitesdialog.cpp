@@ -143,3 +143,5 @@ void OpenSquishSuitesDialog::setChosenSuites()
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_opensquishsuitesdialog.cpp"

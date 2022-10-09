@@ -163,3 +163,5 @@ bool CppcheckPlugin::initialize(const QStringList &arguments, QString *errorStri
 
 } // namespace Internal
 } // namespace Cppcheck
+
+#include "moc_cppcheckplugin.cpp"

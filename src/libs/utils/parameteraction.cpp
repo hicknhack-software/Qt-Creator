@@ -76,3 +76,5 @@ void ParameterAction::setParameter(const QString &p)
 }
 
 } // namespace Utils
+
+#include "moc_parameteraction.cpp"

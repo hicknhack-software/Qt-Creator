@@ -380,3 +380,5 @@ void FunctionHintProposalWidget::updatePosition()
 } // TextEditor
 
 Q_DECLARE_METATYPE(TextEditor::SelectedFunctionHints)
+
+#include "moc_functionhintproposalwidget.cpp"

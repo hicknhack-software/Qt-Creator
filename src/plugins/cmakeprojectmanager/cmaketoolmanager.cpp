@@ -251,3 +251,5 @@ void CMakeToolManager::ensureDefaultCMakeToolIsValid()
 }
 
 } // CMakeProjectManager
+
+#include "moc_cmaketoolmanager.cpp"

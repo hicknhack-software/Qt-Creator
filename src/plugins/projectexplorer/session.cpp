@@ -1225,3 +1225,5 @@ void ProjectExplorerPlugin::testSessionSwitch()
 #endif // WITH_TESTS
 
 } // namespace ProjectExplorer
+
+#include "moc_session.cpp"

@@ -642,3 +642,5 @@ void GradientModel::updateGradient()
 
     endResetModel();
 }
+
+#include "moc_gradientmodel.cpp"

@@ -813,3 +813,5 @@ void NavigatorView::setupWidget()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_navigatorview.cpp"

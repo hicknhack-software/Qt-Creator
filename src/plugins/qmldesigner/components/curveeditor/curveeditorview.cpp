@@ -379,3 +379,5 @@ void CurveEditorView::init()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_curveeditorview.cpp"

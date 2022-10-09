@@ -675,3 +675,5 @@ void ProjectTreeWidgetFactory::restoreSettings(QSettings *settings, int position
         settings->value(baseKey + kHideSourceGroupsKey, kHideSourceGroupsDefault).toBool());
     ptw->setAutoSynchronization(settings->value(baseKey + kSyncKey, kSyncDefault).toBool());
 }
+
+#include "moc_projecttreewidget.cpp"

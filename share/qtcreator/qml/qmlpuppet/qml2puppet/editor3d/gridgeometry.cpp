@@ -154,3 +154,5 @@ void GridGeometry::fillVertexData(QByteArray &vertexData)
 }
 
 #endif // QUICK3D_MODULE
+
+#include "moc_gridgeometry.cpp"

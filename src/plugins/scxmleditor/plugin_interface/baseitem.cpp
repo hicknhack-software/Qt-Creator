@@ -407,3 +407,5 @@ BaseItem *BaseItem::parentBaseItem() const
     return (parent && parent->type() > UnknownType)
             ? qgraphicsitem_cast<BaseItem*>(parent) : nullptr;
 }
+
+#include "moc_baseitem.cpp"

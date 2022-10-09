@@ -22,3 +22,5 @@ void TodoOutputTreeViewDelegate::paint(QPainter *painter, const QStyleOptionView
 } // namespace Internal
 } // namespace Todo
 
+
+#include "moc_todooutputtreeviewdelegate.cpp"

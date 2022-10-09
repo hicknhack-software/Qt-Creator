@@ -166,3 +166,5 @@ QVariantMap QmlProfilerAnimationsModel::details(int index) const
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_qmlprofileranimationsmodel.cpp"

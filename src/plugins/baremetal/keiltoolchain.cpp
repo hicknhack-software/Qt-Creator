@@ -800,3 +800,5 @@ void KeilToolChainConfigWidget::handlePlatformCodeGenFlagsChange()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_keiltoolchain.cpp"

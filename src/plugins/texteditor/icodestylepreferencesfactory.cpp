@@ -22,3 +22,5 @@ CodeStyleEditorWidget *ICodeStylePreferencesFactory::createAdditionalGlobalSetti
 {
     return nullptr;
 }
+
+#include "moc_icodestylepreferencesfactory.cpp"

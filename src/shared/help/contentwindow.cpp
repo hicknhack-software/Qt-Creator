@@ -123,3 +123,5 @@ void ContentWindow::itemActivated(const QModelIndex &index)
     if (QHelpContentItem *itm = m_contentModel->contentItemAt(index))
         emit linkActivated(itm->url(), false/*newPage*/);
 }
+
+#include "moc_contentwindow.cpp"

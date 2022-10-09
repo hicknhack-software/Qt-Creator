@@ -164,3 +164,5 @@ ProxyAction *ProxyAction::proxyActionWithIcon(QAction *original, const QIcon &ne
     proxyAction->setAttribute(UpdateText);
     return proxyAction;
 }
+
+#include "moc_proxyaction.cpp"

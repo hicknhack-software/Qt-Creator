@@ -45,3 +45,5 @@ QAction *CopyTaskHandler::createAction(QObject *parent) const
 }
 
 } // ProjectExplorer::Internal
+
+#include "moc_copytaskhandler.cpp"

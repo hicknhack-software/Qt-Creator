@@ -200,3 +200,5 @@ void AndroidRunner::checkAVD()
 
 } // namespace Internal
 } // namespace Android
+
+#include "moc_androidrunner.cpp"

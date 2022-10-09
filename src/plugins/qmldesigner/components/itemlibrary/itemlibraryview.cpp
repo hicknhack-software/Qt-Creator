@@ -189,3 +189,5 @@ void ItemLibraryView::customNotification(const AbstractView *view, const QString
 }
 
 } // namespace QmlDesigner
+
+#include "moc_itemlibraryview.cpp"

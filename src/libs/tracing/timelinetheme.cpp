@@ -89,3 +89,5 @@ void TimelineTheme::setupTheme(QQmlEngine *engine)
 }
 
 } // namespace Timeline
+
+#include "moc_timelinetheme.cpp"

@@ -956,3 +956,5 @@ void SplitterOrView::restoreState(const QByteArray &state)
         }
     }
 }
+
+#include "moc_editorview.cpp"

@@ -167,3 +167,5 @@ MesonBuildSettingsWidget::MesonBuildSettingsWidget(MesonBuildConfiguration *buil
 MesonBuildSettingsWidget::~MesonBuildSettingsWidget() = default;
 
 } // MesonProjectManager::Internal
+
+#include "moc_mesonbuildsettingswidget.cpp"

@@ -544,3 +544,5 @@ bool QmlProfilerEventStorage::replay(
 }
 
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilermodelmanager.cpp"

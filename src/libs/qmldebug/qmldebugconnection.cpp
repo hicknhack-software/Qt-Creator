@@ -401,3 +401,5 @@ QAbstractSocket::SocketState QmlDebugConnection::socketState() const
 }
 
 } // namespace QmlDebug
+
+#include "moc_qmldebugconnection.cpp"

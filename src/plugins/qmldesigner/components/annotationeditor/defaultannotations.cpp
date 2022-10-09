@@ -161,3 +161,5 @@ QString RichTextProxy::plainText() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_defaultannotations.cpp"

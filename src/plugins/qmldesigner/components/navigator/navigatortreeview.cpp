@@ -279,3 +279,5 @@ void NavigatorTreeView::startDrag(Qt::DropActions supportedActions)
 }
 
 }
+
+#include "moc_navigatortreeview.cpp"

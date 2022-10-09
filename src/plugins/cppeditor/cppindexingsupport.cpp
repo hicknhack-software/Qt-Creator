@@ -15,3 +15,5 @@ SymbolSearcher::SymbolSearcher(QObject *parent)
 SymbolSearcher::~SymbolSearcher() = default;
 
 } // namespace CppEditor
+
+#include "moc_cppindexingsupport.cpp"

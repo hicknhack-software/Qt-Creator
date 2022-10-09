@@ -95,3 +95,5 @@ GenericProjectPluginPrivate::GenericProjectPluginPrivate()
 
 } // namespace Internal
 } // namespace GenericProjectManager
+
+#include "moc_genericprojectplugin.cpp"

@@ -114,9 +114,6 @@ add_qtc_plugin(CppEditor
     symbolsfindfilter.cpp symbolsfindfilter.h
     typehierarchybuilder.cpp typehierarchybuilder.h
     wrappablelineedit.cpp wrappablelineedit.h
-   EXPLICIT_MOC
-     cppquickfixsettingswidget.h
-     cppquickfixprojectsettingswidget.h
 )
 
 extend_qtc_plugin(CppEditor

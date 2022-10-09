@@ -87,3 +87,5 @@ void AndroidManifestEditor::changeEditorPage(QAction *action)
         }
     }
 }
+
+#include "moc_androidmanifesteditor.cpp"

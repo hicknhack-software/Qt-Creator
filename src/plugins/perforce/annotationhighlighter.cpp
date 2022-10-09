@@ -19,3 +19,5 @@ QString PerforceAnnotationHighlighter::changeNumber(const QString &block) const
 
 } // Internal
 } // Perforce
+
+#include "moc_annotationhighlighter.cpp"

@@ -95,3 +95,5 @@ PySideBuildConfiguration::PySideBuildConfiguration(Target *target, Id id)
 }
 
 } // Python::Internal
+
+#include "moc_pysidebuildconfiguration.cpp"

@@ -924,3 +924,5 @@ void FloatingDockContainer::moveEvent(QMoveEvent *event)
 }
 #endif
 } // namespace ADS
+
+#include "moc_floatingdockcontainer.cpp"

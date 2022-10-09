@@ -939,3 +939,5 @@ Interpreter PythonSettings::interpreter(const QString &interpreterId)
 } // Python::Internal
 
 #include "pythonsettings.moc"
+
+#include "moc_pythonsettings.cpp"

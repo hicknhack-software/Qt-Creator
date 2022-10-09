@@ -1101,3 +1101,5 @@ void DiagramSceneModel::unsetFocusItem()
 }
 
 } // namespace qmt
+
+#include "moc_diagramscenemodel.cpp"

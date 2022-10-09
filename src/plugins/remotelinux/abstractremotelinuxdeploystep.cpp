@@ -151,3 +151,5 @@ void AbstractRemoteLinuxDeployStep::handleStdErrData(const QString &data)
 }
 
 } // namespace RemoteLinux
+
+#include "moc_abstractremotelinuxdeploystep.cpp"

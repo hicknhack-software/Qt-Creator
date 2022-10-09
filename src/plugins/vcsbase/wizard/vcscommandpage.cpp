@@ -433,3 +433,5 @@ void VcsCommandPage::setRunMessage(const QString &msg)
 
 } // namespace Internal
 } // namespace VcsBase
+
+#include "moc_vcscommandpage.cpp"

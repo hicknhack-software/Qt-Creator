@@ -194,3 +194,5 @@ bool operator !=(const CrumbleBarInfo &first, const CrumbleBarInfo &second)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_crumblebar.cpp"

@@ -21,3 +21,5 @@ QWidget* UtilityPanelController::widget()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_utilitypanelcontroller.cpp"

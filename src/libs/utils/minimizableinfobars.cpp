@@ -133,3 +133,5 @@ void MinimizableInfoBars::setShowInInfoBar(const Id &id, bool show)
 }
 
 } // namespace Utils
+
+#include "moc_minimizableinfobars.cpp"

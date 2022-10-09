@@ -1464,3 +1464,5 @@ MessageId ClangdClient::Private::getAndHandleAst(const TextDocOrFile &doc,
 
 } // namespace Internal
 } // namespace ClangCodeModel
+
+#include "moc_clangdclient.cpp"

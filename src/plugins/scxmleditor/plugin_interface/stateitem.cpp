@@ -561,3 +561,5 @@ bool StateItem::isInitial() const
 {
     return m_initial;
 }
+
+#include "moc_stateitem.cpp"

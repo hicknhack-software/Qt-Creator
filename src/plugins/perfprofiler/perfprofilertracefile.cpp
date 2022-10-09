@@ -520,3 +520,5 @@ void PerfProfilerTraceFile::clear()
 
 } // namespace Internal
 } // namespace PerfProfiler
+
+#include "moc_perfprofilertracefile.cpp"

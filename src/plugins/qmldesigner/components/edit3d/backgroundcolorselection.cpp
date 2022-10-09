@@ -59,3 +59,5 @@ QColorDialog *BackgroundColorSelection::createColorDialog(QWidget *parent,
 
     return dialog;
 }
+
+#include "moc_backgroundcolorselection.cpp"

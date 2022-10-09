@@ -227,3 +227,5 @@ void ColorTool::currentColorChanged(const QColor &color)
 }
 
 }
+
+#include "moc_colortool.cpp"

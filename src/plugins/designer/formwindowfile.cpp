@@ -270,3 +270,5 @@ void FormWindowFile::slotFormWindowRemoved(QDesignerFormWindowInterface *w)
 
 } // namespace Internal
 } // namespace Designer
+
+#include "moc_formwindowfile.cpp"

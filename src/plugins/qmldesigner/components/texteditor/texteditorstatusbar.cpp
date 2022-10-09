@@ -32,3 +32,5 @@ void TextEditorStatusBar::setText(const QString &text)
 
 } // namespace QmlDesigner
 
+
+#include "moc_texteditorstatusbar.cpp"

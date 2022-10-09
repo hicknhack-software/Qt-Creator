@@ -333,3 +333,5 @@ bool MesonProjectParser::usesSameMesonVersion(const Utils::FilePath &buildPath)
 }
 } // namespace Internal
 } // namespace MesonProjectManager
+
+#include "moc_mesonprojectparser.cpp"

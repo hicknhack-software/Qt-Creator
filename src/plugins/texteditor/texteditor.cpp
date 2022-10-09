@@ -8863,3 +8863,4 @@ size_t qHash(const QColor &color)
 QT_END_NAMESPACE
 
 #include "texteditor.moc"
+#include "moc_texteditor.cpp"

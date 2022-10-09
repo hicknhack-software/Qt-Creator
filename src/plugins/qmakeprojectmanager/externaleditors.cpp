@@ -266,3 +266,5 @@ bool DesignerExternalEditor::startEditor(const FilePath &filePath, QString *erro
 
 } // namespace Internal
 } // namespace QmakeProjectManager
+
+#include "moc_externaleditors.cpp"

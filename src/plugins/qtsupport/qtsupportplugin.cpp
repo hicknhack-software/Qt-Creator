@@ -234,3 +234,5 @@ void QtSupportPlugin::extensionsInitialized()
 
 } // Internal
 } // QtSupport
+
+#include "moc_qtsupportplugin.cpp"

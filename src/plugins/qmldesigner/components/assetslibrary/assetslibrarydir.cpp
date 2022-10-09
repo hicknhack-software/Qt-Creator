@@ -73,3 +73,5 @@ void AssetsLibraryDir::addFile(const QString &filePath)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_assetslibrarydir.cpp"

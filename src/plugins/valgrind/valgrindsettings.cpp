@@ -471,3 +471,5 @@ ValgrindProjectSettings::ValgrindProjectSettings()
 }
 
 } // Valgrind::Internal
+
+#include "moc_valgrindsettings.cpp"

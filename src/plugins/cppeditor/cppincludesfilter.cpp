@@ -157,3 +157,5 @@ void CppIncludesFilter::markOutdated()
 }
 
 } // namespace CppEditor::Internal
+
+#include "moc_cppincludesfilter.cpp"

@@ -64,3 +64,4 @@ QSGNode *TimelineOverviewRenderer::updatePaintNode(QSGNode *oldNode,
 
 }
 
+#include "moc_timelineoverviewrenderer.cpp"

@@ -120,3 +120,5 @@ const QString &AnnotationEditorDialog::customId() const
 }
 
 } //namespace QmlDesigner
+
+#include "moc_annotationeditordialog.cpp"

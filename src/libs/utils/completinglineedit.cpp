@@ -46,3 +46,5 @@ void CompletingLineEdit::keyPressEvent(QKeyEvent *e)
 }
 
 } // namespace Utils
+
+#include "moc_completinglineedit.cpp"

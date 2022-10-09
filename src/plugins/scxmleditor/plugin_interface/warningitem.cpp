@@ -147,3 +147,5 @@ ScxmlEditor::OutputPane::Warning *WarningItem::warning() const
 {
     return m_warning;
 }
+
+#include "moc_warningitem.cpp"

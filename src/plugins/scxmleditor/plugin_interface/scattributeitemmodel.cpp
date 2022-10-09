@@ -148,3 +148,5 @@ int SCAttributeItemModel::rowCount(const QModelIndex &parent) const
 
     return 0;
 }
+
+#include "moc_scattributeitemmodel.cpp"

@@ -106,3 +106,5 @@ void QmlProfilerOptionsPage::finish()
 
 } // Internal
 } // QmlProfiler
+
+#include "moc_qmlprofilersettings.cpp"

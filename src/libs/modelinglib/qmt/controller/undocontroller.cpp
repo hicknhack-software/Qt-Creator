@@ -47,3 +47,5 @@ void UndoController::doNotMerge()
 }
 
 } // namespace qmt
+
+#include "moc_undocontroller.cpp"

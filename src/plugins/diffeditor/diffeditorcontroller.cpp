@@ -157,3 +157,5 @@ bool DiffEditorController::chunkExists(int fileIndex, int chunkIndex) const
 }
 
 } // namespace DiffEditor
+
+#include "moc_diffeditorcontroller.cpp"

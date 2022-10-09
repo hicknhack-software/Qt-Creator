@@ -136,3 +136,5 @@ QSize ConfigModelItemDelegate::sizeHint(const QStyleOptionViewItem &option,
 }
 
 } // CMakeProjectManager::Internal
+
+#include "moc_configmodelitemdelegate.cpp"

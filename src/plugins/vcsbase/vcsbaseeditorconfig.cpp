@@ -364,3 +364,5 @@ void VcsBaseEditorConfig::addAction(QAction *action)
 }
 
 } // namespace VcsBase
+
+#include "moc_vcsbaseeditorconfig.cpp"

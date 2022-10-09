@@ -432,3 +432,5 @@ bool AndroidQmlPreviewWorker::stopPreviewApp()
 
 } // namespace Internal
 } // namespace Android
+
+#include "moc_androidqmlpreviewworker.cpp"

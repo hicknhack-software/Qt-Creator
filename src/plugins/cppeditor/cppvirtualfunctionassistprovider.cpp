@@ -185,3 +185,5 @@ IAssistProposalWidget *VirtualFunctionProposal::createWidget() const
 }
 
 } // namespace CppEditor
+
+#include "moc_cppvirtualfunctionassistprovider.cpp"

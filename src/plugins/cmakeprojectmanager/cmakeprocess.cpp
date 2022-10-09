@@ -193,3 +193,5 @@ void CMakeProcess::handleProcessDone(const Utils::ProcessResultData &resultData)
 }
 
 } // CMakeProjectManager::Internal
+
+#include "moc_cmakeprocess.cpp"

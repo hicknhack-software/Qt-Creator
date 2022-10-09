@@ -131,3 +131,5 @@ void NodeInstanceServerInterface::registerCommands()
 }
 
 }
+
+#include "moc_nodeinstanceserverinterface.cpp"

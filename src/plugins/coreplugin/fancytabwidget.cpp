@@ -640,3 +640,5 @@ void FancyTabWidget::setIconsOnly(bool iconsOnly)
 }
 
 #include "fancytabwidget.moc"
+
+#include "moc_fancytabwidget.cpp"

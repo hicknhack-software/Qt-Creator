@@ -1135,3 +1135,5 @@ void QmlAnchorBindingProxy::setDefaultAnchorTarget(const ModelNode &modelNode)
 } // namespace Internal
 } // namespace QmlDesigner
 
+
+#include "moc_qmlanchorbindingproxy.cpp"

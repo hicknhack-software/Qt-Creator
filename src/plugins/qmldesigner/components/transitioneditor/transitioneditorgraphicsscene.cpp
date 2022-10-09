@@ -465,3 +465,5 @@ void TransitionEditorGraphicsScene::setSelectedPropertyItem(TransitionEditorProp
 }
 
 } // namespace QmlDesigner
+
+#include "moc_transitioneditorgraphicsscene.cpp"

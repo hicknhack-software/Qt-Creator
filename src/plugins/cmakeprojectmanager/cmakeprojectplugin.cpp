@@ -137,3 +137,5 @@ void CMakeProjectPlugin::updateContextActions(Node *node)
 
 } // CMakeProjectManager::Internal
 
+
+#include "moc_cmakeprojectplugin.cpp"

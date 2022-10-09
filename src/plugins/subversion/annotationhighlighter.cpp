@@ -18,3 +18,5 @@ QString SubversionAnnotationHighlighter::changeNumber(const QString &block) cons
     const int pos = block.indexOf(m_blank);
     return pos > 1 ? block.left(pos) : QString();
 }
+
+#include "moc_annotationhighlighter.cpp"

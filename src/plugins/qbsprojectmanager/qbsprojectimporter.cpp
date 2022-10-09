@@ -210,3 +210,5 @@ void QbsProjectImporter::deleteDirectoryData(void *directoryData) const
 }
 
 } // QbsProjectManager::Internal
+
+#include "moc_qbsprojectimporter.cpp"

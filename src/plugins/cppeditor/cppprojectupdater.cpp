@@ -162,3 +162,5 @@ CppProjectUpdaterInterface *CppProjectUpdaterFactory::create()
 } // namespace Internal
 
 } // namespace CppEditor
+
+#include "moc_cppprojectupdater.cpp"

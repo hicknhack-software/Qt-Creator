@@ -445,3 +445,5 @@ bool TextEditorOverlay::hasFirstSelectionBeginMoved() const
         return false;
     return m_selections.at(0).m_cursor_begin.position() != m_firstSelectionOriginalBegin;
 }
+
+#include "moc_texteditoroverlay.cpp"

@@ -282,3 +282,5 @@ void AndroidManifestEditorIconWidget::copyIcon()
 
 } // namespace Internal
 } // namespace Android
+
+#include "moc_androidmanifesteditoriconwidget.cpp"

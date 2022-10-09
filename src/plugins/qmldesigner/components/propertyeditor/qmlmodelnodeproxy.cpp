@@ -76,3 +76,5 @@ QString QmlModelNodeProxy::simplifiedTypeName() const
 }
 
 }
+
+#include "moc_qmlmodelnodeproxy.cpp"

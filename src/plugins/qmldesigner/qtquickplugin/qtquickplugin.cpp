@@ -19,3 +19,5 @@ QString QtQuickPlugin::metaInfo() const
 
 }
 
+
+#include "moc_qtquickplugin.cpp"

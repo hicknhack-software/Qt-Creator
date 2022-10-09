@@ -221,3 +221,5 @@ void SourceTool::fileSelected(const QString &fileName)
 }
 
 }
+
+#include "moc_sourcetool.cpp"

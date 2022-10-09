@@ -287,3 +287,5 @@ void AbiWidget::emitAbiChanged(const Abi &current)
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_abiwidget.cpp"

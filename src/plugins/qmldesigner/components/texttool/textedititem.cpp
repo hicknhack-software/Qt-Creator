@@ -80,3 +80,5 @@ void TextEditItem::updateText()
     }
 }
 } // namespace QmlDesigner
+
+#include "moc_textedititem.cpp"

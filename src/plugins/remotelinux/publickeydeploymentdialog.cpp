@@ -131,3 +131,5 @@ void PublicKeyDeploymentDialog::handleDeploymentDone(bool succeeded, const QStri
 }
 
 } // namespace RemoteLinux
+
+#include "moc_publickeydeploymentdialog.cpp"

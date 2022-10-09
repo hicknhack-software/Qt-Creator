@@ -201,3 +201,5 @@ void SaveFile::initializeUmask()
 }
 
 } // namespace Utils
+
+#include "moc_savefile.cpp"

@@ -125,3 +125,5 @@ void ColorButton::paintEvent(QPaintEvent *event)
 }
 
 } //QmlEditorWidgets
+
+#include "moc_colorbutton.cpp"

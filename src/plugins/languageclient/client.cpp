@@ -2065,3 +2065,4 @@ bool Client::fileBelongsToProject(const Utils::FilePath &filePath) const
 } // namespace LanguageClient
 
 #include <client.moc>
+#include "moc_client.cpp"

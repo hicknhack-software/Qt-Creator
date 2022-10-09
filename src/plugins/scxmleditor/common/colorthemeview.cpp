@@ -168,3 +168,5 @@ void ColorThemeView::updateItemRects()
         m_themeItems[i]->move(QPoint(capx * (i + 1), capy * (i + 1)));
     }
 }
+
+#include "moc_colorthemeview.cpp"

@@ -66,3 +66,5 @@ void ProjectSettingsWidget::setGlobalSettingsId(Utils::Id globalId)
 }
 
 } // ProjectExplorer
+
+#include "moc_projectsettingswidget.cpp"

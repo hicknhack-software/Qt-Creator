@@ -2323,3 +2323,5 @@ void GitPlugin::testGitRemote()
 } // Git::Internal
 
 #include "gitplugin.moc"
+
+#include "moc_gitplugin.cpp"

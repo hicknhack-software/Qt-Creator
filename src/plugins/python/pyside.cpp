@@ -176,3 +176,5 @@ void PySideInstaller::runPySideChecker(const FilePath &python,
 }
 
 } // Python::Internal
+
+#include "moc_pyside.cpp"

@@ -59,3 +59,5 @@ QVariant TabViewIndexModel::modelNodeBackend() const
 {
     return QVariant::fromValue(m_modelNode);
 }
+
+#include "moc_tabviewindexmodel.cpp"

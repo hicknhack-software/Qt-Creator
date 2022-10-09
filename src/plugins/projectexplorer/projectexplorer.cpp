@@ -4553,3 +4553,5 @@ void SwitchToRunConfigurationLocatorFilter::accept(const LocatorFilterEntry &sel
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_projectexplorer.cpp"

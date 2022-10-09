@@ -125,3 +125,5 @@ void DeviceDetector::resetDevices()
 
 } // namespace Internal
 } // namespace Qdb
+
+#include "moc_devicedetector.cpp"

@@ -553,3 +553,5 @@ namespace Internal {
 
 } // namespace Internal
 } // namespace TextEditor
+
+#include "moc_basefilefind.cpp"

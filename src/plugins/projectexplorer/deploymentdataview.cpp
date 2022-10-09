@@ -162,3 +162,5 @@ DeploymentDataView::DeploymentDataView(DeployConfiguration *dc)
 
 } // Internal
 } // ProjectExplorer
+
+#include "moc_deploymentdataview.cpp"

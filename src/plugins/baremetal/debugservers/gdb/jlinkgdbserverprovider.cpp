@@ -401,3 +401,5 @@ void JLinkGdbServerProviderConfigWidget::setFromProvider()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_jlinkgdbserverprovider.cpp"

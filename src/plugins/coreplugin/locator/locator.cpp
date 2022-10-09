@@ -429,3 +429,5 @@ void Locator::showFilter(ILocatorFilter *filter, LocatorWidget *widget)
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_locator.cpp"

@@ -247,3 +247,5 @@ void ImageViewerFile::cleanUp()
 }
 
 } // ImageViewer::Internal
+
+#include "moc_imageviewerfile.cpp"

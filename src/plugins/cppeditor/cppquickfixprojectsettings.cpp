@@ -163,3 +163,5 @@ void CppQuickFixProjectsSettings::loadOwnSettingsFromFile()
 
 } // namespace Internal
 } // namespace CppEditor
+
+#include "moc_cppquickfixprojectsettings.cpp"

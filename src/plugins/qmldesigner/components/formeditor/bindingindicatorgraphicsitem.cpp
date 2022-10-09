@@ -37,3 +37,5 @@ void BindingIndicatorGraphicsItem::updateBindingIndicator(const QLineF &bindingL
 }
 
 } // namespace QmlDesigner
+
+#include "moc_bindingindicatorgraphicsitem.cpp"

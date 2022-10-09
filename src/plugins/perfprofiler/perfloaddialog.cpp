@@ -122,3 +122,5 @@ void PerfLoadDialog::chooseDefaults()
 
 } // namespace Internal
 } // namespace PerfProfiler
+
+#include "moc_perfloaddialog.cpp"

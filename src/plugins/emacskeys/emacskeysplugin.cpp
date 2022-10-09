@@ -383,3 +383,5 @@ void EmacsKeysPlugin::genericVScroll(int direction)
 
 } // namespace Internal
 } // namespace EmacsKeys
+
+#include "moc_emacskeysplugin.cpp"

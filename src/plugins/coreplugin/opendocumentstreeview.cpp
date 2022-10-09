@@ -141,3 +141,5 @@ bool OpenDocumentsTreeView::eventFilter(QObject *obj, QEvent *event)
 }
 
 } // namespace Core
+
+#include "moc_opendocumentstreeview.cpp"

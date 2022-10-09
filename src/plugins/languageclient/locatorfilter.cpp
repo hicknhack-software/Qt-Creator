@@ -344,3 +344,5 @@ WorkspaceMethodLocatorFilter::WorkspaceMethodLocatorFilter()
 }
 
 } // namespace LanguageClient
+
+#include "moc_locatorfilter.cpp"

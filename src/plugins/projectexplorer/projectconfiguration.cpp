@@ -134,3 +134,5 @@ QString ProjectConfiguration::expandedDisplayName() const
 {
     return m_target->macroExpander()->expand(m_displayName.value());
 }
+
+#include "moc_projectconfiguration.cpp"

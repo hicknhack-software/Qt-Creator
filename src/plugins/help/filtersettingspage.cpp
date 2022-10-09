@@ -60,3 +60,5 @@ void FilterSettingsPage::updateFilterPage()
     m_widget->setAvailableVersions(LocalHelpManager::filterEngine()->availableVersions());
 }
 
+
+#include "moc_filtersettingspage.cpp"

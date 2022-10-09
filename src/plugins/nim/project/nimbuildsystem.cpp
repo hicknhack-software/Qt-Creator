@@ -224,3 +224,5 @@ bool NimBuildSystem::renameFile(Node *, const FilePath &oldFilePath, const FileP
 }
 
 } // namespace Nim
+
+#include "moc_nimbuildsystem.cpp"

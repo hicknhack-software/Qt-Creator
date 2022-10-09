@@ -95,3 +95,5 @@ void ActivitySelector::newActivity()
 }
 
 } // ClearCase::Internal
+
+#include "moc_activityselector.cpp"

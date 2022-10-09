@@ -99,3 +99,5 @@ void HueControl::mouseMoveEvent(QMouseEvent *e)
 }
 
 } //QmlEditorWidgets
+
+#include "moc_huecontrol.cpp"

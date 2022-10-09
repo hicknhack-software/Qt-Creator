@@ -247,3 +247,5 @@ void BehaviorSettingsPage::openCodingStylePreferences(TabSettingsWidget::CodingS
 }
 
 } // namespace TextEditor
+
+#include "moc_behaviorsettingspage.cpp"

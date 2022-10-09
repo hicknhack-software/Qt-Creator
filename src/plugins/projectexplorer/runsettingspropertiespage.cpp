@@ -511,3 +511,5 @@ void RunSettingsWidget::updateEnabledState()
 
 } // Internal
 } // ProjectExplorer
+
+#include "moc_runsettingspropertiespage.cpp"

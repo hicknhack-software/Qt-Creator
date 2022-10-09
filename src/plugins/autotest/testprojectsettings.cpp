@@ -113,3 +113,5 @@ void TestProjectSettings::save()
 
 } // namespace Internal
 } // namespace Autotest
+
+#include "moc_testprojectsettings.cpp"

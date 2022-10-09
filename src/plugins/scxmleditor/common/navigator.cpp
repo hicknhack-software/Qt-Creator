@@ -88,3 +88,5 @@ void Navigator::createUi()
     setMinimumSize(300, 200);
     setGeometry(x(), y(), 400, 300);
 }
+
+#include "moc_navigator.cpp"

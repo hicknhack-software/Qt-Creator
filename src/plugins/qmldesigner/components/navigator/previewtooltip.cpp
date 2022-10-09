@@ -66,3 +66,5 @@ QString PreviewToolTip::id() const
 }
 
 }
+
+#include "moc_previewtooltip.cpp"

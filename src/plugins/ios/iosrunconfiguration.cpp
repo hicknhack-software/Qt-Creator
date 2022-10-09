@@ -411,3 +411,5 @@ IosRunConfigurationFactory::IosRunConfigurationFactory()
 
 } // namespace Internal
 } // namespace Ios
+
+#include "moc_iosrunconfiguration.cpp"

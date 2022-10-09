@@ -61,3 +61,5 @@ void GenericScxmlPlugin::init(ScxmlUiFactory *factory)
 void GenericScxmlPlugin::refresh()
 {
 }
+
+#include "moc_genericscxmlplugin.cpp"

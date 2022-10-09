@@ -295,3 +295,5 @@ Utils::FilePaths NewClassWidget::files() const
 
 } // namespace Internal
 } // namespace Designer
+
+#include "moc_newclasswidget.cpp"

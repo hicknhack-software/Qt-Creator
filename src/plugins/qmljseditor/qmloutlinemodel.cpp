@@ -1084,3 +1084,5 @@ QHash<QString,QString> QmlOutlineModel::getScriptBindings(AST::UiObjectInitializ
 
 } // namespace Internal
 } // namespace QmlJSEditor
+
+#include "moc_qmloutlinemodel.cpp"

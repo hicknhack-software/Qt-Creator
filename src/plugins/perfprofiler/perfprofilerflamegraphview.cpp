@@ -62,3 +62,5 @@ bool PerfProfilerFlameGraphView::isZoomed() const
 
 } // namespace Internal
 } // namespace PerfProfiler
+
+#include "moc_perfprofilerflamegraphview.cpp"

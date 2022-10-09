@@ -154,3 +154,5 @@ void TabSettingsWidget::setCodingStyleWarningVisible(bool visible)
 }
 
 } // TextEditor
+
+#include "moc_tabsettingswidget.cpp"

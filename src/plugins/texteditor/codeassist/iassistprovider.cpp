@@ -40,3 +40,5 @@ using namespace TextEditor;
 
     Creates and returns the IAssistProcessor responsible for computing an IAssistProposal.
 */
+
+#include "moc_iassistprovider.cpp"

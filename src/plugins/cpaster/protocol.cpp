@@ -220,3 +220,5 @@ bool NetworkProtocol::httpStatus(QString url, QString *errorMessage, bool useHtt
 }
 
 } // CodePaster
+
+#include "moc_protocol.cpp"

@@ -102,3 +102,5 @@ void QmlEngineControlClient::sendCommand(QmlEngineControlClient::CommandType com
 }
 
 }
+
+#include "moc_qmlenginecontrolclient.cpp"

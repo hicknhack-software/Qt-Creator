@@ -239,3 +239,5 @@ void MaterialBrowserBundleModel::addMaterial(BundleMaterial *mat)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_materialbrowserbundlemodel.cpp"

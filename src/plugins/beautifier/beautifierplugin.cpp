@@ -221,3 +221,5 @@ QString BeautifierPlugin::msgCommandPromptDialogTitle(const QString &command)
 
 } // namespace Internal
 } // namespace Beautifier
+
+#include "moc_beautifierplugin.cpp"

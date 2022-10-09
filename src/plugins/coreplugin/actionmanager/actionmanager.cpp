@@ -522,3 +522,4 @@ void ActionManagerPrivate::saveSettings()
 }
 
 #include "actionmanager.moc"
+#include "moc_actionmanager.cpp"

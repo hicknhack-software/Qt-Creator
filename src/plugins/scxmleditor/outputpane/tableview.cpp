@@ -16,3 +16,5 @@ void TableView::leaveEvent(QEvent *e)
     emit mouseExited();
     QTableView::leaveEvent(e);
 }
+
+#include "moc_tableview.cpp"

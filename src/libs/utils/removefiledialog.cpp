@@ -61,3 +61,5 @@ bool RemoveFileDialog::isDeleteFileChecked() const
 }
 
 } // Utils
+
+#include "moc_removefiledialog.cpp"

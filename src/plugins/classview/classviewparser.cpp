@@ -360,3 +360,5 @@ void Parser::requestCurrentState()
 
 } // namespace Internal
 } // namespace ClassView
+
+#include "moc_classviewparser.cpp"

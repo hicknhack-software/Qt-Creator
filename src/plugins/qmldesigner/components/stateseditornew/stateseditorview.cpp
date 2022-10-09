@@ -936,3 +936,9 @@ void StatesEditorView::moveStates(int from, int to)
 
 } // namespace Experimental
 } // namespace QmlDesigner
+
+#ifdef MOC_INCLUDE_FOLDER
+#include "stateseditornew/moc_stateseditorview.cpp"
+#else
+#include "moc_stateseditorview.cpp"
+#endif

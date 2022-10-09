@@ -786,3 +786,5 @@ void MimeEditorDelegate::setModelData(QWidget *editor,
 } // Core::Internal
 
 #include "mimetypesettings.moc"
+
+#include "moc_mimetypesettings.cpp"

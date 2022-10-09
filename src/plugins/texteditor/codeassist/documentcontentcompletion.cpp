@@ -137,3 +137,5 @@ void DocumentContentCompletionProcessor::cancel()
     if (running())
         m_watcher.cancel();
 }
+
+#include "moc_documentcontentcompletion.cpp"

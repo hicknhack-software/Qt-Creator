@@ -179,3 +179,5 @@ bool FileWizardPage::validateBaseName(const QString &name, QString *errorMessage
 }
 
 } // namespace Utils
+
+#include "moc_filewizardpage.cpp"

@@ -120,3 +120,5 @@ void FileWidget::setupComboBox()
 } //QmlEditorWidgets
 
 
+
+#include "moc_filewidget.cpp"

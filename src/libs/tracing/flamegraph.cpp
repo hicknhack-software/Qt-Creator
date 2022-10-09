@@ -193,3 +193,5 @@ void FlameGraph::mouseDoubleClickEvent(QMouseEvent *event)
 }
 
 } // namespace FlameGraph
+
+#include "moc_flamegraph.cpp"

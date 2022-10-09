@@ -149,3 +149,5 @@ void WatchTreeView::adjustSlider()
 
 } // namespace Internal
 } // namespace Debugger
+
+#include "moc_watchwindow.cpp"

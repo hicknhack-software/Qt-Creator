@@ -343,3 +343,5 @@ void ActionsFilter::restoreState(const QJsonObject &object)
             m_lastTriggered.append({nullptr, Utils::Id::fromString(command.toString())});
     }
 }
+
+#include "moc_actionsfilter.cpp"

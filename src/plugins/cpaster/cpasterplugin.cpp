@@ -388,3 +388,5 @@ void CodePasterPluginPrivate::finishFetch(const QString &titleDescription,
 }
 
 } // namespace CodePaster
+
+#include "moc_cpasterplugin.cpp"

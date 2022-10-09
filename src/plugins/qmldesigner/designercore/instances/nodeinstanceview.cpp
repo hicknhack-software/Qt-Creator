@@ -2292,3 +2292,5 @@ QList<NodeInstance> NodeInstanceView::loadInstancesFromCache(const QList<ModelNo
     return instanceList;
 }
 } // namespace QmlDesigner
+
+#include "moc_nodeinstanceview.cpp"

@@ -20,3 +20,5 @@ QString GitAnnotationHighlighter::changeNumber(const QString &block) const
 
 } // namespace Internal
 } // namespace Git
+
+#include "moc_annotationhighlighter.cpp"

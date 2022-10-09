@@ -320,3 +320,5 @@ QMap<QString, Command*> SideBar::shortcutMap() const
 }
 } // namespace Core
 
+
+#include "moc_sidebar.cpp"

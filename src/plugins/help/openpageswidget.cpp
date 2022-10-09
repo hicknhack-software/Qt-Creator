@@ -107,3 +107,5 @@ void OpenPagesWidget::updateCloseButtonVisibility()
 {
     setCloseButtonVisible(model() && model()->rowCount() > 1);
 }
+
+#include "moc_openpageswidget.cpp"

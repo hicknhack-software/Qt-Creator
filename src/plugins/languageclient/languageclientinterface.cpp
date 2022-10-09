@@ -151,3 +151,5 @@ void StdIOClientInterface::readOutput()
 }
 
 } // namespace LanguageClient
+
+#include "moc_languageclientinterface.cpp"

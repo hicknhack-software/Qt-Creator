@@ -248,3 +248,5 @@ void SplineEditor::wheelEvent(QWheelEvent *event)
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_splineeditor.cpp"

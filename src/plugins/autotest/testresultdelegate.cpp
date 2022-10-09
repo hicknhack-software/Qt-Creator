@@ -230,3 +230,5 @@ void TestResultDelegate::recalculateTextLayout(const QModelIndex &index, const Q
 
 } // namespace Internal
 } // namespace Autotest
+
+#include "moc_testresultdelegate.cpp"

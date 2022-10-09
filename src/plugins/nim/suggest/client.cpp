@@ -158,3 +158,5 @@ void NimSuggestClient::parsePayload(const char *payload, std::size_t size)
 
 } // namespace Suggest
 } // namespace Nim
+
+#include "moc_client.cpp"

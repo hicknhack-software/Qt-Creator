@@ -109,3 +109,5 @@ void MacroTextFind::clearFindScope()
     QTC_ASSERT(m_currentFind, return);
     m_currentFind->clearFindScope();
 }
+
+#include "moc_macrotextfind.cpp"

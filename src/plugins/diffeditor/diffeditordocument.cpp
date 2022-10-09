@@ -396,3 +396,5 @@ void DiffEditorDocument::endReload(bool success)
 
 } // namespace Internal
 } // namespace DiffEditor
+
+#include "moc_diffeditordocument.cpp"

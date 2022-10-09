@@ -2525,3 +2525,5 @@ QVector<QObject *> DebuggerPlugin::createTestObjects() const
 } // Debugger
 
 #include "debuggerplugin.moc"
+
+#include "moc_debuggerplugin.cpp"

@@ -733,3 +733,5 @@ void setProcessEnvironment(Environment *e)
 } // namespace VcsBase
 
 #include "vcsbaseplugin.moc"
+
+#include "moc_vcsbaseplugin.cpp"

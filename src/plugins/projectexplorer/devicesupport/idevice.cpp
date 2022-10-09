@@ -840,3 +840,5 @@ DeviceProcessSignalOperation::DeviceProcessSignalOperation() = default;
 DeviceEnvironmentFetcher::DeviceEnvironmentFetcher() = default;
 
 } // namespace ProjectExplorer
+
+#include "moc_idevice.cpp"

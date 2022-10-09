@@ -110,3 +110,5 @@ void GenericGdbServerProviderConfigWidget::setFromProvider()
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_genericgdbserverprovider.cpp"

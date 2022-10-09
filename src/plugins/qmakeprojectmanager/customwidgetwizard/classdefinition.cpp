@@ -193,3 +193,5 @@ PluginOptions::WidgetOptions ClassDefinition::widgetOptions(const QString &class
 
 }
 }
+
+#include "moc_classdefinition.cpp"

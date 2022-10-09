@@ -406,3 +406,5 @@ const QSet<QString> &AssetsLibraryModel::previewableSuffixes() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_assetslibrarymodel.cpp"

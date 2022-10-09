@@ -1522,3 +1522,5 @@ void QmakeBuildSystem::buildHelper(Action action, bool isFileBuild, QmakeProFile
 } // QmakeProjectManager
 
 #include "qmakeproject.moc"
+
+#include "moc_qmakeproject.cpp"

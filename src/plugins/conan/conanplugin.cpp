@@ -94,3 +94,5 @@ FilePath ConanPlugin::conanFilePath(Project *project, const FilePath &defaultFil
 
 } // namespace Internal
 } // namespace ConanPackageManager
+
+#include "moc_conanplugin.cpp"

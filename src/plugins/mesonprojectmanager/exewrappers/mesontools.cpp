@@ -89,3 +89,5 @@ std::shared_ptr<MesonWrapper> MesonTools::mesonWrapper()
 
 } // namespace Internal
 } // namespace MesonProjectManager
+
+#include "moc_mesontools.cpp"

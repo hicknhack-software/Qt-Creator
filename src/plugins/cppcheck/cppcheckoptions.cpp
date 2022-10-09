@@ -227,3 +227,5 @@ void CppcheckOptionsPage::load(CppcheckOptions &options) const
 
 } // namespace Internal
 } // namespace Cppcheck
+
+#include "moc_cppcheckoptions.cpp"

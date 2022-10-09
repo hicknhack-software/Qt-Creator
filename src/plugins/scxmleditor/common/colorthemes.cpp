@@ -168,3 +168,5 @@ void ColorThemes::setCurrentColors(const QVariantMap &colorData)
     m_document->setLevelColors(colors);
     m_document->setEditorInfo(m_document->scxmlRootTag(), Constants::C_SCXML_EDITORINFO_COLORS, serializedColors.join(";;"));
 }
+
+#include "moc_colorthemes.cpp"

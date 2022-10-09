@@ -50,3 +50,5 @@ void BareMetalDeviceConfigurationWidget::updateDeviceFromUi()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_baremetaldeviceconfigurationwidget.cpp"

@@ -88,3 +88,5 @@ void EditorDiagramView::dropFiles(const QList<Utils::DropSupport::FileSpec> &fil
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_editordiagramview.cpp"

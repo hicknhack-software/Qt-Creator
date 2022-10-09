@@ -584,3 +584,5 @@ void CorePlugin::testVcsManager()
 } // namespace Core
 
 #endif
+
+#include "moc_vcsmanager.cpp"

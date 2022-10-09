@@ -2109,3 +2109,5 @@ void Model::detachView(AbstractView *view, ViewNotification emitDetachNotify)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_model.cpp"

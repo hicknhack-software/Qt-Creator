@@ -198,3 +198,5 @@ QString ExecuteFilter::headCommand() const
     const ExecuteData &data = m_taskQueue.head();
     return data.command.toUserOutput();
 }
+
+#include "moc_executefilter.cpp"

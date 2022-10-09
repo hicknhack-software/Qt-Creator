@@ -617,3 +617,5 @@ void IncludeGroupsTest::testDetectIncludeGroupsByIncludeType()
 #endif // WITH_TESTS
 
 } // namespace CppEditor
+
+#include "moc_includeutils.cpp"

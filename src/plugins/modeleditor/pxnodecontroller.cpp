@@ -365,3 +365,5 @@ void PxNodeController::parseFullClassName(qmt::MClass *klass, const QString &ful
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_pxnodecontroller.cpp"

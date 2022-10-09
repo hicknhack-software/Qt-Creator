@@ -421,3 +421,5 @@ void Visualization::resizeEvent(QResizeEvent *event)
 
 } // namespace Internal
 } // namespace Valgrind
+
+#include "moc_callgrindvisualisation.cpp"

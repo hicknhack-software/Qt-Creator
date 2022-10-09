@@ -262,3 +262,5 @@ IosDsymBuildStepFactory::IosDsymBuildStepFactory()
 
 } // namespace Internal
 } // namespace Ios
+
+#include "moc_iosdsymbuildstep.cpp"

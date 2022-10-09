@@ -347,3 +347,5 @@ QUrl HostWidget::channel() const
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_idebugserverprovider.cpp"

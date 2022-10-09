@@ -2957,3 +2957,5 @@ void CdbEngine::watchPoint(const QPoint &p)
 } // namespace Debugger
 
 Q_DECLARE_METATYPE(Debugger::Internal::GdbMi)
+
+#include "moc_cdbengine.cpp"

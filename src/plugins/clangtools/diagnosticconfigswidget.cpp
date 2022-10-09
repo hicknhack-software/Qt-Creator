@@ -1360,3 +1360,4 @@ void disableChecks(const QList<Diagnostic> &diagnostics)
 } // ClangTools::Internal
 
 #include "diagnosticconfigswidget.moc"
+#include "moc_diagnosticconfigswidget.cpp"

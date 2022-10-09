@@ -115,3 +115,5 @@ void AnnotationEditor::applyChanges()
 }
 
 } //namespace QmlDesigner
+
+#include "moc_annotationeditor.cpp"

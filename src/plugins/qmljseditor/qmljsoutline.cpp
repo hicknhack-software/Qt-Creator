@@ -285,3 +285,5 @@ TextEditor::IOutlineWidget *QmlJSOutlineWidgetFactory::createWidget(Core::IEdito
 
 } // namespace Internal
 } // namespace QmlJSEditor
+
+#include "moc_qmljsoutline.cpp"

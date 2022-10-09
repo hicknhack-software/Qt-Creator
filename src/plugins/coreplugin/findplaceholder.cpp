@@ -89,3 +89,5 @@ bool FindToolBarPlaceHolder::isLightColored() const
 {
     return m_lightColored;
 }
+
+#include "moc_findplaceholder.cpp"

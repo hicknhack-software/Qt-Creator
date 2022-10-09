@@ -106,3 +106,5 @@ QmakeSettingsPage::QmakeSettingsPage()
 
 } // namespace Internal
 } // namespace QmakeProjectManager
+
+#include "moc_qmakesettings.cpp"

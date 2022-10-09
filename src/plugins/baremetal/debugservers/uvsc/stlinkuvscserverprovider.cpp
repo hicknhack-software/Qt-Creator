@@ -314,3 +314,5 @@ void StLinkUvscAdapterOptionsWidget::populateSpeeds()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_stlinkuvscserverprovider.cpp"

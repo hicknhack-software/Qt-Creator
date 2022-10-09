@@ -79,3 +79,5 @@ void PluginDetailsView::update(PluginSpec *spec)
     const QStringList depStrings = Utils::transform<QList>(spec->dependencies(), &PluginDependency::toString);
     m_ui->dependencies->addItems(depStrings);
 }
+
+#include "moc_plugindetailsview.cpp"

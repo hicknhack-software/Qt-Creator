@@ -1483,3 +1483,5 @@ void ModelEditor::synchronizeBrowserWithDiagram(const qmt::MDiagram *diagram)
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_modeleditor.cpp"

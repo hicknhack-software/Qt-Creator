@@ -168,3 +168,5 @@ void FormEditorPlugin::switchSourceForm()
 
 } // Internal
 } // Designer
+
+#include "moc_formeditorplugin.cpp"

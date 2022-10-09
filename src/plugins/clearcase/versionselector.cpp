@@ -141,3 +141,5 @@ bool VersionSelector::isUpdate() const
 }
 
 } // ClearCase::Internal
+
+#include "moc_versionselector.cpp"

@@ -41,3 +41,5 @@ void SelectionDynamicPropertiesProxyModel::registerDeclarativeType()
     DynamicPropertiesProxyModel::registerDeclarativeType();
     qmlRegisterType<SelectionDynamicPropertiesProxyModel>("HelperWidgets", 2, 0, "SelectionDynamicPropertiesModel");
 }
+
+#include "moc_selectiondynamicpropertiesproxymodel.cpp"

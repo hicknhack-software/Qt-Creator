@@ -1207,3 +1207,5 @@ void ManhattanStyle::drawButtonSeparator(QPainter *painter, const QRect &rect, b
            painter->drawLine(borderRect.topLeft(), borderRect.bottomLeft());
     }
  }
+
+#include "moc_manhattanstyle.cpp"

@@ -37,3 +37,5 @@ void QmlDebugTranslationClient::stateChanged(QmlDebug::QmlDebugClient::State sta
 }
 
 } // namespace QmlPreview
+
+#include "moc_qmldebugtranslationclient.cpp"

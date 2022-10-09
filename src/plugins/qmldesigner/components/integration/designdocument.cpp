@@ -784,3 +784,5 @@ void DesignDocument::contextHelp(const Core::IContext::HelpCallback &callback) c
 }
 
 } // namespace QmlDesigner
+
+#include "moc_designdocument.cpp"

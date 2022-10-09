@@ -93,3 +93,5 @@ void ShortcutWidget::recordKeysequence(QKeyEvent *event)
 }
 
 } // namespace QmlDesigner.
+
+#include "moc_shortcutwidget.cpp"

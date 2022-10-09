@@ -635,3 +635,5 @@ QList<const Timeline::TimelineRenderPass *> PerfTimelineModel::supportedRenderPa
 
 } // namespace Internal
 } // namespace PerfProfiler
+
+#include "moc_perftimelinemodel.cpp"

@@ -704,3 +704,5 @@ void ColorSchemeEdit::populateUnderlineStyleComboBox()
 }
 
 } // TextEditor::Internal
+
+#include "moc_colorschemeedit.cpp"

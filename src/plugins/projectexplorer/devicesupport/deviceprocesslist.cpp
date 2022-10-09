@@ -142,3 +142,5 @@ void DeviceProcessList::reportError(const QString &message)
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_deviceprocesslist.cpp"

@@ -123,3 +123,5 @@ int CppCompletionAssistProvider::activationSequenceChar(const QChar &ch,
 }
 
 } // namespace CppEditor
+
+#include "moc_cppcompletionassistprovider.cpp"

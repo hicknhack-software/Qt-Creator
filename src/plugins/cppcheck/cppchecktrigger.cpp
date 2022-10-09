@@ -177,3 +177,5 @@ void CppcheckTrigger::remove(const Utils::FilePaths &files)
 
 } // namespace Internal
 } // namespace Cppcheck
+
+#include "moc_cppchecktrigger.cpp"

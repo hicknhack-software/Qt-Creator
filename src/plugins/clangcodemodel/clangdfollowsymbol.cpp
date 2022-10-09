@@ -533,3 +533,5 @@ void ClangdFollowSymbol::Private::closeTempDocuments()
 }
 
 } // namespace ClangCodeModel::Internal
+
+#include "moc_clangdfollowsymbol.cpp"

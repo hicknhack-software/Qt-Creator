@@ -30,5 +30,4 @@ add_qtc_plugin(QmlJSEditor
     qmloutlinemodel.cpp qmloutlinemodel.h
     qmltaskmanager.cpp qmltaskmanager.h
     quicktoolbar.cpp quicktoolbar.h
-  EXPLICIT_MOC qmljseditor.h
 )

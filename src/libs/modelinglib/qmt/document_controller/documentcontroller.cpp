@@ -259,3 +259,5 @@ void DocumentController::loadProject(const QString &fileName)
 }
 
 } // namespace qmt
+
+#include "moc_documentcontroller.cpp"

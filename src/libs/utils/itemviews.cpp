@@ -42,3 +42,5 @@
 
     Also adds sane keyboard navigation for mac.
  */
+
+#include "moc_itemviews.cpp"

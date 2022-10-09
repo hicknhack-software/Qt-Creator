@@ -338,3 +338,5 @@ void WizardHandler::run(const std::function<void(QWizardPage *)> &processPage)
     // Note: QWizard::accept calls QObject::deleteLater on the wizard
     m_wizard->accept();
 }
+
+#include "moc_wizardhandler.cpp"

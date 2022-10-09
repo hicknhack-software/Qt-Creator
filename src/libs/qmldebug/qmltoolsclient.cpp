@@ -141,3 +141,5 @@ void QmlToolsClient::log(LogDirection direction,
 }
 
 } // namespace QmlDebug
+
+#include "moc_qmltoolsclient.cpp"

@@ -296,3 +296,5 @@ void FileSystemFilter::restoreState(const QByteArray &state)
 
 } // Internal
 } // Core
+
+#include "moc_filesystemfilter.cpp"

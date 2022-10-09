@@ -33,3 +33,5 @@ AssetImportUpdateTreeModel *AssetImportUpdateTreeView::model() const
 
 } // namespace Internal
 } // namespace QmlDesigner
+
+#include "moc_assetimportupdatetreeview.cpp"

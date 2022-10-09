@@ -826,3 +826,5 @@ QmlDesigner::AbstractScrollGraphicsScene::AbstractScrollGraphicsScene(QWidget *p
 {}
 
 } // namespace QmlDesigner
+
+#include "moc_timelinegraphicsscene.cpp"

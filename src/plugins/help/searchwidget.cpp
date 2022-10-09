@@ -269,3 +269,5 @@ QList<QToolButton *> SearchSideBarItem::createToolBarWidgets()
 }
 
 } // Help::Internal
+
+#include "moc_searchwidget.cpp"

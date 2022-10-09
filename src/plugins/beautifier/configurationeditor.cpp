@@ -235,3 +235,5 @@ void ConfigurationEditor::updateDocumentation()
 
 } // namespace Internal
 } // namespace Beautifier
+
+#include "moc_configurationeditor.cpp"

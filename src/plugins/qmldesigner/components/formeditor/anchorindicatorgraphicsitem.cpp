@@ -250,3 +250,5 @@ void AnchorIndicatorGraphicsItem::setSourceAnchorLineType(const AnchorLineType &
 
 
 } // namespace QmlDesigner
+
+#include "moc_anchorindicatorgraphicsitem.cpp"

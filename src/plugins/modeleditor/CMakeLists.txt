@@ -29,7 +29,4 @@ add_qtc_plugin(ModelEditor
     resources/modeleditor.qrc
     settingscontroller.cpp settingscontroller.h
     uicontroller.cpp uicontroller.h
-  EXPLICIT_MOC
-    actionhandler.h
-    modeleditor.h
 )

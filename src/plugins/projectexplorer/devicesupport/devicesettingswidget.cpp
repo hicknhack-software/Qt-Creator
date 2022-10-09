@@ -375,3 +375,5 @@ void DeviceSettingsWidget::handleProcessListRequested()
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_devicesettingswidget.cpp"

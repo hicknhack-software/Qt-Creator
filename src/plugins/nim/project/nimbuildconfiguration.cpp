@@ -98,3 +98,5 @@ NimBuildConfigurationFactory::NimBuildConfigurationFactory()
 
 } // namespace Nim
 
+
+#include "moc_nimbuildconfiguration.cpp"

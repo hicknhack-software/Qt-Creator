@@ -403,3 +403,5 @@ PyLSConfigureAssistant::PyLSConfigureAssistant(QObject *parent)
 }
 
 } // Python::Internal
+
+#include "moc_pythonlanguageclient.cpp"

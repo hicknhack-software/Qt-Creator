@@ -69,3 +69,5 @@ Utils::Id DeviceFactorySelectionDialog::selectedId() const
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_devicefactoryselectiondialog.cpp"

@@ -549,3 +549,5 @@ bool PresetEditor::isCurrent(PresetList *list)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_preseteditor.cpp"

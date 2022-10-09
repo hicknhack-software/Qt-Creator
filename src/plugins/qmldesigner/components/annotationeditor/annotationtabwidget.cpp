@@ -131,3 +131,5 @@ void AnnotationTabWidget::deleteAllTabs()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_annotationtabwidget.cpp"

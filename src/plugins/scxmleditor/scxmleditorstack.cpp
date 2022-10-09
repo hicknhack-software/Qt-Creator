@@ -72,3 +72,5 @@ void ScxmlEditorStack::modeAboutToChange(Utils::Id m)
                 document->syncXmlFromDesignWidget();
     }
 }
+
+#include "moc_scxmleditorstack.cpp"

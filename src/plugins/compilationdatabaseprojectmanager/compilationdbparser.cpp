@@ -233,3 +233,5 @@ DbContents CompilationDbParser::parseProject()
 
 } // namespace Internal
 } // namespace CompilationDatabaseProjectManager
+
+#include "moc_compilationdbparser.cpp"

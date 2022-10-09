@@ -449,3 +449,5 @@ bool MaterialBrowserModel::isCopiedMaterialValid() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_materialbrowsermodel.cpp"

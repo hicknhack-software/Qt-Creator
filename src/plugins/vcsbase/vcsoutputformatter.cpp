@@ -77,3 +77,5 @@ void VcsOutputLineParser::fillLinkContextMenu(
 }
 
 } // VcsBase
+
+#include "moc_vcsoutputformatter.cpp"

@@ -54,3 +54,5 @@ void QmlJSCodeStyleSettingsWidget::slotSettingsChanged()
 }
 
 } // namespace TextEditor
+
+#include "moc_qmljscodestylesettingswidget.cpp"

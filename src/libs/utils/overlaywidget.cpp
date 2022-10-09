@@ -52,3 +52,5 @@ void Utils::OverlayWidget::resizeToParent()
     QTC_ASSERT(parentWidget(), return );
     setGeometry(QRect(QPoint(0, 0), parentWidget()->size()));
 }
+
+#include "moc_overlaywidget.cpp"

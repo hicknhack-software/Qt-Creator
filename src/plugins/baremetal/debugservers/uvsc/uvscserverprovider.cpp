@@ -384,3 +384,5 @@ void UvscServerProviderRunner::stop()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_uvscserverprovider.cpp"

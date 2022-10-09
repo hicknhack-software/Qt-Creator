@@ -234,3 +234,5 @@ QVariantMap Quick3DModel::location(int index) const
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_quick3dmodel.cpp"

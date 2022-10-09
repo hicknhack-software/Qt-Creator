@@ -26,3 +26,5 @@ std::optional<EnvironmentItems> EnvironmentDialog::getEnvironmentItems(
 }
 
 } // namespace Utils
+
+#include "moc_environmentdialog.cpp"

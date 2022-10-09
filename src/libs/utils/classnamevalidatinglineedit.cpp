@@ -173,3 +173,5 @@ void ClassNameValidatingLineEdit::setForceFirstCapitalLetter(bool b)
 }
 
 } // namespace Utils
+
+#include "moc_classnamevalidatinglineedit.cpp"

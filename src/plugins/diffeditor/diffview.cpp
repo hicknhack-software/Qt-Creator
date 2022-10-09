@@ -229,3 +229,5 @@ void SideBySideView::setSync(bool sync)
 
 } // namespace Internal
 } // namespace DiffEditor
+
+#include "moc_diffview.cpp"

@@ -344,3 +344,5 @@ Core::NavigationView TestNavigationWidgetFactory::createWidget()
 
 } // namespace Internal
 } // namespace Autotest
+
+#include "moc_testnavigationwidget.cpp"

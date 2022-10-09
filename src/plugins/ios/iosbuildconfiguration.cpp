@@ -545,3 +545,5 @@ IosCMakeBuildConfigurationFactory::IosCMakeBuildConfigurationFactory()
 
 } // namespace Internal
 } // namespace Ios
+
+#include "moc_iosbuildconfiguration.cpp"

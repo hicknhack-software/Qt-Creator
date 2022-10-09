@@ -553,3 +553,5 @@ ClangdProjectSettingsWidget::~ClangdProjectSettingsWidget()
 }
 
 } // CppEditor::Internal
+
+#include "moc_cppcodemodelsettingspage.cpp"

@@ -140,7 +140,7 @@ enum { debugLeaks = 0 };
         namespace PluginA {
         class SomeProvider : public QObject
         {
-            Q_OBJECT
+            Q_OBJECT_HIDE
 
         public:
             Q_INVOKABLE QString doit(const QString &msg, int n) {
@@ -1832,3 +1832,5 @@ QObject *PluginManager::getObjectByName(const QString &name)
 }
 
 } // ExtensionSystem
+
+#include "moc_pluginmanager.cpp"

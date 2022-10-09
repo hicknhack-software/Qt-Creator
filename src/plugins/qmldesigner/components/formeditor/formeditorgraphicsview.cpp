@@ -214,3 +214,5 @@ void FormEditorGraphicsView::setZoomFactor(double zoom)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_formeditorgraphicsview.cpp"

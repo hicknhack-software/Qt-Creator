@@ -2322,3 +2322,5 @@ BuildTypeAspect::BuildTypeAspect()
 
 } // namespace Internal
 } // namespace CMakeProjectManager
+
+#include "moc_cmakebuildconfiguration.cpp"

@@ -723,3 +723,5 @@ void insertSorted(Parentheses &list, const Parenthesis &elem)
 }
 
 } // namespace TextEditor
+
+#include "moc_textdocumentlayout.cpp"

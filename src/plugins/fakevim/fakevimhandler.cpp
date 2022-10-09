@@ -9562,3 +9562,5 @@ bool FakeVimHandler::jumpToLocalMark(QChar mark, bool backTickMode)
 } // namespace FakeVim
 
 Q_DECLARE_METATYPE(FakeVim::Internal::FakeVimHandler::Private::BufferDataPtr)
+
+#include "moc_fakevimhandler.cpp"

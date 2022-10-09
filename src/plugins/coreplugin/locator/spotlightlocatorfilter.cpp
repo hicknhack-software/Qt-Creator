@@ -312,3 +312,5 @@ void SpotlightLocatorFilter::reset()
 
 } // Internal
 } // Core
+
+#include "moc_spotlightlocatorfilter.cpp"

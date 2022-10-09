@@ -107,3 +107,5 @@ void ConfigController::onToolbarParsed(const Toolbar &toolbar)
 }
 
 } // namespace qmt
+
+#include "moc_configcontroller.cpp"

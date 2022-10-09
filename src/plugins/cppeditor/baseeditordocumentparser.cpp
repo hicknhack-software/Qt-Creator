@@ -126,3 +126,5 @@ ProjectPartInfo BaseEditorDocumentParser::determineProjectPart(const QString &fi
 }
 
 } // namespace CppEditor
+
+#include "moc_baseeditordocumentparser.cpp"

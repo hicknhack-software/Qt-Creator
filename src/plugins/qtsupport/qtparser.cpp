@@ -225,3 +225,5 @@ void QtSupportPlugin::testQtOutputParser()
 #endif
 
 } // namespace QtSupport
+
+#include "moc_qtparser.cpp"

@@ -86,3 +86,5 @@ MSelection TreeModelManager::selectedObjects() const
 }
 
 } // namespace qmt
+
+#include "moc_treemodelmanager.cpp"

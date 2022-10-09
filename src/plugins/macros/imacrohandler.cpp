@@ -73,3 +73,5 @@ bool IMacroHandler::isRecording() const
 {
     return m_currentMacro != nullptr;
 }
+
+#include "moc_imacrohandler.cpp"

@@ -80,3 +80,5 @@ QVector<QObject *> ValgrindPlugin::createTestObjects() const
 
 } // namespace Internal
 } // namespace Valgrind
+
+#include "moc_valgrindplugin.cpp"

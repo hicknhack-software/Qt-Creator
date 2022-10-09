@@ -494,3 +494,5 @@ bool PythonBuildSystem::supportsAction(Node *context, ProjectAction action, cons
 }
 
 } // Python::Internal
+
+#include "moc_pythonproject.cpp"

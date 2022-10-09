@@ -236,3 +236,5 @@ void TimelineAnimationForm::populateStateComboBox()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_timelineanimationform.cpp"

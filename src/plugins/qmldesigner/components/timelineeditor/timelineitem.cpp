@@ -269,3 +269,5 @@ void TimelineFrameHandle::scrollOutOfBoundsMin()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_timelineitem.cpp"

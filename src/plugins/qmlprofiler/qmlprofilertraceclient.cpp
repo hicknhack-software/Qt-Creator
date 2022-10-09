@@ -375,3 +375,5 @@ void QmlProfilerTraceClient::messageReceived(const QByteArray &data)
 }
 
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilertraceclient.cpp"

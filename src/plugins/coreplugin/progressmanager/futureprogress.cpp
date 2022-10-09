@@ -401,3 +401,5 @@ void FutureProgressPrivate::fadeAway()
 } // namespace Core
 
 #include "futureprogress.moc"
+
+#include "moc_futureprogress.cpp"

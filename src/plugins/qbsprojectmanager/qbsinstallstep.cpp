@@ -216,3 +216,5 @@ QbsInstallStepFactory::QbsInstallStepFactory()
 
 } // namespace Internal
 } // namespace QbsProjectManager
+
+#include "moc_qbsinstallstep.cpp"

@@ -308,3 +308,5 @@ void IconItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
 }
 
 } // Git::Internal
+
+#include "moc_logchangedialog.cpp"

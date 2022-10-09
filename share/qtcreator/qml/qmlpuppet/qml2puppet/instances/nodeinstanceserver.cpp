@@ -1612,3 +1612,5 @@ QVariant NodeInstanceServer::animationDefaultValue(int index) const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_nodeinstanceserver.cpp"

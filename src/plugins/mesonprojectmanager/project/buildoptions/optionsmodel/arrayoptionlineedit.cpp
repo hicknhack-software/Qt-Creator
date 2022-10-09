@@ -67,3 +67,5 @@ void RegexHighlighter::highlightBlock(const QString &text)
 
 } // namespace Internal
 } // namespace MesonProjectManager
+
+#include "moc_arrayoptionlineedit.cpp"

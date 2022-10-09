@@ -218,3 +218,5 @@ SuppressedDiagnostic::SuppressedDiagnostic(const Diagnostic &diag)
 
 } // namespace Internal
 } // namespace ClangTools
+
+#include "moc_clangtoolsprojectsettings.cpp"

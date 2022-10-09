@@ -59,3 +59,5 @@ QString TextFieldComboBox::valueAt(int i) const
 }
 
 } // namespace Utils
+
+#include "moc_textfieldcombobox.cpp"

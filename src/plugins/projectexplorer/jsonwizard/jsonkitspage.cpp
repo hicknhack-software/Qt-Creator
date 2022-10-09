@@ -157,3 +157,5 @@ QVector<JsonKitsPage::ConditionalFeature> JsonKitsPage::parseFeatures(const QVar
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_jsonkitspage.cpp"

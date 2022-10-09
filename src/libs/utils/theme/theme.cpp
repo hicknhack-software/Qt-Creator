@@ -329,3 +329,5 @@ QPalette Theme::palette() const
 }
 
 } // namespace Utils
+
+#include "moc_theme.cpp"

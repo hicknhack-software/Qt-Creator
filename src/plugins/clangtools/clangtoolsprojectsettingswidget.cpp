@@ -223,3 +223,5 @@ QVariant SuppressedDiagnosticsModel::data(const QModelIndex &index, int role) co
 } // namespace ClangTools
 
 #include "clangtoolsprojectsettingswidget.moc"
+
+#include "moc_clangtoolsprojectsettingswidget.cpp"

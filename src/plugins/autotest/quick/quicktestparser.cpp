@@ -388,3 +388,5 @@ Utils::FilePath QuickTestParser::projectFileForMainCppFile(const Utils::FilePath
 
 } // namespace Internal
 } // namespace Autotest
+
+#include "moc_quicktestparser.cpp"

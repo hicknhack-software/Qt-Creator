@@ -422,3 +422,5 @@ void TransitionTool::createTransition(FormEditorItem *source, FormEditorItem *ta
 }
 
 }
+
+#include "moc_transitiontool.cpp"

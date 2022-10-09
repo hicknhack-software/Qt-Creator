@@ -94,3 +94,5 @@ void DebugServerProviderChooser::populate()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_debugserverproviderchooser.cpp"

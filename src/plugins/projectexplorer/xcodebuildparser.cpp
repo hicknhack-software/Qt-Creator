@@ -273,3 +273,5 @@ void ProjectExplorerPlugin::testXcodebuildParserParsing()
 
 #endif
 
+
+#include "moc_xcodebuildparser.cpp"

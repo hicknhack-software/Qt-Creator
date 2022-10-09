@@ -44,3 +44,5 @@ QWidget *LineEditAction::createWidget(QWidget *parent)
 
 
 } // namespace QmlDesigner
+
+#include "moc_lineeditaction.cpp"

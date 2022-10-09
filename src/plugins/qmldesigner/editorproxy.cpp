@@ -94,3 +94,5 @@ bool ModelNodeEditorProxy::hasAnnotation() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_editorproxy.cpp"

@@ -530,3 +530,5 @@ QStringList ConnectionModel::getPossibleSignalsForConnection(const ModelNode &co
 } // namespace Internal
 
 } // namespace QmlDesigner
+
+#include "moc_connectionmodel.cpp"

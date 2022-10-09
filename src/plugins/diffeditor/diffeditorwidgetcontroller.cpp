@@ -327,3 +327,5 @@ DiffEditorInput::DiffEditorInput(DiffEditorWidgetController *controller)
 
 } // namespace Internal
 } // namespace DiffEditor
+
+#include "moc_diffeditorwidgetcontroller.cpp"

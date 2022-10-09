@@ -39,3 +39,5 @@ void TreeView::mousePressEvent(QMouseEvent *event)
     if (event->button() == Qt::RightButton)
         emit rightButtonClicked(currentIndex(), event->globalPos());
 }
+
+#include "moc_treeview.cpp"

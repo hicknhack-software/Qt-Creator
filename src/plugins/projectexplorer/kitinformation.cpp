@@ -1554,3 +1554,5 @@ void EnvironmentKitAspect::setEnvironmentChanges(Kit *k, const EnvironmentItems 
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_kitinformation.cpp"

@@ -104,3 +104,5 @@ QRgb Theme::editorColor(EditorColorRole role) const
 {
     return m_data ? m_data->editorColor(role) : 0;
 }
+
+#include "moc_theme.cpp"

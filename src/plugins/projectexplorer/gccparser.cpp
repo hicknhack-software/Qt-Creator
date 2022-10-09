@@ -1450,3 +1450,5 @@ void ProjectExplorerPlugin::testGccOutputParsers()
                           outputLines);
 }
 #endif
+
+#include "moc_gccparser.cpp"

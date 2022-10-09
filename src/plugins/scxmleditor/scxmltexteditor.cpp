@@ -56,3 +56,5 @@ bool ScxmlTextEditor::open(QString *errorString, const QString &fileName, const 
 
     return true;
 }
+
+#include "moc_scxmltexteditor.cpp"

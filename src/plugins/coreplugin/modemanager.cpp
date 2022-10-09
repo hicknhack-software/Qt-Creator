@@ -396,3 +396,5 @@ IMode *ModeManager::currentMode()
 }
 
 } // namespace Core
+
+#include "moc_modemanager.cpp"

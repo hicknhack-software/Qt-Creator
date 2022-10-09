@@ -2893,3 +2893,5 @@ static QVariant createItemDelegate()
 } // namespace Debugger
 
 #include "watchhandler.moc"
+
+#include "moc_watchhandler.cpp"

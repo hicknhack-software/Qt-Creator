@@ -294,3 +294,5 @@ void SwitchLanguageAction::currentContextChanged(const SelectionContext &)
 
 
 } // namespace QmlDesigner
+
+#include "moc_qmlpreviewactions.cpp"

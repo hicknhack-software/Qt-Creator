@@ -344,3 +344,5 @@ void DeviceProcessesDialog::logMessage(const QString &line)
 } // namespace ProjectExplorer
 
 #include "deviceprocessesdialog.moc"
+
+#include "moc_deviceprocessesdialog.cpp"

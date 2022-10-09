@@ -34,7 +34,6 @@ add_qtc_plugin(ClangCodeModel
     clangtextmark.cpp clangtextmark.h
     clangutils.cpp clangutils.h
     tasktimers.cpp tasktimers.h
-  EXPLICIT_MOC clangcodemodelplugin.h
 )
 
 extend_qtc_plugin(ClangCodeModel

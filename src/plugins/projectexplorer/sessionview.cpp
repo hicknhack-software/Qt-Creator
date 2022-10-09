@@ -150,3 +150,5 @@ QStringList SessionView::selectedSessions() const
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_sessionview.cpp"

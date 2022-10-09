@@ -1499,3 +1499,5 @@ bool CheckSymbols::isConstructorDeclaration(Symbol *declaration)
 }
 
 } // namespace CppEditor
+
+#include "moc_cppchecksymbols.cpp"

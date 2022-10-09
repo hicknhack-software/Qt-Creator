@@ -202,3 +202,5 @@ void NavigatorWidget::clearSearch()
 }
 
 }
+
+#include "moc_navigatorwidget.cpp"

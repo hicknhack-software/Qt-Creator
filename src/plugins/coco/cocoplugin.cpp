@@ -103,3 +103,5 @@ bool CocoPlugin::initialize(const QStringList &, QString *)
 } // namespace Coco
 
 
+
+#include "moc_cocoplugin.cpp"

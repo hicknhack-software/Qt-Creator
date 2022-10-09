@@ -1654,3 +1654,5 @@ void AndroidPlugin::testAndroidConfigAvailableNdkPlatforms()
 #endif // WITH_TESTS
 
 } // namespace Android
+
+#include "moc_androidconfigurations.cpp"

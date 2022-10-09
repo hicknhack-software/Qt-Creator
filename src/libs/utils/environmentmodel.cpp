@@ -18,3 +18,5 @@ void EnvironmentModel::setBaseEnvironment(const Environment &env)
 }
 
 } // namespace Utils
+
+#include "moc_environmentmodel.cpp"

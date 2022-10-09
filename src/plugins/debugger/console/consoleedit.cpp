@@ -126,3 +126,5 @@ void ConsoleEdit::replaceCurrentScript(const QString &script)
 }
 
 } // Debugger::Internal
+
+#include "moc_consoleedit.cpp"

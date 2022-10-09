@@ -633,3 +633,5 @@ void NodeInstanceClientProxy::dispatchCommand(const QVariant &command)
     }
 }
 } // namespace QmlDesigner
+
+#include "moc_nodeinstanceclientproxy.cpp"

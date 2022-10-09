@@ -176,3 +176,5 @@ void EventListView::reset()
 }
 
 } // namespace QmlDesigner.
+
+#include "moc_eventlistview.cpp"

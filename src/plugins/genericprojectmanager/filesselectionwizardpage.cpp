@@ -62,3 +62,5 @@ Utils::FilePaths FilesSelectionWizardPage::selectedFiles() const
 
 } // namespace Internal
 } // namespace GenericProjectManager
+
+#include "moc_filesselectionwizardpage.cpp"

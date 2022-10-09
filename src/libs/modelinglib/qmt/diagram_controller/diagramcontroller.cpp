@@ -936,3 +936,5 @@ void DiagramController::verifyDiagramIntegrity(const MDiagram *diagram)
 }
 
 } // namespace qmt
+
+#include "moc_diagramcontroller.cpp"

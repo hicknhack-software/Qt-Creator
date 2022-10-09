@@ -109,3 +109,5 @@ void ColorSettings::removeTheme()
             m_colorThemeView->setEnabled(false);
     }
 }
+
+#include "moc_colorsettings.cpp"

@@ -155,3 +155,5 @@ void QtLocalPeer::receiveConnection()
 }
 
 } // namespace SharedTools
+
+#include "moc_qtlocalpeer.cpp"

@@ -415,3 +415,5 @@ void AbstractSettings::readStyles()
 
 } // namespace Internal
 } // namespace Beautifier
+
+#include "moc_abstractsettings.cpp"

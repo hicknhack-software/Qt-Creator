@@ -77,3 +77,5 @@ void ClassViewController::appendClassDeclarationsFromSymbol(CPlusPlus::Symbol *s
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_classviewcontroller.cpp"

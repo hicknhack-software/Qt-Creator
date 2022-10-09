@@ -243,3 +243,5 @@ bool NimbleBuildSystem::renameFile(Node *, const FilePath &oldFilePath, const Fi
 }
 
 } // Nim
+
+#include "moc_nimblebuildsystem.cpp"

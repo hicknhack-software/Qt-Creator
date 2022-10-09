@@ -724,3 +724,5 @@ void GlobalLogWindow::clearUndoRedoStacks()
 } // namespace Debugger::Internal
 
 #include "logwindow.moc"
+
+#include "moc_logwindow.cpp"

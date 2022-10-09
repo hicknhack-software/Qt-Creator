@@ -757,3 +757,5 @@ QString PluginDumper::resolvePlugin(const QDir &qmldirPath, const QString &qmldi
 }
 
 } // QmlJS
+
+#include "moc_qmljsplugindumper.cpp"

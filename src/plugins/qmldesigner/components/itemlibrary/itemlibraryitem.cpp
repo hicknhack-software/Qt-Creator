@@ -77,3 +77,5 @@ QVariant ItemLibraryItem::itemLibraryEntry() const
     return QVariant::fromValue(m_itemLibraryEntry);
 }
 } // namespace QmlDesigner
+
+#include "moc_itemlibraryitem.cpp"

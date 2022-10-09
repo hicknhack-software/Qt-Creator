@@ -441,3 +441,5 @@ LocatorSettingsPage::LocatorSettingsPage()
 
 } // Internal
 } // Core
+
+#include "moc_locatorsettingspage.cpp"

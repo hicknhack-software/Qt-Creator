@@ -297,3 +297,5 @@ void Internal::setUserPreferredEditorTypes(const QHash<Utils::MimeType, EditorTy
 }
 
 } // Core
+
+#include "moc_ieditorfactory.cpp"

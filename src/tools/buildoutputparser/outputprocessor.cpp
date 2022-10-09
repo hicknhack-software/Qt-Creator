@@ -70,3 +70,5 @@ void CompilerOutputProcessor::handleTask(const ProjectExplorer::Task &task)
     }
     *m_ostream << task.description() << '\n';
 }
+
+#include "moc_outputprocessor.cpp"

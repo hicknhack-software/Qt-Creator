@@ -106,3 +106,5 @@ void DeviceTestDialog::addText(const QString &text, Utils::Theme::Color color, b
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_devicetestdialog.cpp"

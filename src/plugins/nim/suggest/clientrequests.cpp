@@ -39,3 +39,5 @@ QDebug operator<<(QDebug debug, const Line &c)
 
 } // namespace Suggest
 } // namespace Nim
+
+#include "moc_clientrequests.cpp"

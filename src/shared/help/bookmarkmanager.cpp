@@ -803,3 +803,5 @@ void BookmarkManager::readBookmarksRecursive(const QStandardItem *item,
             readBookmarksRecursive(child, stream, (depth +1));
     }
 }
+
+#include "moc_bookmarkmanager.cpp"

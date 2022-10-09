@@ -682,3 +682,5 @@ void TargetSetupPage::setUseScrollArea(bool b)
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_targetsetuppage.cpp"

@@ -189,3 +189,5 @@ void ArtisticStyleSettings::createDocumentationFile() const
 
 } // namespace Internal
 } // namespace Beautifier
+
+#include "moc_artisticstylesettings.cpp"

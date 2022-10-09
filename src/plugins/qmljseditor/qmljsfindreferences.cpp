@@ -1079,3 +1079,5 @@ void FindReferences::onReplaceButtonClicked(const QString &text, const QList<Sea
 
     SearchResultWindow::instance()->hide();
 }
+
+#include "moc_qmljsfindreferences.cpp"

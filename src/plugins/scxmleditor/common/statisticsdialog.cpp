@@ -34,3 +34,5 @@ void StatisticsDialog::setDocument(ScxmlEditor::PluginInterface::ScxmlDocument *
 {
     m_statistics->setDocument(doc);
 }
+
+#include "moc_statisticsdialog.cpp"

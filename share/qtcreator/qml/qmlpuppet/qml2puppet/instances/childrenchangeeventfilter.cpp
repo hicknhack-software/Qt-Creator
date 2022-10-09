@@ -30,3 +30,5 @@ bool ChildrenChangeEventFilter::eventFilter(QObject * /*object*/, QEvent *event)
 }
 } // namespace Internal
 } // namespace QmlDesigner
+
+#include "moc_childrenchangeeventfilter.cpp"

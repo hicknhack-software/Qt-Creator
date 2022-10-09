@@ -233,3 +233,5 @@ bool HelpViewer::handleForwardBackwardMouseButtons(QMouseEvent *event)
 
     return false;
 }
+
+#include "moc_helpviewer.cpp"

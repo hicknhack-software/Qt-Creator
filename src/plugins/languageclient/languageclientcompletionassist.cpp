@@ -475,3 +475,5 @@ void LanguageClientCompletionAssistProvider::setTriggerCharacters(
 }
 
 } // namespace LanguageClient
+
+#include "moc_languageclientcompletionassist.cpp"

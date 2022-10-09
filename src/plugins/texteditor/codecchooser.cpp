@@ -90,3 +90,5 @@ QByteArray CodecChooser::assignedCodecName() const
 }
 
 } // TextEditor
+
+#include "moc_codecchooser.cpp"

@@ -424,3 +424,5 @@ void AutoCompleterTest::testInsertParagraph()
 #endif // WITH_TESTS
 
 } // namespace CppEditor::Internal
+
+#include "moc_cppautocompleter.cpp"

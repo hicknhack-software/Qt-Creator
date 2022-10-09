@@ -526,3 +526,5 @@ void QmlPreviewParser::parse(const QString &name, const QByteArray &contents,
 } // namespace QmlPreview
 
 #include <qmlpreviewplugin.moc>
+
+#include "moc_qmlpreviewplugin.cpp"

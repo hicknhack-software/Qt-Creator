@@ -494,3 +494,5 @@ void UpdateInfoPlugin::startPackageManager() const
 
 } //namespace Internal
 } //namespace UpdateInfo
+
+#include "moc_updateinfoplugin.cpp"

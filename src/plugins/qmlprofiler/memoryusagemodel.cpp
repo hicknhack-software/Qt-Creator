@@ -277,3 +277,5 @@ void MemoryUsageModel::Item::update(qint64 amount)
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_memoryusagemodel.cpp"

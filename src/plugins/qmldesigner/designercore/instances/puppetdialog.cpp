@@ -40,3 +40,5 @@ void PuppetDialog::warning(QWidget *parent, const QString &title, const QString 
 }
 
 } //QmlDesigner
+
+#include "moc_puppetdialog.cpp"

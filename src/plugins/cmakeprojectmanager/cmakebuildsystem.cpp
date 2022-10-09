@@ -1338,3 +1338,5 @@ MakeInstallCommand CMakeBuildSystem::makeInstallCommand(const FilePath &installR
 }
 
 } // CMakeProjectManager::Internal
+
+#include "moc_cmakebuildsystem.cpp"

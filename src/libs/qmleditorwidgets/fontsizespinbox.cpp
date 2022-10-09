@@ -74,3 +74,5 @@ QValidator::State FontSizeSpinBox::validate (QString &input, int &p) const
 }
 
 } //QmlDesigner
+
+#include "moc_fontsizespinbox.cpp"

@@ -70,3 +70,5 @@ void AssetImportUpdateDialog::expandAll()
 
 } // namespace Internal
 } // namespace QmlDesigner
+
+#include "moc_assetimportupdatedialog.cpp"

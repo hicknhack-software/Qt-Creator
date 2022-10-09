@@ -158,3 +158,5 @@ void KitChooser::setKitPredicate(const Kit::Predicate &predicate)
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_kitchooser.cpp"

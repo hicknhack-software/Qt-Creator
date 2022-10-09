@@ -347,3 +347,5 @@ void JLinkUvscAdapterOptionsWidget::populateSpeeds()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_jlinkuvscserverprovider.cpp"

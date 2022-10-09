@@ -401,3 +401,5 @@ void ProductListModel::updateModelIndexesForUrl(const QString &url)
 
 } // namespace Internal
 } // namespace Marketplace
+
+#include "moc_productlistmodel.cpp"

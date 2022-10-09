@@ -303,3 +303,5 @@ void GitLabProjectSettingsWidget::updateEnabledStates()
 }
 
 } // namespace GitLab
+
+#include "moc_gitlabprojectsettings.cpp"

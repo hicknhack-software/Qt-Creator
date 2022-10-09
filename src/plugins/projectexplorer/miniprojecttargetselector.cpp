@@ -1573,3 +1573,5 @@ void MiniProjectTargetSelector::switchToProjectsMode()
 } // namespace ProjectExplorer
 
 #include <miniprojecttargetselector.moc>
+
+#include "moc_miniprojecttargetselector.cpp"

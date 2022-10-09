@@ -86,3 +86,5 @@ void QmlJSCodeStylePreferences::fromMap(const QVariantMap &map)
 }
 
 } // namespace QmlJSTools
+
+#include "moc_qmljscodestylepreferences.cpp"

@@ -482,3 +482,5 @@ void IosDebugSupport::start()
 
 } // namespace Internal
 } // namespace Ios
+
+#include "moc_iosrunner.cpp"

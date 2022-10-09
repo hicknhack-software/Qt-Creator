@@ -1009,3 +1009,5 @@ QString FunctionDeclDefLink::normalizedInitialName() const
 
 } // namespace Internal
 } // namespace CppEditor
+
+#include "moc_cppfunctiondecldeflink.cpp"

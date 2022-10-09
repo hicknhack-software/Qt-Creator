@@ -181,3 +181,5 @@ void ProFileCacheManager::discardFile(const QString &fileName, QMakeVfs *vfs)
     if (m_cache)
         m_cache->discardFile(fileName, vfs);
 }
+
+#include "moc_profilereader.cpp"

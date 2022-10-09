@@ -526,3 +526,5 @@ CompilationDatabaseBuildConfigurationFactory::CompilationDatabaseBuildConfigurat
 
 } // namespace Internal
 } // namespace CompilationDatabaseProjectManager
+
+#include "moc_compilationdatabaseproject.cpp"

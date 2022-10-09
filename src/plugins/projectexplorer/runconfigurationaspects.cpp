@@ -871,3 +871,5 @@ void InterpreterAspect::updateComboBox()
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_runconfigurationaspects.cpp"

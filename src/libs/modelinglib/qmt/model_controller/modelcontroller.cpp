@@ -1208,3 +1208,5 @@ void ModelController::verifyModelIntegrity(const MObject *object, QHash<Uid, con
 }
 
 } // namespace qmt
+
+#include "moc_modelcontroller.cpp"

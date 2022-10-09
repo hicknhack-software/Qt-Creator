@@ -388,3 +388,5 @@ TargetSetupWidget::BuildInfoStore::BuildInfoStore(TargetSetupWidget::BuildInfoSt
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_targetsetupwidget.cpp"

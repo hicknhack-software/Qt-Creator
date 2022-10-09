@@ -193,3 +193,5 @@ void QmlDesigner::Qt5RenderNodeInstanceServer::removeSharedMemory(const QmlDesig
 }
 
 } // namespace QmlDesigner
+
+#include "moc_qt5rendernodeinstanceserver.cpp"

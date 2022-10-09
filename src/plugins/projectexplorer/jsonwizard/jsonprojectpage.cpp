@@ -61,3 +61,5 @@ QString JsonProjectPage::uniqueProjectName(const QString &path)
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_jsonprojectpage.cpp"

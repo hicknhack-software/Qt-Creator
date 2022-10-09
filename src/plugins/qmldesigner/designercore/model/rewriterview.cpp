@@ -1250,3 +1250,5 @@ void RewriterView::restoreAuxiliaryData()
 }
 
 } //QmlDesigner
+
+#include "moc_rewriterview.cpp"

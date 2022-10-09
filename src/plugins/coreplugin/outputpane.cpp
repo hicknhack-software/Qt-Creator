@@ -197,4 +197,4 @@ bool OutputPanePlaceHolder::isCurrentVisible()
 
 } // namespace Core
 
-
+#include "moc_outputpane.cpp"

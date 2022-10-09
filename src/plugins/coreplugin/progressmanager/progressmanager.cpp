@@ -791,3 +791,4 @@ void ProgressTimer::handleTimeout()
     m_futureInterface.setProgressValue(int(progress));
 }
 
+#include "moc_progressmanager.cpp"

@@ -86,3 +86,5 @@ QString OpenUiQmlFileDialog::uiQmlFile() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_openuiqmlfiledialog.cpp"

@@ -51,3 +51,5 @@ void StateWarningItem::check()
         }
     }
 }
+
+#include "moc_statewarningitem.cpp"

@@ -282,3 +282,5 @@ void NavigationWidget::fetchExpandedItems(QStandardItem *item, const QStandardIt
 
 } // namespace Internal
 } // namespace ClassView
+
+#include "moc_classviewnavigationwidget.cpp"

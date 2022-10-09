@@ -64,3 +64,5 @@ void NavigatorSlider::setSliderValue(int val)
     QSignalBlocker blocker(m_slider);
     m_slider->setValue(val);
 }
+
+#include "moc_navigatorslider.cpp"

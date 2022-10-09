@@ -297,3 +297,5 @@ bool MakeInstallStep::fromMap(const QVariantMap &map)
 }
 
 } // namespace RemoteLinux
+
+#include "moc_makeinstallstep.cpp"

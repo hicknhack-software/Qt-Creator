@@ -1186,3 +1186,5 @@ Qt::ItemFlags StaticTreeItem::flags(int column) const
 }
 
 } // namespace Utils
+
+#include "moc_treemodel.cpp"

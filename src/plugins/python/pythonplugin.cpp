@@ -84,3 +84,5 @@ void PythonPlugin::extensionsInitialized()
 
 } // namespace Internal
 } // namespace Python
+
+#include "moc_pythonplugin.cpp"

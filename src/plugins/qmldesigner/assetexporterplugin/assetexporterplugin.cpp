@@ -107,3 +107,5 @@ QString AssetExporterPlugin::metaInfo() const
 }
 
 } //QmlDesigner
+
+#include "moc_assetexporterplugin.cpp"

@@ -64,3 +64,5 @@ void QdbMessageTracker::handleWatchMessage(const QJsonDocument &document)
 
 } // namespace Internal
 } // namespace Qdb
+
+#include "moc_qdbmessagetracker.cpp"

@@ -96,3 +96,5 @@ void RemoteLinuxEnvironmentReader::setFinished()
 
 } // namespace Internal
 } // namespace RemoteLinux
+
+#include "moc_remotelinuxenvironmentreader.cpp"

@@ -218,3 +218,5 @@ void StatisticsView::copySelectionToClipboard() const
 } // namespace PerfProfiler
 
 #include "perfprofilerstatisticsview.moc"
+
+#include "moc_perfprofilerstatisticsview.cpp"

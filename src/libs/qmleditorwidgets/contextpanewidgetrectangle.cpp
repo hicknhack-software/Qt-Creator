@@ -264,3 +264,5 @@ void ContextPaneWidgetRectangle::setColor()
 }
 
 } //QmlDesigner
+
+#include "moc_contextpanewidgetrectangle.cpp"

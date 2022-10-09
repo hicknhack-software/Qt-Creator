@@ -91,3 +91,5 @@ void EditMode::grabEditorManager(Utils::Id mode)
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_editmode.cpp"

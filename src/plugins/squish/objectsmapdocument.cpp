@@ -250,3 +250,5 @@ bool ObjectsMapDocument::writeFile(const Utils::FilePath &fileName) const
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_objectsmapdocument.cpp"

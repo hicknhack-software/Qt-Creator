@@ -45,3 +45,5 @@ void HyperlinkDialog::setAnchor(const QString &anchor)
 }
 
 }
+
+#include "moc_hyperlinkdialog.cpp"

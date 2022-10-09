@@ -484,3 +484,5 @@ void ClangdFindLocalReferences::Private::finish()
 }
 
 } // namespace ClangCodeModel::Internal
+
+#include "moc_clangdfindreferences.cpp"

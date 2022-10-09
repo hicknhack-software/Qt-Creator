@@ -1892,3 +1892,4 @@ void OutputFormatterFactory::setFormatterCreator(const FormatterCreator &creator
 } // namespace ProjectExplorer
 
 #include "runcontrol.moc"
+#include "moc_runcontrol.cpp"

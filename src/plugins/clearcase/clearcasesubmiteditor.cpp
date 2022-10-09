@@ -48,3 +48,5 @@ QByteArray ClearCaseSubmitEditor::fileContents() const
 }
 
 } // ClearCase::Internal
+
+#include "moc_clearcasesubmiteditor.cpp"

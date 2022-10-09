@@ -391,3 +391,5 @@ QString PerfDataReader::findPerfParser()
 
 } // namespace Internal
 } // namespace PerfProfiler
+
+#include "moc_perfdatareader.cpp"

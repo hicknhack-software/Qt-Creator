@@ -627,3 +627,5 @@ void UnifiedDiffEditorWidget::setCurrentDiffFileIndex(int diffFileIndex)
 
 } // namespace Internal
 } // namespace DiffEditor
+
+#include "moc_unifieddiffeditorwidget.cpp"

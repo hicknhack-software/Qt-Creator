@@ -252,3 +252,5 @@ QmlBuildSystem *QmlMainFileAspect::qmlBuildSystem() const
     return static_cast<QmlBuildSystem *>(m_target->buildSystem());
 }
 } // namespace QmlProjectManager
+
+#include "moc_qmlmainfileaspect.cpp"

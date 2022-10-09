@@ -137,3 +137,5 @@ bool DataProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_
 
 } // namespace Callgrind
 } // namespace Valgrind
+
+#include "moc_callgrindproxymodel.cpp"

@@ -231,3 +231,5 @@ bool PxNodeUtilities::isProxyHeader(const QString &file) const
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_pxnodeutilities.cpp"

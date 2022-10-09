@@ -195,3 +195,5 @@ QVariant CallModel::headerData(int section, Qt::Orientation orientation, int rol
 }
 
 } // Valgrind::Callgrind
+
+#include "moc_callgrindcallmodel.cpp"

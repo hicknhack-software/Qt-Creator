@@ -33,3 +33,5 @@ bool SystemEditor::startEditor(const FilePath &filePath, QString *errorMessage)
     }
     return true;
 }
+
+#include "moc_systemeditor.cpp"

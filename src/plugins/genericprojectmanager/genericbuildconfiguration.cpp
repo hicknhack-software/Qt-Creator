@@ -73,3 +73,5 @@ void GenericBuildConfiguration::addToEnvironment(Utils::Environment &env) const
 
 } // namespace Internal
 } // namespace GenericProjectManager
+
+#include "moc_genericbuildconfiguration.cpp"

@@ -402,3 +402,5 @@ void ItemLibraryWidget::addImportForItem(const QString &importUrl)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_itemlibrarywidget.cpp"

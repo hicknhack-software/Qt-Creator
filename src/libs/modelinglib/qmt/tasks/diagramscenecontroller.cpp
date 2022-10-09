@@ -976,3 +976,5 @@ bool DiagramSceneController::relocateRelationEnd(DRelation *relation, DObject *t
 }
 
 } // namespace qmt
+
+#include "moc_diagramscenecontroller.cpp"

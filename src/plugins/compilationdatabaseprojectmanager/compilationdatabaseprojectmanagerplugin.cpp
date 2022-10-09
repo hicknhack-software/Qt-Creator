@@ -95,3 +95,5 @@ QVector<QObject *> CompilationDatabaseProjectManagerPlugin::createTestObjects() 
 
 } // namespace Internal
 } // namespace CompilationDatabaseProjectManager
+
+#include "moc_compilationdatabaseprojectmanagerplugin.cpp"

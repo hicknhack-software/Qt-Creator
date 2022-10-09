@@ -94,3 +94,5 @@ void MesonActionsManager::updateContextActions()
 
 } // namespace Internal
 } // namespace MesonProjectManager
+
+#include "moc_mesonactionsmanager.cpp"

@@ -225,3 +225,5 @@ void BookmarksPluginPrivate::requestContextMenu(TextEditorWidget *widget,
 }
 
 } // Bookmarks::Internal
+
+#include "moc_bookmarksplugin.cpp"

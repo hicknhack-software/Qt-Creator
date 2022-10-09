@@ -1222,3 +1222,5 @@ Token StereotypeDefinitionParser::readNextToken()
 }
 
 } // namespace qmt
+
+#include "moc_stereotypedefinitionparser.cpp"

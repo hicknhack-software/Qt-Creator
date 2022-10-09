@@ -78,3 +78,5 @@ QString ClearCaseSubmitEditorWidget::commitName() const
 }
 
 } // ClearCase::Internal
+
+#include "moc_clearcasesubmiteditorwidget.cpp"

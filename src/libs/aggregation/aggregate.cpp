@@ -241,3 +241,5 @@ void Aggregate::remove(QObject *component)
     }
     emit changed();
 }
+
+#include "moc_aggregate.cpp"

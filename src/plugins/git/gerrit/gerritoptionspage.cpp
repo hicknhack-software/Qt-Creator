@@ -121,3 +121,5 @@ void GerritOptionsWidget::setParameters(const GerritParameters &p)
 
 } // namespace Internal
 } // namespace Gerrit
+
+#include "moc_gerritoptionspage.cpp"

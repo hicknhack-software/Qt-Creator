@@ -618,3 +618,5 @@ void FormEditorWidget::dropEvent(QDropEvent *dropEvent)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_formeditorwidget.cpp"

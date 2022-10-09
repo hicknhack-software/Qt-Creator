@@ -188,3 +188,5 @@ PluginSpec *IPlugin::pluginSpec() const
 {
     return d->pluginSpec;
 }
+
+#include "moc_iplugin.cpp"

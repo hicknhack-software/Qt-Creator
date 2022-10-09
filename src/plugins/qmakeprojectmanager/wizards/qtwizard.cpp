@@ -215,3 +215,5 @@ void BaseQmakeProjectWizardDialog::generateProfileName(const QString &name,
 
 } // Internal
 } // QmakeProjectManager
+
+#include "moc_qtwizard.cpp"

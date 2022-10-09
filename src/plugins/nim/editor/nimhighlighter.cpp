@@ -93,3 +93,5 @@ int NimHighlighter::highlightLine(const QString &text, int initialState)
 }
 
 }
+
+#include "moc_nimhighlighter.cpp"

@@ -201,3 +201,5 @@ void DebugServerProviderManager::deregisterProvider(IDebugServerProvider *provid
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_debugserverprovidermanager.cpp"

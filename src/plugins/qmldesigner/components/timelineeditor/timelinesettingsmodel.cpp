@@ -471,3 +471,5 @@ void TimelineSettingsModel::handleDataChanged(const QModelIndex &topLeft,
 }
 
 } // namespace QmlDesigner
+
+#include "moc_timelinesettingsmodel.cpp"

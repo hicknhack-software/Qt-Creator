@@ -24,3 +24,5 @@ bool DisableContextMenu::eventFilter(QObject *watched, QEvent *event)
 } // End namespace TimelineUtils.
 
 } // End namespace QmlDesigner.
+
+#include "moc_timelineutils.cpp"

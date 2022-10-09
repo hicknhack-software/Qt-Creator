@@ -349,3 +349,5 @@ QWidget *DetailsWidget::toolWidget() const
 }
 
 } // namespace Utils
+
+#include "moc_detailswidget.cpp"

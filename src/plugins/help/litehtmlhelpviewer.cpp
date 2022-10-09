@@ -386,3 +386,5 @@ LiteHtmlHelpViewer::HistoryItem LiteHtmlHelpViewer::currentHistoryItem() const
 
 //    QTextBrowser::mouseReleaseEvent(e);
 //}
+
+#include "moc_litehtmlhelpviewer.cpp"

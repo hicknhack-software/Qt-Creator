@@ -83,3 +83,5 @@ void NimSuggestServer::clearState()
 
 } // namespace Suggest
 } // namespace Nim
+
+#include "moc_server.cpp"

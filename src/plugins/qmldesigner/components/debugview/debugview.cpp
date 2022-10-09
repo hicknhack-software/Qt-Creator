@@ -564,3 +564,5 @@ void DebugView::logInstance(const QString &title, const QString &message, bool h
 } // namesapce Internal
 
 } // namespace QmlDesigner
+
+#include "moc_debugview.cpp"

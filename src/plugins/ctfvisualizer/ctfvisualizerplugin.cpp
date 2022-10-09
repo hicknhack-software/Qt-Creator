@@ -29,3 +29,5 @@ bool CtfVisualizerPlugin::initialize(const QStringList &arguments, QString *erro
 
 } // namespace Internal
 } // namespace CtfVisualizer
+
+#include "moc_ctfvisualizerplugin.cpp"

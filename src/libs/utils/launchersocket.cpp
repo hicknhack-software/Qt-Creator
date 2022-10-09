@@ -664,3 +664,5 @@ bool LauncherSocket::isCalledFromLaunchersThread() const
 
 } // namespace Internal
 } // namespace Utils
+
+#include "moc_launchersocket.cpp"

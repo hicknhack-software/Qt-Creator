@@ -83,3 +83,5 @@ ExtraCompiler *UicGeneratorFactory::create(const Project *project,
 }
 
 } // QtSupport
+
+#include "moc_uicgenerator.cpp"

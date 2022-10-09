@@ -604,3 +604,9 @@ void StatesEditorView::instancesPreviewImageChanged(const QVector<ModelNode> &no
 }
 
 } // namespace QmlDesigner
+
+#ifdef MOC_INCLUDE_FOLDER
+#include "stateseditor/moc_stateseditorview.cpp"
+#else
+#include "moc_stateseditorview.cpp"
+#endif

@@ -142,3 +142,5 @@ void GerritRemoteChooser::handleRemoteChanged()
 
 } // namespace Internal
 } // namespace Gerrit
+
+#include "moc_gerritremotechooser.cpp"

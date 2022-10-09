@@ -493,3 +493,5 @@ int PixmapCacheModel::updateCacheCount(int lastCacheSizeEvent,
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_pixmapcachemodel.cpp"

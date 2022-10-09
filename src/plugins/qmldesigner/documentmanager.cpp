@@ -508,3 +508,5 @@ Utils::FilePath DocumentManager::currentResourcePath()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_documentmanager.cpp"

@@ -654,3 +654,5 @@ QList<DocumentModel::Entry *> DocumentModel::entries()
 }
 
 } // namespace Core
+
+#include "moc_documentmodel_p.cpp"

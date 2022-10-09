@@ -235,3 +235,5 @@ void QdbPluginPrivate::setupDeviceDetection()
 
 } // Internal
 } // Qdb
+
+#include "moc_qdbplugin.cpp"

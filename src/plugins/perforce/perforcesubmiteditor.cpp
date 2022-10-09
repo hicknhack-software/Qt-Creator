@@ -141,3 +141,5 @@ void PerforceSubmitEditor::updateEntries()
 
 } // Internal
 } // Perforce
+
+#include "moc_perforcesubmiteditor.cpp"

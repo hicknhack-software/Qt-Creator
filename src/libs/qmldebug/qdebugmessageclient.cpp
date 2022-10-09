@@ -47,3 +47,5 @@ void QDebugMessageClient::messageReceived(const QByteArray &data)
 }
 
 } // namespace QmlDebug
+
+#include "moc_qdebugmessageclient.cpp"

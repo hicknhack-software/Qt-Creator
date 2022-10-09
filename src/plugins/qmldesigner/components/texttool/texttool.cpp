@@ -256,3 +256,5 @@ TextEditItem *TextTool::textItem() const
 }
 
 }
+
+#include "moc_texttool.cpp"

@@ -9,3 +9,5 @@ ShapeProvider::ShapeProvider(QObject *parent)
     : QObject(parent)
 {
 }
+
+#include "moc_shapeprovider.cpp"

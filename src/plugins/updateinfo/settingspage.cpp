@@ -216,3 +216,5 @@ SettingsPage::SettingsPage(UpdateInfoPlugin *plugin)
 
 } // Internal
 } // UpdateInfoPlugin
+
+#include "moc_settingspage.cpp"

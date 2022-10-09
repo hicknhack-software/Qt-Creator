@@ -198,3 +198,5 @@ QString FileTransfer::transferMethodName(FileTransferMethod method)
 } // namespace ProjectExplorer
 
 #include "filetransfer.moc"
+
+#include "moc_filetransfer.cpp"

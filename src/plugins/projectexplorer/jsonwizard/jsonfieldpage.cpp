@@ -1465,3 +1465,5 @@ QString JsonFieldPage::fullSettingsKey(const QString &fieldKey)
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_jsonfieldpage.cpp"

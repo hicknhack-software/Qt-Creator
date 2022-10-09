@@ -76,3 +76,5 @@ void ImportWidget::handleImportRequest()
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_importwidget.cpp"

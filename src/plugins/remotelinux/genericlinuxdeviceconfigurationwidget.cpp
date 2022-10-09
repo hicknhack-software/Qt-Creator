@@ -259,3 +259,5 @@ void GenericLinuxDeviceConfigurationWidget::initGui()
 }
 
 } // RemoteLinux::Internal
+
+#include "moc_genericlinuxdeviceconfigurationwidget.cpp"

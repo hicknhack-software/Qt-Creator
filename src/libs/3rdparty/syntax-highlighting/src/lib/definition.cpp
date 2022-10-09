@@ -868,3 +868,5 @@ bool DefinitionRef::operator==(const DefinitionRef &other) const
 {
     return !d.owner_before(other.d) && !other.d.owner_before(d);
 }
+
+#include "moc_definition.cpp"

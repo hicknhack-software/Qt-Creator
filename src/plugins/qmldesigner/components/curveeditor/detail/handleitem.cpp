@@ -174,3 +174,5 @@ QVariant HandleItem::itemChange(QGraphicsItem::GraphicsItemChange change, const 
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_handleitem.cpp"

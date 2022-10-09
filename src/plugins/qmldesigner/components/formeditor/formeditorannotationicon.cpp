@@ -519,3 +519,5 @@ void FormEditorAnnotationIcon::annotationDialogRejected()
 }
 
 } //QmlDesigner
+
+#include "moc_formeditorannotationicon.cpp"

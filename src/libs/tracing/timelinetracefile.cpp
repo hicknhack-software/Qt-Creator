@@ -65,3 +65,5 @@ void TimelineTraceFile::setTraceTime(qint64 traceStart, qint64 traceEnd, qint64 
 }
 
 } // namespace Timeline
+
+#include "moc_timelinetracefile.cpp"

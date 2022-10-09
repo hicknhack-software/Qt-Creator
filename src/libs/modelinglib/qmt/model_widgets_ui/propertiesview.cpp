@@ -401,3 +401,5 @@ void PropertiesView::endUpdate(DElement *diagramElement, bool cancelled)
 }
 
 } // namespace qmt
+
+#include "moc_propertiesview.cpp"

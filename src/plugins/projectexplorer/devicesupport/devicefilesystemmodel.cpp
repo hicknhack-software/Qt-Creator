@@ -297,3 +297,5 @@ void DeviceFileSystemModel::collectEntries(const FilePath &filePath, RemoteDirNo
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_devicefilesystemmodel.cpp"

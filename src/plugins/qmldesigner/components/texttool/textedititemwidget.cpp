@@ -101,3 +101,5 @@ void TextEditItemWidget::updateText(const QString &text)
     }
 }
 } // namespace QmlDesigner
+
+#include "moc_textedititemwidget.cpp"

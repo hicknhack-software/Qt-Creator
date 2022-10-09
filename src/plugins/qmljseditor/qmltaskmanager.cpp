@@ -184,3 +184,5 @@ void QmlTaskManager::removeAllTasks(bool clearSemantic)
 
 } // Internal
 } // QmlProjectManager
+
+#include "moc_qmltaskmanager.cpp"

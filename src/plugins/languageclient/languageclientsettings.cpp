@@ -1081,3 +1081,5 @@ TextEditor::BaseTextEditor *jsonEditor()
 }
 
 } // namespace LanguageClient
+
+#include "moc_languageclientsettings.cpp"

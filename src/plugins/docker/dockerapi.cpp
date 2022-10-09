@@ -107,3 +107,5 @@ FilePath DockerApi::dockerClient()
 }
 
 } // Docker::Internal
+
+#include "moc_dockerapi.cpp"

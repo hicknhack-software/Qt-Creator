@@ -340,3 +340,5 @@ void GenericLinuxDeviceTester::setFinished(TestResult result)
 }
 
 } // namespace RemoteLinux
+
+#include "moc_linuxdevicetester.cpp"

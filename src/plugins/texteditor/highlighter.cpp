@@ -383,3 +383,5 @@ void Highlighter::applyFolding(int offset,
 }
 
 } // TextEditor
+
+#include "moc_highlighter.cpp"

@@ -477,3 +477,5 @@ ExtensionSystem::IPlugin::ShutdownFlag CorePlugin::aboutToShutdown()
     m_mainWindow->aboutToShutdown();
     return shutdownFlag;
 }
+
+#include "moc_coreplugin.cpp"

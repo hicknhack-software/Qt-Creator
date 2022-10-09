@@ -102,3 +102,5 @@ GraphicsView *StateView::view() const
 {
     return m_graphicsView;
 }
+
+#include "moc_stateview.cpp"

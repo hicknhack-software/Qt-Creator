@@ -91,3 +91,5 @@ int McuTarget::colorDepth() const
 }
 
 } // namespace McuSupport::Internal
+
+#include "moc_mcutarget.cpp"

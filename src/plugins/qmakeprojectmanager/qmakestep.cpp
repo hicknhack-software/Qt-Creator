@@ -821,3 +821,5 @@ QStringList QMakeStepConfig::toArguments() const
 }
 
 } // QmakeProjectManager
+
+#include "moc_qmakestep.cpp"

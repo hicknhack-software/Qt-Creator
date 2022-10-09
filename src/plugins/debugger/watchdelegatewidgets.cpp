@@ -315,3 +315,5 @@ void BooleanComboBox::setModelData(const QVariant &v)
 }
 
 } // Debugger::Internal
+
+#include "moc_watchdelegatewidgets.cpp"

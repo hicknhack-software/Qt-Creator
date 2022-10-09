@@ -67,3 +67,5 @@ QString FilesInAllProjectsFind::label() const
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_filesinallprojectsfind.cpp"

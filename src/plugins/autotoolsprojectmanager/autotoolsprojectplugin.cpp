@@ -75,3 +75,5 @@ bool AutotoolsProjectPlugin::initialize(const QStringList &arguments, QString *e
 }
 
 } // AutotoolsProjectManager::Internal
+
+#include "moc_autotoolsprojectplugin.cpp"

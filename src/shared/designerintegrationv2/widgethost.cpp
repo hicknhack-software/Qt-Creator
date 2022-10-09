@@ -75,3 +75,5 @@ QWidget *WidgetHost::integrationContainer() const
 {
     return m_formResizer;
 }
+
+#include "moc_widgethost.cpp"

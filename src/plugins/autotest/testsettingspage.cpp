@@ -390,3 +390,5 @@ void TestSettingsPage::apply()
 
 } // namespace Internal
 } // namespace Autotest
+
+#include "moc_testsettingspage.cpp"

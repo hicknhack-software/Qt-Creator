@@ -136,3 +136,5 @@ void GradientPresetCustomListModel::readPresets()
     }
     endResetModel();
 }
+
+#include "moc_gradientpresetcustomlistmodel.cpp"

@@ -136,3 +136,5 @@ LocalQmlPreviewSupport::LocalQmlPreviewSupport(ProjectExplorer::RunControl *runC
 }
 
 } // namespace QmlPreview
+
+#include "moc_qmlpreviewruncontrol.cpp"

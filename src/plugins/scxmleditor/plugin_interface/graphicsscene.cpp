@@ -930,3 +930,5 @@ void GraphicsScene::setBlockUpdates(bool block)
         it->setBlockUpdates(block);
     }
 }
+
+#include "moc_graphicsscene.cpp"

@@ -161,3 +161,5 @@ void SizeHandleRect::setState(SelectionHandleState st)
     }
     m_state = st;
 }
+
+#include "moc_sizehandlerect.cpp"

@@ -196,3 +196,5 @@ bool GenericProjectWizard::postGenerateFiles(const QWizard *w, const Core::Gener
 
 } // namespace Internal
 } // namespace GenericProjectManager
+
+#include "moc_genericprojectwizard.cpp"

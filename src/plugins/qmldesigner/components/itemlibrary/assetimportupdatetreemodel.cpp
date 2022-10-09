@@ -238,3 +238,5 @@ void AssetImportUpdateTreeModel::clear()
 
 } // namespace Internal
 } // namespace QmlDesigner
+
+#include "moc_assetimportupdatetreemodel.cpp"

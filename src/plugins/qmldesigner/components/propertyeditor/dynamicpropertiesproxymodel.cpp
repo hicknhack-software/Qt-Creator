@@ -451,3 +451,5 @@ void DynamicPropertyRow::resetValue()
         }
     }
 }
+
+#include "moc_dynamicpropertiesproxymodel.cpp"

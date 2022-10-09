@@ -151,3 +151,5 @@ void CppcheckRunner::handleDone()
 
 } // namespace Internal
 } // namespace Cppcheck
+
+#include "moc_cppcheckrunner.cpp"

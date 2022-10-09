@@ -157,3 +157,5 @@ void ItemLibraryAddImportModel::setPriorityImports(const QSet<QString> &priority
 }
 
 } // namespace QmlDesigner
+
+#include "moc_itemlibraryaddimportmodel.cpp"

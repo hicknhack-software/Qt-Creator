@@ -745,3 +745,5 @@ bool PathChooser::allowPathFromDevice() const
 }
 
 } // namespace Utils
+
+#include "moc_pathchooser.cpp"

@@ -279,3 +279,5 @@ SceneGraphTimelineModel::Item::Item(int typeId, int glyphCount) :
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_scenegraphtimelinemodel.cpp"

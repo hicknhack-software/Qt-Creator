@@ -94,3 +94,5 @@ QStringList ItemFilterModel::itemModel() const
 {
     return m_model;
 }
+
+#include "moc_itemfiltermodel.cpp"

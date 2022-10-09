@@ -942,3 +942,5 @@ void GerritModel::queryFinished()
 } // namespace Gerrit
 
 #include "gerritmodel.moc"
+
+#include "moc_gerritmodel.cpp"

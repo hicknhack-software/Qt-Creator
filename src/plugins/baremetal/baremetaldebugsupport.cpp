@@ -69,3 +69,5 @@ void BareMetalDebugSupport::start()
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_baremetaldebugsupport.cpp"

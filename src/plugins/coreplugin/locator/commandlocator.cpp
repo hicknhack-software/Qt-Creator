@@ -108,3 +108,5 @@ void CommandLocator::accept(const LocatorFilterEntry &entry,
 }
 
 }  // namespace Core
+
+#include "moc_commandlocator.cpp"

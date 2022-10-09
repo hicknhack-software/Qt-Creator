@@ -228,3 +228,5 @@ void OutlineFactory::restoreSettings(QSettings *settings, int position, QWidget 
 
 } // namespace Internal
 } // namespace TextEditor
+
+#include "moc_outlinefactory.cpp"

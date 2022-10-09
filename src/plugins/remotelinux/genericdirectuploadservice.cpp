@@ -333,3 +333,5 @@ void GenericDirectUploadService::chmod()
 }
 
 } //namespace RemoteLinux
+
+#include "moc_genericdirectuploadservice.cpp"

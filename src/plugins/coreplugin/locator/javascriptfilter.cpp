@@ -122,3 +122,5 @@ void JavaScriptFilter::setupEngine()
 } // namespace Core
 
 Q_DECLARE_METATYPE(Core::Internal::EngineAction)
+
+#include "moc_javascriptfilter.cpp"

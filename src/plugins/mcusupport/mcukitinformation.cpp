@@ -126,3 +126,5 @@ Utils::NameValuePairs McuDependenciesKitAspect::configuration(const Kit *kit)
 
 } // namespace Internal
 } // namespace McuSupport
+
+#include "moc_mcukitinformation.cpp"

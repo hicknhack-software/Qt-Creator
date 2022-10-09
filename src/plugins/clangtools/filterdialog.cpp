@@ -137,3 +137,5 @@ QSet<QString> FilterDialog::selectedChecks() const
 } // ClangTools::Internal
 
 #include "filterdialog.moc"
+
+#include "moc_filterdialog.cpp"

@@ -1301,3 +1301,5 @@ void ProjectExplorerPlugin::testProject_multipleBuildConfigs()
 #endif // WITH_TESTS
 
 } // namespace ProjectExplorer
+
+#include "moc_project.cpp"

@@ -51,3 +51,5 @@ void Warning::setActive(bool active)
         emit dataChanged();
     }
 }
+
+#include "moc_warning.cpp"

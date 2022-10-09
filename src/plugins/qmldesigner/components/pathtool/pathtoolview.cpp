@@ -70,3 +70,5 @@ void PathToolView::variantPropertiesChanged(const QList<VariantProperty> &proper
 }
 
 } // namespace QmlDesigner
+
+#include "moc_pathtoolview.cpp"

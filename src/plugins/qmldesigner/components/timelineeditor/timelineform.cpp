@@ -147,3 +147,5 @@ void TimelineForm::connectSpinBox(QSpinBox *spinBox, const PropertyName &propert
 }
 
 } // namespace QmlDesigner
+
+#include "moc_timelineform.cpp"

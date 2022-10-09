@@ -84,3 +84,5 @@ void DebugViewWidget::enabledCheckBoxToggled(bool b)
 } //namespace Internal
 
 } //namespace QmlDesigner
+
+#include "moc_debugviewwidget.cpp"

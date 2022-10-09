@@ -57,3 +57,5 @@ void AnimationDriver::setSeekerPosition(int position)
 
     m_seekerPos = position;
 }
+
+#include "moc_animationdriver.cpp"

@@ -1611,3 +1611,5 @@ AndroidManifestTextEditorWidget::AndroidManifestTextEditorWidget(AndroidManifest
     m_context->setContext(Core::Context(Constants::ANDROID_MANIFEST_EDITOR_CONTEXT));
     Core::ICore::addContextObject(m_context);
 }
+
+#include "moc_androidmanifesteditorwidget.cpp"

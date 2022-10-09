@@ -594,3 +594,5 @@ void ItemLibraryModel::sortSections()
 
 } // namespace QmlDesigner
 
+
+#include "moc_itemlibrarymodel.cpp"

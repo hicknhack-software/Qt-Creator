@@ -338,3 +338,5 @@ void CppLocalRenaming::stop()
 
 } // namespace Internal
 } // namespace CppEditor
+
+#include "moc_cpplocalrenaming.cpp"

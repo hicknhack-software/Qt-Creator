@@ -264,3 +264,5 @@ QStringList NickNameDialog::nickNameList(const QStandardItemModel *model)
 }
 
 } // VcsBase::Internal
+
+#include "moc_nicknamedialog.cpp"

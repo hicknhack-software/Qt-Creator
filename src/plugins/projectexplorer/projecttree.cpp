@@ -489,3 +489,5 @@ ProjectTree::CurrentNodeKeeper::~CurrentNodeKeeper()
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_projecttree.cpp"

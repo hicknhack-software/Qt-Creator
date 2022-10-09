@@ -411,3 +411,5 @@ bool TraceViewFindSupport::findOne(const QString &txt, Core::FindFlags findFlags
 
 } // namespace Internal
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilertraceview.cpp"

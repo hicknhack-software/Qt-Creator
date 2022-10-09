@@ -1285,3 +1285,5 @@ void NavigatorTreeModel::updateToolTipPixmap(const ModelNode &node, const QPixma
 }
 
 } // QmlDesigner
+
+#include "moc_navigatortreemodel.cpp"

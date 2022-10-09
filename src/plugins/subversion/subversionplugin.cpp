@@ -1270,3 +1270,5 @@ void SubversionPlugin::testLogResolving()
 
 } // Internal
 } // Subversion
+
+#include "moc_subversionplugin.cpp"

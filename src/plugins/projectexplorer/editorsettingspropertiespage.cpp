@@ -133,3 +133,5 @@ void EditorSettingsWidget::restoreDefaultValues()
 }
 
 } // ProjectExplorer::Internal
+
+#include "moc_editorsettingspropertiespage.cpp"

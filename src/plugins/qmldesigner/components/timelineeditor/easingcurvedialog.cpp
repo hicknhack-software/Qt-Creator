@@ -266,3 +266,5 @@ void EasingCurveDialog::buttonsClicked(QDialogButtonBox::StandardButton button)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_easingcurvedialog.cpp"

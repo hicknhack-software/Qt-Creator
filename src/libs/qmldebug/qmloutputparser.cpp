@@ -88,3 +88,5 @@ void QmlOutputParser::processOutput(const QString &output)
 }
 
 } // namespace QmlDebug
+
+#include "moc_qmloutputparser.cpp"

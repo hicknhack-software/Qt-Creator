@@ -187,3 +187,5 @@ QString KeywordDialog::keywordName()
 
 } // namespace Internal
 } // namespace Todo
+
+#include "moc_keyworddialog.cpp"

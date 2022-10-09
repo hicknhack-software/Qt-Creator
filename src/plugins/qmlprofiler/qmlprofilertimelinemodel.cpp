@@ -93,3 +93,5 @@ void QmlProfilerTimelineModel::finalize()
 }
 
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilertimelinemodel.cpp"

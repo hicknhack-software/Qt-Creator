@@ -267,3 +267,5 @@ void SessionModel::runSessionNameInputDialog(SessionNameInputDialog *sessionInpu
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_sessionmodel.cpp"

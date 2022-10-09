@@ -164,3 +164,5 @@ void PreviewTooltipBackend::setScaleImage(bool scale)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_previewtooltipbackend.cpp"

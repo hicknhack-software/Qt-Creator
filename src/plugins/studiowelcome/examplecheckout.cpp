@@ -515,3 +515,5 @@ int DataModelDownloader::progress() const
 {
     return m_fileDownloader.progress();
 }
+
+#include "moc_examplecheckout.cpp"

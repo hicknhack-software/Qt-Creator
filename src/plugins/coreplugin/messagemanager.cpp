@@ -194,3 +194,5 @@ void MessageManager::writeDisrupting(const QStringList &messages)
 }
 
 } // namespace Core
+
+#include "moc_messagemanager.cpp"

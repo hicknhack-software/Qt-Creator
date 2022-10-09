@@ -86,3 +86,5 @@ bool MacrosPlugin::initialize(const QStringList &arguments, QString *errorMessag
 
 } // Internal
 } // Macros
+
+#include "moc_macrosplugin.cpp"

@@ -484,3 +484,5 @@ void KeyframeItem::selectionCallback()
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_keyframeitem.cpp"

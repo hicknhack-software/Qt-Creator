@@ -639,3 +639,5 @@ FixedRunConfigurationFactory::availableCreators(Target *parent) const
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_runconfiguration.cpp"

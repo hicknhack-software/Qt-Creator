@@ -197,3 +197,5 @@ Utils::TextFileFormat BaseTextDocument::format() const
 }
 
 } // namespace Core
+
+#include "moc_textdocument.cpp"

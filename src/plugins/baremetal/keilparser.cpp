@@ -527,3 +527,5 @@ void BareMetalPlugin::testKeilOutputParsers()
 } // namespace BareMetal
 
 #endif // WITH_TESTS
+
+#include "moc_keilparser.cpp"

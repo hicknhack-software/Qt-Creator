@@ -622,3 +622,5 @@ void PerfProfilerTraceManager::loadFromPerfData(const QString &filePath,
 
 } // namespace Internal
 } // namespace PerfProfiler
+
+#include "moc_perfprofilertracemanager.cpp"

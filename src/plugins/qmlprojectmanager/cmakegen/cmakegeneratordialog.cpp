@@ -165,3 +165,5 @@ void CmakeGeneratorDialog::advancedVisibilityChanged(bool visible)
 
 } //GenerateCmake
 } //QmlProjectManager
+
+#include "moc_cmakegeneratordialog.cpp"

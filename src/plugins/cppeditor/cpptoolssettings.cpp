@@ -242,3 +242,5 @@ void CppToolsSettings::setSortedEditorDocumentOutline(bool sorted)
 }
 
 } // namespace CppEditor
+
+#include "moc_cpptoolssettings.cpp"

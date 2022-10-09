@@ -2453,3 +2453,5 @@ void BaseAspect::Data::Ptr::operator=(const Ptr &other)
 }
 
 } // namespace Utils
+
+#include "moc_aspects.cpp"

@@ -59,3 +59,5 @@ void ExtDocumentController::onProjectFileNameChanged(const QString &fileName)
 
 } // namespace Internal
 } // namespace ModelEditor
+
+#include "moc_extdocumentcontroller.cpp"

@@ -110,3 +110,5 @@ bool Navigation2dFilter::wheelEvent(QWheelEvent *event)
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_navigation2d.cpp"

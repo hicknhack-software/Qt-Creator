@@ -74,3 +74,5 @@ Qt5NodeInstanceClientProxy::Qt5NodeInstanceClientProxy(QObject *parent) :
 }
 
 } // namespace QmlDesigner
+
+#include "moc_qt5nodeinstanceclientproxy.cpp"

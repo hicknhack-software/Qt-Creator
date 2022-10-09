@@ -371,3 +371,5 @@ Core::NavigationView SquishNavigationWidgetFactory::createWidget()
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_squishnavigationwidget.cpp"

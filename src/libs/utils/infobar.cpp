@@ -389,3 +389,5 @@ void InfoBarDisplay::update()
 }
 
 } // namespace Utils
+
+#include "moc_infobar.cpp"

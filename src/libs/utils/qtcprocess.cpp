@@ -2040,3 +2040,4 @@ void QtcProcessPrivate::storeEventLoopDebugInfo(const QVariant &value)
 } // namespace Utils
 
 #include "qtcprocess.moc"
+#include "moc_qtcprocess.cpp"

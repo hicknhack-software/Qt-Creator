@@ -106,3 +106,5 @@ QStringList CvsEditorWidget::annotationPreviousVersions(const QString &revision)
 }
 
 } // Cvs::Internal
+
+#include "moc_cvseditor.cpp"

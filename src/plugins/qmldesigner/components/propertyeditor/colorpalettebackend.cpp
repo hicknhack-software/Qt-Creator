@@ -375,3 +375,5 @@ bool ColorPaletteBackend::handleEyeDropperKeyPress(QKeyEvent *e)
 
 
 } // namespace QmlDesigner
+
+#include "moc_colorpalettebackend.cpp"

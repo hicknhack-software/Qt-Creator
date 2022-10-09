@@ -703,3 +703,5 @@ void QmlProfilerStatisticsRelativesModel::clear()
 }
 
 } // namespace QmlProfiler
+
+#include "moc_qmlprofilerstatisticsmodel.cpp"

@@ -118,3 +118,5 @@ void TextEditorMacroHandler::closeEditor(Core::IEditor *editor)
         m_currentEditor->widget()->removeEventFilter(this);
     m_currentEditor = nullptr;
 }
+
+#include "moc_texteditormacrohandler.cpp"

@@ -210,3 +210,5 @@ void WelcomePageButton::setOnClicked(const std::function<void ()> &value)
 }
 
 } // namespace Core
+
+#include "moc_iwelcomepage.cpp"

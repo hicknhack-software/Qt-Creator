@@ -218,3 +218,5 @@ void CameraGeometry::fillVertexData(QByteArray &vertexData, QByteArray &indexDat
 }
 
 #endif // QUICK3D_MODULE
+
+#include "moc_camerageometry.cpp"

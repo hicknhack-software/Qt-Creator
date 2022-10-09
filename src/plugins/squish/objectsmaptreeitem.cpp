@@ -469,3 +469,5 @@ bool ObjectsMapSortFilterModel::filterAcceptsRow(int sourceRow,
 
 } // namespace Internal
 } // namespace Squish
+
+#include "moc_objectsmaptreeitem.cpp"

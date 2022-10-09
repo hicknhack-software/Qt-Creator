@@ -564,3 +564,5 @@ void DeviceShell::onReadyRead()
 }
 
 } // namespace Utils
+
+#include "moc_deviceshell.cpp"

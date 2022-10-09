@@ -867,3 +867,5 @@ void PropertyEditorView::reloadQml()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_propertyeditorview.cpp"

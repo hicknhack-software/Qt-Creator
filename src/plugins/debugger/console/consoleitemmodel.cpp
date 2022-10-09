@@ -75,3 +75,5 @@ int ConsoleItemModel::sizeOfLineNumber(const QFont &font)
 }
 
 } // Debugger::Internal
+
+#include "moc_consoleitemmodel.cpp"

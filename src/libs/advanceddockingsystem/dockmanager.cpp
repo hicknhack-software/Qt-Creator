@@ -1041,3 +1041,5 @@ namespace ADS
     }
 
 } // namespace ADS
+
+#include "moc_dockmanager.cpp"

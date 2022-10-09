@@ -186,3 +186,5 @@ void AndroidDebugSupport::stop()
 
 } // namespace Internal
 } // namespace Android
+
+#include "moc_androiddebugsupport.cpp"

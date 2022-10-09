@@ -94,3 +94,5 @@ void NavigationTreeView::resizeEvent(QResizeEvent *event)
 }
 
 } // namespace Utils
+
+#include "moc_navigationtreeview.cpp"

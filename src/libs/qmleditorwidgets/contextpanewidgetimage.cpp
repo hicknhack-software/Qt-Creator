@@ -966,3 +966,5 @@ void PreviewDialog::onSliderMoved(int value)
 }
 
 } //QmlDesigner
+
+#include "moc_contextpanewidgetimage.cpp"

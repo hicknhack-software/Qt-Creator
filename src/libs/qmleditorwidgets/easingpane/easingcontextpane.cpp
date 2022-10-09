@@ -356,3 +356,5 @@ void QmlEditorWidgets::EasingContextPane::playClicked()
 }
 
 #include "easingcontextpane.moc"
+
+#include "moc_easingcontextpane.cpp"

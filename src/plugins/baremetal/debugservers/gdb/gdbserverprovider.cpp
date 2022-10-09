@@ -327,3 +327,5 @@ GdbServerProviderRunner::GdbServerProviderRunner(ProjectExplorer::RunControl *ru
 
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_gdbserverprovider.cpp"

@@ -174,3 +174,5 @@ void FormEditorStack::modeAboutToChange(Utils::Id mode)
 
 } // Internal
 } // Designer
+
+#include "moc_formeditorstack.cpp"

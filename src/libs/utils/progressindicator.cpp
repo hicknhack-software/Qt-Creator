@@ -239,3 +239,5 @@ void ProgressIndicator::hideEvent(QHideEvent *)
 }
 
 } // namespace Utils
+
+#include "moc_progressindicator.cpp"

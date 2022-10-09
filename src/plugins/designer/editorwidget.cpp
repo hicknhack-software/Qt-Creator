@@ -108,3 +108,5 @@ SharedTools::WidgetHost *EditorWidget::formWindowEditorForFormWindow(const QDesi
 
 } // namespace Internal
 } // namespace Designer
+
+#include "moc_editorwidget.cpp"

@@ -128,3 +128,5 @@ void ZoomAction::emitZoomLevelChanged(int index)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_zoomaction.cpp"

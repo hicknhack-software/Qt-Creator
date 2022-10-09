@@ -1179,3 +1179,5 @@ void AndroidPlugin::testAndroidSdkManagerProgressParser()
 
 } // namespace Internal
 } // namespace Android
+
+#include "moc_androidsdkmanager.cpp"

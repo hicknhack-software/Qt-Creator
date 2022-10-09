@@ -967,3 +967,5 @@ void ICore::setNewDialogFactory(const std::function<NewDialog *(QWidget *)> &new
 }
 
 } // namespace Core
+
+#include "moc_icore.cpp"

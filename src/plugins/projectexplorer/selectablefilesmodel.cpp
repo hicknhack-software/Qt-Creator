@@ -780,3 +780,5 @@ SelectableFilesFromDirModel::~SelectableFilesFromDirModel()
 } // namespace ProjectExplorer
 
 
+
+#include "moc_selectablefilesmodel.cpp"

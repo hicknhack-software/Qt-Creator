@@ -405,3 +405,5 @@ void TimelineTraceManager::TimelineTraceManagerPrivate::reset()
 }
 
 } // namespace Timeline
+
+#include "moc_timelinetracemanager.cpp"

@@ -63,3 +63,5 @@ void DefaultAction::setSelectionContext(const SelectionContext &selectionContext
 }
 
 } // namespace QmlDesigner
+
+#include "moc_abstractaction.cpp"

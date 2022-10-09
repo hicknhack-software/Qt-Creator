@@ -961,3 +961,5 @@ void BuildManager::disconnectOutput(BuildStep *bs)
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_buildmanager.cpp"

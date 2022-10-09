@@ -744,3 +744,5 @@ void RichTextEditor::setTableActionsActive(bool active)
 }
 
 }
+
+#include "moc_richtexteditor.cpp"

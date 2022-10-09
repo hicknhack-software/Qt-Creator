@@ -115,3 +115,5 @@ void EnvironmentAspectWidget::environmentChanged()
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_environmentaspectwidget.cpp"

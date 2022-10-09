@@ -154,3 +154,5 @@ void SettingsSelector::updateButtonState()
 }
 
 } // namespace Utils
+
+#include "moc_settingsselector.cpp"

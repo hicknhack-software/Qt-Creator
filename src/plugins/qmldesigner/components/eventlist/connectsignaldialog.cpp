@@ -116,3 +116,5 @@ QSize ConnectSignalDialog::sizeHint() const
 }
 
 } // namespace QmlDesigner.
+
+#include "moc_connectsignaldialog.cpp"

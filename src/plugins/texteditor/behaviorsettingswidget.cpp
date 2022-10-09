@@ -424,3 +424,5 @@ void BehaviorSettingsWidget::slotExtraEncodingChanged()
 }
 
 } // TextEditor
+
+#include "moc_behaviorsettingswidget.cpp"

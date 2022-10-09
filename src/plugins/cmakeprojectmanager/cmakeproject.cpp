@@ -230,3 +230,5 @@ ProjectExplorer::DeploymentKnowledge CMakeProject::deploymentKnowledge() const
 }
 
 } // namespace CMakeProjectManager
+
+#include "moc_cmakeproject.cpp"

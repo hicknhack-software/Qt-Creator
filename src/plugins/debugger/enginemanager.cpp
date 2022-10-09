@@ -479,3 +479,5 @@ bool EngineManager::shutDown()
 }
 
 } // Debugger::Internal
+
+#include "moc_enginemanager.cpp"

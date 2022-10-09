@@ -103,3 +103,5 @@ void DocumentSymbolCache::handleResponse(const DocumentUri &uri,
 }
 
 } // namespace LanguageClient
+
+#include "moc_documentsymbolcache.cpp"

@@ -48,3 +48,5 @@ VcsBase::BaseAnnotationHighlighter *ClearCaseEditorWidget::createAnnotationHighl
 }
 
 } // ClearCase::Internal
+
+#include "moc_clearcaseeditor.cpp"

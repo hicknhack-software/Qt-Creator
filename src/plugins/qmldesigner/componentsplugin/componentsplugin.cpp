@@ -32,3 +32,5 @@ QString ComponentsPlugin::metaInfo() const
 
 }
 
+
+#include "moc_componentsplugin.cpp"

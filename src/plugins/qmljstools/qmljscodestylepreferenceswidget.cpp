@@ -70,3 +70,5 @@ void QmlJSCodeStylePreferencesWidget::slotSettingsChanged(const QmlJSCodeStyleSe
 }
 
 } // namespace QmlJSTools
+
+#include "moc_qmljscodestylepreferenceswidget.cpp"

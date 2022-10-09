@@ -96,3 +96,5 @@ void FindInCurrentFile::readSettings(QSettings *settings)
     readCommonSettings(settings, "*", "");
     settings->endGroup();
 }
+
+#include "moc_findincurrentfile.cpp"

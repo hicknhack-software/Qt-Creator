@@ -110,3 +110,5 @@ MDiagram *DiagramsView::diagram(DiagramView *diagramView) const
 }
 
 } // namespace qmt
+
+#include "moc_diagramsview.cpp"

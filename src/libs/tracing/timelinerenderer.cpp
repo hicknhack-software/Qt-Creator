@@ -365,3 +365,5 @@ void TimelineRenderer::selectPrevFromSelectionId(int selectionId)
 }
 
 } // namespace Timeline
+
+#include "moc_timelinerenderer.cpp"

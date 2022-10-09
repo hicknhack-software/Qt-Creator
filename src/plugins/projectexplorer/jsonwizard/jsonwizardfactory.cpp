@@ -890,3 +890,5 @@ QVariant JsonWizardFactoryJsExtension::value(const QString &name) const
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_jsonwizardfactory.cpp"

@@ -153,3 +153,5 @@ TimelineRulerSectionItem *TransitionEditorGraphicsLayout::ruler() const
 }
 
 } // End namespace QmlDesigner.
+
+#include "moc_transitioneditorgraphicslayout.cpp"

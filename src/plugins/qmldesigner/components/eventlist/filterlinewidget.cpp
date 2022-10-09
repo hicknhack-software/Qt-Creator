@@ -44,3 +44,5 @@ void FilterLineWidget::clear()
 }
 
 } // namespace QmlDesigner.
+
+#include "moc_filterlinewidget.cpp"

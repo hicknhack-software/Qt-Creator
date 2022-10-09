@@ -337,3 +337,5 @@ bool ResourceView::resourceDragEnabled() const
 }
 
 } // ResourceEditor::Internal
+
+#include "moc_resourceview.cpp"

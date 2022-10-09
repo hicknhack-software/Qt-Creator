@@ -88,3 +88,5 @@ void TextEditorContext::contextHelp(const HelpCallback &callback) const
 }
 }
 
+
+#include "moc_designmodecontext.cpp"

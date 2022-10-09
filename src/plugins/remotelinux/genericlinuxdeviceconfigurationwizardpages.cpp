@@ -261,3 +261,5 @@ void GenericLinuxDeviceConfigurationWizardKeyDeploymentPage::deployKey()
 }
 
 } // namespace RemoteLinux
+
+#include "moc_genericlinuxdeviceconfigurationwizardpages.cpp"

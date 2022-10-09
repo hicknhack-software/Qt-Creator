@@ -907,3 +907,5 @@ void SelectorDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_projectwindow.cpp"

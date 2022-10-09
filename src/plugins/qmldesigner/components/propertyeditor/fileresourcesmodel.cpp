@@ -231,3 +231,5 @@ void FileResourcesModel::refreshModel()
 
     emit modelChanged();
 }
+
+#include "moc_fileresourcesmodel.cpp"

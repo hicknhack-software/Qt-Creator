@@ -96,3 +96,5 @@ qint64 QCompressedDevice::flush()
 }
 
 } // namespace qmt
+
+#include "moc_qcompressedfile.cpp"

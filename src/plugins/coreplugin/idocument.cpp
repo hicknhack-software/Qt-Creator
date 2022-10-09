@@ -762,3 +762,5 @@ QString IDocument::uniqueDisplayName() const
 }
 
 } // namespace Core
+
+#include "moc_idocument.cpp"

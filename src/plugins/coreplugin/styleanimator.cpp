@@ -121,3 +121,5 @@ void StyleAnimator::startAnimation(Animation *t)
     if (animations.size() > 0 && !animationTimer.isActive())
         animationTimer.start(35, this);
 }
+
+#include "moc_styleanimator.cpp"

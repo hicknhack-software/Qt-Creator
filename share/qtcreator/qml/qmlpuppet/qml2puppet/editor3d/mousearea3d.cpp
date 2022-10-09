@@ -1035,3 +1035,5 @@ QVector3D MouseArea3D::getCameraToNodeDir(QQuick3DNode *node) const
 }
 
 #endif // QUICK3D_MODULE
+
+#include "moc_mousearea3d.cpp"

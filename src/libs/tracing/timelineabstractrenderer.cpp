@@ -233,3 +233,5 @@ QSGNode *TimelineAbstractRenderer::updatePaintNode(QSGNode *oldNode,
 }
 
 } // namespace Timeline
+
+#include "moc_timelineabstractrenderer.cpp"

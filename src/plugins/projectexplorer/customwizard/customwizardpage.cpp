@@ -427,3 +427,5 @@ bool CustomWizardPage::isComplete() const
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_customwizardpage.cpp"

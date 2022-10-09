@@ -521,3 +521,5 @@ bool LocalHelpManager::openOnlineHelp(const QUrl &url)
     }
     return false;
 }
+
+#include "moc_localhelpmanager.cpp"

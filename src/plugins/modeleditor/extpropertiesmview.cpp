@@ -93,3 +93,5 @@ void ExtPropertiesMView::onConfigPathChanged()
 
 } // namespace Interal
 } // namespace ModelEditor
+
+#include "moc_extpropertiesmview.cpp"

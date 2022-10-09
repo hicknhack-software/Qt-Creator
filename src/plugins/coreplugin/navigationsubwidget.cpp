@@ -231,3 +231,5 @@ bool CommandComboBox::event(QEvent *e)
 
 } // namespace Internal
 } // namespace Core
+
+#include "moc_navigationsubwidget.cpp"

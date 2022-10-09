@@ -184,3 +184,5 @@ void DriverSelectionView::currentChanged(const QModelIndex &current, const QMode
 } // namespace Uv
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_uvtargetdrivermodel.cpp"

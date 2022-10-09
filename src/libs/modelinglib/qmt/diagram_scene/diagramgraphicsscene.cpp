@@ -115,3 +115,5 @@ void DiagramGraphicsScene::inputMethodEvent(QInputMethodEvent *event)
 }
 
 } // namespace qmt
+
+#include "moc_diagramgraphicsscene.cpp"

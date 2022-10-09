@@ -414,3 +414,5 @@ void BareMetalPlugin::testIarOutputParsers()
 } // namespace BareMetal
 
 #endif // WITH_TESTS
+
+#include "moc_iarewparser.cpp"

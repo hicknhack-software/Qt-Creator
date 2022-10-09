@@ -136,3 +136,5 @@ void ParseIssuesDialog::accept()
 
 } // namespace Internal
 } // namespace ProjectExplorer
+
+#include "moc_parseissuesdialog.cpp"

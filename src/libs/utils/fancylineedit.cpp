@@ -595,3 +595,5 @@ void IconButton::keyReleaseEvent(QKeyEvent *ke)
 } // namespace Utils
 
 #include <fancylineedit.moc>
+
+#include "moc_fancylineedit.cpp"

@@ -93,3 +93,5 @@ void EventListPluginView::registerActions()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_eventlistpluginview.cpp"

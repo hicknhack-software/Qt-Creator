@@ -931,3 +931,5 @@ const ModelNode DynamicPropertiesModel::singleSelectedNode() const
 } // namespace Internal
 
 } // namespace QmlDesigner
+
+#include "moc_dynamicpropertiesmodel.cpp"

@@ -103,3 +103,5 @@ void QmlJSToolsPlugin::extensionsInitialized()
 
 } // Internal
 } // QmlJSTools
+
+#include "moc_qmljstoolsplugin.cpp"

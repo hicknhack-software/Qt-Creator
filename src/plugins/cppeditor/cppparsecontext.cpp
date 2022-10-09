@@ -165,3 +165,5 @@ QSize ParseContextWidget::minimumSizeHint() const
 
 } // namespace Internal
 } // namespace CppEditor
+
+#include "moc_cppparsecontext.cpp"

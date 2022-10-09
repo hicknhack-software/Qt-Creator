@@ -999,3 +999,5 @@ void DelayedFileCrumbLabel::setScrollBarOnce() const
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_foldernavigationwidget.cpp"

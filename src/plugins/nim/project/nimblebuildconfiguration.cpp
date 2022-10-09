@@ -87,3 +87,5 @@ NimbleBuildConfigurationFactory::NimbleBuildConfigurationFactory()
         };
     });
 }
+
+#include "moc_nimblebuildconfiguration.cpp"

@@ -188,3 +188,5 @@ QVariant CtfStatisticsModel::headerData(int section, Qt::Orientation orientation
 
 }  // Internal
 }  // CtfVisualizer
+
+#include "moc_ctfstatisticsmodel.cpp"

@@ -155,3 +155,5 @@ void ProcessHelper::setupChildProcess_impl()
 }
 
 } // namespace Utils
+
+#include "moc_processutils.cpp"

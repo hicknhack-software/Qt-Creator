@@ -103,3 +103,5 @@ void ClangDiagnosticConfigsSelectionWidget::onButtonClicked()
 }
 
 } // CppEditor namespace
+
+#include "moc_clangdiagnosticconfigsselectionwidget.cpp"

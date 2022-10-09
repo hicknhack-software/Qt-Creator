@@ -167,3 +167,5 @@ void McuSupportOptions::setAutomaticKitCreationEnabled(const bool enabled)
 }
 
 } // namespace McuSupport::Internal
+
+#include "moc_mcusupportoptions.cpp"

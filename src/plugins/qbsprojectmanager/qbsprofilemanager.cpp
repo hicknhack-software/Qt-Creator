@@ -246,3 +246,5 @@ QVariant fromJSLiteral(const QString &str)
 
 } // namespace Internal
 } // namespace QbsProjectManager
+
+#include "moc_qbsprofilemanager.cpp"

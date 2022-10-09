@@ -163,3 +163,5 @@ void LightGeometry::fillVertexData(QByteArray &vertexData, QByteArray &indexData
 }
 
 #endif // QUICK3D_MODULE
+
+#include "moc_lightgeometry.cpp"

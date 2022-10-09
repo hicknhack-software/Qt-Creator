@@ -87,3 +87,5 @@ QStringList SubversionEditorWidget::annotationPreviousVersions(const QString &v)
         return QStringList();
     return QStringList(QString::number(revision - 1));
 }
+
+#include "moc_subversioneditor.cpp"

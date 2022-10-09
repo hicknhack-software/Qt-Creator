@@ -284,3 +284,5 @@ void ProjectExplorerPlugin::testClangOutputParser()
                           outputLines);
 }
 #endif
+
+#include "moc_clangparser.cpp"

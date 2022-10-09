@@ -202,3 +202,5 @@ QVector<QObject *> ClangCodeModelPlugin::createTestObjects() const
 
 } // namespace Internal
 } // namespace Clang
+
+#include "moc_clangcodemodelplugin.cpp"

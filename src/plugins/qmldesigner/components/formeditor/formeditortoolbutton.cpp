@@ -104,3 +104,5 @@ void FormEditorToolButton::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 }
 
 } //QmlDesigner
+
+#include "moc_formeditortoolbutton.cpp"

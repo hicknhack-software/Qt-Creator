@@ -138,3 +138,5 @@ void MesonOutputParser::setSourceDirectory(const Utils::FilePath &sourceDir)
 
 } // namespace Internal
 } // namespace MesonProjectManager
+
+#include "moc_mesonoutputparser.cpp"

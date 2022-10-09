@@ -108,3 +108,5 @@ void QbsProjectParser::cancel()
 }
 
 } // QbsProjectManager::Internal
+
+#include "moc_qbsprojectparser.cpp"

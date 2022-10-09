@@ -383,3 +383,5 @@ ImageViewerFactory::ImageViewerFactory()
 }
 
 } // ImageViewer::Internal
+
+#include "moc_imageviewer.cpp"

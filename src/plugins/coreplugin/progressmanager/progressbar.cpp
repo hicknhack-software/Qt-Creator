@@ -349,3 +349,5 @@ void ProgressBar::paintEvent(QPaintEvent *)
         }
     }
 }
+
+#include "moc_progressbar.cpp"

@@ -239,3 +239,5 @@ QList<const Timeline::TimelineRenderPass *> QmlProfilerRangeModel::supportedRend
 
 } // namespace Internal
 } // namespaec QmlProfiler
+
+#include "moc_qmlprofilerrangemodel.cpp"

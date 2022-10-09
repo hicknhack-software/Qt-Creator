@@ -185,3 +185,5 @@ void TreeItemModel::moveRootToTarget(const QStandardItem *target)
 
 } // namespace Internal
 } // namespace ClassView
+
+#include "moc_classviewtreeitemmodel.cpp"

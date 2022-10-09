@@ -295,3 +295,5 @@ void ExternalToolManager::emitReplaceSelectionRequested(const QString &output)
 }
 
 } // namespace Core
+
+#include "moc_externaltoolmanager.cpp"

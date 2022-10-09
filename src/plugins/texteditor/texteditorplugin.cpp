@@ -334,3 +334,5 @@ void TextEditorPluginPrivate::createStandardContextMenu()
 
 } // namespace Internal
 } // namespace TextEditor
+
+#include "moc_texteditorplugin.cpp"

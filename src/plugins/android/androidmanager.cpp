@@ -786,3 +786,5 @@ SdkToolResult AndroidManager::runAdbCommand(const QStringList &args,
                       writeData, timeoutS);
 }
 } // namespace Android
+
+#include "moc_androidmanager.cpp"

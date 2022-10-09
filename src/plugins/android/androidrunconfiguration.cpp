@@ -94,3 +94,5 @@ AndroidRunConfiguration::AndroidRunConfiguration(Target *target, Utils::Id id)
 }
 
 } // namespace Android
+
+#include "moc_androidrunconfiguration.cpp"

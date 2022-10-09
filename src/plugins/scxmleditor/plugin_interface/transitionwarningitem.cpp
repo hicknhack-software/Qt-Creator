@@ -30,3 +30,5 @@ void TransitionWarningItem::check()
             setWarningActive(false);
     }
 }
+
+#include "moc_transitionwarningitem.cpp"

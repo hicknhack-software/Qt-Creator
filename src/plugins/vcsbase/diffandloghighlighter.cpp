@@ -228,3 +228,5 @@ void DiffAndLogHighlighter::setEnabled(bool e)
 }
 
 } // namespace VcsBase
+
+#include "moc_diffandloghighlighter.cpp"

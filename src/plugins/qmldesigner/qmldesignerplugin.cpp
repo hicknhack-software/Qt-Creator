@@ -753,3 +753,5 @@ DesignerSettings& QmlDesignerPlugin::settings()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_qmldesignerplugin.cpp"

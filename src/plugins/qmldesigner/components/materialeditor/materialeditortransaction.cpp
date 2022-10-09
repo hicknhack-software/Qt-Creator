@@ -49,3 +49,5 @@ void MaterialEditorTransaction::timerEvent(QTimerEvent *timerEvent)
 
 } // namespace QmlDesigner
 
+
+#include "moc_materialeditortransaction.cpp"

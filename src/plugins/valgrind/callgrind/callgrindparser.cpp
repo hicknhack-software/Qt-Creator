@@ -645,3 +645,5 @@ ParseData *Parser::takeData()
 
 } //Callgrind
 } //Valgrind
+
+#include "moc_callgrindparser.cpp"

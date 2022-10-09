@@ -179,3 +179,5 @@ bool ProjectVcsStatus::updateProjectStatusCache()
 }
 
 } // namespace ProjectExplorer
+
+#include "moc_projectvcsstatus.cpp"

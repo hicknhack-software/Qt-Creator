@@ -20,3 +20,5 @@ int ChangeNumberDialog::number() const
     bool ok;
     return m_ui.numberLineEdit->text().toInt(&ok);
 }
+
+#include "moc_changenumberdialog.cpp"

@@ -163,3 +163,5 @@ void MacroOptionsWidget::changeDescription(const QString &description)
 }
 
 } // Macros::Internal
+
+#include "moc_macrooptionswidget.cpp"

@@ -243,3 +243,5 @@ void SplashScreenWidget::setImageFileName(const QString &imageFileName)
 }
 
 } // Android::Internal
+
+#include "moc_splashscreenwidget.cpp"

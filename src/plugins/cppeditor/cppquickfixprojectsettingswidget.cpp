@@ -88,3 +88,5 @@ void CppQuickFixProjectSettingsWidget::buttonCustomClicked()
 }
 
 } // CppEditor::Internal
+
+#include "moc_cppquickfixprojectsettingswidget.cpp"

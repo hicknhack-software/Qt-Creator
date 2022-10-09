@@ -481,3 +481,5 @@ DeviceSelection DeviceSelectionView::buildSelection(const DeviceSelectionItem *i
 } // namespace Uv
 } // namespace Internal
 } // namespace BareMetal
+
+#include "moc_uvtargetdevicemodel.cpp"

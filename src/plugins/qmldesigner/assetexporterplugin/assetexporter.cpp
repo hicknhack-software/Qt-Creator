@@ -540,3 +540,5 @@ void AssetDumper::savePixmap(const QPixmap &p, Utils::FilePath &path) const
 }
 
 }
+
+#include "moc_assetexporter.cpp"
