@@ -299,3 +299,5 @@ void ContentLibraryMaterialsModel::setHasModelSelection(bool b)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_contentlibrarymaterialsmodel.cpp"
