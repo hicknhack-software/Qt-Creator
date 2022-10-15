@@ -73,3 +73,5 @@ void ContentLibraryTexturesCategory::markTextureHasNoUpdate(const QString &textu
 }
 
 } // namespace QmlDesigner
+
+#include "moc_contentlibrarytexturescategory.cpp"
