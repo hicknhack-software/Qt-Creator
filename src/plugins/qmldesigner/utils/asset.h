@@ -3,11 +3,12 @@
 
 #pragma once
 
+#include "qmldesignerutils_global.h"
 #include <QString>
 
 namespace QmlDesigner {
 
-class Asset
+class QMLDESIGNERUTILS_EXPORT Asset
 {
 public:
     enum Type { Unknown,
