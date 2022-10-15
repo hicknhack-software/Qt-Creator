@@ -15,7 +15,7 @@ env_with_default("QDS_USE_PROJECTSTORAGE" ENV_QDS_USE_PROJECTSTORAGE OFF)
 option(USE_PROJECTSTORAGE "Use ProjectStorage" ${ENV_QDS_USE_PROJECTSTORAGE})
 add_feature_info("ProjectStorage" ${USE_PROJECTSTORAGE} "")
 
-add_qtc_library(QmlDesignerUtils STATIC
+add_qtc_library(QmlDesignerUtils
   DEPENDS
     Qt::Gui Utils Qt::QmlPrivate Core
 
