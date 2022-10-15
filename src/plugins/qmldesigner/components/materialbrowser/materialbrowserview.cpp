@@ -655,3 +655,5 @@ bool MaterialBrowserView::eventFilter(QObject *obj, QEvent *event)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_materialbrowserview.cpp"

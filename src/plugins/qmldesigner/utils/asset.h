@@ -3,9 +3,11 @@
 
 #pragma once
 
+#include "qmldesignerutils_global.h"
+
 namespace QmlDesigner {
 
-class Asset
+class QMLDESIGNERUTILS_EXPORT Asset
 {
 public:
     enum Type { Unknown, Image, MissingImage, FragmentShader, Font, Audio, Video, Texture3D, Effect, Shader };
