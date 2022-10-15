@@ -293,3 +293,5 @@ void MaterialBrowserBundleModel::removeFromProject(BundleMaterial *mat)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_materialbrowserbundlemodel.cpp"
