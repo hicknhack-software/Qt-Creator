@@ -387,3 +387,5 @@ QString CollectionWidget::generateUniqueCollectionName(const ModelNode &node, co
 }
 
 } // namespace QmlDesigner
+
+#include "moc_collectionwidget.cpp"

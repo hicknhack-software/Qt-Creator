@@ -66,4 +66,10 @@ QtcPlugin {
             "templates.qrc"
         ]
     }
+
+    Export {
+        cpp.includePaths: Array.prototype.concat(base, [
+            exportingProduct.sourceDirectory + "/buildsystem",
+        ])
+    }
 }
