@@ -641,3 +641,5 @@ void AssetsLibraryWidget::addAssetsToContentLibrary(const QStringList &assetPath
 }
 
 } // namespace QmlDesigner
+
+#include "moc_assetslibrarywidget.cpp"

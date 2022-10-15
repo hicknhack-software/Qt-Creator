@@ -320,3 +320,5 @@ QString FileDownloader::targetFilePath() const
 }
 
 } // namespace QmlDesigner
+
+#include "moc_filedownloader.cpp"
