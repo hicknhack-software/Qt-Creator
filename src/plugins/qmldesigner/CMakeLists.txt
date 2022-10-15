@@ -29,7 +29,7 @@ add_feature_info("Model tracing" ${ENABLE_MODEL_TRACING} "")
 
 
 
-add_qtc_library(QmlDesignerUtils STATIC
+add_qtc_library(QmlDesignerUtils
   DEPENDS
     Qt::Gui Utils Qt::QmlPrivate Core
 
