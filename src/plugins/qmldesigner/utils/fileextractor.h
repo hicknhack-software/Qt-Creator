@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GPL-3.0+ OR GPL-3.0 WITH Qt-GPL-exception-1.0
 #pragma once
 
+#include "qmldesignerutils_global.h"
 #include <QDateTime>
 #include <QObject>
 #include <QTimer>
@@ -10,7 +11,7 @@
 
 namespace QmlDesigner {
 
-class FileExtractor : public QObject
+class QMLDESIGNERUTILS_EXPORT FileExtractor : public QObject
 {
     Q_OBJECT
 

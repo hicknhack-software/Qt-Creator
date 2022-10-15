@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GPL-3.0+ OR GPL-3.0 WITH Qt-GPL-exception-1.0
 #pragma once
 
+#include "qmldesignerutils_global.h"
 #include <QFile>
 #include <QNetworkReply>
 #include <QObject>
@@ -9,7 +10,7 @@
 
 namespace QmlDesigner {
 
-class FileDownloader : public QObject
+class QMLDESIGNERUTILS_EXPORT FileDownloader : public QObject
 {
     Q_OBJECT
 

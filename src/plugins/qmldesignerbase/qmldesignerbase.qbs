@@ -26,4 +26,9 @@ QtcPlugin {
             "studioquickwidget.h",
         ]
     }
+    Export {
+        cpp.includePaths: base.concat([
+             "utils",
+        ])
+    }
 }
