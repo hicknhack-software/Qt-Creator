@@ -553,3 +553,5 @@ QPoint MaterialEditorContextObject::globalPos(const QPoint &point) const
 }
 
 } // QmlDesigner
+
+#include "moc_materialeditorcontextobject.cpp"
