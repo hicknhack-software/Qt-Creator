@@ -59,6 +59,17 @@ extend_qtc_library(QmlDesignerUtils
     PROPERTIES COMPILE_WARNING_AS_ERROR ON
 )
 
+# remove interface compile definition (add_qtc_library seems wrong)
+get_target_property(idefs QmlDesignerUtils INTERFACE_COMPILE_DEFINITIONS)
+list(FILTER idefs EXCLUDE REGEX [[^QMLDESIGNERUTILS_LIBRARY$]])
+list(APPEND idefs QMLDESIGNERUTILS_STATIC_LIBRARY)
+set_property(TARGET QmlDesignerUtils PROPERTY INTERFACE_COMPILE_DEFINITIONS ${idefs})
+
+get_target_property(defs QmlDesignerUtils COMPILE_DEFINITIONS)
+list(FILTER defs EXCLUDE REGEX [[^QMLDESIGNERUTILS_LIBRARY$]])
+list(APPEND defs QMLDESIGNERUTILS_STATIC_LIBRARY)
+set_property(TARGET QmlDesignerUtils PROPERTY COMPILE_DEFINITIONS ${defs})
+
 add_qtc_library(QmlDesignerCore STATIC
   CONDITION TARGET QmlDesignerBase AND TARGET Qt6::QmlPrivate AND TARGET Qt6::QmlDomPrivate AND TARGET Qt6::QmlCompilerPrivate
   EXCLUDE_FROM_INSTALL

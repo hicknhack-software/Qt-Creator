@@ -476,3 +476,5 @@ StudioQmlTextBackend *DynamicPropertiesModelBackendDelegate::value()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_dynamicpropertiesmodel.cpp"

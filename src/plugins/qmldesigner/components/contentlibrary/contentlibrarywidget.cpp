@@ -872,3 +872,5 @@ void ContentLibraryWidget::setHasModelSelection(bool b)
 }
 
 } // namespace QmlDesigner
+
+#include "moc_contentlibrarywidget.cpp"
