@@ -251,3 +251,5 @@ void FileExtractor::extract()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_fileextractor.cpp"
