@@ -1,6 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GPL-3.0+ OR GPL-3.0 WITH Qt-GPL-exception-1.0
 #pragma once
+#include "filedownloader.h"
 
 #include <QObject>
 #include <QUrl>
@@ -9,7 +10,7 @@ namespace QmlDesigner {
 
 class FileDownloader;
 
-class MultiFileDownloader : public QObject
+class QMLDESIGNERUTILS_EXPORT MultiFileDownloader : public QObject
 {
     Q_OBJECT
 

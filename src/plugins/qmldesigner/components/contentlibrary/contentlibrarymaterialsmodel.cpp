@@ -384,3 +384,5 @@ void ContentLibraryMaterialsModel::removeFromProject(ContentLibraryMaterial *mat
 }
 
 } // namespace QmlDesigner
+
+#include "moc_contentlibrarymaterialsmodel.cpp"
