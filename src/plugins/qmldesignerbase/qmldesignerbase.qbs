@@ -15,27 +15,27 @@ QtcPlugin {
     ]
 
     Group {
+        name: 'Studio'
         prefix: "studio/"
         files: [
-            "studioquickwidget.cpp",
-            "studioquickwidget.h",
-            "studiosettingspage.cpp",
-            "studiosettingspage.h",
-            "studiostyle.cpp",
-            "studiostyle.h",
-            "studiostyle_p.cpp",
-            "studiostyle_p.h",
+            "*.cpp",
+            "*.h",
         ]
     }
     Group {
+        name: "Utils"
         prefix: "utils/"
         files: [
-            "designerpaths.cpp",
-            "designerpaths.h",
-            "designersettings.cpp",
-            "designersettings.h",
-            "qmlpuppetpaths.cpp",
-            "qmlpuppetpaths.h",
+            "*.cpp",
+            "*.h",
         ]
+    }
+
+    Export {
+        cpp.includePaths: Array.prototype.concat(base, [
+            exportingProduct.sourceDirectory,
+            exportingProduct.sourceDirectory + "/studio",
+            exportingProduct.sourceDirectory + "/utils",
+        ])
     }
 }

@@ -18,6 +18,7 @@ Project {
         "qmleditorwidgets/qmleditorwidgets.qbs",
         "qmljs/qmljs.qbs",
         "qmldebug/qmldebug.qbs",
+        "qmlpuppetcommunication/qmlpuppetcommunication.qbs",
         "qtcreatorcdbext/qtcreatorcdbext.qbs",
         "solutions/solutions.qbs",
         "sqlite/sqlite.qbs",
