@@ -37,4 +37,12 @@ QtcPlugin {
             "qmlpuppetpaths.h",
         ]
     }
+
+    Export {
+        cpp.includePaths: base.concat([
+            exportingProduct.sourceDirectory,
+            exportingProduct.sourceDirectory + "/studio",
+            exportingProduct.sourceDirectory + "/utils",
+        ])
+    }
 }
