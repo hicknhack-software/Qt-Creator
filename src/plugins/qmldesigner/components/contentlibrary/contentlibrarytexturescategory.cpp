@@ -58,3 +58,5 @@ QList<ContentLibraryTexture *> ContentLibraryTexturesCategory::categoryTextures(
 }
 
 } // namespace QmlDesigner
+
+#include "moc_contentlibrarytexturescategory.cpp"
