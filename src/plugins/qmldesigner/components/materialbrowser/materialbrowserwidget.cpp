@@ -416,3 +416,5 @@ QPointer<MaterialBrowserTexturesModel> MaterialBrowserWidget::materialBrowserTex
 }
 
 } // namespace QmlDesigner
+
+#include "moc_materialbrowserwidget.cpp"
