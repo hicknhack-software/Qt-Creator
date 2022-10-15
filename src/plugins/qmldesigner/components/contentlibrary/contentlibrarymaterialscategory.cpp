@@ -61,3 +61,5 @@ QList<ContentLibraryMaterial *> ContentLibraryMaterialsCategory::categoryMateria
 }
 
 } // namespace QmlDesigner
+
+#include "moc_contentlibrarymaterialscategory.cpp"
