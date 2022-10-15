@@ -271,3 +271,5 @@ void QmlDesigner::FileExtractor::removeTempTargetPath()
 }
 
 } // namespace QmlDesigner
+
+#include "moc_fileextractor.cpp"
