@@ -1,0 +1,61 @@
+import qbs
+
+QtcProduct {
+    name: "componentsplugin"
+    condition: QmlDesigner.present
+    type: ["dynamiclibrary"]
+    installDir: qtc.ide_plugin_path + '/' + installDirName
+    property string installDirName: qbs.targetOS.contains("macos") ? "QmlDesigner" : "qmldesigner"
+
+    Depends { name: "Core" }
+    Depends { name: "QmlDesigner"; required: false }
+    Depends { name: "Utils" }
+    Depends { name: "Qt.qml" }
+    Depends { name: "qtc" }
+
+    cpp.defines: base.concat("COMPONENTS_LIBRARY")
+    cpp.includePaths: base.concat([
+        "..",
+        "../components/componentcore",
+        "../components/debugview",
+        "../components/edit3d",
+        "../components/formeditor",
+        "../components/integration",
+        "../components/itemlibrary",
+        "../components/navigator",
+        "../components/propertyeditor",
+        "../components/stateseditor",
+        "../components/stateseditornew",
+        "../designercore",
+        "../designercore/include",
+        "../../../../share/qtcreator/qml/qmlpuppet/interfaces",
+        "../../../../share/qtcreator/qml/qmlpuppet/types",
+    ])
+    Properties {
+        condition: qbs.targetOS.contains("unix")
+        cpp.internalVersion: ""
+    }
+
+    Group {
+        name: "controls"
+        files: ["Controls/*.qml"]
+    }
+
+    Group {
+        name: "images"
+        files: ["images/*.png"]
+    }
+
+    Group {
+        name: "plugin metadata"
+        files: ["componentsplugin.json"]
+        fileTags: ["qt_plugin_metadata"]
+    }
+
+    files: [
+        "components.metainfo",
+        "componentsplugin.cpp", "componentsplugin.h",
+        "componentsplugin.qrc",
+        "../designercore/include/iwidgetplugin.h",
+    ]
+}

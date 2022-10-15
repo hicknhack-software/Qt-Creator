@@ -3,6 +3,7 @@
 #pragma once
 
 #include <QDateTime>
+#include "qmldesignerutils_global.h"
 #include <QFile>
 #include <QNetworkReply>
 #include <QObject>
@@ -10,7 +11,7 @@
 
 namespace QmlDesigner {
 
-class FileDownloader : public QObject
+class QMLDESIGNERUTILS_EXPORT FileDownloader : public QObject
 {
     Q_OBJECT
 
