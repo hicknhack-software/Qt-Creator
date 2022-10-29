@@ -5,7 +5,9 @@
 
 #include <cppeditor/cppcodestylesettingspage.h>
 
+#ifndef Q_MOC_RUN
 #include <clang/Format/Format.h>
+#endif
 
 #include <utils/guard.h>
 
