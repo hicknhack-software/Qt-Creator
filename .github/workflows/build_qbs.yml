@@ -15,11 +15,10 @@ jobs:
             os: windows-2022
             qt_version: "6.4.1"
             qt_arch: "win64_msvc2019_64"
-            qt_modules: qtbase qtdeclarative qttools qtsvg qttranslations qtimageformats qtserialport qtquicktimeline qtquick3d qt5compat qtshadertools
-            qt_tools: tools_openssl_x64,1.1.1-10,qt.tools.openssl.win_x64
+            qt_modules: qtimageformats qtserialport qtquicktimeline qtquick3d qt5compat qtshadertools
+            qt_tools: tools_openssl_x64,qt.tools.openssl.win_x64
             qt_version_x86: "5.15.2"
             qt_arch_x86: "win32_msvc2019"
-            qt_modules_x86: qtbase qtdeclarative qttools qtsvg qtserialport qtquickcontrols qtquickcontrols2 qtgraphicaleffects qtlocation qtimageformats
             libclang_url: "https://download.qt.io/development_releases/prebuilt/libclang/libclang-release_15.0.0-based-windows-vs2019_64.7z"
             jom_url: "https://download.qt.io/official_releases/jom/jom_1_1_3.zip"
             qbs_url: "https://download.qt.io/official_releases/qbs/1.24.0/qbs-windows-x86_64-1.24.0.zip"
@@ -33,7 +32,7 @@ jobs:
 
       - run: 7z x libclang.7z
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
           python-version: "3.x"
 
@@ -49,30 +48,18 @@ jobs:
         shell: cmake -P {0}
         run: file(DOWNLOAD "${{ matrix.config.jom_url }}" ./jom.zip)
 
-      - name: Generate Cache Keys
-        run: |
-          echo "${{ matrix.config.qt_arch }}" >> cache-qt.txt
-          echo "${{ matrix.config.qt_modules }}" >> cache-qt.txt
-          echo "${{ matrix.config.qt_tools }}" >> cache-qt.txt
-          echo "${{ matrix.config.qt_arch_x86 }}" >> cache-qt-x86.txt
-          echo "${{ matrix.config.qt_modules_x86 }}" >> cache-qt-x86.txt
-
-      - name: Cache Qt
-        id: cache-qt
-        uses: actions/cache@v1
-        with:
-          path: ${{ runner.workspace }}/x64/Qt/
-          key: CacheQtx64-${{ matrix.config.qt_version }}-${{ hashFiles('cache-qt.txt') }}
-
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          dir: ${{ runner.workspace }}/x64/
+          dir: ${{ runner.workspace }}/x64
           version: "${{ matrix.config.qt_version }}"
           arch: "${{ matrix.config.qt_arch }}"
           modules: ${{ matrix.config.qt_modules }}
           tools: ${{ matrix.config.qt_tools }}
-          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+          cache: true
+          cache-key-prefix: CacheQtx64
+          extra: '--external 7z'
+          aqtversion: '==3.0.*'
 
       - name: Copy OpenSSL DLLs
         run: |
@@ -84,7 +71,7 @@ jobs:
           qbs setup-qt $Env:Qt6_DIR\bin\qmake.exe qt-x64
           qbs config profiles.qt-x64.baseProfile msvc-x64
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: Repo
 
@@ -110,21 +97,16 @@ jobs:
         run: |
           python -u ${{ github.workspace }}/Repo/scripts/deployqt.py -i --llvm-path ${{ github.workspace }}/libclang ${{ github.workspace }}/install-root/bin/qtcreator.exe $Env:Qt6_DIR/bin/qmake.exe
 
-      - name: x86 Cache Qt
-        id: cache-qt-x86
-        uses: actions/cache@v1
-        with:
-          path: ${{ runner.workspace }}/x86/Qt/
-          key: CacheQtx86-${{ matrix.config.qt_version_x86 }}-${{ hashFiles('cache-qt-x86.txt') }}
-
       - name: x86 Install Qt
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          dir: ${{ runner.workspace }}/x86/
+          dir: ${{ runner.workspace }}/x86
           version: "${{ matrix.config.qt_version_x86 }}"
           arch: ${{ matrix.config.qt_arch_x86 }}
-          modules: ${{ matrix.config.qt_modules_x86 }}
-          cached: ${{ steps.cache-qt-x86.outputs.cache-hit }}
+          cache: true
+          cache-key-prefix: CacheQtx86
+          extra: '--external 7z'
+          aqtversion: '==3.0.*'
 
       - name: x86 Setup Qbs
         run: |
@@ -133,7 +115,7 @@ jobs:
           qbs config profiles.qt-x86.baseProfile msvc-x86
 
       - name: x86 Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: "3.x"
           architecture: 'x86'
@@ -155,7 +137,7 @@ jobs:
         run: 7z a ../QtCreator-${{ matrix.config.qt_arch }}-${{ github.run_id }}.7z * -r
 
       - name: Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           path: ${{ github.workspace }}/QtCreator-${{ matrix.config.qt_arch }}-${{ github.run_id }}.7z
           name: QtCreator-${{ matrix.config.qt_arch }}-${{ github.run_id }}.7z
