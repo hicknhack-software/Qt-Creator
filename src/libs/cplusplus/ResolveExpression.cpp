@@ -391,9 +391,11 @@ bool ResolveExpression::visit(TypeidExpressionAST *)
     return false;
 }
 
-bool ResolveExpression::visit(TypenameCallExpressionAST *)
+bool ResolveExpression::visit(TypenameCallExpressionAST *ast)
 {
-    // nothing to do
+    if (ast->name) {
+        addResults(_context.lookup(ast->name->name, _scope));
+    }
     return false;
 }
 
