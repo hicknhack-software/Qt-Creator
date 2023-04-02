@@ -479,9 +479,8 @@ jobs:
                   endif()
                 endforeach()
 
-                execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf "${{ steps.ccache.outputs.archive_name }}.zip")
                 file(MAKE_DIRECTORY .ccache)
-                execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf "../${{ steps.ccache.outputs.archive_name }}.tar" WORKING_DIRECTORY .ccache)
+                execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf "../${{ steps.ccache.outputs.archive_name }}.zip" WORKING_DIRECTORY .ccache)
 
                 return()
               endif()
@@ -650,28 +649,28 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@v3
       with:
-        path: build/qtcreator-${{ matrix.config.artifact }}-${{ github.run_id }}.7z
-        name: qtcreator-${{ matrix.config.artifact }}-${{ github.run_id }}.7z
+        path: build/install/qt-creator/
+        name: qtcreator-${{ matrix.config.artifact }}-${{ github.run_id }}
 
     - name: Upload Devel
       uses: actions/upload-artifact@v3
       with:
-        path: build/qtcreator-${{ matrix.config.artifact }}-${{ github.run_id }}_dev.7z
-        name: qtcreator-${{ matrix.config.artifact }}-${{ github.run_id }}_dev.7z
+        path: build/install/qt-creator-dev/
+        name: qtcreator-${{ matrix.config.artifact }}-${{ github.run_id }}_dev
 
     - name: Upload wininterrupt
       if: runner.os == 'Windows'
       uses: actions/upload-artifact@v3
       with:
-        path: build/wininterrupt-${{ matrix.config.artifact }}-${{ github.run_id }}.7z
-        name: wininterrupt-${{ matrix.config.artifact }}-${{ github.run_id }}.7z
+        path: build/install/wininterrupt/
+        name: wininterrupt-${{ matrix.config.artifact }}-${{ github.run_id }}
 
     - name: Upload qtcreatorcdbext
       if: runner.os == 'Windows' && matrix.config.is_msvc
       uses: actions/upload-artifact@v3
       with:
-        path: build/qtcreatorcdbext-${{ matrix.config.artifact }}-${{ github.run_id }}.7z
-        name: qtcreatorcdbext-${{ matrix.config.artifact }}-${{ github.run_id }}.7z
+        path: build/install/qtcreatorcdbext/
+        name: qtcreatorcdbext-${{ matrix.config.artifact }}-${{ github.run_id }}
 
     - name: Upload Debian package
       if: runner.os == 'Linux'
@@ -687,14 +686,10 @@ jobs:
         path: build/qt-creator-${{ matrix.config.artifact }}-${{ github.run_id }}.dmg
         name: qt-creator-${{ matrix.config.artifact }}-${{ github.run_id }}.dmg
 
-    - name: Create ccache archive
-      working-directory: .ccache
-      run: cmake -E tar cf ../${{ steps.ccache.outputs.archive_name }}.tar .
-
     - name: Upload ccache archive
       uses: actions/upload-artifact@v3
       with:
-        path: ./${{ steps.ccache.outputs.archive_name }}.tar
+        path: .ccache/
         name: ${{ steps.ccache.outputs.archive_name }}
 
     - name: Upload binaries to release
