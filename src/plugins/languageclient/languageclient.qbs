@@ -72,5 +72,8 @@ QtcPlugin {
         "snippet.h",
     ]
 
-    Export { Depends { name: "LanguageServerProtocol" } }
+    Export {
+        Depends { name: "ProjectExplorer" }
+        Depends { name: "LanguageServerProtocol" }
+    }
 }
