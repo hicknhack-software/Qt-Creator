@@ -87,5 +87,8 @@ QtcPlugin {
         cpp.cxxFlags: "-Wa,-mbig-obj"
     }
 
-    Export { Depends { name: "LanguageServerProtocol" } }
+    Export {
+        Depends { name: "ProjectExplorer" }
+        Depends { name: "LanguageServerProtocol" }
+    }
 }
