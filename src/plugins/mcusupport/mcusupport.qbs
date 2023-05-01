@@ -19,6 +19,8 @@ QtcPlugin {
 
     Depends { name: "qtc_gtest_gmock"; condition: qtc.testsEnabled; required: false }
 
+    cpp.includePaths: base.concat([ "." ])
+
     files: [
         "mcuabstractpackage.h",
         "mcubuildstep.cpp",
