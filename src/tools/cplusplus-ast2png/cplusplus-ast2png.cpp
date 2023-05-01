@@ -19,7 +19,7 @@
 #include <utils/hostosinfo.h>
 #include <utils/filepath.h>
 
-#include "utils.h"
+#include "../cplusplus-shared/utils.h"
 
 #include <QDir>
 #include <QFile>
