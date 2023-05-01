@@ -83,7 +83,6 @@ Project {
         ]
 
         files: [
-            "compare-operators.h",
             "conditionally-disabled-tests.h",
             "createtablesqlstatementbuilder-test.cpp",
             "dynamicastmatcherdiagnosticcontainer-matcher.h",
