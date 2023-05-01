@@ -16,7 +16,7 @@
 
 #include <utils/filepath.h>
 
-#include "utils.h"
+#include "../cplusplus-shared/utils.h"
 
 #include <QFile>
 #include <QList>
