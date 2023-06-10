@@ -15,15 +15,100 @@
 #include <utils/hostosinfo.h>
 #include <utils/pathchooser.h>
 
+#include <QAudioOutput>
 #include <QButtonGroup>
 #include <QCheckBox>
 #include <QComboBox>
 #include <QCoreApplication>
 #include <QLabel>
+#include <QMediaPlayer>
+#include <QPushButton>
 #include <QRadioButton>
+#include <QRandomGenerator>
+#include <QSpinBox>
+#include <QVBoxLayout>
+#include <QVideoSink>
+#include <QVideoWidget>
 
 using namespace Core;
 using namespace Utils;
+
+namespace ProjectExplorer {
+
+class VideoDialog final : public QDialog {
+public:
+    VideoDialog(QMediaPlayer* player, QVideoWidget* video) : QDialog() {
+        setLayout(new QVBoxLayout);
+        layout()->setContentsMargins(0, 0, 0, 0);
+        layout()->addWidget(video);
+        grabMouse();
+        grabKeyboard();
+        QObject::connect(
+            player, &QMediaPlayer::playingChanged, this,
+            [this](bool isPlaying) {
+                if (isPlaying) return;
+                if (isVisible()) close();
+                else deleteLater();
+            },
+            Qt::QueuedConnection);
+        QObject::connect(this, &QDialog::finished, this, [this, player]() {
+            if (player->isPlaying()) player->stop();
+            else deleteLater();
+        });
+    }
+
+protected:
+    void mousePressEvent(QMouseEvent* event) override {
+        QDialog::mousePressEvent(event);
+        close();
+    }
+    void keyPressEvent(QKeyEvent* event) override {
+        QDialog::keyPressEvent(event);
+        close();
+    }
+};
+
+static auto resolveSourcePath(QString sourcePath) -> QUrl {
+    if (sourcePath.contains(';')) {
+        auto list = sourcePath.split(';');
+        auto index = QRandomGenerator::global()->bounded(0, list.size());
+        return QUrl::fromLocalFile(list[index]);
+    }
+    return QUrl::fromLocalFile(sourcePath);
+}
+
+void ProjectExplorerSettings::playAlertMedia(QString sourcePath)
+{
+    static QMediaPlayer* player = []() {
+        qWarning("Creating Player with AudioOutput...");
+        auto player = new QMediaPlayer();
+        player->setAudioOutput(new QAudioOutput{player});
+        return player;
+    }();
+    player->stop();
+    player->setPosition(0);
+    player->setSource(resolveSourcePath(sourcePath));
+    if (player->hasVideo()) {
+        auto video = new QVideoWidget();
+        player->setVideoOutput(video);
+        QObject::connect(
+            player->videoSink(), &QVideoSink::videoFrameChanged, video,
+            [video]() {
+                auto dialog = new VideoDialog(player, video);
+                dialog->open();
+            },
+            Qt::SingleShotConnection);
+        player->play();
+    }
+    else if (player->hasAudio()) {
+        player->play();
+    }
+    else {
+        qWarning("Nothing to play!");
+    }
+}
+
+} // namespace ProjectExplorer
 
 namespace ProjectExplorer::Internal {
 
@@ -70,6 +155,10 @@ private:
     QComboBox *m_stopBeforeBuildComboBox;
     QComboBox *m_terminalModeComboBox;
     QCheckBox *m_jomCheckbox;
+
+    QSpinBox *m_longBuildThresholdSpinBox = new QSpinBox;
+    Utils::PathChooser *m_longBuildSuccessMediaPath = new Utils::PathChooser;
+    Utils::PathChooser *m_longBuildFailedMediaPath = new Utils::PathChooser;
 
     QButtonGroup *m_directoryButtonGroup;
 };
@@ -122,6 +211,23 @@ ProjectExplorerSettingsWidget::ProjectExplorerSettingsWidget()
                                "Disable it if you experience problems with your builds.");
     jomLabel->setWordWrap(true);
 
+    m_longBuildThresholdSpinBox->setSuffix("secs");
+    m_longBuildThresholdSpinBox->setMinimum(0);
+    m_longBuildSuccessMediaPath->setToolTip(Tr::tr("Media File played if long build succeeds (empty to disable)"));
+    m_longBuildSuccessMediaPath->setExpectedKind(PathChooser::File);
+    m_longBuildSuccessMediaPath->setHistoryCompleter(QLatin1String("General.Media.History"));
+    auto playSuccessMediaButton = new QPushButton(Tr::tr("Play"));
+    connect(playSuccessMediaButton, &QPushButton::clicked, [&]() {
+        ProjectExplorerSettings::playAlertMedia(m_longBuildSuccessMediaPath->filePath().toString());
+    });
+    m_longBuildFailedMediaPath->setToolTip(Tr::tr("Media File played if long build fails (empty to disable)"));
+    m_longBuildFailedMediaPath->setExpectedKind(PathChooser::File);
+    m_longBuildFailedMediaPath->setHistoryCompleter(QLatin1String("General.Media.History"));
+    auto playFailedMediaButton = new QPushButton(Tr::tr("Play"));
+    connect(playFailedMediaButton, &QPushButton::clicked, [&]() {
+        ProjectExplorerSettings::playAlertMedia(m_longBuildFailedMediaPath->filePath().toString());
+    });
+
     using namespace Layouting;
     Column {
         Group {
@@ -155,6 +261,14 @@ ProjectExplorerSettingsWidget::ProjectExplorerSettingsWidget()
                 },
                 m_jomCheckbox,
                 jomLabel,
+            },
+        },
+        Group {
+            title(Tr::tr("Long Build Announcements")),
+            Form {
+                Tr::tr("Threshold:"), m_longBuildThresholdSpinBox, br,
+                Tr::tr("Success Media File:"), m_longBuildSuccessMediaPath, playSuccessMediaButton, br,
+                Tr::tr("Failed Media File:"), m_longBuildFailedMediaPath, playFailedMediaButton, br,
             },
         },
         st,
@@ -193,6 +307,9 @@ ProjectExplorerSettings ProjectExplorerSettingsWidget::settings() const
     m_settings.clearIssuesOnRebuild = m_clearIssuesCheckBox->isChecked();
     m_settings.abortBuildAllOnError = m_abortBuildAllOnErrorCheckBox->isChecked();
     m_settings.lowBuildPriority = m_lowBuildPriorityCheckBox->isChecked();
+    m_settings.longBuildThreshold = m_longBuildThresholdSpinBox->value();
+    m_settings.longBuildSuccessMediaPath = m_longBuildSuccessMediaPath->filePath().toString();
+    m_settings.longBuildFailedMediaPath = m_longBuildFailedMediaPath->filePath().toString();
     return m_settings;
 }
 
@@ -214,6 +331,10 @@ void ProjectExplorerSettingsWidget::setSettings(const ProjectExplorerSettings  &
     m_clearIssuesCheckBox->setChecked(m_settings.clearIssuesOnRebuild);
     m_abortBuildAllOnErrorCheckBox->setChecked(m_settings.abortBuildAllOnError);
     m_lowBuildPriorityCheckBox->setChecked(m_settings.lowBuildPriority);
+
+    m_longBuildThresholdSpinBox->setValue(m_settings.longBuildThreshold);
+    m_longBuildSuccessMediaPath->setPath(m_settings.longBuildSuccessMediaPath);
+    m_longBuildFailedMediaPath->setPath(m_settings.longBuildFailedMediaPath);
 }
 
 FilePath ProjectExplorerSettingsWidget::projectsDirectory() const

@@ -4,7 +4,7 @@ Project {
     name: "ProjectExplorer"
 
     QtcPlugin {
-        Depends { name: "Qt"; submodules: ["widgets", "xml", "network", "qml"] }
+        Depends { name: "Qt"; submodules: ["widgets", "xml", "network", "qml", "multimedia", "multimediawidgets"] }
         Depends { name: "Aggregation" }
         Depends { name: "Utils" }
 
