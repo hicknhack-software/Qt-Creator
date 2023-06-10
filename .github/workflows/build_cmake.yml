@@ -141,7 +141,7 @@ jobs:
             COMMAND
               sudo apt install chrpath
                                libgl1-mesa-dev libvulkan-dev libxcb-xinput-dev libxcb-xinerama0-dev libxkbcommon-dev libxkbcommon-x11-dev
-                               libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xkb1 libxcb-randr0 libxcb-icccm4
+                               libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xkb1 libxcb-randr0 libxcb-icccm4 libpulse0
                                xvfb
             RESULT_VARIABLE result
           )
@@ -252,7 +252,7 @@ jobs:
           )
         endforeach()
 
-        foreach(package qtimageformats qtserialport)
+        foreach(package qtimageformats qtserialport qtmultimedia)
           downloadAndExtract(
             "${qt_base_url}/qt.qt6.${qt_version_dotless}.addons.${package}.${qt_package_arch_suffix}/${qt_package_version}${package}${qt_package_suffix}.7z"
             ${package}.7z
