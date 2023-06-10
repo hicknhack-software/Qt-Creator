@@ -365,6 +365,7 @@ def main():
 
     plugins = ['assetimporters', 'accessible', 'codecs', 'designer', 'iconengines', 'imageformats', 'platformthemes',
                'platforminputcontexts', 'platforms', 'printsupport', 'qmltooling', 'sqldrivers', 'styles',
+               'multimedia',
                'xcbglintegrations',
                'wayland-decoration-client',
                'wayland-graphics-integration-client',
