@@ -1,4 +1,5 @@
 add_qtc_plugin(ProjectExplorer
+  DEPENDS Qt::MultimediaWidgets
   PLUGIN_DEPENDS Core TextEditor
   PLUGIN_TEST_DEPENDS GenericProjectManager
   SOURCES

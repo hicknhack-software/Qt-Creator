@@ -1,7 +1,7 @@
 QtcPlugin {
     name: "ProjectExplorer"
 
-    Depends { name: "Qt"; submodules: ["widgets", "xml", "network"] }
+    Depends { name: "Qt"; submodules: ["widgets", "xml", "network", "multimedia", "multimediawidgets"] }
     Depends { name: "McpServerLib" }
     Depends { name: "Utils" }
 
