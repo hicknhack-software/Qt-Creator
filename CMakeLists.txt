@@ -77,7 +77,7 @@ find_package(Qt6
   REQUIRED
 )
 
-find_package(Qt6 OPTIONAL_COMPONENTS Quick QuickWidgets Designer DesignerComponentsPrivate
+find_package(Qt6 OPTIONAL_COMPONENTS Quick QuickWidgets Designer DesignerComponentsPrivate MultimediaWidgets
                                      Help SerialPort Svg Tools LinguistTools QUIET)
 
 # depending on Qt version and compiler version enable or disable Qml Designer
