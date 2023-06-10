@@ -15,7 +15,7 @@ jobs:
             os: windows-2022
             qt_version: "6.6.0"
             qt_arch: "win64_msvc2019_64"
-            qt_modules: qtimageformats qtserialport qtquicktimeline qtquick3d qt5compat qtshadertools
+            qt_modules: qtimageformats qtserialport qtquicktimeline qtquick3d qt5compat qtshadertools qtmultimedia
             qt_tools: tools_opensslv3_x64,qt.tools.opensslv3.win_x64
             qt_version_x86: "5.15.2"
             qt_arch_x86: "win32_msvc2019"
