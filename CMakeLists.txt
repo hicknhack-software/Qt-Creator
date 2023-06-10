@@ -98,7 +98,7 @@ if (MSVC AND QT_FEATURE_static_runtime)
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
 
-find_package(Qt6 OPTIONAL_COMPONENTS Quick QuickWidgets Designer DesignerComponentsPrivate
+find_package(Qt6 OPTIONAL_COMPONENTS Quick QuickWidgets Designer DesignerComponentsPrivate MultimediaWidgets
                                      Help SerialPort Svg Tools LinguistTools QUIET)
 
 find_package(Threads)

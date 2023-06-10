@@ -22,19 +22,20 @@ public:
     friend bool operator==(const ProjectExplorerSettings &p1, const ProjectExplorerSettings &p2)
     {
         return p1.buildBeforeDeploy == p2.buildBeforeDeploy
-                && p1.deployBeforeRun == p2.deployBeforeRun
-                && p1.saveBeforeBuild == p2.saveBeforeBuild
-                && p1.useJom == p2.useJom
-                && p1.prompToStopRunControl == p2.prompToStopRunControl
-                && p1.automaticallyCreateRunConfigurations == p2.automaticallyCreateRunConfigurations
-                && p1.addLibraryPathsToRunEnv == p2.addLibraryPathsToRunEnv
-                && p1.environmentId == p2.environmentId
-                && p1.stopBeforeBuild == p2.stopBeforeBuild
-                && p1.terminalMode == p2.terminalMode
-                && p1.closeSourceFilesWithProject == p2.closeSourceFilesWithProject
-                && p1.clearIssuesOnRebuild == p2.clearIssuesOnRebuild
-                && p1.abortBuildAllOnError == p2.abortBuildAllOnError
-                && p1.lowBuildPriority == p2.lowBuildPriority;
+               && p1.deployBeforeRun == p2.deployBeforeRun
+               && p1.saveBeforeBuild == p2.saveBeforeBuild && p1.useJom == p2.useJom
+               && p1.prompToStopRunControl == p2.prompToStopRunControl
+               && p1.automaticallyCreateRunConfigurations == p2.automaticallyCreateRunConfigurations
+               && p1.addLibraryPathsToRunEnv == p2.addLibraryPathsToRunEnv
+               && p1.environmentId == p2.environmentId && p1.stopBeforeBuild == p2.stopBeforeBuild
+               && p1.terminalMode == p2.terminalMode
+                && p1.longBuildThreshold == p2.longBuildThreshold
+                && p1.longBuildSuccessMediaPath == p2.longBuildSuccessMediaPath
+                && p1.longBuildFailedMediaPath == p2.longBuildFailedMediaPath
+               && p1.closeSourceFilesWithProject == p2.closeSourceFilesWithProject
+               && p1.clearIssuesOnRebuild == p2.clearIssuesOnRebuild
+               && p1.abortBuildAllOnError == p2.abortBuildAllOnError
+               && p1.lowBuildPriority == p2.lowBuildPriority;
     }
 
     BuildBeforeRunMode buildBeforeDeploy = BuildBeforeRunMode::WholeProject;
@@ -52,6 +53,12 @@ public:
                                           ? StopBeforeBuild::SameProject
                                           : StopBeforeBuild::None;
     TerminalMode terminalMode = TerminalMode::Off;
+
+    int longBuildThreshold = 30;
+    QString longBuildSuccessMediaPath = {};
+    QString longBuildFailedMediaPath = {};
+
+    static void playAlertMedia(QString sourcePath);
 
     // Add a UUid which is used to identify the development environment.
     // This is used to warn the user when he is trying to open a .user file that was created
