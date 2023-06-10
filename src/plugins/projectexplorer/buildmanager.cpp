@@ -498,12 +498,25 @@ void BuildManager::emitCancelMessage()
     addToOutputWindow(Tr::tr("Canceled build/deployment."), BuildStep::OutputFormat::ErrorMessage);
 }
 
+static void handleLongBuild() {
+    if (std::chrono::milliseconds{d->m_elapsed.elapsed()} <= std::chrono::seconds{ProjectExplorerPlugin::projectExplorerSettings().longBuildThreshold}) {
+        return;
+    }
+    auto media = d->m_allStepsSucceeded
+            ? ProjectExplorerPlugin::projectExplorerSettings().longBuildSuccessMediaPath
+            : ProjectExplorerPlugin::projectExplorerSettings().longBuildFailedMediaPath;
+    if (media.isEmpty()) return;
+    ProjectExplorerSettings::playAlertMedia(media);
+}
+
 void BuildManager::clearBuildQueue()
 {
     for (BuildStep *bs : std::as_const(d->m_buildQueue)) {
         decrementActiveBuildSteps(bs);
         disconnectOutput(bs);
     }
+
+    handleLongBuild();
 
     d->m_stepNames.clear();
     d->m_buildQueue.clear();
@@ -751,6 +764,7 @@ void BuildManager::nextStep()
         d->m_currentBuildStep->setupOutputFormatter(d->m_outputWindow->outputFormatter());
         d->m_currentBuildStep->run();
     } else {
+        handleLongBuild();
         d->m_running = false;
         d->m_poppedUpTaskWindow = false;
         d->m_isDeploying = false;
