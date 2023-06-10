@@ -19,14 +19,20 @@
 #include <utils/hostosinfo.h>
 #include <utils/pathchooser.h>
 
+#include <QAudioOutput>
 #include <QButtonGroup>
 #include <QCheckBox>
 #include <QComboBox>
 #include <QCoreApplication>
 #include <QLabel>
+#include <QMediaPlayer>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QRandomGenerator>
 #include <QSpinBox>
+#include <QVBoxLayout>
+#include <QVideoSink>
+#include <QVideoWidget>
 
 using namespace Core;
 using namespace Utils;
@@ -169,6 +175,24 @@ ProjectExplorerSettings::ProjectExplorerSettings(bool global)
     // appEnvChanges = EnvironmentItem::fromStringList(
     //     s->value("ProjectExplorer/Settings/AppEnvChanes").toStringList());
 
+    longBuildThreshold.setSettingsKey("LongBuildThreshold");
+    longBuildThreshold.setDefaultValue(30);
+    longBuildThreshold.setRange(1, 100'000);
+    longBuildThreshold.setSuffix(Tr::tr("s"));
+    longBuildThreshold.setLabelText(Tr::tr("Threshold:"));
+
+    longBuildSuccessMediaPath.setSettingsKey("LongBuildSuccessMedia");
+    longBuildSuccessMediaPath.setExpectedKind(PathChooser::File);
+    longBuildSuccessMediaPath.setHistoryCompleter("General.Media.History");
+    longBuildSuccessMediaPath.setLabelText(Tr::tr("Success Media File:"));
+    longBuildSuccessMediaPath.setToolTip(Tr::tr("Media File played if long build succeeds (empty to disable)"));
+
+    longBuildFailedMediaPath.setSettingsKey("LongBuildFailedMedia");
+    longBuildFailedMediaPath.setExpectedKind(PathChooser::File);
+    longBuildFailedMediaPath.setHistoryCompleter("General.Media.History");
+    longBuildFailedMediaPath.setLabelText(Tr::tr("Failed Media File:"));
+    longBuildFailedMediaPath.setToolTip(Tr::tr("Media File played if long build fails (empty to disable)"));
+
     environmentId.setSettingsKey("EnvironmentId");
 
     if (global)
@@ -222,6 +246,100 @@ Project *ProjectExplorerSettings::projectForContext(QObject *context)
     if (const auto aspect = qobject_cast<BaseAspect *>(context))
         return projectForContext(aspect->container());
     return nullptr;
+}
+    
+class VideoDialog final : public QDialog {
+public:
+    VideoDialog(QMediaPlayer* player, QVideoWidget* video) : QDialog() {
+        setLayout(new QVBoxLayout);
+        layout()->setContentsMargins(0, 0, 0, 0);
+        layout()->addWidget(video);
+        grabMouse();
+        grabKeyboard();
+        QObject::connect(
+            player, &QMediaPlayer::playingChanged, this,
+            [this](bool isPlaying) {
+                if (isPlaying) return;
+                if (isVisible()) close();
+                else deleteLater();
+            },
+            Qt::QueuedConnection);
+        QObject::connect(this, &QDialog::finished, this, [this, player]() {
+            if (player->isPlaying()) player->stop();
+            else deleteLater();
+        });
+    }
+
+protected:
+    void mousePressEvent(QMouseEvent* event) override {
+        QDialog::mousePressEvent(event);
+        close();
+    }
+    void keyPressEvent(QKeyEvent* event) override {
+        QDialog::keyPressEvent(event);
+        close();
+    }
+};
+
+static auto resolveSourcePath(QString sourcePath) -> QUrl {
+    if (sourcePath.contains(';')) {
+        auto list = sourcePath.split(';');
+        auto index = QRandomGenerator::global()->bounded(0, list.size());
+        return QUrl::fromLocalFile(list[index]);
+    }
+    return QUrl::fromLocalFile(sourcePath);
+}
+
+void ProjectExplorerSettings::playAlertMedia(QString sourcePath)
+{
+    static QMediaPlayer* player = []() {
+        qWarning("Creating Player with AudioOutput...");
+        auto player = new QMediaPlayer();
+        player->setAudioOutput(new QAudioOutput{player});
+        return player;
+    }();
+    static constexpr auto startPlayer = []() {
+        if (player->hasVideo()) {
+            auto video = new QVideoWidget();
+            player->setVideoOutput(video);
+            QObject::connect(
+                player->videoSink(), &QVideoSink::videoFrameChanged, video,
+                [video]() {
+                    auto dialog = new VideoDialog(player, video);
+                    dialog->open();
+                },
+                Qt::SingleShotConnection);
+            player->play();
+        }
+        else if (player->hasAudio()) {
+            player->play();
+        }
+        else {
+            qWarning("Nothing to play!");
+        }
+    };
+    QObject::connect(player, &QMediaPlayer::mediaStatusChanged, [sourcePath](auto status) {
+        switch (status) {
+        case QMediaPlayer::LoadingMedia:
+        case QMediaPlayer::BufferingMedia:
+            return; // wait a little more
+        case QMediaPlayer::LoadedMedia:
+            startPlayer();
+            break;
+        case QMediaPlayer::InvalidMedia:
+            qWarning("Invalid media!");
+            break;
+        default:
+            qWarning() << "Anything else! " << status;
+        }
+        QObject::disconnect(player, &QMediaPlayer::mediaStatusChanged, nullptr, nullptr);
+    });
+    player->stop();
+    player->setPosition(0);
+    player->setSource(resolveSourcePath(sourcePath));
+    if (player->hasVideo() || player->hasAudio()) {
+        startPlayer();
+    }
 }
 
 namespace Internal {
@@ -308,6 +426,15 @@ ProjectExplorerSettingsWidget::ProjectExplorerSettingsWidget()
         updateAppEnvChangesLabel();
     });
 
+    auto playSuccessMediaButton = new QPushButton(Tr::tr("Play"));
+    connect(playSuccessMediaButton, &QPushButton::clicked, [&]() {
+        ProjectExplorerSettings::playAlertMedia(s.longBuildSuccessMediaPath.value());
+    });
+    auto playFailedMediaButton = new QPushButton(Tr::tr("Play"));
+    connect(playFailedMediaButton, &QPushButton::clicked, [&]() {
+        ProjectExplorerSettings::playAlertMedia(s.longBuildFailedMediaPath.value());
+    });
+
     using namespace Layouting;
     Column {
         Group {
@@ -357,6 +484,14 @@ ProjectExplorerSettingsWidget::ProjectExplorerSettingsWidget()
                     },
                     s.useJom,
                 }
+            },
+        },
+        Group {
+            title(Tr::tr("Long Build Announcements")),
+            Form {
+                s.longBuildThreshold, br,
+                s.longBuildSuccessMediaPath, playSuccessMediaButton, br,
+                s.longBuildFailedMediaPath, playFailedMediaButton, br,
             },
         },
         st,
@@ -514,4 +649,3 @@ void PerProjectProjectExplorerSettings::restore()
 }
 
 } // ProjectExplorer
-
