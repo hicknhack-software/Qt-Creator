@@ -57,6 +57,12 @@ public:
     Utils::TypedSelectionAspect<TerminalMode> terminalMode{this};
     Utils::TypedAspect<Utils::EnvironmentItems> appEnvChanges{this};
 
+    Utils::IntegerAspect longBuildThreshold{this};
+    Utils::FilePathAspect longBuildSuccessMediaPath{this};
+    Utils::FilePathAspect longBuildFailedMediaPath{this};
+
+    static void playAlertMedia(QString sourcePath);
+
     // Add a UUid which is used to identify the development environment.
     // This is used to warn the user when he is trying to open a .user file that was created
     // somewhere else (which might lead to unexpected results).
