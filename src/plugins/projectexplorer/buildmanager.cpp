@@ -415,6 +415,20 @@ public:
 static BuildManagerPrivate *d = nullptr;
 static BuildManager *m_instance = nullptr;
 
+static void handleLongBuild(bool success)
+{
+    if (std::chrono::milliseconds{d->m_elapsed.elapsed()} <= std::chrono::seconds{
+            globalProjectExplorerSettings().longBuildThreshold.value()}) {
+        return;
+    }
+    auto media = success
+                     ? globalProjectExplorerSettings().longBuildSuccessMediaPath.value()
+                     : globalProjectExplorerSettings().longBuildFailedMediaPath.value();
+    if (media.isEmpty())
+        return;
+    ProjectExplorerSettings::playAlertMedia(media);
+}
+
 BuildManager::BuildManager(QObject *parent, QAction *cancelBuildAction)
     : QObject(parent)
 {
@@ -461,6 +475,9 @@ BuildManager::BuildManager(QObject *parent, QAction *cancelBuildAction)
             d->m_buildQueue = d->m_pendingQueue;
             d->m_pendingQueue.clear();
             startBuildQueue();
+        }
+        else {
+            handleLongBuild(success);
         }
     });
 }
