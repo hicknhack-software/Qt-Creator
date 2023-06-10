@@ -166,6 +166,7 @@ def deploy_binary(binary_name, qtc_binary_path, qt_install):
 def deploy_plugins(qtc_binary_path, qt_install):
     plugins = ['assetimporters', 'accessible', 'codecs', 'designer', 'iconengines', 'imageformats', 'platformthemes',
                'platforminputcontexts', 'platforms', 'printsupport', 'qmltooling', 'sqldrivers', 'styles',
+               'multimedia',
                'xcbglintegrations',
                'wayland-decoration-client',
                'wayland-graphics-integration-client',
