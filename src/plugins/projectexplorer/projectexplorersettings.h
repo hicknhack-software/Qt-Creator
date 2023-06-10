@@ -35,6 +35,10 @@ public:
                 && p1.closeSourceFilesWithProject == p2.closeSourceFilesWithProject
                 && p1.clearIssuesOnRebuild == p2.clearIssuesOnRebuild
                 && p1.abortBuildAllOnError == p2.abortBuildAllOnError
+                && p1.lowBuildPriority == p2.lowBuildPriority
+                && p1.longBuildThreshold == p2.longBuildThreshold
+                && p1.longBuildSuccessMediaPath == p2.longBuildSuccessMediaPath
+                && p1.longBuildFailedMediaPath == p2.longBuildFailedMediaPath
                 && p1.appEnvChanges == p2.appEnvChanges
                 && p1.lowBuildPriority == p2.lowBuildPriority;
     }
@@ -55,6 +59,12 @@ public:
                                           : StopBeforeBuild::None;
     TerminalMode terminalMode = TerminalMode::Off;
     Utils::EnvironmentItems appEnvChanges;
+
+    int longBuildThreshold = 30;
+    QString longBuildSuccessMediaPath = {};
+    QString longBuildFailedMediaPath = {};
+
+    static void playAlertMedia(QString sourcePath);
 
     // Add a UUid which is used to identify the development environment.
     // This is used to warn the user when he is trying to open a .user file that was created

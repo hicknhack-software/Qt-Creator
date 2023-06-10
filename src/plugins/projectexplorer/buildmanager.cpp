@@ -594,6 +594,20 @@ bool BuildManager::tasksAvailable()
     return count > 0;
 }
 
+static void handleLongBuild(bool success)
+{
+    if (std::chrono::milliseconds{d->m_elapsed.elapsed()} <= std::chrono::seconds{
+            ProjectExplorerPlugin::projectExplorerSettings().longBuildThreshold}) {
+        return;
+    }
+    auto media = success
+                     ? ProjectExplorerPlugin::projectExplorerSettings().longBuildSuccessMediaPath
+                     : ProjectExplorerPlugin::projectExplorerSettings().longBuildFailedMediaPath;
+    if (media.isEmpty())
+        return;
+    ProjectExplorerSettings::playAlertMedia(media);
+}
+
 void BuildManager::startBuildQueue()
 {
     if (compileOutputSettings().popUp())
@@ -705,6 +719,9 @@ void BuildManager::startBuildQueue()
             d->m_buildQueue = d->m_pendingQueue;
             d->m_pendingQueue.clear();
             startBuildQueue();
+        }
+        else {
+            handleLongBuild(success);
         }
     };
     connect(d->m_taskTree.get(), &TaskTree::done, instance(), onDone);

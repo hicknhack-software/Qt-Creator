@@ -280,6 +280,10 @@ const char ABORT_BUILD_ALL_ON_ERROR_SETTINGS_KEY[]
 const char LOW_BUILD_PRIORITY_SETTINGS_KEY[] = "ProjectExplorer/Settings/LowBuildPriority";
 const char APP_ENV_CHANGES_SETTINGS_KEY[] = "ProjectExplorer/Settings/AppEnvChanges";
 
+const char LONG_BUILD_THRESHOLD_SETTINGS_KEY[] = "ProjectExplorer/Settings/LongBuildThreshold";
+const char LONG_BUILD_SUCCESS_MEDIA_SETTINGS_KEY[] = "ProjectExplorer/Settings/LongBuildSuccessMedia";
+const char LONG_BUILD_FAILED_MEDIA_SETTINGS_KEY[] = "ProjectExplorer/Settings/LongBuildFailedMedia";
+
 const char CUSTOM_PARSER_COUNT_KEY[] = "ProjectExplorer/Settings/CustomParserCount";
 const char CUSTOM_PARSER_PREFIX_KEY[] = "ProjectExplorer/Settings/CustomParser";
 
@@ -1692,6 +1696,18 @@ bool ProjectExplorerPlugin::initialize(const QStringList &arguments, QString *er
     dd->m_projectExplorerSettings.appEnvChanges = EnvironmentItem::fromStringList(
         s->value(Constants::APP_ENV_CHANGES_SETTINGS_KEY).toStringList());
 
+    dd->m_projectExplorerSettings.longBuildThreshold
+        = s->value(Constants::LONG_BUILD_THRESHOLD_SETTINGS_KEY, defaultSettings.longBuildThreshold)
+              .toInt();
+    dd->m_projectExplorerSettings.longBuildSuccessMediaPath
+        = s->value(Constants::LONG_BUILD_SUCCESS_MEDIA_SETTINGS_KEY,
+                   defaultSettings.longBuildSuccessMediaPath)
+              .toString();
+    dd->m_projectExplorerSettings.longBuildFailedMediaPath
+        = s->value(Constants::LONG_BUILD_FAILED_MEDIA_SETTINGS_KEY,
+                   defaultSettings.longBuildFailedMediaPath)
+              .toString();
+
     const int customParserCount = s->value(Constants::CUSTOM_PARSER_COUNT_KEY).toInt();
     for (int i = 0; i < customParserCount; ++i) {
         CustomParserSettings settings;
@@ -2253,6 +2269,16 @@ void ProjectExplorerPluginPrivate::savePersistentSettings()
                            int(defaultSettings.stopBeforeBuild));
     s->setValueWithDefault(Constants::APP_ENV_CHANGES_SETTINGS_KEY,
                            EnvironmentItem::toStringList(dd->m_projectExplorerSettings.appEnvChanges));
+
+    s->setValueWithDefault(Constants::LONG_BUILD_THRESHOLD_SETTINGS_KEY,
+                           int(dd->m_projectExplorerSettings.longBuildThreshold),
+                           int(defaultSettings.longBuildThreshold));
+    s->setValueWithDefault(Constants::LONG_BUILD_SUCCESS_MEDIA_SETTINGS_KEY,
+                           dd->m_projectExplorerSettings.longBuildSuccessMediaPath,
+                           defaultSettings.longBuildSuccessMediaPath);
+    s->setValueWithDefault(Constants::LONG_BUILD_FAILED_MEDIA_SETTINGS_KEY,
+                           dd->m_projectExplorerSettings.longBuildFailedMediaPath,
+                           defaultSettings.longBuildFailedMediaPath);
 
     buildPropertiesSettings().writeSettings(); // FIXME: Should not be needed.
 
