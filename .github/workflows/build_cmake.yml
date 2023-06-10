@@ -178,7 +178,7 @@ jobs:
             COMMAND
               sudo apt install chrpath
                                libgl1-mesa-dev libvulkan-dev libxcb-xinput-dev libxcb-xinerama0-dev libxkbcommon-dev libxkbcommon-x11-dev
-                               libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xkb1 libxcb-randr0 libxcb-icccm4 libsecret-1-dev
+                               libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xkb1 libxcb-randr0 libxcb-icccm4 libsecret-1-dev libpulse0
                                libxcb-cursor0 xvfb
             RESULT_VARIABLE result
           )
@@ -339,7 +339,7 @@ jobs:
             execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf "$ENV{GITHUB_WORKSPACE}/${archive}" WORKING_DIRECTORY "${qt_dir}/${subdir}")
           endfunction()
 
-          foreach(package qtbase qtdeclarative qttasktree qttools qtsvg qttranslations qtimageformats qtserialport qtquicktimeline qtquick3d qtshadertools)
+          foreach(package qtbase qtdeclarative qttasktree qttools qtsvg qttranslations qtimageformats qtserialport qtquicktimeline qtquick3d qt5compat qtshadertools qtmultimedia)
             downloadAndExtract(${package} "")
           endforeach()
 
