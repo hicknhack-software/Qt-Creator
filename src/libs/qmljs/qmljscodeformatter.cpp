@@ -1080,20 +1080,15 @@ void QtStyleCodeFormatter::onEnter(int newState, int *indentDepth, int *savedInd
     case binding_assignment:
     case objectliteral_assignment:
         if (lastToken)
-            *indentDepth = *savedIndentDepth + 4;
-        else
-            *indentDepth = column(tokenAt(tokenIndex() + 1).begin());
+            *indentDepth = *savedIndentDepth + m_indentSize;
         break;
 
     case expression_or_objectdefinition:
-        *indentDepth = tokenPosition;
         break;
 
     case expression_or_label:
-        if (*indentDepth == tokenPosition)
-            *indentDepth += 2*m_indentSize;
-        else
-            *indentDepth = tokenPosition;
+        if (firstToken)
+            *indentDepth = (*savedIndentDepth = tokenPosition) + m_indentSize;
         break;
 
     case expression:
@@ -1103,13 +1098,12 @@ void QtStyleCodeFormatter::onEnter(int newState, int *indentDepth, int *savedInd
             if (parentState.type != expression_or_objectdefinition
                     && parentState.type != expression_or_label
                     && parentState.type != binding_assignment) {
-                *indentDepth += 2*m_indentSize;
+                *indentDepth = *savedIndentDepth + m_indentSize;
             }
         }
         // expression_or_objectdefinition and expression_or_label have already consumed the first token
         else if (parentState.type != expression_or_objectdefinition
                  && parentState.type != expression_or_label) {
-            *indentDepth = tokenPosition;
         }
         break;
 
@@ -1125,17 +1119,7 @@ void QtStyleCodeFormatter::onEnter(int newState, int *indentDepth, int *savedInd
         break;
 
     case bracket_open:
-        if (parentState.type == expression && state(1).type == binding_assignment) {
-            *savedIndentDepth = state(2).savedIndentDepth;
-            *indentDepth = *savedIndentDepth + m_indentSize;
-        } else if (parentState.type == objectliteral_assignment) {
-            *savedIndentDepth = parentState.savedIndentDepth;
-            *indentDepth = *savedIndentDepth + m_indentSize;
-        } else if (!lastToken) {
-            *indentDepth = tokenPosition + 1;
-        } else {
-            *indentDepth = *savedIndentDepth + m_indentSize;
-        }
+        *indentDepth = *savedIndentDepth + m_indentSize;
         break;
 
     case function_start:
@@ -1147,18 +1131,21 @@ void QtStyleCodeFormatter::onEnter(int newState, int *indentDepth, int *savedInd
     case statement_with_condition_paren_open:
     case signal_arglist_open:
     case function_arglist_open:
+        *indentDepth = *savedIndentDepth + m_indentSize;
+        break;
     case paren_open:
-        if (!lastToken)
-            *indentDepth = tokenPosition + 1;
-        else
-            *indentDepth += m_indentSize;
+        *savedIndentDepth = column(tokenAt(0).begin());
+        *indentDepth = *savedIndentDepth + m_indentSize;
+        break;
+
+    case expression_continuation:
+        *indentDepth = *savedIndentDepth + m_indentSize;
         break;
 
     case ternary_op:
-        if (!lastToken)
-            *indentDepth = tokenPosition + tk.length + 1;
-        else
-            *indentDepth += m_indentSize;
+        if (!firstToken) {
+        *indentDepth = *savedIndentDepth + m_indentSize;
+        }
         break;
 
     case jsblock_open:
@@ -1170,33 +1157,16 @@ void QtStyleCodeFormatter::onEnter(int newState, int *indentDepth, int *savedInd
         Q_FALLTHROUGH();
     case substatement_open:
         // special case for "foo: {" and "property int foo: {"
-        if (parentState.type == binding_assignment)
-            *savedIndentDepth = state(1).savedIndentDepth;
         *indentDepth = *savedIndentDepth + m_indentSize;
         break;
 
     case substatement:
-        *indentDepth += m_indentSize;
+        *indentDepth = *savedIndentDepth + m_indentSize;
         break;
 
     case objectliteral_open:
-        if (parentState.type == expression
-                || parentState.type == objectliteral_assignment) {
-            // undo the continuation indent of the expression
-            if (state(1).type == expression_or_label || state(1).type == binding_assignment)
-                *indentDepth = state(1).savedIndentDepth;
-            else
-                *indentDepth = parentState.savedIndentDepth;
-            *savedIndentDepth = *indentDepth;
-        }
-        else if (parentState.type == paren_open && state(1).type == expression) {
-            if (state(2).type == binding_assignment)
-                *savedIndentDepth = state(2).savedIndentDepth;
-            else
-                *savedIndentDepth = state(1).savedIndentDepth;
-            *indentDepth = *savedIndentDepth;
-        }
-        *indentDepth += m_indentSize;
+        *savedIndentDepth = column(tokenAt(0).begin());
+        *indentDepth = *savedIndentDepth + m_indentSize;
         break;
 
     case statement_with_condition:
@@ -1206,12 +1176,8 @@ void QtStyleCodeFormatter::onEnter(int newState, int *indentDepth, int *savedInd
     case if_statement:
     case do_statement:
     case switch_statement:
-        if (firstToken)
-            *savedIndentDepth = tokenPosition;
-        if (parentState.type == binding_assignment)
-            *savedIndentDepth = state(1).savedIndentDepth;
+        *savedIndentDepth = *indentDepth = column(tokenAt(0).begin());
         // ### continuation
-        *indentDepth = *savedIndentDepth; // + 2*m_indentSize;
         // special case for 'else if'
         if (!firstToken
                 && newState == if_statement
@@ -1234,10 +1200,7 @@ void QtStyleCodeFormatter::onEnter(int newState, int *indentDepth, int *savedInd
 
     case condition_open:
         // fixed extra indent when continuing 'if (', but not for 'else if ('
-        if (tokenPosition <= *indentDepth + m_indentSize)
-            *indentDepth += 2*m_indentSize;
-        else
-            *indentDepth = tokenPosition + 1;
+        *indentDepth = *savedIndentDepth + m_indentSize;
         break;
 
     case case_start:
@@ -1346,11 +1309,6 @@ void QtStyleCodeFormatter::adjustIndent(const QList<Token> &tokens, int startLex
     case Finally:
         if (topState.type == maybe_catch_or_finally)
             *indentDepth = state(1).savedIndentDepth;
-        break;
-
-    case Colon:
-        if (topState.type == ternary_op)
-            *indentDepth -= 2;
         break;
 
     case Question:
