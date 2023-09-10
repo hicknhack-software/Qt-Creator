@@ -259,7 +259,7 @@ QString AutoCompleter::insertMatchingBrace(const QTextCursor &cursor,
         return QString(QLatin1Char(']'));
 
     case '{':
-        return QString(); // nothing to do.
+        return QString(QLatin1Char('}'));
 
     case ')':
     case ']':
