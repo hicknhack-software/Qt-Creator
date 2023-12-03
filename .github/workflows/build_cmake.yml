@@ -57,8 +57,8 @@ jobs:
       id: git
       shell: cmake -P {0}
       run: |
-        execute_process(COMMAND git submodule set-url -- perfparser https://code.qt.io/qt-creator/perfparser.git)
-        execute_process(COMMAND git submodule set-url -- qbs https://github.com/arBmind/qbs.git)
+        execute_process(COMMAND git submodule set-url -- src/tools/perfparser https://code.qt.io/qt-creator/perfparser.git)
+        execute_process(COMMAND git submodule set-url -- src/shared/qbs https://github.com/hicknhack-software/Qt-Qbs.git)
         execute_process(COMMAND git submodule update --init --recursive)
         file(MAKE_DIRECTORY release)
         if (${{github.ref}} MATCHES "tags/v([0-9.]+)")

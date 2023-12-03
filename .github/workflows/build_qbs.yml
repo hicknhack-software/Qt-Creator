@@ -77,8 +77,8 @@ jobs:
 
       - working-directory: Repo
         run: |
-          git submodule set-url -- perfparser https://code.qt.io/qt-creator/perfparser.git
-          git submodule set-url -- qbs https://github.com/arBmind/qbs.git
+          git submodule set-url -- src/tools/perfparser https://code.qt.io/qt-creator/perfparser.git
+          git submodule set-url -- src/shared/qbs https://github.com/hicknhack-software/Qt-Qbs.git
           git submodule update --init --recursive
 
       - name: Build
