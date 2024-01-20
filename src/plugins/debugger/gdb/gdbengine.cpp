@@ -4169,7 +4169,11 @@ void GdbEngine::resetInferior()
 void GdbEngine::handleAdapterStartFailed(const QString &msg, Id settingsIdHint)
 {
     showMessage("ADAPTER START FAILED");
+#ifdef WITH_TESTS
     if (!msg.isEmpty() && !Internal::isTestRun()) {
+#else
+    if (!msg.isEmpty()) {
+#endif
         const QString title = Tr::tr("Adapter Start Failed");
         ICore::showWarningWithOptions(title, msg, QString(), settingsIdHint);
     }
