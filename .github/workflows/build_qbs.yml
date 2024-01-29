@@ -59,7 +59,6 @@ jobs:
           cache: true
           cache-key-prefix: CacheQtx64
           extra: '--external 7z'
-          aqtversion: '==3.0.*'
 
       - name: Copy OpenSSL DLLs
         run: |
@@ -106,7 +105,6 @@ jobs:
           cache: true
           cache-key-prefix: CacheQtx86
           extra: '--external 7z'
-          aqtversion: '==3.0.*'
 
       - name: x86 Setup Qbs
         run: |
