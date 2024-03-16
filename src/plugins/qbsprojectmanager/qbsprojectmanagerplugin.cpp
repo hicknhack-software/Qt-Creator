@@ -73,7 +73,7 @@ static QbsProject *currentEditorProject()
 static void windowsStartProcessDetached(FilePath appPath, QStringList args) {
     // note: QProcess cannot launch devenv.exe correctly. Default escape codes don't work here
 #if defined(Q_OS_WIN)
-    auto startupInfo = STARTUPINFOW{.cb = sizeof(STARTUPINFOW)};
+    auto startupInfo = STARTUPINFOW{sizeof(STARTUPINFOW)};
     auto processInfo = PROCESS_INFORMATION{};
 
     auto cmdLine = QString{appPath.fileName() + ' ' + args.join(" ")};
