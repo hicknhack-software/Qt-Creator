@@ -91,7 +91,7 @@ function version(llvmConfig)
 
 function libraries(targetOS)
 {
-    return targetOS.contains("windows") ? ["libclang.lib", "advapi32.lib", "shell32.lib"] : ["clang"]
+    return targetOS.contains("windows") ? ["libclang.lib", "advapi32.lib", "shell32.lib", "ws2_32.lib"] : ["clang"]
 }
 
 function extraLibraries(llvmConfig, targetOS)
