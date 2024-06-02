@@ -226,7 +226,7 @@ void OutlineModel::rebuild()
 bool OutlineModel::isGenerated(const QModelIndex &sourceIndex) const
 {
     CPlusPlus::Symbol *symbol = symbolFromIndex(sourceIndex);
-    return symbol && symbol->isGenerated();
+    return symbol && symbol->isGenerated() && !m_overview.prettyName(symbol->name()).endsWith(u"_Test"_qs);
 }
 
 Utils::Link OutlineModel::linkFromIndex(const QModelIndex &sourceIndex) const
@@ -265,7 +265,9 @@ void OutlineModel::buildTree(SymbolItem *root, bool isRoot)
         for (int row = 0; row < rows; ++row) {
             Symbol *symbol = globalSymbolAt(row);
             auto currentItem = new SymbolItem(symbol);
-            buildTree(currentItem, false);
+            if (!symbol->isGenerated()) {
+                buildTree(currentItem, false);
+            }
             root->appendChild(currentItem);
         }
         root->prependChild(new SymbolItem); // account for no symbol item
