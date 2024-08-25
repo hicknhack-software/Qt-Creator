@@ -105,7 +105,7 @@ static FormatOutput format(const FormatInput &input)
         process.setWriteData(input.sourceData.toUtf8());
         process.setUtf8StdOutCodec();
         process.start();
-        if (!process.waitForFinished(5s)) {
+        if (!process.waitForFinished(50s)) {
             return Utils::make_unexpected(Tr::tr("Cannot call %1 or some other error occurred. "
                                                  "Timeout reached while formatting file %2.")
                     .arg(executable.toUserOutput(), input.filePath.displayName()));
