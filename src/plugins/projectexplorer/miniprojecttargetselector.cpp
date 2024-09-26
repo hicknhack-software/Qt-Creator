@@ -1091,7 +1091,20 @@ void MiniProjectTargetSelector::addedRunConfiguration(RunConfiguration *rc, bool
     if (!m_project || rc->target() != m_project->activeTarget())
         return;
 
-    m_listWidgets[RUN]->addProjectConfiguration(rc);
+    auto addRemoveRc = [this, rc]() {
+        auto* runList = m_listWidgets[RUN];
+        auto* const item = runList->theModel()->itemForObject(rc);
+        auto hide = rc->buildTargetInfo().hideRunSelector;
+        if (item != nullptr && hide) {
+            runList->removeProjectConfiguration(rc); // do not show
+        }
+        else if (item == nullptr && !hide) {
+            runList->addProjectConfiguration(rc);
+        }
+    };
+
+    QObject::connect(rc, &RunConfiguration::enabledChanged, this, addRemoveRc);
+    addRemoveRc();
     if (update)
         updateRunListVisible();
 }
@@ -1102,6 +1115,7 @@ void MiniProjectTargetSelector::removedRunConfiguration(RunConfiguration *rc, bo
         return;
 
     m_listWidgets[RUN]->removeProjectConfiguration(rc);
+    QObject::disconnect(rc, &RunConfiguration::enabledChanged, this, nullptr);
     if (update)
         updateRunListVisible();
 }
@@ -1168,8 +1182,12 @@ void MiniProjectTargetSelector::updateRunListVisible()
     int maxCount = 0;
     for (Project *p : ProjectManager::projects()) {
         const QList<Target *> targets = p->targets();
-        for (Target *t : targets)
-            maxCount = qMax(t->runConfigurations().size(), maxCount);
+        for (Target *t : targets) {
+            auto targetCount = Utils::count(t->runConfigurations(), [](RunConfiguration* rc) {
+                               return !rc->buildTargetInfo().hideRunSelector;
+            });
+            maxCount = qMax(targetCount, maxCount);
+        }
     }
 
     bool visible = maxCount > 1;
@@ -1220,6 +1238,9 @@ void MiniProjectTargetSelector::activeTargetChanged(Target *target)
                    this, &MiniProjectTargetSelector::activeDeployConfigurationChanged);
         disconnect(m_target, &Target::activeRunConfigurationChanged,
                    this, &MiniProjectTargetSelector::activeRunConfigurationChanged);
+        for (RunConfiguration *rc : m_target->runConfigurations()) {
+            disconnect(rc, &RunConfiguration::enabledChanged, this, nullptr);
+        }
     }
 
     m_target = target;
@@ -1251,8 +1272,21 @@ void MiniProjectTargetSelector::activeTargetChanged(Target *target)
         m_listWidgets[DEPLOY]->setProjectConfigurations(dl, target->activeDeployConfiguration());
 
         QObjectList rl;
-        for (RunConfiguration *rc : target->runConfigurations())
-            rl.append(rc);
+        for (RunConfiguration *rc : target->runConfigurations()) {
+            auto addRemoveRc = [this, rc]() {
+                auto* runList = m_listWidgets[RUN];
+                auto* const item = runList->theModel()->itemForObject(rc);
+                auto hide = rc->buildTargetInfo().hideRunSelector;
+                if (item != nullptr && hide) {
+                    runList->removeProjectConfiguration(rc); // do not show
+                }
+                else if (item == nullptr && !hide) {
+                    runList->addProjectConfiguration(rc);
+                }
+            };
+            QObject::connect(rc, &RunConfiguration::enabledChanged, this, addRemoveRc);
+            if (!rc->buildTargetInfo().hideRunSelector) rl.append(rc);
+        }
         m_listWidgets[RUN]->setProjectConfigurations(rl, target->activeRunConfiguration());
 
         m_buildConfiguration = m_target->activeBuildConfiguration();

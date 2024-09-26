@@ -744,6 +744,8 @@ static FilePath qmllsForFile(const FilePath &file, QmlJS::ModelManagerInterface 
 {
     QmllsSettingsManager *settingsManager = QmllsSettingsManager::instance();
     ProjectExplorer::Project *project = ProjectExplorer::ProjectManager::projectForFile(file);
+    if (!project)
+        return {};
     const bool enabled = settingsManager->useQmlls(project);
     if (!enabled)
         return {};
