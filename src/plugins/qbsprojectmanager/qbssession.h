@@ -110,6 +110,8 @@ public:
 
     int apiLevel() const;
 
+    void shutdown();
+
     void sendRequest(const QJsonObject &request);
     void cancelCurrentJob();
     void requestFilesGeneratedFrom(const QHash<QString, QStringList> &sourceFilesPerProduct);
@@ -174,7 +176,6 @@ private:
     QString protocolErrorMsg() const;
     QString qbsExecutableUserString() const;
     void setError(const QString &error);
-    void setInactive();
     FileChangeResult updateFileList(
         const char *action,
         const std::variant<QStringList, QList<std::pair<QString, QString>>> &files,
