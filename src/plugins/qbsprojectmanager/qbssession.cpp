@@ -150,7 +150,6 @@ public:
 QbsSession::QbsSession(QbsBuildSystem *buildSystem, const IDeviceConstPtr &device)
     : QObject(buildSystem), d(new Private(device))
 {
-    initialize();
 }
 
 void QbsSession::initialize()
@@ -261,6 +260,31 @@ QJsonObject QbsSession::projectData() const
 int QbsSession::apiLevel() const
 {
     return d->apiLevel;
+}
+
+void QbsSession::shutdown()
+{
+    if (d->state == State::Inactive)
+        return;
+    d->state = State::Inactive;
+    d->currentRequest = QJsonObject();
+    d->queuedFileUpdateRequests.clear();
+    d->fileUpdatePossible = true;
+    d->reply = QJsonObject();
+    d->eventLoop.exit(1);
+    if (d->packetReader) {
+        d->packetReader->disconnect(this);
+        d->packetReader->deleteLater();
+        d->packetReader = nullptr;
+    }
+    if (d->qbsProcess) {
+        d->qbsProcess->disconnect(this);
+        if (d->qbsProcess->state() == ProcessState::Running)
+            sendQuitPacket();
+        d->qbsProcess->deleteLater();
+        d->qbsProcess = nullptr;
+    }
+    d->languageClient = nullptr; // Owned by LanguageClientManager
 }
 
 void QbsSession::sendRequest(const QJsonObject &request)
@@ -592,24 +616,8 @@ void QbsSession::setProjectDataFromReply(const QJsonObject &packet, bool withBui
 
 void QbsSession::setError(const QString &error)
 {
-    setInactive();
+    shutdown();
     emit errorOccurred(error);
-}
-
-void QbsSession::setInactive()
-{
-    if (d->state == State::Inactive)
-        return;
-    d->state = State::Inactive;
-    d->qbsProcess->disconnect(this);
-    d->currentRequest = QJsonObject();
-    d->packetReader->disconnect(this);
-    d->packetReader->deleteLater();
-    d->packetReader = nullptr;
-    if (d->qbsProcess->state() == ProcessState::Running)
-        sendQuitPacket();
-    d->qbsProcess = nullptr;
-    d->languageClient = nullptr; // Owned by LanguageClientManager
 }
 
 FileChangeResult QbsSession::updateFileList(
