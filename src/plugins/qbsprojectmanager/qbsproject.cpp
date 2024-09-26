@@ -758,8 +758,16 @@ void QbsBuildSystem::triggerParsing()
 
 void QbsBuildSystem::delayParsing()
 {
-    if (buildConfiguration()->isActive())
+    if (buildConfiguration()->isActive()) {
         requestDelayedParse();
+    } else {
+        cancelDelayedParseRequest();
+        m_parseRequest.reset();
+        delete m_qbsProjectParser;
+        m_qbsProjectParser = nullptr;
+        m_guard = {};
+        session()->shutdown();
+    }
 }
 
 ExtraCompiler *QbsBuildSystem::findExtraCompiler(const ExtraCompilerFilter &filter) const
@@ -1289,11 +1297,12 @@ void QbsBuildSystem::updateApplicationTargets()
             return;
 
         // TODO: Perhaps put this into a central location instead. Same for module properties etc
-        const auto getProp = [productData](const QString &propName) {
-            return productData.value("properties").toObject().value(propName);
-        };
-        const bool isQtcRunnable = getProp("qtcRunnable").toBool();
-        const bool usesTerminal = getProp("consoleApplication").toBool();
+        const auto properties = productData.value("properties").toObject();
+        if (properties.value("qtcHideRunnable").toBool()) {
+            return; // ignore target
+        }
+        const bool isQtcRunnable = properties.value("qtcRunnable").toBool();
+        const bool usesTerminal = properties.value("consoleApplication").toBool();
         const QString projectFile = productData.value("location").toObject()
                 .value("file-path").toString();
         QString targetFile;
@@ -1310,6 +1319,7 @@ void QbsBuildSystem::updateApplicationTargets()
         bti.projectFilePath = projectFilePath().withNewPath(projectFile);
         bti.isQtcRunnable = isQtcRunnable; // Fixed up below.
         bti.usesTerminal = usesTerminal;
+        bti.hideRunSelector = properties.value("qtcHideRunSelector").toBool();
         bti.displayName = productData.value("full-display-name").toString();
         bti.runEnvModifier = [targetFile, productData, this](Utils::Environment &env, bool usingLibraryPaths) {
             const QString productName = productData.value("full-display-name").toString();
