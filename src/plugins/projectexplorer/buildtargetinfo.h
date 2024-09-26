@@ -28,6 +28,7 @@ public:
     Utils::FilePath workingDirectory;
     bool isQtcRunnable = true;
     bool usesTerminal = false;
+    bool hideRunSelector = false;
 
     QVariant additionalData;
 
@@ -45,6 +46,7 @@ public:
             && ti1.isQtcRunnable == ti2.isQtcRunnable
             && ti1.usesTerminal == ti2.usesTerminal
             && ti1.runEnvModifierHash == ti2.runEnvModifierHash
+            && ti1.hideRunSelector == ti2.hideRunSelector
             && ti1.additionalData == ti2.additionalData;
     }
 
