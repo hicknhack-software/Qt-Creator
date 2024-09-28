@@ -16,6 +16,7 @@ QtcPlugin {
     Depends { name: "Core" }
 
     cpp.enableExceptions: true
+    cpp.defines: base.concat([name.toUpperCase() + "SUPPORT_LIBRARY"])
 
     files: [
         "autocompleter.cpp",

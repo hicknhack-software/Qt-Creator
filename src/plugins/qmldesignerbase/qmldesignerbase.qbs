@@ -10,6 +10,7 @@ QtcPlugin {
     Depends { name: "Qt.gui-private" }
 
     cpp.includePaths: ["settings", "studio", "utils"]
+    cpp.defines: base.concat(["QMLDESIGNERSETTINGS_LIBRARY"])
 
     files: [
         "qmldesignerbase_global.h",
