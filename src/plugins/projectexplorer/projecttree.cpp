@@ -269,6 +269,12 @@ void ProjectTree::expandCurrentNodeRecursively()
         w->expandCurrentNodeRecursively();
 }
 
+void ProjectTree::collapseCurrentNodeRecursively()
+{
+    if (const auto w = currentWidget())
+        w->collapseCurrentNodeRecursively();
+}
+
 void ProjectTree::collapseAll()
 {
     if (const auto w = currentWidget())
