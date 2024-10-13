@@ -77,6 +77,7 @@ public:
     static const QList<Node *> siblingsWithSameBaseName(const Node *fileNode);
 
     void expandCurrentNodeRecursively();
+    void collapseCurrentNodeRecursively();
 
     void collapseAll();
     void expandAll();
