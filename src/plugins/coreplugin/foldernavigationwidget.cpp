@@ -758,6 +758,7 @@ void FolderNavigationWidget::contextMenuEvent(QContextMenuEvent *ev)
     }
 
     menu.addSeparator();
+    QAction *const collapseNodeAction = menu.addAction(Tr::tr("Collapse"));
     QAction *const collapseAllAction = menu.addAction(Tr::tr("Collapse All"));
 
     QAction *action = menu.exec(ev->globalPos());
@@ -780,6 +781,14 @@ void FolderNavigationWidget::contextMenuEvent(QContextMenuEvent *ev)
             if (!result)
                 QMessageBox::critical(ICore::dialogParent(), Tr::tr("Error"), result.error());
         }
+    } else if (action == collapseNodeAction) {
+        auto collapseRecursive = [this](auto&& recurse, QModelIndex index) -> void {
+            auto const rc = index.model()->rowCount(index);
+            for (auto i = 0; i < rc; ++i)
+                recurse(recurse, index.model()->index(i, index.column(), index));
+            if (rc > 0) m_listView->collapse(index);
+        };
+        collapseRecursive(collapseRecursive, m_listView->currentIndex());
     } else if (action == collapseAllAction) {
         m_listView->collapseAll();
     }
