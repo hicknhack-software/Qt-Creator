@@ -423,9 +423,23 @@ void ProjectTreeWidget::expandNodeRecursively(const QModelIndex &index)
         m_view->expand(index);
 }
 
+void ProjectTreeWidget::collapseNodeRecursively(const QModelIndex &index)
+{
+    const int rc = index.model()->rowCount(index);
+    for (int i = 0; i < rc; ++i)
+        collapseNodeRecursively(index.model()->index(i, index.column(), index));
+    if (rc > 0)
+        m_view->collapse(index);
+}
+
 void ProjectTreeWidget::expandCurrentNodeRecursively()
 {
     expandNodeRecursively(m_view->currentIndex());
+}
+
+void ProjectTreeWidget::collapseCurrentNodeRecursively()
+{
+    collapseNodeRecursively(m_view->currentIndex());
 }
 
 void ProjectTreeWidget::collapseAll()
