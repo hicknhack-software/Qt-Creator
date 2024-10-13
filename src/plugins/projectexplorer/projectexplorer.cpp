@@ -1789,6 +1789,11 @@ Result<> ProjectExplorerPlugin::initialize(const QStringList &arguments)
     Command * const expandNodeCmd = ActionManager::registerAction(
                 dd->m_projectTreeExpandNodeAction, "ProjectExplorer.ExpandNode",
                 projectTreeContext);
+    auto* projectTreeCollapseNodeAction = new QAction(Tr::tr("Collapse"), this);
+    QObject::connect(projectTreeCollapseNodeAction, &QAction::triggered, ProjectTree::instance(),
+            &ProjectTree::collapseCurrentNodeRecursively);
+    auto* const collapseNodeCmd = ActionManager::registerAction(projectTreeCollapseNodeAction,
+            "ProjectExplorer.CollapseNode", projectTreeContext);
     dd->m_projectTreeCollapseAllAction = new QAction(Tr::tr("Collapse All"), this);
     Command * const collapseCmd = ActionManager::registerAction(
                 dd->m_projectTreeCollapseAllAction, Constants::PROJECTTREE_COLLAPSE_ALL,
@@ -1801,6 +1806,7 @@ Result<> ProjectExplorerPlugin::initialize(const QStringList &arguments)
          mfolderContextMenu, mprojectContextMenu, msessionContextMenu}) {
         ac->addSeparator(treeGroup);
         ac->addAction(expandNodeCmd, treeGroup);
+        ac->addAction(collapseNodeCmd, treeGroup);
         ac->addAction(collapseCmd, treeGroup);
         ac->addAction(expandCmd, treeGroup);
     }
