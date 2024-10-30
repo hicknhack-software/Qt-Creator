@@ -30,7 +30,7 @@ namespace ProjectExplorer {
 
 const char HIDE_FILE_FILTER_DEFAULT[] = "Makefile*; *.o; *.lo; *.la; *.obj; *~; *.files;"
                                         " *.config; *.creator; *.user*; *.includes; *.autosave";
-const char SELECT_FILE_FILTER_DEFAULT[] = "*.c; *.cc; *.cpp; *.cp; *.cxx; *.c++; *.h; *.hh; *.hpp; *.hxx;";
+const char SELECT_FILE_FILTER_DEFAULT[] = "*.c; *.cc; *.cpp; *.cppm; *.cp; *.cxx; *.c++; *.h; *.hh; *.hpp; *.hxx;";
 
 using ResultType = std::shared_ptr<Tree>;
 
