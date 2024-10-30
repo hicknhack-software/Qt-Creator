@@ -95,6 +95,12 @@
         "        <glob pattern='*.qdocinc' weight='70'/>",
         "    </mime-type>",
 
+        "    <mime-type type='text/x-c++module'>",
+        "        <comment>C++ module source code</comment>",
+        "        <sub-class-of type='text/x-c++src'/>",
+        "        <glob pattern='*.cppm' weight='70'/>",
+        "    </mime-type>",
+
         "    <mime-type type='text/x-moc'>",
         "        <comment>Qt MOC file</comment>",
         "        <sub-class-of type='text/x-c++src'/>",
