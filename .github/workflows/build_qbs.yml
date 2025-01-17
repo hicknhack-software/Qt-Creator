@@ -13,8 +13,8 @@ jobs:
           - name: "Windows 2022 MSVC"
             artifact: "Windows-MSVC"
             os: windows-2022
-            qt_version: "6.7.3"
-            qt_arch: "win64_msvc2019_64"
+            qt_version: "6.8.1"
+            qt_arch: "win64_msvc2022_64"
             qt_modules: qtimageformats qtserialport qtquicktimeline qtquick3d qt5compat qtshadertools qtmultimedia
             qt_tools: tools_opensslv3_x64,qt.tools.opensslv3.win_x64
             qt_version_x86: "5.15.2"
@@ -56,8 +56,8 @@ jobs:
           arch: "${{ matrix.config.qt_arch }}"
           modules: ${{ matrix.config.qt_modules }}
           tools: ${{ matrix.config.qt_tools }}
-          cache: true
-          cache-key-prefix: CacheQtx64
+          # cache: true
+          # cache-key-prefix: CacheQtx64
           extra: '--external 7z'
 
       - name: Copy OpenSSL DLLs
