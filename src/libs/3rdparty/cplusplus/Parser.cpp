@@ -1767,6 +1767,13 @@ bool Parser::parseDeclSpecifierSeq(SpecifierListAST *&decl_specifier_seq,
     bool has_type_specifier = false;
     NameAST *named_type_specifier = nullptr;
     SpecifierListAST **decl_specifier_seq_ptr = &decl_specifier_seq;
+    if (LA() == T_THIS) {
+        // this is a placeholder-type-specifier
+        SimpleSpecifierAST *spec = new (_pool) SimpleSpecifierAST;
+        spec->specifier_token = consumeToken();
+        *decl_specifier_seq_ptr = new (_pool) SpecifierListAST(spec);
+        decl_specifier_seq_ptr = &(*decl_specifier_seq_ptr)->next;
+    }
     for (;;) {
         PlaceholderTypeSpecifierAST *placeholderSpec = nullptr;
         // A simple auto is also technically a placeholder-type-specifier, but for historical
