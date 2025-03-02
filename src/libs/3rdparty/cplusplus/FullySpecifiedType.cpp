@@ -50,6 +50,7 @@ FullySpecifiedType FullySpecifiedType::qualifiedType() const
     ty.setExtern(false);
     ty.setMutable(false);
     ty.setTypedef(false);
+    ty.setThis(false);
 
     ty.setInline(false);
     ty.setVirtual(false);
