@@ -73,6 +73,9 @@ public:
     bool isTypedef() const { return f._isTypedef; }
     void setTypedef(bool isTypedef) { f._isTypedef = isTypedef; }
 
+    bool isThis() const { return f._isThis; }
+    void setThis(bool isThis) { f._isThis = isThis; }
+
     bool isInline() const { return f._isInline; }
     void setInline(bool isInline) { f._isInline = isInline; }
 
@@ -135,6 +138,7 @@ private:
         unsigned _isExtern: 1;
         unsigned _isMutable: 1;
         unsigned _isTypedef: 1;
+        unsigned _isThis: 1;
 
         // function specifiers
         unsigned _isInline: 1;
