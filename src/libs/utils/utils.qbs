@@ -44,17 +44,19 @@ QtcLibrary {
     Depends { name: "Spinner" }
     Depends { name: "Tasking" }
     Depends { name: "ptyqt" }
-    Depends { name: "libarchive_static"; required: false} // in fact it's a hard dependency
+    Depends { name: "qtcLibarchive" }
 
-    Properties {
-        condition: libarchive_static.present
-        cpp.includePaths: libarchive_static.libarchiveIncludeDir
-        cpp.libraryPaths: libarchive_static.libarchiveLibDir
-        cpp.staticLibraries: libarchive_static.libarchiveStatic
-                             ? libarchive_static.libarchiveNames : []
-        cpp.dynamicLibraries: !libarchive_static.libarchiveStatic
-                              ? libarchive_static.libarchiveNames : []
-    }
+    // Depends { name: "libarchive_static"; required: false} // in fact it's a hard dependency
+
+    // Properties {
+    //     condition: libarchive_static.present
+    //     cpp.includePaths: libarchive_static.libarchiveIncludeDir
+    //     cpp.libraryPaths: libarchive_static.libarchiveLibDir
+    //     cpp.staticLibraries: libarchive_static.libarchiveStatic
+    //                          ? libarchive_static.libarchiveNames : []
+    //     cpp.dynamicLibraries: !libarchive_static.libarchiveStatic
+    //                           ? libarchive_static.libarchiveNames : []
+    // }
 
     files: [
         "action.cpp",
