@@ -14,6 +14,10 @@ QtcPlugin {
         submodules: ["network", "quick", "quickwidgets"]
     }
 
+    Qt.qml.importName: "QtCreator.PerfProfiler"
+    Qt.qml.importVersion: "1.0"
+    cpp.includePaths: ["."] // needed to allow registraction to compile
+
     files: [
         "perfconfigeventsmodel.cpp",
         "perfconfigeventsmodel.h",
@@ -57,14 +61,13 @@ QtcPlugin {
         "perfsettings.h",
         "perftracepointdialog.cpp",
         "perftracepointdialog.h",
-        "perfprofiler.qrc",
     ]
 
-    Qt.core.resourceFileBaseName: "PerfProfilerQml" // avoid conflicting qrc file
+    Depends { name: "qmldir" }
+    Qt.core.resourcePrefix: "/qt/qml/QtCreator/PerfProfiler"
     Group {
         name: "Qml Files"
-        Qt.core.resourcePrefix: "qt/qml/QtCreator/PerfProfiler/"
-        fileTags: "qt.core.resource_data"
+        fileTags: ["qt.qml.qml", "qt.core.resource_data"]
         files: [ "PerfProfilerFlameGraphView.qml" ]
     }
 
