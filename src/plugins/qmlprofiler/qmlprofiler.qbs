@@ -15,6 +15,10 @@ QtcPlugin {
     Depends { name: "QtSupport" }
     Depends { name: "TextEditor" }
 
+    Qt.qml.importName: "QtCreator.QmlProfiler"
+    Qt.qml.importVersion: "1.0"
+    cpp.includePaths: ["."] // needed to allow registraction to compile
+
     Group {
         name: "General"
         files: [
@@ -58,11 +62,26 @@ QtcPlugin {
         ]
     }
 
+    Depends { name: "qsb_compiler" }
+    Depends { name: "qmldir" }
+    Qt.core.resourcePrefix: "/qt/qml/QtCreator/QmlProfiler"
     Group {
         name: "Qml Files"
-        Qt.core.resourcePrefix: "qt/qml/QtCreator/QmlProfiler/"
-        fileTags: "qt.core.resource_data"
-        files: "qml/**"
+        fileTags: ["qt.qml.qml", "qt.core.resource_data"]
+        prefix: "qml/"
+        files: ["**/*.qml"]
+    }
+    Group {
+        name: "Images"
+        fileTags: ["qt.core.resource_data"]
+        prefix: "qml/"
+        files: ["**/*.png"]
+    }
+    Group {
+        name: "Shaders"
+        qsb_compiler.extraArgs: ["--batchable", "--qt6"]
+        prefix: "qml/"
+        files: ["**/*.vert", "**/*.frag"]
     }
 
     QtcTestFiles {
