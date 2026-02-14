@@ -90,6 +90,7 @@ QtcLibrary {
         "crashreporting.h",
         "crumblepath.cpp",
         "crumblepath.h",
+        "datafromprocess.cpp",
         "datafromprocess.h",
         "delegates.cpp",
         "delegates.h",
