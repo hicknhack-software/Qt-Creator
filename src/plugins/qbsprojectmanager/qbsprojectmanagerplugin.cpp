@@ -517,7 +517,7 @@ void QbsProjectManagerPlugin::generateVs2022Project()
     if (!dev)
         return;
 
-    auto commandLine = Utils::CommandLine{QbsSettings::qbsExecutableFilePath(dev)};
+    auto commandLine = Utils::CommandLine{QbsSettings::qbsExecutableFilePathForDevice(dev)};
     commandLine.addArg("generate");
     commandLine.addArgs({"-g", "visualstudio2022"});
     commandLine.addArgs(
