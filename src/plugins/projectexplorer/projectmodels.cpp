@@ -289,22 +289,19 @@ QVariant WrapperNode::data(int column, int role) const
     }
     case Qt::ForegroundRole: {
         using Core::VcsChangeType;
-        switch (ProjectVcsStatus::instance()->vcsStatusChanges(nodeForIndex(index))) {
+        switch (ProjectVcsStatus::instance()->vcsStatusChanges(m_node)) {
         case VcsChangeType::Unchanged: break;
         case VcsChangeType::FileChanged: {
             auto color = Utils::creatorTheme()->color(Utils::Theme::VcsBase_FileModified_TextColor);
-            return node->isEnabled() ? color
-                                     : color.lighter();
+            return m_node->isEnabled() ? color : color.lighter();
         }
         case VcsChangeType::FileUntracked: {
             auto color = Utils::creatorTheme()->color(Utils::Theme::VcsBase_FileUnmerged_TextColor);
-            return node->isEnabled() ? color
-                                     : color.lighter();
+            return m_node->isEnabled() ? color : color.lighter();
         }
         case VcsChangeType::FolderContainsChanges: {
             auto color = Utils::creatorTheme()->color(Utils::Theme::VcsBase_FolderModified_TextColor);
-            return node->isEnabled() ? color
-                                     : color.lighter();
+            return m_node->isEnabled() ? color : color.lighter();
         }
         }
         if (fileNode) {
