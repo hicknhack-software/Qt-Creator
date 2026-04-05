@@ -59,6 +59,7 @@ jobs:
           # cache: true
           # cache-key-prefix: CacheQtx64
           extra: '--external 7z'
+          aqtsource: 'git+https://github.com/miurahr/aqtinstall.git@073e34d7c2ab4ae6961ed7cca690b3abd5ba5a7e'
 
       - name: Copy OpenSSL DLLs
         run: |
