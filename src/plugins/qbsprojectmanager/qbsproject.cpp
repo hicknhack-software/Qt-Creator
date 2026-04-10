@@ -636,8 +636,16 @@ void QbsBuildSystem::triggerParsing()
 
 void QbsBuildSystem::delayParsing()
 {
-    if (buildConfiguration()->isActive())
+    if (buildConfiguration()->isActive()) {
         requestDelayedParse();
+    } else {
+        cancelDelayedParseRequest();
+        m_parseRequest.reset();
+        delete m_qbsProjectParser;
+        m_qbsProjectParser = nullptr;
+        m_guard = {};
+        session()->shutdown();
+    }
 }
 
 ExtraCompiler *QbsBuildSystem::findExtraCompiler(const ExtraCompilerFilter &filter) const
