@@ -4,6 +4,7 @@
 #include "miniprojecttargetselector.h"
 
 #include "buildconfiguration.h"
+#include "buildtargetinfo.h"
 #include "buildmanager.h"
 #include "deployconfiguration.h"
 #include "kit.h"
