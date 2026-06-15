@@ -707,7 +707,6 @@ jobs:
             --add-config=-DCMAKE_CXX_COMPILER_LAUNCHER=ccache
             --add-config=-DIDE_REVISION_URL=https://github.com/$ENV{GITHUB_REPOSITORY}/commits/$ENV{GITHUB_SHA}
             --zip-infix=-${{ matrix.config.artifact }}-${{ github.run_id }}
-            --with-cpack
           RESULT_VARIABLE result
           COMMAND_ECHO STDOUT
           OUTPUT_VARIABLE output
