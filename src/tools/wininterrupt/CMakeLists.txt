@@ -48,7 +48,7 @@ if (NOT QT_CREATOR_API_DEFINED)
     if(CMAKE_CXX_COMPILER MATCHES "Microsoft Visual Studio/2022/")
       set(generator "Visual Studio 17 2022")
     endif()
-    if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 19.50)
+    if(CMAKE_CXX_COMPILER MATCHES "Microsoft Visual Studio/18/")
       set(generator "Visual Studio 18 2026")
     endif()
 
