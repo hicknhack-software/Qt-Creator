@@ -28,3 +28,5 @@ add_qtc_library(quickjsng
     ATTRIBUTION_IDS
       quickjsng
 )
+
+set_property(TARGET quickjsng PROPERTY C_STANDARD 11)
