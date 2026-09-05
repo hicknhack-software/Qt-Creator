@@ -3,6 +3,8 @@ QtcLibrary {
     type: "staticlibrary"
 
     cpp.warningLevel: "none"
+    cpp.cLanguageVersion: qbs.toolchain.contains("msvc") ? "c11" : "gnu11"
+    cpp.defines: base.concat(qbs.targetOS.contains("windows") ? ["WIN32_LEAN_AND_MEAN"] : [])
 
     Group {
         name: "Sources"
