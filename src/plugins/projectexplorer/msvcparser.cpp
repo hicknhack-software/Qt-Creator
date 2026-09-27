@@ -295,6 +295,31 @@ class MsvcParserTest : public QObject
     Q_OBJECT
 
 private slots:
+    void testFilePosition_data()
+    {
+        QTest::addColumn<QString>("input");
+        QTest::addColumn<QString>("fileName");
+        QTest::addColumn<int>("line");
+        QTest::addColumn<int>("column");
+
+        QTest::newRow("plain file") << "main.cpp" << "main.cpp" << -1 << -1;
+        QTest::newRow("line") << "main.cpp(7)" << "main.cpp" << 7 << -1;
+        QTest::newRow("line and column")
+            << "C:\\work\\main.cpp(17,8)" << "C:\\work\\main.cpp" << 17 << 8;
+    }
+
+    void testFilePosition()
+    {
+        QFETCH(QString, input);
+        QFETCH(QString, fileName);
+        QFETCH(int, line);
+        QFETCH(int, column);
+        const auto [actualFile, actualLine, actualColumn] = parseFileName(input);
+        QCOMPARE(actualFile, FilePath::fromUserInput(fileName));
+        QCOMPARE(actualLine, line);
+        QCOMPARE(actualColumn, column);
+    }
+
     void test_data()
     {
         QTest::addColumn<QString>("input");
