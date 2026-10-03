@@ -1657,6 +1657,7 @@ void tst_DevContainer::blobRedirectsWithoutCredentials()
     });
     QVERIFY(storage.listen(QHostAddress::Any));
 
+    quint16 registryPort = 0;
     FakeHttpServer registry([&](const FakeHttpServer::Request &request) {
         const bool authorized = request.headers.contains("Bearer registry-token");
         if (request.path.startsWith("/token"))
@@ -1665,7 +1666,7 @@ void tst_DevContainer::blobRedirectsWithoutCredentials()
             return FakeHttpServer::Response{
                 "401 Unauthorized",
                 "WWW-Authenticate: Bearer realm=\"http://127.0.0.1:"
-                    + QByteArray::number(registry.serverPort()) + "/token\",service=\"fake\"\r\n",
+                    + QByteArray::number(registryPort) + "/token\",service=\"fake\"\r\n",
                 {}};
         }
         if (request.path.contains("/manifests/")) {
@@ -1688,6 +1689,8 @@ void tst_DevContainer::blobRedirectsWithoutCredentials()
             {}};
     });
     QVERIFY(registry.listen(QHostAddress::LocalHost));
+
+    registryPort = registry.serverPort();
 
     const FilePath configFolder = tempDir / ".devcontainer" / "blob-redirects";
     QVERIFY_RESULT(configFolder.ensureWritableDir());
@@ -1883,6 +1886,7 @@ void tst_DevContainer::identityTokenRefresh()
     const QString identityToken = "a+b/c%2Bd=";
     QString receivedToken;
 
+    quint16 registryPort = 0;
     FakeHttpServer registry([&](const FakeHttpServer::Request &request) {
         if (request.method == "POST" && request.path == "/token") {
             // Decode the form the way a token server does.
@@ -1899,7 +1903,7 @@ void tst_DevContainer::identityTokenRefresh()
             return FakeHttpServer::Response{
                 "401 Unauthorized",
                 "WWW-Authenticate: Bearer realm=\"http://127.0.0.1:"
-                    + QByteArray::number(registry.serverPort()) + "/token\",service=\"fake\"\r\n",
+                    + QByteArray::number(registryPort) + "/token\",service=\"fake\"\r\n",
                 {}};
         }
         if (request.path.contains("/manifests/")) {
@@ -1919,7 +1923,8 @@ void tst_DevContainer::identityTokenRefresh()
         return FakeHttpServer::Response{"200 OK", {}, layer};
     });
     QVERIFY(registry.listen(QHostAddress::LocalHost));
-    const QString registryName = "127.0.0.1:" + QString::number(registry.serverPort());
+    registryPort = registry.serverPort();
+    const QString registryName = "127.0.0.1:" + QString::number(registryPort);
 
     const FilePath dockerConfigDir = writeDockerConfig(
         tempDir / "dockerconfig-identitytoken",
