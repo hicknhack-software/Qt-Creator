@@ -48,6 +48,13 @@ jobs:
         shell: cmake -P {0}
         run: file(DOWNLOAD "${{ matrix.config.jom_url }}" ./jom.zip)
 
+      - name: Prepare Qt installation directories
+        shell: cmake -P {0}
+        run: |
+          # aqt extracts archives in parallel; create their shared output roots first.
+          file(TO_CMAKE_PATH [[${{ runner.workspace }}]] qt_workspace)
+          file(MAKE_DIRECTORY "${qt_workspace}/x64/Qt" "${qt_workspace}/x86/Qt")
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
