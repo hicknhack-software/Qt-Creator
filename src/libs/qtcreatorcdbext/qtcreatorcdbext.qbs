@@ -11,6 +11,8 @@ QtcLibrary {
     name: "qtcreatorcdbext"
     targetName: name
 
+    cpp.minimumWindowsVersion: "10.0"
+
     property string pythonInstallDir: Environment.getEnv("PYTHON_INSTALL_DIR")
 
     Probe {

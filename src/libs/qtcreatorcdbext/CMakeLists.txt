@@ -174,6 +174,7 @@ endif()
 
 add_qtc_library(qtcreatorcdbext SHARED
   COMPONENT qtcreatorcdbext
+  DEFINES WINVER=0x0A00 _WIN32_WINNT=0x0A00
   DEPENDS dbgeng oleaut32
   DESTINATION lib/qtcreatorcdbext${ArchSuffix}/
   SOURCES
