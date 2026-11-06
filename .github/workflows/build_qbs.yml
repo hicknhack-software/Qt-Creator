@@ -84,9 +84,8 @@ jobs:
 
       - working-directory: Repo
         run: |
-          git submodule set-url -- src/tools/perfparser https://code.qt.io/qt-creator/perfparser.git
-          git submodule set-url -- src/shared/qbs https://github.com/hicknhack-software/Qt-Qbs.git
-          git submodule update --init --recursive
+          git -c submodule.qbs.url=https://github.com/hicknhack-software/Qt-Qbs.git submodule update --init --recursive
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: Build
         working-directory: Repo
